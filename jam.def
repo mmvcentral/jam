@@ -1,0 +1,40 @@
+; Definition file for kfm
+; Contains all the filenames needed for the character
+
+; Player information
+[Info]
+name = "Jam Kuradoberi"        ;Name of character
+displayname = "Jam" ;Name of character to display
+versiondate = 04,14,2001    ;Version date of character
+mugenversion = 1.0   ;Version of M.U.G.E.N character works on
+author = "AOAO"         ;Character author name
+pal.defaults = 1,2,3,4,5,6     ;Default palettes in order of preference
+localCoord  = 320,240
+; Files for the player
+[Files]
+cmd     = jam.cmd           ;コマンド設定
+cns=Constant.cns
+st=Constant.cns
+;st1=interaction.cns
+stcommon=common1.cns
+sprite  = jam.sff   ;Sprite
+anim    = jam.air   ;Animation
+sound   = jam.snd   ;Sound
+pal1    = Color/jam.act   ;Ｐ
+pal2    = Color/jamoriginal5.act  ;ＨＳ
+pal3    = Color/jam3.act  ;スタート
+pal4    = Color/jamoriginal3.act  ;Ｋ
+pal5    = Color/jam5.act  ;Ｓ
+pal6    = Color/jamoriginal4.act  ;同キャラ
+;pal7    = Color/jamEX.act ;ＥＸカラーＰ
+;pal8    = Color/jamEX2.act;ＥＸカラーＫ
+;pal9    = Color/jamEX3.act;ＥＸカラーＨＳ
+;pal10   = Color/jamEX4.act;ＥＸカラーＳ
+;pal11   = Color/jamEX5.act;ＥＸカラースタート
+;pal12   = Color/jam.act   ;
+pal7   = Color/jamoriginal1.act;シースルーの服って感じ風
+pal8   = Color/jamoriginal2.act;南国ハワイアン風
+pal9   = Color/jam4.ACT;風紀委員長風
+pal10  = Color/jam6.ACT;雪女風
+pal11  = Color/jam2.ACT;Ｘジャパンの追っかけ風
+pal12  = Color/jamoriginal6.ACT;何かのゲームで見たキャラ風

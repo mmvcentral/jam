@@ -1,0 +1,2627 @@
+;                              　中華淫乱発情娘　開始
+[Statedef 6000]
+type    = S
+movetype= I
+physics = S
+juggle  = 0
+velset = 0,0
+anim = 6000
+ctrl = 0
+sprpriority = 2
+
+[State -3, Lv3 Shadows]
+type = afterimage
+trigger1 = time = 1
+time = 75
+timegap = 1
+framegap = 10
+length = 30
+paladd = 0, 0, 0
+palmul = 0.75, 0.75, 0.75
+palcontrast = 160, 32, 32
+palpostbright = 0, 0, 0
+trans = add1
+
+[State 2000,1];テンションゲージ減らし
+type = poweradd
+trigger1 = time = 0
+value = -2000
+
+[State 170, 1];無敵
+type = NotHitBy
+trigger1 = Time >= 0
+value = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+time = 4
+
+[State 3000, Superpause FX]
+type = helper
+trigger1 = Time = 3
+helpertype = normal
+stateno = 8520
+ID = 8500
+name = "Superpause FX"
+postype = p1
+pos = -10, -60
+supermovetime = 255
+size.xscale = 1
+size.yscale = 1
+ownpal = 1
+
+[State 3000, Superpause]
+type = superpause
+trigger1 = Time = 3
+time = 0
+movetime = 0
+p2defmul = 1.3
+unhittable = 1
+anim = -1
+sound = s8500,0
+darken = 0
+
+[State 2, ga3];覚醒開始　効果音
+type = PlaySnd
+trigger1 = time = 0
+value = 510, 2
+Volume = 99999
+channel = 1
+
+[State 200, 0];声
+type = VarRandom
+trigger1 = time = 0
+v = 0
+range = 0,1
+[State 200, 1];ココある１
+type = PlaySnd
+trigger1 = time = 0
+trigger1 = Var(0) = 0
+value = 312, 0;
+volume = 99999
+channel = 0
+[State 200, 1];ココある２
+type = PlaySnd
+trigger1 = time = 0
+trigger1 = Var(0) = 1
+value = 312, 1;
+volume = 99999
+channel = 0
+
+;+++++++++++++++++++++++++++++++
+; ロマンキャンセル解除ガトリング暴発防止
+;+++++++++++++++++++++++++++++++
+[State 10, 10];
+type = Varset
+trigger1 = Time = 0
+trigger1 = var(3) = 1
+persistent = 0
+ignorehitpause = 1
+var(3) = 0
+;+++++++++++++++++++++++++++++++
+
+[State 3000, 7]
+type = ChangeState
+trigger1 = Time = 45
+value = 6001
+ctrl = 0
+;<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~
+;                              　中華淫乱発情娘　祓斧攻撃時
+[Statedef 6001]
+type    = S
+movetype= A
+physics = S
+juggle  = 0
+velset = 0,0
+anim = 6001
+ctrl = 0
+sprpriority = 50
+
+[State 2, ga3]
+type = PlaySnd
+trigger1 = AnimElem = 3
+value = 507, 1
+Volume = 99999
+channel = 1
+
+[State 900, a]
+type = HitDef
+trigger1 = time = 0
+trigger1 = P2movetype != H
+attr = S, HT
+hitflag = M-
+sparkno = -1
+hitsound = S508, 2
+numhits = 0
+palfx.time = 1
+palfx.add = 0,0,0
+P1StateNo =6002;中華淫乱発情娘　最初のＨＩＴ
+P2StateNo =6300;中華淫乱発情娘  相手側立ちポーズ
+ID = 6300
+
+[State 3000, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+
+;<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~
+;                              　中華淫乱発情娘　最初のＨＩＴ
+[Statedef 6002]
+type    = S
+movetype= I
+physics = S
+juggle  = 0
+velset = 0,0
+anim = 6002
+ctrl = 0
+
+[State 50, 1];振り向き
+type = Turn
+trigger1 = Time = 0
+trigger1 = Facing = -1
+
+[State 5000,222];画面
+type = ScreenBound
+trigger1 = time >= 0
+value = 0
+
+[State 170, 1];位置固定
+type = Posset
+trigger1 = Time >= 0
+x = -40
+y = 0
+
+[State 170, 1];位置固定
+type = velset
+trigger1 = Time >= 0
+x = 0
+y = 0
+
+[State 7011, 10];時間ストップ
+type = assertspecial
+trigger1 = Time >= 0
+flag  = timerfreeze
+flag2 = nofg
+flag3 = globalnoshadow
+ignorehitpause = 1
+
+[State 7011, 10];音楽ストップ
+type = assertspecial
+trigger1 = Time >= 0
+flag  = nomusic
+ignorehitpause = 1
+
+[State 170, 1];無敵
+type = NotHitBy
+trigger1 = Time >= 0
+value = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+time = 5
+
+[State 20, 3]
+type = playerpush
+trigger1 = time >= 0
+value = 0
+
+[State 240, 3];白い幕
+type = Explod
+trigger1 = Time = 0
+pos = 0, 0
+postype = left
+persistent = 0
+ignorehitpause = 1
+sprpriority = 10000
+ownpal = 1
+ontop = 1
+removetime = 20
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+supermove = 1
+bindtime = -1
+scale = 9999,9999
+anim = 2408
+
+[State 240, 3];背景ある程度黒く
+type = Explod
+trigger1 = Time = 0
+pos = 0, 0
+postype = left
+persistent = 0
+ignorehitpause = 1
+sprpriority = -1
+ownpal = 1
+;under  = 1
+removetime = 99999
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+supermove = 1
+bindtime = -1
+scale = 9999,9999
+anim = F1007
+ID = 6291
+
+[State 200, 1]
+type = PlaySnd
+trigger1 = Time = 20
+value = 100, 0;たんと召し上がれ
+volume = 99999
+channel = 0
+
+[State 200, 1]
+type = PlaySnd
+trigger1 = AnimElem = 5
+value = 100, 3;私のピーをね
+volume = 99999
+channel = 0
+
+[State 3202, idou];相手のステート変更
+type = targetState
+trigger1 = Time = 340
+value = 6301
+ID = 6300
+
+[State 240, 3];ベッド
+type = Explod
+trigger1 = Time = 0
+pos = 0, 0
+persistent = 0
+ignorehitpause = 1
+sprpriority = 0
+ownpal = 1
+Facing = 1
+removetime = 999999
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+supermove = 1
+bindtime = 1
+anim = 6290
+ID = 6290
+
+[State 3000, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 6003
+ctrl = 0
+
+;<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~
+;                              　中華淫乱発情娘　上に放り投げ
+[Statedef 6003]
+type    = S
+movetype= A
+physics = S
+juggle  = 0
+velset = 0,0
+anim = 6003
+ctrl = 0
+sprpriority = 3
+
+[State 5000,222];画面
+type = ScreenBound
+trigger1 = time >= 0
+value = 0
+
+[State 7011, 10];時間ストップ
+type = assertspecial
+trigger1 = Time >= 0
+flag  = timerfreeze
+flag2 = nofg
+flag3 = globalnoshadow
+ignorehitpause = 1
+
+[State 7011, 10];音楽ストップ
+type = assertspecial
+trigger1 = Time >= 0
+flag  = nomusic
+ignorehitpause = 1
+
+[State 170, 1];無敵
+type = NotHitBy
+trigger1 = Time >= 0
+value = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+time = 5
+
+[State 20, 3]
+type = playerpush
+trigger1 = time >= 0
+value = 0
+
+[State 2, ga3];
+type = PlaySnd
+trigger1 = AnimElem = 3
+value = 513, 0
+Volume = 99999
+
+[State 2, ga3];
+type = PlaySnd
+trigger1 = Animelem = 4
+value = 507, 1
+Volume = 99999
+channel = 1
+
+[State 200, 1];はい
+type = PlaySnd
+trigger1 = Animelem = 5
+value = 102, 1;
+volume = 99999
+channel = 0
+
+[State 3202, idou];相手のステート変更
+type = targetState
+trigger1 = AnimElem = 4
+value = 6302
+ID = 6300
+
+[State 3000, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 6004
+ctrl = 0
+
+;<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~
+;                              　中華淫乱発情娘　パンチラ時
+[Statedef 6004]
+type    = S
+movetype= A
+physics = S
+juggle  = 0
+velset = 0,0
+anim = 6004
+ctrl = 0
+sprpriority = 3
+
+[State 5000,222];画面
+type = ScreenBound
+trigger1 = time >= 0
+value = 0
+
+[State 7011, 10];時間ストップ
+type = assertspecial
+trigger1 = Time >= 0
+flag  = timerfreeze
+flag2 = nofg
+flag3 = globalnoshadow
+ignorehitpause = 1
+
+[State 7011, 10];音楽ストップ
+type = assertspecial
+trigger1 = Time >= 0
+flag  = nomusic
+ignorehitpause = 1
+
+[State 170, 1];無敵
+type = NotHitBy
+trigger1 = Time >= 0
+value = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+time = 5
+
+[State 20, 3]
+type = playerpush
+trigger1 = time >= 0
+value = 0
+
+[State 200, 1];行くあるよ
+type = PlaySnd
+trigger1 = AnimElem = 4
+value = 308, 1;
+volume = 99999
+channel = 0
+
+[State 3000, 7]
+type = ChangeState
+trigger1 = Time = 200
+value = 6005
+ctrl = 0
+
+;<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~
+;                              　中華淫乱発情娘　女性上位時
+[Statedef 6005]
+type    = A
+movetype= I
+physics = N
+juggle  = 0
+velset = 0,0
+anim = 6005
+ctrl = 0
+sprpriority = 3
+
+[State 5000,222];画面
+type = ScreenBound
+trigger1 = time >= 0
+value = 0
+
+[State 7011, 10];時間ストップ
+type = assertspecial
+trigger1 = Time >= 0
+flag  = timerfreeze
+flag2 = nofg
+flag3 = globalnoshadow
+ignorehitpause = 1
+
+[State 7011, 10];音楽ストップ
+type = assertspecial
+trigger1 = Time >= 0
+flag  = nomusic
+ignorehitpause = 1
+
+[State 170, 1];無敵
+type = NotHitBy
+trigger1 = Time >= 0
+value = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+time = 5
+
+[State 20, 3]
+type = playerpush
+trigger1 = time >= 0
+value = 0
+
+[State 200, 1];やん,そこは,ああん
+type = PlaySnd
+trigger1 = Time <= 360
+trigger1 = Timemod = 40,0
+value = 204, 0;
+volume = 99999
+;channel = 0
+
+[State 2, ga3];ファウスト腰カクカク
+type = PlaySnd
+trigger1 = Time <= 380
+trigger1 = Timemod = 20,0
+value = 408, 0
+Volume = 99999
+channel = 11
+
+[State 810, Hurt 11];相手からの距離で縛り
+type = BindToTarget
+trigger1 = AnimElem = 1
+pos = 0, -10
+ID = 6300
+
+[State 3202, idou];相手のステート変更
+type = targetState
+trigger1 = AnimElem = 1
+value = 6304
+ID = 6300
+
+[State 200, 0];ハートマーク　Ｙ　ランダム用
+type = VarRandom
+trigger1 = Time >= 0
+v = 0
+range = -20,-6
+
+[State 200, 0];ハートマーク　Ｘ　ランダム用
+type = VarRandom
+trigger1 = Time >= 0
+v = 1
+range = -2,2
+
+[State 200, 0];ハートマーク　Ｘ　ランダム用
+type = VarRandom
+trigger1 = Time >= 0
+v = 40
+range = -2,2
+
+[State 240, 3];ハートマーク１
+type = Explod
+trigger1 = NumExplod <= 30
+trigger1 = Time <= 380
+trigger1 = Timemod = 40,0
+pos = 0, -20
+;persistent = 0
+ignorehitpause = 1
+sprpriority = 999
+random = 150, 60
+Vel = Var(40),Var(0)*0.1
+ownpal = 1
+bindtime = 1
+Removetime = 100
+anim = 6020
+ID = 6020
+
+[State 240, 3];ハートマーク２
+type = Explod
+trigger1 = NumExplod <= 30
+trigger1 = Time <= 380
+trigger1 = Timemod = 35,0
+pos = 0, -20
+;persistent = 0
+ignorehitpause = 1
+sprpriority = 999
+random = 150, 100
+Vel = Var(1),Var(0)*0.2
+ownpal = 1
+bindtime = 1
+Removetime = 100
+anim = 6020
+ID = 6020
+
+[State 3000, 7]
+type = ChangeState
+trigger1 = Time = 400
+value = 6006
+ctrl = 0
+
+;<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~
+;                              　中華淫乱発情娘　１ラウンド終了ぐったり時
+[Statedef 6006]
+type    = A
+movetype= I
+physics = N
+juggle  = 0
+velset = 0,0
+anim = 6006
+ctrl = 0
+sprpriority = 1
+
+[State 5000,222];画面
+type = ScreenBound
+trigger1 = time >= 0
+value = 0
+
+[State 7011, 10];時間ストップ
+type = assertspecial
+trigger1 = Time >= 0
+flag  = timerfreeze
+flag2 = nofg
+flag3 = globalnoshadow
+ignorehitpause = 1
+
+[State 7011, 10];音楽ストップ
+type = assertspecial
+trigger1 = Time >= 0
+flag  = nomusic
+ignorehitpause = 1
+
+[State 170, 1];無敵
+type = NotHitBy
+trigger1 = Time >= 0
+value = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+time = 5
+
+[State 20, 3]
+type = playerpush
+trigger1 = time >= 0
+value = 0
+
+[State 200, 1];単調な攻めね
+type = PlaySnd
+trigger1 = Time = 50
+value = 311, 5;
+volume = 99999
+
+[State 200, 1];大した事無いアル
+type = PlaySnd
+trigger1 = Time = 190
+value = 311, 1;
+volume = 99999
+
+[State 810, Hurt 11];相手からの距離で縛り
+type = BindToTarget
+trigger1 = AnimElem = 1
+pos = 0, -10
+ID = 6300
+
+[State 3202, idou];相手のステート変更
+type = targetState
+trigger1 = AnimElem = 1
+value = 6303
+ID = 6300
+
+
+[State 200, 0];ハートマーク　Ｙ　ランダム用
+type = VarRandom
+trigger1 = Time >= 0
+v = 0
+range = -20,-6
+
+[State 200, 0];ハートマーク　Ｘ　ランダム用
+type = VarRandom
+trigger1 = Time >= 0
+v = 1
+range = -2,2
+
+[State 200, 0];ハートマーク　Ｘ　ランダム用
+type = VarRandom
+trigger1 = Time >= 0
+v = 40
+range = -2,2
+
+[State 3000, 7]
+type = ChangeState
+trigger1 = Time = 300
+value = 6007
+ctrl = 0
+
+;<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~
+;                              　中華淫乱発情娘　正常位時
+[Statedef 6007]
+type    = A
+movetype= I
+physics = N
+juggle  = 0
+velset = 0,0
+anim = 6007
+ctrl = 0
+sprpriority = 3
+
+[State 5000,222];画面
+type = ScreenBound
+trigger1 = time >= 0
+value = 0
+
+[State 7011, 10];時間ストップ
+type = assertspecial
+trigger1 = Time >= 0
+flag  = timerfreeze
+flag2 = nofg
+flag3 = globalnoshadow
+ignorehitpause = 1
+
+[State 7011, 10];音楽ストップ
+type = assertspecial
+trigger1 = Time >= 0
+flag  = nomusic
+ignorehitpause = 1
+
+[State 170, 1];無敵
+type = NotHitBy
+trigger1 = Time >= 0
+value = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+time = 5
+
+[State 20, 3]
+type = playerpush
+trigger1 = time >= 0
+value = 0
+
+[State 200, 1];やん
+type = PlaySnd
+trigger1 = Time   <= 150
+trigger1 = Timemod = 40,0
+value = 204, 0;
+volume = 99999
+;channel = 0
+
+[State 200, 1];そこは
+type = PlaySnd
+trigger1 = Time   = 150
+value = 204, 1;
+volume = 99999
+;channel = 0
+
+[State 200, 1];ああん
+type = PlaySnd
+trigger1 = Time  = 220
+value = 204, 2;
+volume = 99999
+;channel = 0
+
+[State 2, ga3];ファウスト腰カクカク
+type = PlaySnd
+trigger1 = Time <= 100
+trigger1 = Timemod = 20,0
+value = 408, 0
+Volume = 99999
+channel = 11
+
+[State 2, ga3];ファウスト腰カクカク
+type = PlaySnd
+trigger1 = Time = [100,280]
+trigger1 = Timemod = 10,0
+value = 408, 0
+Volume = 99999
+channel = 11
+
+[State 810, Hurt 11];相手からの距離で縛り
+type = BindToTarget
+trigger1 = AnimElem = 1
+pos = -10, -10
+ID = 6300
+
+[State 3202, idou];相手のステート変更
+type = targetState
+trigger1 = AnimElem = 1
+value = 6305
+ID = 6300
+
+[State 3202, idou];相手のステート変更
+type = targetState
+trigger1 = time = 100
+value = 6307
+ID = 6300
+
+
+
+
+
+[State 200, 0];ハートマーク　Ｙ　ランダム用
+type = VarRandom
+trigger1 = Time < 100
+v = 0
+range = -20,-6
+
+[State 200, 0];ハートマーク　Ｙ　ランダム用
+type = VarRandom
+trigger1 = Time >= 100
+v = 0
+range = -20,-6
+
+[State 200, 0];ハートマーク　Ｘ　ランダム用
+type = VarRandom
+trigger1 = Time >= 0
+v = 1
+range = -2,2
+
+[State 200, 0];ハートマーク　Ｘ　ランダム用
+type = VarRandom
+trigger1 = Time >= 0
+v = 40
+range = -2,2
+
+[State 240, 3];ハートマーク１
+type = Explod
+trigger1 = NumExplod <= 30
+trigger1 = Time <= 100
+trigger1 = Timemod = 40,0
+pos = 0, -20
+;persistent = 0
+ignorehitpause = 1
+sprpriority = 999
+random = 150, 60
+Vel = Var(40),Var(0)*0.1
+ownpal = 1
+bindtime = 1
+Removetime = 100
+anim = 6020
+ID = 6020
+
+[State 240, 3];ハートマーク２
+type = Explod
+trigger1 = NumExplod <= 30
+trigger1 = Time <= 100
+trigger1 = Timemod = 35,0
+pos = 0, -20
+;persistent = 0
+ignorehitpause = 1
+sprpriority = 999
+random = 150, 100
+Vel = Var(1),Var(0)*0.2
+ownpal = 1
+bindtime = 1
+Removetime = 100
+anim = 6020
+ID = 6020
+
+[State 240, 3];ハートマーク１
+type = Explod
+trigger1 = NumExplod <= 40
+trigger1 = Time >= 100
+trigger1 = Timemod = 10,0
+pos = 0, -20
+;persistent = 0
+ignorehitpause = 1
+sprpriority = 999
+random = 150, 60
+Vel = Var(40),Var(0)*0.1
+ownpal = 1
+bindtime = 1
+Removetime = 50
+anim = 6020
+ID = 6020
+
+[State 240, 3];ハートマーク２
+type = Explod
+trigger1 = NumExplod <= 40
+trigger1 = Time >= 100
+trigger1 = Timemod = 5,0
+pos = 0, -20
+;persistent = 0
+ignorehitpause = 1
+sprpriority = 999
+random = 150, 100
+Vel = Var(1),Var(0)*0.2
+ownpal = 1
+bindtime = 1
+Removetime = 100
+anim = 6020
+ID = 6020
+
+[State 3000, 7]
+type = ChangeState
+trigger1 = Time = 300
+value = 6008
+ctrl = 0
+
+;<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~
+;                              　中華淫乱発情娘　２ラウンド終了ぐったり時
+[Statedef 6008]
+type    = A
+movetype= I
+physics = N
+juggle  = 0
+velset = 0,0
+anim = 6006
+ctrl = 0
+sprpriority = 1
+
+[State 5000,222];画面
+type = ScreenBound
+trigger1 = time >= 0
+value = 0
+
+[State 7011, 10];時間ストップ
+type = assertspecial
+trigger1 = Time >= 0
+flag  = timerfreeze
+flag2 = nofg
+flag3 = globalnoshadow
+ignorehitpause = 1
+
+[State 7011, 10];音楽ストップ
+type = assertspecial
+trigger1 = Time >= 0
+flag  = nomusic
+ignorehitpause = 1
+
+[State 170, 1];無敵
+type = NotHitBy
+trigger1 = Time >= 0
+value = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+time = 5
+
+[State 20, 3]
+type = playerpush
+trigger1 = time >= 0
+value = 0
+
+[State 200, 1];ハニャーン
+type = PlaySnd
+trigger1 = Time = 10
+value = 200, 8;
+volume = 99999
+
+[State 200, 1];アウアル
+type = PlaySnd
+trigger1 = Time = 100
+value = 203, 0;
+volume = 99999
+
+[State 810, Hurt 11];相手からの距離で縛り
+type = BindToTarget
+trigger1 = AnimElem = 1
+pos = 0, -10
+ID = 6300
+
+[State 3202, idou];相手のステート変更
+type = targetState
+trigger1 = AnimElem = 1
+value = 6303
+ID = 6300
+
+
+[State 200, 0];ハートマーク　Ｙ　ランダム用
+type = VarRandom
+trigger1 = Time >= 0
+v = 0
+range = -20,-6
+
+[State 200, 0];ハートマーク　Ｘ　ランダム用
+type = VarRandom
+trigger1 = Time >= 0
+v = 1
+range = -2,2
+
+[State 200, 0];ハートマーク　Ｘ　ランダム用
+type = VarRandom
+trigger1 = Time >= 0
+v = 40
+range = -2,2
+
+[State 3000, 7]
+type = ChangeState
+trigger1 = Time = 200
+value = 6009
+ctrl = 0
+
+;<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~
+;                              　中華淫乱発情娘　女性上位時
+[Statedef 6009]
+type    = A
+movetype= I
+physics = N
+juggle  = 0
+velset = 0,0
+anim = 6005
+ctrl = 0
+sprpriority = 3
+
+[State 5000,222];画面
+type = ScreenBound
+trigger1 = time >= 0
+value = 0
+
+[State 7011, 10];時間ストップ
+type = assertspecial
+trigger1 = Time >= 0
+flag  = timerfreeze
+flag2 = nofg
+flag3 = globalnoshadow
+ignorehitpause = 1
+
+[State 7011, 10];音楽ストップ
+type = assertspecial
+trigger1 = Time >= 0
+flag  = nomusic
+ignorehitpause = 1
+
+[State 170, 1];無敵
+type = NotHitBy
+trigger1 = Time >= 0
+value = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+time = 5
+
+[State 20, 3]
+type = playerpush
+trigger1 = time >= 0
+value = 0
+
+[State 200, 1];ああん
+type = PlaySnd
+trigger1 = Time <= 360
+trigger1 = Timemod = 40,0
+value = 204, 2;
+volume = 99999
+;channel = 0
+
+[State 2, ga3];ファウスト腰カクカク
+type = PlaySnd
+trigger1 = Timemod = 15,0
+value = 408, 0
+Volume = 1
+;channel = 11
+
+[State 810, Hurt 11];相手からの距離で縛り
+type = BindToTarget
+trigger1 = AnimElem = 1
+pos = 0, -10
+ID = 6300
+
+[State 3202, idou];相手のステート変更
+type = targetState
+trigger1 = AnimElem = 1
+value = 6304
+ID = 6300
+
+
+[State 200, 0];ハートマーク　Ｙ　ランダム用
+type = VarRandom
+trigger1 = Time >= 0
+v = 0
+range = -20,-6
+
+[State 200, 0];ハートマーク　Ｘ　ランダム用
+type = VarRandom
+trigger1 = Time >= 0
+v = 1
+range = -2,2
+
+[State 200, 0];ハートマーク　Ｘ　ランダム用
+type = VarRandom
+trigger1 = Time >= 0
+v = 40
+range = -2,2
+
+[State 240, 3];ハートマーク１
+type = Explod
+trigger1 = NumExplod <= 40
+trigger1 = Time <= 380
+trigger1 = Timemod = 10,0
+pos = 0, -20
+;persistent = 0
+ignorehitpause = 1
+sprpriority = 999
+random = 150, 60
+Vel = Var(40),Var(0)*0.1
+ownpal = 1
+bindtime = 1
+Removetime = 100
+anim = 6020
+ID = 6020
+
+[State 240, 3];ハートマーク２
+type = Explod
+trigger1 = NumExplod <= 40
+trigger1 = Time <= 380
+trigger1 = Timemod = 5,0
+pos = 0, -20
+;persistent = 0
+ignorehitpause = 1
+sprpriority = 999
+random = 150, 100
+Vel = Var(1),Var(0)*0.2
+ownpal = 1
+bindtime = 1
+Removetime = 100
+anim = 6020
+ID = 6020
+
+[State 3000, 7]
+type = ChangeState
+trigger1 = Time = 400
+value = 6010
+ctrl = 0
+
+;<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~
+;                              　中華淫乱発情娘　３ラウンド終了ぐったり時
+[Statedef 6010]
+type    = A
+movetype= I
+physics = N
+juggle  = 0
+velset = 0,0
+anim = 6008
+ctrl = 0
+sprpriority = 1
+
+[State 5000,222];画面
+type = ScreenBound
+trigger1 = time >= 0
+value = 0
+
+[State 7011, 10];時間ストップ
+type = assertspecial
+trigger1 = Time >= 0
+flag  = timerfreeze
+flag2 = nofg
+flag3 = globalnoshadow
+ignorehitpause = 1
+
+[State 7011, 10];音楽ストップ
+type = assertspecial
+trigger1 = Time >= 0
+flag  = nomusic
+ignorehitpause = 1
+
+[State 170, 1];無敵
+type = NotHitBy
+trigger1 = Time >= 0
+value = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+time = 5
+
+[State 20, 3]
+type = playerpush
+trigger1 = time >= 0
+value = 0
+
+[State 810, Hurt 11];相手からの距離で縛り
+type = BindToTarget
+trigger1 = AnimElem = 1
+pos = 0, -10
+ID = 6300
+
+[State 3202, idou];相手のステート変更
+type = targetState
+trigger1 = AnimElem = 1
+value = 6303
+ID = 6300
+
+[State 3202, idou];相手のステート変更
+type = targetState
+trigger1 = Time = 300
+value = 6306
+ID = 6300
+
+[State 200, 1];凄い技アルね
+type = PlaySnd
+trigger1 = Time = 30
+value = 110, 5;
+volume = 99999
+;channel = 0
+
+[State 200, 1];失せろ
+type = PlaySnd
+trigger1 = Time = 250
+value = 311, 4;
+volume = 99999
+;channel = 0
+
+[State 240, 3];白い幕
+type = Explod
+trigger1 = Time = 300
+pos = 0, 0
+postype = left
+persistent = 0
+ignorehitpause = 1
+sprpriority = 10000
+ownpal = 1
+ontop = 1
+removetime = 20
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+supermove = 1
+bindtime = -1
+scale = 9999,9999
+anim = 2408
+
+[State 170, 1];位置固定
+type = Posset
+trigger1 = Time >= 300
+x = 100
+y = 0
+
+[State 170, 1];位置固定
+type = velset
+trigger1 = Time >= 300
+x = 0
+y = 0
+
+[State 200, 1];必殺系ＨＩＴ音
+type = PlaySnd
+trigger1 = Time   >= 300
+trigger1 = TimeMod = 10,0
+value = 508, 2;
+volume = 99999
+
+[State 2, 6];ベッド　強制消去
+type = RemoveExplod
+trigger1 = Time = 300
+ignorehitpause = 1
+ID = 6290
+
+[State 2, 6];背景ある程度黒く　強制消去
+type = RemoveExplod
+trigger1 = Time = 300
+ignorehitpause = 1
+ID = 6291
+
+[State 200, 0];ハートマーク　Ｙ　ランダム用
+type = VarRandom
+trigger1 = Time <= 200
+v = 0
+range = -20,-6
+
+[State 200, 0];ハートマーク　Ｘ　ランダム用
+type = VarRandom
+trigger1 = Time <= 200
+v = 1
+range = -2,2
+
+[State 200, 0];ハートマーク　Ｘ　ランダム用
+type = VarRandom
+trigger1 = Time <= 200
+v = 40
+range = -2,2
+
+[State 3000, 7]
+type = ChangeState
+trigger1 = Time = 300
+value = 6011
+ctrl = 0
+;<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~
+;                              　中華淫乱発情娘　ラスト腰砕け時
+[Statedef 6011]
+type    = S
+movetype= I
+physics = S
+juggle  = 0
+velset = 0,0
+anim = 6011
+ctrl = 0
+sprpriority = 1
+
+[State 2, life]
+type = Lifeset
+trigger1 = Time = 0
+ignorehitpause = 1
+value = (Life-Life)+1
+
+[State 1, life]
+type = TargetLifeAdd
+trigger1 = Time = 0
+value = -10000
+kill = 0
+ID = 6300
+
+[State 170, 1];位置固定
+type = Posset
+trigger1 = Time >= 0
+y = 0
+
+;[State 5000,222];画面
+;type = ScreenBound
+;trigger1 = time >= 0
+;value = 0
+
+[State 7011, 10];時間ストップ
+type = assertspecial
+trigger1 = Time >= 0
+flag  = timerfreeze
+ignorehitpause = 1
+
+[State 170, 1];無敵
+type = NotHitBy
+trigger1 = Time >= 0
+value = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+time = 5
+
+[State 20, 3]
+type = playerpush
+trigger1 = time >= 0
+value = 0
+
+[State 200, 1];立てないアル
+type = PlaySnd
+trigger1 = Time = 0
+value = 203, 2;
+ignorehitpause = 1
+persistent = 0
+volume = 99999
+channel = 0
+
+[State 2, ga3];グキッ！
+type = PlaySnd
+trigger1 = Time = 0
+value = 513, 1
+ignorehitpause = 1
+persistent = 0
+Volume = 99999
+channel = 1
+
+[State 200, 1];必殺系ＨＩＴ音
+type = PlaySnd
+trigger1 = Time = [10,90]
+trigger1 = TimeMod = 7,0
+value = 508, 2;
+volume = 99999
+
+[State 750, 3];必殺系ＨＩＴマーク
+type = helper
+trigger1 = Time = [10,90]
+trigger1 = TimeMod = 7,0
+ID = 4000
+ignorehitpause = 1
+persistent = 1
+pos = -10,-63
+postype = p2
+facing = -1
+priority = 2
+stateno = 4000
+ownpal = 1
+supermove = 1
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+
+[State 240, 3];ＨＩＴエフェクト　白いフラッシュ
+type = Explod
+trigger1 = Time = [10,90]
+trigger1 = TimeMod = 7,0
+pos = 0, 0
+postype = left
+persistent = 1
+ignorehitpause = 1
+sprpriority = 9999
+ownpal = 1
+ontop = 1
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+supermove = 1
+bindtime = -1
+scale = 9999,9999
+anim = F704
+
+[State 3000, 7]
+type = ChangeState
+trigger1 = Time = 160
+value = 0
+ctrl = 1
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;                                     中華淫乱発情娘　相手側
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;                                     相手側  立ちポーズ
+[Statedef 6300]
+type    = S
+movetype= H
+physics = N
+velset = 0,0
+poweradd = 0
+ctrl = 0
+
+[State 50, 1];振り向き
+type = Turn
+trigger1 = Time = 0
+trigger1 = Facing = 1
+
+[State 170, 1];無敵
+type = NotHitBy
+trigger1 = Time >= 0
+value = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+time = 5
+
+[State 20, 3]
+type = playerpush
+trigger1 = time >= 0
+value = 0
+
+[State 5000,222];画面
+type = ScreenBound
+trigger1 = time >= 0
+value = 0
+
+[State 3124, 1.1];
+type = changeanim
+trigger1 = time = 0
+trigger1 = SelfAnimExist(0)
+value = 0
+
+[State 170, 1];位置固定
+type = Posset
+trigger1 = Time = 0
+x = 120
+y = 0
+
+[State 170, 1];位置固定
+type = velset
+trigger1 = Time = 0
+x = 0
+y = 0
+
+[State 902, 4];立ちへ
+type = SelfState
+trigger1 = Time >= 1000
+value = 0
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;                                     相手側  歩きポーズ
+[Statedef 6301]
+type    = S
+movetype= H
+physics = N
+velset = 0,0
+poweradd = 0
+ctrl = 0
+
+[State 170, 1];無敵
+type = NotHitBy
+trigger1 = Time >= 0
+value = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+time = 5
+
+[State 20, 3]
+type = playerpush
+trigger1 = time >= 0
+value = 0
+
+[State 5000,222];画面
+type = ScreenBound
+trigger1 = time >= 0
+value = 0
+
+[State 3124, 1.1];
+type = changeanim
+trigger1 = time = 0
+trigger1 = SelfAnimExist(20)
+value = 20
+
+[State 170, 1];
+type = velset
+trigger1 = Time >= 0
+x = 2.5
+
+[State 902, 4];立ちへ
+type = SelfState
+trigger1 = Time >= 1000
+value = 0
+
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+; 　　　　　　　　　　　　　　　　　相手側  やられ上昇
+[Statedef 6302]
+type = A
+movetype = H
+physics = N
+ctrl = 0
+velset = 0, 0
+
+[State 170, 1];無敵
+type = NotHitBy
+trigger1 = Time >= 0
+value = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+time = 5
+
+[State 20, 3]
+type = playerpush
+trigger1 = time >= 0
+value = 0
+
+[State 5000,222];画面
+type = ScreenBound
+trigger1 = time >= 0
+value = 0
+
+[State 3124, 1.1];
+type = changeanim2
+trigger1 = time = 0
+value = 3020
+
+[State 902, 2]
+type = HitFallSet
+trigger1 = Animtime = 0
+value = 1
+
+[State 902, 2]
+type = VelSet
+trigger1 = time = 0
+x = 1.2
+y = -10
+
+[State 1000, 7]
+type = veladd
+trigger1 = Time >= 0
+y = 0.33
+
+[State 902, 4];地面バウンドへ
+type = changeState
+trigger1 = time >= 10
+trigger1 = Pos Y > -50
+value = 6303
+
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+; 　　　　　　　　　　　　　　　　　相手側  やられダウン状態
+[Statedef 6303]
+type = A
+movetype = H
+physics = N
+ctrl = 0
+velset = 0, 0
+sprpriority = 2
+
+[State 170, 1];位置固定
+type = Posset
+trigger1 = Time >= 0
+y = -50
+
+[State 50, 1];振り向き
+type = Turn
+trigger1 = Time = 0
+trigger1 = Facing = 1
+
+[State 5000,222];画面
+type = ScreenBound
+trigger1 = time >= 0
+value = 0
+
+[State 170, 1];無敵
+type = NotHitBy
+trigger1 = Time >= 0
+value = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+time = 5
+
+[State 20, 3]
+type = playerpush
+trigger1 = time >= 0
+value = 0
+
+[State 3124, 1.1];
+type = changeanim
+trigger1 = time = 0
+trigger1 = SelfAnimExist(5110)
+value = 5110
+
+[State 902, 4];
+type = SelfState
+trigger1 = time >= 1000
+value = 0
+
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+; 　　　　　　　　　　　　　　　　　相手側  ジタバタ時
+[Statedef 6304]
+type = A
+movetype = H
+physics = N
+ctrl = 0
+velset = 0, 0
+
+[State 5000,222];画面
+type = ScreenBound
+trigger1 = time >= 0
+value = 0
+
+[State 170, 1];無敵
+type = NotHitBy
+trigger1 = Time >= 0
+value = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+time = 5
+
+[State 20, 3]
+type = playerpush
+trigger1 = time >= 0
+value = 0
+
+[State 3124, 1.1];
+type = changeanim2
+trigger1 = time = 0
+value = 6304
+
+[State 902, 4];
+type = SelfState
+trigger1 = time >= 1000
+value = 0
+
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+; 　　　　　　　　　　　　　　　　　相手側  正常位ジタバタ時
+[Statedef 6305]
+type = A
+movetype = H
+physics = N
+ctrl = 0
+velset = 0, 0
+sprpriority = 2
+
+[State 50, 1];振り向き
+type = Turn
+trigger1 = Time = 0
+trigger1 = Facing = -1
+
+[State 5000,222];画面
+type = ScreenBound
+trigger1 = time >= 0
+value = 0
+
+[State 170, 1];無敵
+type = NotHitBy
+trigger1 = Time >= 0
+value = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+time = 5
+
+[State 20, 3]
+type = playerpush
+trigger1 = time >= 0
+value = 0
+
+[State 3124, 1.1];
+type = changeanim2
+trigger1 = time = 0
+value = 6305
+
+[State 902, 4];
+type = SelfState
+trigger1 = time >= 1000
+value = 0
+
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+; 　　　　　　　　　　　　　　　　　相手側  ラストやられ上昇
+[Statedef 6306]
+type = A
+movetype = H
+physics = N
+ctrl = 0
+velset = 0, 0
+
+[State 170, 1];無敵
+type = NotHitBy
+trigger1 = Time >= 0
+value = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+time = 5
+
+[State 20, 3]
+type = playerpush
+trigger1 = time >= 0
+value = 0
+
+[State 5000,222];画面
+type = ScreenBound
+trigger1 = time >= 0
+value = 1
+movecamera = 1, 0
+
+[State 3124, 1.1];
+type = changeanim2
+trigger1 = time = 0
+value = 3020
+
+[State 902, 2]
+type = HitFallSet
+trigger1 = Animtime = 0
+value = 1
+
+[State 902, 2]
+type = VelSet
+trigger1 = time <= 10
+x = 10
+y = -6
+
+[State 1000, 7]
+type = veladd
+trigger1 = Time >= 0
+y = 0.11
+
+[State 902, 4];地面バウンドへ
+type = SelfState
+trigger1 = time >= 10
+trigger1 = Pos Y > -1
+value = 5110
+
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+; 　　　　　　　　　　　　　　　　　相手側  正常位ジタバタ高速時
+[Statedef 6307]
+type = A
+movetype = H
+physics = N
+ctrl = 0
+velset = 0, 0
+sprpriority = 2
+
+[State 50, 1];振り向き
+type = Turn
+trigger1 = Time = 0
+trigger1 = Facing = -1
+
+[State 5000,222];画面
+type = ScreenBound
+trigger1 = time >= 0
+value = 0
+
+[State 170, 1];無敵
+type = NotHitBy
+trigger1 = Time >= 0
+value = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+time = 5
+
+[State 20, 3]
+type = playerpush
+trigger1 = time >= 0
+value = 0
+
+[State 3124, 1.1];
+type = changeanim2
+trigger1 = time = 0
+value = 6306
+
+[State 902, 4];
+type = SelfState
+trigger1 = time >= 1000
+value = 0
+
+;<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~
+;                              　コマンド投げ　成功
+[Statedef 6500]
+type    = S
+movetype= A
+physics = N
+juggle  = 0
+;velset = 0,0
+anim = 6500
+ctrl = 0
+sprpriority = 2
+
+[State 902, 4];失敗モーションへ
+type = changeState
+triggerall = time <= 9
+trigger1 = p2statetype   != S && p2statetype   != C
+trigger2 = p2movetype     = H
+trigger3 = p2bodydist X  != [-10,30]
+value = 6501
+ctrl = 0
+
+[State 170, 1];無敵
+type = NotHitBy
+trigger1 = Time <= 8
+value = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+time = 2
+
+[State 108, 0]
+type = VelAdd
+trigger1 = time >= 0
+trigger1 = Vel X > 0
+x = -0.2
+
+[State 108, 0]
+type = Velset
+trigger1 = time >= 0
+trigger1 = Vel X < 0
+x = 0
+
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+[State 200, 0];声
+type = VarRandom
+trigger1 = time = 0
+v = 0
+range = 0,2
+
+[State 2, ga3];あたた
+type = PlaySnd
+trigger1 = Var(0) = 0
+trigger1 = Time = [10,88]
+trigger1 = Timemod = 8,0;6,0
+value = 102, 5;507, 3
+persistent = 1
+ignorehitpause = 1
+Volume = 99999
+
+[State 2, ga3];ほおー
+type = PlaySnd
+trigger1 = Var(0) = 1
+trigger1 = Time = [10,88]
+trigger1 = Timemod = 8,0
+value = 102, 1
+persistent = 1
+ignorehitpause = 1
+Volume = 99999
+
+[State 2, ga3];はお
+type = PlaySnd
+trigger1 = Var(0) = 2
+trigger1 = Time = [10,88]
+trigger1 = Timemod = 8,0
+value = 102, 7
+persistent = 1
+ignorehitpause = 1
+Volume = 99999
+
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
+[State 2, ga3];ラスト振り
+type = PlaySnd
+trigger1 = AnimElem = 29
+value = 507, 2
+persistent = 1
+ignorehitpause = 1
+Volume = 99999
+channel = 1
+
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\
+[State 2]
+type = VarRandom
+trigger1 = AnimElem = 31
+v = 0
+range = 0, 2
+[State 2, ga2];龍刃1
+type = PlaySnd
+triggerall = Var(0) = 0
+trigger1 = AnimElem = 31
+value = 301, 0
+Volume = 99999
+channel = 0
+[State 2, ga3];龍刃2
+type = PlaySnd
+triggerall = Var(0) = 1
+trigger1 = AnimElem = 31
+value = 301, 1
+Volume = 99999
+channel = 0
+[State 2, ga3];龍刃3
+type = PlaySnd
+triggerall = Var(0) = 2
+trigger1 = AnimElem = 31
+value = 301, 2
+Volume = 99999
+channel = 0
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+[State 200, 1];最初の連打
+type = HitDef
+trigger1 = Time = [0,80]
+trigger1 = Timemod = 8,0
+attr = S, ST
+damage = ceil(11*Var(5)/256)+Var(15), 5
+animtype = hard
+guardflag = 
+hitflag = M
+priority = 3, Miss
+pausetime = 0,12+Var(15)
+guard.pausetime = 0,0
+sparkno = -1
+guard.sparkno = -1
+;sparkxy = 10, -76
+hitsound = S508, 2
+guardsound =S509, 4
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 12
+ground.velocity = 0,0
+getpower = 0,0
+givepower = 5,0
+palfx.time = 1
+palfx.add = 0,0,0
+ground.cornerpush.veloff   = 0
+guard.cornerpush.veloff    = 0
+ID = 6501
+;chainID = 6501
+p2facing = 1
+Kill = 0
+
+[State 200, 1];ボディ
+type = HitDef
+trigger1 = AnimElem = 24
+attr = S, ST
+damage = ceil(12*Var(5)/256)+Var(15), 5
+animtype = hard
+guardflag = 
+hitflag = M
+priority = 3, Miss
+pausetime = 0,19+Var(15)
+guard.pausetime = 0,0
+sparkno = -1
+guard.sparkno = -1
+;sparkxy = 10, -76
+hitsound = S508, 2
+guardsound =S509, 4
+ground.type = Low
+ground.slidetime = 19
+ground.hittime  = 19
+ground.velocity = -1,0
+getpower = 0,0
+givepower = 5,0
+palfx.time = 1
+palfx.add = 0,0,0
+ground.cornerpush.veloff   = 0
+guard.cornerpush.veloff    = 0
+ID = 6502
+chainID = 6501
+Kill = 0
+
+[State 200, 1];ラスト
+type = HitDef
+trigger1 = AnimElem = 32
+attr = S, ST
+damage = ceil(13*Var(5)/256)+Var(15), 5
+animtype = hard
+guardflag = 
+hitflag = M
+priority = 3, Miss
+pausetime = 12,12+Var(15)
+guard.pausetime = 0,0
+sparkno = -1
+guard.sparkno = -1
+;sparkxy = 10, -76
+hitsound = S508, 2
+guardsound =S509, 4
+ground.type = Low
+ground.slidetime = 12
+ground.hittime  = 12
+ground.velocity = -10,-8
+fall = 1;落下させる
+fall.recover = 0;受身可否
+;fall.recovertime = 30;受身出来るまでの時間
+getpower = 0,0
+givepower = 5,0
+palfx.time = 1
+palfx.add = 0,0,0
+ground.cornerpush.veloff   = 0
+down.cornerpush.veloff     = 0
+guard.cornerpush.veloff    = 0
+P2stateno = 6510
+chainID = 6502
+
+;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
+[State 2, ga3];カウンターヒット時
+type = PlaySnd
+trigger1 =  var(14) >= 128
+trigger1 = movehit = 1
+persistent = 1
+ignorehitpause = 1
+value = 511, 1
+Volume = 99999
+
+
+[State 5151, 0];ガードゲージ表示にする
+type = Varset
+trigger1 = movecontact = 1
+persistent = 1
+ignorehitpause = 1
+v = 52
+value = 250
+
+[State 5];カウンターヒット文字呼び出し
+type = helper
+triggerall= Numhelper + Enemy,numHelper <= 20
+triggerall= Numhelper(4100) <= 5
+trigger1  = var(14) >= 128
+trigger1  = MoveHit = 1
+ID = 4100
+ignorehitpause = 1
+persistent = 1
+pos = 0,-90
+facing = -1
+priority = 2
+stateno = 4100
+ownpal = 1
+supermove = 1
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
+;あああああああああああああああああ
+[State 2,guardLEVEL];ガードレベル増加
+type = Varadd
+trigger1 =  var(14) <= 236
+trigger1 = moveguarded = 1
+persistent = 1
+ignorehitpause = 1
+var(14) = 20
+[State 2,guardLEVEL];ガードレベル増加
+type = Varadd
+trigger1 =  var(14) > 236
+trigger1 = moveguarded = 1
+persistent = 1
+ignorehitpause = 1
+var(14) = 256-Var(14)
+[State 2,guardLEVEL];ガードレベル減少
+type = Varadd
+trigger1 =  movehit = 1
+trigger1 =  var(14) >= 20
+persistent = 1
+ignorehitpause = 1
+var(14) = -20
+[State 2,guardLEVEL];ガードレベル減少
+type = Varadd
+trigger1 =  movehit = 1
+trigger1 =  var(14) < 20
+persistent = 1
+ignorehitpause = 1
+var(14) = -Var(14)
+;あああああああああああああああああ
+;HHHHHHHHHHHHHHHHHHHHHHHH
+;ＨＩＴ炎エフェクトのヘルパー強制消去用
+;HHHHHHHHHHHHHHHHHHHHHHHH
+[State 1,1]
+type = Varset
+triggerall = Var(17)  != 1
+trigger1 = MoveContact = 1
+ignorehitpause = 1
+v = 17
+value = 1
+;HHHHHHHHHHHHHHHHHHHHHHHH
+
+[State 750, 3];必殺系ＨＩＴマーク
+type = helper
+trigger1 = MoveHit = 1
+ID = 4000
+ignorehitpause = 1
+persistent = 1
+pos = -30,-50
+postype = p2
+facing = -1
+priority = 2
+stateno = 4000
+ownpal = 1
+supermove = 1
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+
+;+++++++++++++++++++++++++++++++
+; ロマンキャンセル許可  
+;+++++++++++++++++++++++++++++++
+[State 10, 10];
+type = Varset
+trigger1 = MoveContact = 1
+trigger1 = var(3) != 1
+persistent = 0
+ignorehitpause = 1
+var(3) = 1
+;+++++++++++++++++++++++++++++++
+
+[State 9999,9999];連続技用
+type = MoveHitReset
+trigger1 = MoveContact = 1
+ignorehitpause = 1
+persistent = 1
+
+
+[State 902, 4];
+type = changeState
+trigger1 = animtime = 0
+value = 0
+ctrl = 1
+
+
+
+
+
+;<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~
+;                              　コマンド投げ　失敗動作
+[Statedef 6501]
+type    = S
+movetype= I
+physics = N
+juggle  = 0
+;velset = 0,0
+anim = 6501
+ctrl = 0
+
+[State 108, 0]
+type = VelAdd
+trigger1 = time >= 0
+trigger1 = Vel X > 0
+x = -0.2
+
+[State 108, 0]
+type = Velset
+trigger1 = time >= 0
+trigger1 = Vel X < 0
+x = 0
+
+[State 200, 0]
+type = VarRandom
+trigger1 = Animelem = 2
+v = 0
+range = 0,2
+[State 200, 1]
+type = PlaySnd
+trigger1 = Animelem = 2
+trigger1 = Var(0) = 0
+value = 110, 0;
+volume = 99999
+channel = 0
+[State 200, 1]
+type = PlaySnd
+trigger1 = Animelem = 2
+trigger1 = Var(0) = 1
+value = 110, 2;
+volume = 99999
+channel = 0
+[State 200, 1]
+type = PlaySnd
+trigger1 = Animelem = 2
+trigger1 = Var(0) = 2
+value = 110, 4;
+volume = 99999
+channel = 0
+
+[State 902, 4];
+type = changeState
+trigger1 = animtime = 0
+value = 0
+ctrl = 1
+
+;<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~
+;                              　コマンド投げ　相手側　吹っ飛び状態
+[Statedef 6510]
+type    = A
+movetype= H
+physics = N
+juggle  = 0
+velset = -12,-8
+ctrl = 0
+
+[State 3124, 1.1];こっちのＡＩＲから呼び出し
+type = changeanim2
+trigger1 = time = 0
+value = 6510
+
+[State 1000, 7]
+type = veladd
+trigger1 = Time >= 0
+y = 0.44
+
+[State 902, 4];地面バウンドへ
+type = SelfState
+trigger1 = time >= 3
+trigger1 = Pos Y > -0.5
+value = 5100
+ctrl = 0
+
+[State 902, 4];画面端バウンドへ
+type = changeState
+trigger1 = BackEdgeBodyDist <= 5
+value = 6511
+ctrl = 0
+
+;<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~
+;                              　コマンド投げ　相手側　画面端バウンド
+[Statedef 6511]
+type    = A
+movetype= H
+physics = N
+juggle  = 0
+velset = 2,-6
+;anim = 6510
+ctrl = 0
+
+[State 3124, 1.1];相手のＡＩＲから呼び出し
+type = changeanim
+trigger1 = time = 0
+trigger1 = SelfAnimExist(5070)
+value = 5070
+
+;[State 50, 12];画面揺らし
+;type = EnvShake
+;trigger1 = Time = 0
+;Time = 10
+
+[State 902, 2]
+type = HitFallSet
+trigger1 = Animtime = 0
+value = 1
+
+[State 1000, 7]
+type = veladd
+trigger1 = Time >= 0
+y = 0.44
+
+[State 902, 4];地面バウンドへ
+type = SelfState
+trigger1 = time >= 5
+trigger1 = Pos Y > -0.5
+value = 5100
+ctrl = 0
+
+;<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~
+;                              　万里閃拳　本体
+[Statedef 6550]
+type    = S
+movetype= A
+physics = S
+juggle  = 0
+velset = 0,0
+anim = 6550
+ctrl = 0
+
+[State 108, 0]
+type = VelAdd
+trigger1 = time >= 0
+trigger1 = Vel X > 0
+x = -0.2
+
+[State 108, 0]
+type = Velset
+trigger1 = time >= 0
+trigger1 = Vel X < 0
+x = 0
+
+[State 200, 1]
+type = PlaySnd
+trigger1 = Animelem = 2
+value = 300, 0;
+volume = 99999
+channel = 0
+
+[State 200, 1];
+type = PlaySnd
+trigger1 = time = 0
+value = 401, 0;
+volume = 99999
+channel = 11
+
+[State 200, 1];
+type = PlaySnd
+trigger1 = time = 0
+value = 400, 0;
+volume = 99999
+channel = 10
+
+
+[State 240, 3];万里閃拳　輪エフェクト
+type = Explod
+trigger1 = Animelem = 5
+pos = 50, -60
+persistent = 0
+ignorehitpause = 1
+sprpriority = 3
+ownpal = 1
+anim = 6560
+ID = 6560
+
+[State 240, 3];万里閃拳　龍
+type = Explod
+trigger1 = Animelem = 1
+pos = 20, -60
+persistent = 0
+ignorehitpause = 1
+sprpriority = 5
+ownpal = 1
+BindTime = -1
+RemoveTime = 999
+anim = 6570
+ID = 6570
+
+[State 20, 20];
+type = RemoveExplod
+trigger1 = Animelem = 8
+ignorehitpause = 1
+ID = 6570
+
+[State 750, 3];最後の飛び龍呼び出し
+type = helper
+trigger1 = Animelem = 8
+ID = 6570
+ignorehitpause = 1
+persistent = 2
+pos = 20,-60
+priority = 10
+ownpal = 1;コレが無いとヘルパーの色変化が出来ない
+stateno = 6570
+
+[State 200, 1];
+type = HitDef
+trigger1 = AnimElem = 3
+trigger2 = AnimElem = 5
+trigger3 = AnimElem = 7
+attr = S, SP
+damage = ceil(10*Var(5)/256)+Var(15), 5
+animtype = hard
+guardflag = MA
+hitflag = MAF
+priority = 3, Miss
+pausetime = 0,0+Var(15)
+guard.pausetime = 0,0
+sparkno = -1
+guard.sparkno = -1
+;sparkxy = 10, -76
+hitsound = S508, 2
+guardsound =S509, 4
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 12
+ground.velocity = -5,-3+Var(6)
+guard.velocity = -7
+airguard.velocity =-5,-3+Var(6)
+air.type = Low
+air.velocity =-5,-3+Var(6)
+air.hittime = 12
+fall = 1;落下させる
+;fall.recover = 0;受身可否
+fall.recovertime = 30;受身出来るまでの時間
+air.fall = 1;相手が空中時のみ落下させる
+getpower = 0,0
+givepower = 5,0
+palfx.time = 1
+palfx.add = 0,0,0
+p2facing = 1
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+[State 10,combo];攻撃力補正用ＶＡＲ
+type = Varadd
+trigger1 = MoveHit = 1
+persistent = 1
+ignorehitpause = 1
+v = 4
+value = 1
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
+[State 2, ga3];カウンターヒット時
+type = PlaySnd
+trigger1 =  var(14) >= 128
+trigger1 = movehit = 1
+persistent = 1
+ignorehitpause = 1
+value = 511, 1
+Volume = 99999
+
+
+[State 5151, 0];ガードゲージ表示にする
+type = Varset
+trigger1 = movecontact = 1
+persistent = 1
+ignorehitpause = 1
+v = 52
+value = 250
+
+[State 5];カウンターヒット文字呼び出し
+type = helper
+triggerall= Numhelper + Enemy,numHelper <= 20
+triggerall= Numhelper(4100) <= 5
+trigger1  = var(14) >= 128
+trigger1  = MoveHit = 1
+ID = 4100
+ignorehitpause = 1
+persistent = 1
+pos = 0,-90
+facing = -1
+priority = 2
+stateno = 4100
+ownpal = 1
+supermove = 1
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
+;あああああああああああああああああ
+[State 2,guardLEVEL];ガードレベル増加
+type = Varadd
+trigger1 =  var(14) <= 251
+trigger1 = moveguarded = 1
+persistent = 1
+ignorehitpause = 1
+var(14) = 5
+[State 2,guardLEVEL];ガードレベル増加
+type = Varadd
+trigger1 =  var(14) > 251
+trigger1 = moveguarded = 1
+persistent = 1
+ignorehitpause = 1
+var(14) = 256-Var(14)
+[State 2,guardLEVEL];ガードレベル減少
+type = Varadd
+trigger1 =  movehit = 1
+trigger1 =  var(14) >= 5
+persistent = 1
+ignorehitpause = 1
+var(14) = -5
+[State 2,guardLEVEL];ガードレベル減少
+type = Varadd
+trigger1 =  movehit = 1
+trigger1 =  var(14) < 5
+persistent = 1
+ignorehitpause = 1
+var(14) = -Var(14)
+;あああああああああああああああああ
+;HHHHHHHHHHHHHHHHHHHHHHHH
+;ＨＩＴ炎エフェクトのヘルパー強制消去用
+;HHHHHHHHHHHHHHHHHHHHHHHH
+[State 1,1]
+type = Varset
+triggerall = Var(17)  != 1
+trigger1 = MoveContact = 1
+ignorehitpause = 1
+v = 17
+value = 1
+;HHHHHHHHHHHHHHHHHHHHHHHH
+
+[State 750, 3];必殺系ＨＩＴマーク
+type = helper
+trigger1 = MoveHit = 1
+ID = 4000
+ignorehitpause = 1
+persistent = 1
+pos = -30,-50
+postype = p2
+facing = -1
+priority = 2
+stateno = 4000
+ownpal = 1
+supermove = 1
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+
+[State 240, 3];必殺系ガードマーク
+type = Explod
+trigger1 = moveguarded = 1
+pos = 0,-70
+postype = p2
+facing = -1
+persistent = 1
+ignorehitpause = 1
+sprpriority = 9999
+random = 5, 15
+ownpal = 1
+ontop = 1
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+supermove = 1
+bindtime = 1
+anim = F752
+
+[State 9999,9999];連続技用
+type = MoveHitReset
+trigger1 = MoveContact = 1
+ignorehitpause = 1
+persistent = 1
+
+[State 902, 4];
+type = changeState
+trigger1 = animtime = 0
+value = 0
+ctrl = 1
+
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+;　　　　　　　　　　　　　　　　　　万里閃拳　龍　最後の飛び
+[Statedef 6570]
+type = A
+movetype = A
+physics = N
+anim = 6571
+ctrl = 0
+velset = 0,0
+sprpriority = 5
+
+[State 108, 0]
+type = Velset
+trigger1 = time >= 0
+x = 20
+
+[State 240, 3];万里閃拳　輪エフェクト
+type = Explod
+trigger1 = time >= 0
+trigger1 = timeMod = 3, 0
+pos = 150, 0
+random = 50, 0
+persistent = 1
+ignorehitpause = 1
+sprpriority = 3
+ownpal = 1
+anim = 6560
+ID = 6560
+
+[State 240, 3];万里閃拳　輪エフェクト
+type = Explod
+trigger1 = time >= 0
+trigger1 = timeMod = 3, 0
+pos = 0, 0
+random = 50, 0
+persistent = 1
+ignorehitpause = 1
+sprpriority = 3
+ownpal = 1
+anim = 6560
+ID = 6560
+
+[State 200, 1];
+type = HitDef
+trigger1 = AnimElem = 1
+attr = S, SP
+damage = ceil(80*parent,Var(5)/256)+parent,Var(15), 5
+animtype = hard
+guardflag = MA
+hitflag = MAF
+priority = 3, Miss
+pausetime = 0,0+parent,Var(15)
+guard.pausetime = 0,0
+sparkno = -1
+guard.sparkno = -1
+;sparkxy = 10, -76
+hitsound = S508, 2
+guardsound =S509, 4
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 12
+ground.velocity = -5,-7+parent,Var(6)
+guard.velocity = -7
+airguard.velocity =-5,-7+parent,Var(6)
+air.type = Low
+air.velocity =-5,-7+parent,Var(6)
+air.hittime = 12
+fall = 1;落下させる
+;fall.recover = 0;受身可否
+fall.recovertime = 30;受身出来るまでの時間
+air.fall = 1;相手が空中時のみ落下させる
+getpower = 0,0
+givepower = 5,0
+palfx.time = 1
+palfx.add = 0,0,0
+ground.cornerpush.veloff   = 0
+air.cornerpush.veloff      = 0
+down.cornerpush.veloff     = 0
+guard.cornerpush.veloff    = 0
+airguard.cornerpush.veloff = 0
+p2facing = 1
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+[State 10,combo];攻撃力補正用ＶＡＲ
+type = parentVaradd
+trigger1 = MoveHit = 1
+persistent = 1
+ignorehitpause = 1
+v = 4
+value = 1
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
+[State 2, ga3];カウンターヒット時
+type = PlaySnd
+trigger1 =  parent,var(14) >= 128
+trigger1 = movehit = 1
+persistent = 1
+ignorehitpause = 1
+value = 511, 1
+Volume = 99999
+
+
+[State 5151, 0];ガードゲージ表示にする
+type = ParentVarset
+trigger1 = movecontact = 1
+persistent = 1
+ignorehitpause = 1
+v = 52
+value = 250
+
+[State 5];カウンターヒット文字呼び出し
+type = helper
+triggerall= Numhelper + Enemy,numHelper <= 20
+triggerall= Numhelper(4100) <= 5
+trigger1  = parent,var(14) >= 128
+trigger1  = MoveHit = 1
+ID = 4100
+ignorehitpause = 1
+persistent = 1
+pos = 0,-90
+facing = -1
+priority = 2
+stateno = 4100
+ownpal = 1
+supermove = 1
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
+;あああああああああああああああああ
+[State 2,guardLEVEL];ガードレベル増加
+type = parentVaradd
+trigger1 =  parent,var(14) <= 251
+trigger1 = moveguarded = 1
+persistent = 1
+ignorehitpause = 1
+var(14) = 5
+[State 2,guardLEVEL];ガードレベル増加
+type = parentVaradd
+trigger1 =  parent,var(14) > 251
+trigger1 = moveguarded = 1
+persistent = 1
+ignorehitpause = 1
+var(14) = 256-(parent,Var(14))
+[State 2,guardLEVEL];ガードレベル減少
+type = parentVaradd
+trigger1 =  movehit = 1
+trigger1 =  parent,var(14) >= 5
+persistent = 1
+ignorehitpause = 1
+var(14) = -5
+[State 2,guardLEVEL];ガードレベル減少
+type = parentVaradd
+trigger1 =  movehit = 1
+trigger1 =  parent,var(14) < 5
+persistent = 1
+ignorehitpause = 1
+var(14) = -(parent,Var(14))
+;あああああああああああああああああ
+;HHHHHHHHHHHHHHHHHHHHHHHH
+;ＨＩＴ炎エフェクトのヘルパー強制消去用
+;HHHHHHHHHHHHHHHHHHHHHHHH
+[State 1,1]
+type = parentVarset
+triggerall = parent,Var(17)  != 1
+trigger1 = MoveContact = 1
+ignorehitpause = 1
+v = 17
+value = 1
+;HHHHHHHHHHHHHHHHHHHHHHHH
+
+[State 750, 3];必殺系ＨＩＴマーク
+type = helper
+trigger1 = MoveHit = 1
+ID = 4000
+ignorehitpause = 1
+persistent = 1
+pos = -30,-50
+postype = p2
+facing = -1
+priority = 2
+stateno = 4000
+ownpal = 1
+supermove = 1
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+
+[State 240, 3];必殺系ガードマーク
+type = Explod
+trigger1 = moveguarded = 1
+pos = 0,-70
+postype = p2
+facing = -1
+persistent = 1
+ignorehitpause = 1
+sprpriority = 9999
+random = 5, 15
+ownpal = 1
+ontop = 1
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+supermove = 1
+bindtime = 1
+anim = F752
+
+[State 9999,9999];連続技用
+type = MoveHitReset
+trigger1 = MoveContact = 1
+ignorehitpause = 1
+persistent = 1
+
+[State 255, 7]
+type = destroyself
+trigger1 = Time = 100

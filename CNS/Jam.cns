@@ -1,0 +1,1044 @@
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+;　　　　　　　　　　　　　　　　　ＶＡＲ   ０～５９まで
+;　0   色々ボイスランダム用
+;　1   色々とランダム用
+;　2   多段ＨＩＴ技の回数確認
+;　3   ロマンキャンセル許可
+;　4   ダメージ補正ＨＩＴ回数カウント
+;　5   ダメージ補正２５６で割る数字
+;　6   ガトリング継続時の相手の浮き上がり補正
+;　7   
+;　8   ジャンプ空中ジャンプ処理用
+;　9   空中ダッシュ振り向き制御
+;　10  空中ダッシュ回数制限
+;  11  
+;  12  ハイジャンプ用
+;  13  ハイジャンプとダストアタック残像用
+;  14  ガードゲージ
+;  15  カウンターヒットのポーズタイム
+;  16　地上ダッシュ慣性（ハイジャンプとか）
+;  17　ＨＩＴ炎エフェクトのヘルパー強制消去用
+;  18  
+;  19  
+;  20  龍刃・逆鱗・剣楼閣の空中ダッシュ直後の特殊移動用
+;  21  龍刃・逆鱗・剣楼閣・爆蹴足払いの繋がり回数カウント（３回まで）
+;  22  朝凪の呼吸　龍刃　　ＬＶ
+;  23  朝凪の呼吸　逆鱗　　ＬＶ
+;  24  朝凪の呼吸　剣楼閣　ＬＶ
+;  25  戀崩嬢  １撃目～９撃目までのカウントとＥＸ 兆脚鳳凰昇回数カウント
+;  26  一撃必殺技準備　許可と解除
+;  27  一撃必殺技準備　ゲージの減少用
+;  28  一撃必殺技準備　ライフ減少　許可
+;  29  一撃必殺技準備　ライフ減少　時間経過用
+;  30  勝利ポーズＢ相手の位置調べ
+;  31  勝利ポーズＢ相手の位置保存と移動用
+;  32  必殺系ＨＩＴエフェクト緑の線上下反転ランダム用
+;  33  我羨惚　文字の大きさ変更用
+;  34  地上ダッシュ方向キーが離されてからのカウント用
+;  35  フォルトレスディフェンス決定用
+;  36  フォルトレスディフェンスライフ削り無し用
+;  37  フォルトレスディフェンスライフ削り無し　許可　用
+;  38  
+;  39  
+;  40  我羨惚　文字の大きさ変更用　Ｘ
+;  41  我羨惚　文字の大きさ変更用　Ｙ
+;  42  一撃必殺技　封印　
+;  43  モード決定ＶＡＲ　
+
+;  45  ダストアタックチェイスジャンプ上昇用
+;  46  
+;  47  
+;  48  
+;  49  
+;  50  ＡＩスイッチＶＡＲ
+;  51  ＡＩ行動ランダムVAR
+
+
+
+
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+;　ＳＮＤチャンネル
+;　0   紗夢ボイス
+;　1   攻撃振り
+;　2   ジャンプ等の効果音
+;　10  炎のＨＩＴ
+
+
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+;　表示優先度
+;　999　  ジャンプ煙等の物
+;　9999   ダッシュブーストやＨＩＴエフェクト等の物
+
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+[Data]
+life = 1000
+attack = 100
+defence = 100
+fall.defence_up = 50
+liedown.time = 60
+airjuggle = 15
+sparkno = 2
+guard.sparkno = 40
+KO.echo = 0
+volume = 99999
+IntPersistIndex = 50;書いた数字から先のＶＡＲが次のラウンドに持ち越し可能　
+FloatPersistIndex = 50;書いた数字から先のＶＡＲが次のラウンドに持ち越し可能
+power = 3000
+
+[Size]
+xscale = 0.92
+yscale = 0.92
+ground.back = 15     ;Player width (back, ground)
+ground.front = 14    ;Player width (front, ground)
+air.back = 15        ;Player width (back, air)
+air.front = 14       ;Player width (front, air)
+height = 80	     ;Height of player (for opponent to jump over)
+attack.dist = 160    ;Default attack distance
+proj.attack.dist = 90 ;Default attack distance for projectiles
+proj.doscale = 0     ;Set to 1 to scale projectiles too   
+head.pos = -2, -102   ;Approximate position of head
+mid.pos = -6, -79    ;Approximate position of midsection
+shadowoffset = 0     ;Number of pixels to vertically offset the shadow
+draw.offset = 0,0    ;Player drawing offset in pixels (x, y)
+
+[Velocity]
+walk.fwd  = 2.3      ;Walk forward
+walk.back = -2.2     ;Walk backward
+run.fwd  = 5.5, 0    ;Run forward (x, y)
+run.back = -3.5,-3 ;Hop backward (x, y)
+jump.neu = 0,-9.9    ;Neutral jumping velocity (x, y)
+jump.back = -2.55    ;Jump back Speed (x, y)
+jump.fwd = 2.5       ;Jump forward Speed (x, y)
+runjump.back = -2.55,-8.6 ;Running jump speeds (opt)
+runjump.fwd = 4,-8.6      ;.
+airjump.neu = 0,-9.9      ;.
+airjump.back = -2.55      ;Air jump speeds (opt)
+airjump.fwd = 2.5         ;.
+
+[Movement]
+airjump.num = 0
+airjump.height = 35  ;Minimum distance from ground before you can air jump (opt)
+yaccel = .44         ;Vertical acceleration
+stand.friction = .85  ;Friction coefficient when standing
+crouch.friction = .82 ;Friction coefficient when crouching
+
+;---------------------------------------------------------------------------
+; Format:
+; [Statedef STATENO]
+; type = ?      S/C/A/L  stand/crouch/air/liedown
+; movetype = ?  I/A/H    idle/attack/gethit
+; physics = ?   S/C/A/N  stand/crouch/air/none
+; juggle = ?             air juggle points move requires
+;
+; [State STATENO, ?]     ? - any number you choose
+; type = ?
+; ...
+
+;---------------------------------------------------------------------------
+; Lose by Time Over
+; CNS difficulty: basic
+; CNS レベル: 基本
+[Statedef 170]
+type = S
+ctrl = 0
+anim = 170
+velset = 0,0
+
+[State 170, 1]
+type = NotHitBy
+trigger1 = Time >= 0
+value = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+time = 1
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+; 　　　　　　　　　　　　　　　　　　　　勝利ポーズ分岐点　
+; CNS difficulty: basic
+; CNS レベル: 基本
+[Statedef 180]
+type = S
+
+[State 200, 0]
+type = VarRandom
+triggerall = P2Life <= 0
+trigger1 = Time = 0
+v = 0
+range = 0,9
+
+[State 180, 1];勝利ポーズA
+type = ChangeState
+triggerall = P2Life <= 0
+triggerall = Time = 0
+trigger1 = Var(0) = 0
+trigger2 = Var(0) = 2
+trigger3 = Var(0) = 4
+trigger4 = Var(0) = 6
+trigger5 = Var(0) = 8
+value = 181
+
+[State 180, 1];勝利ポーズB
+type = ChangeState
+triggerall = P2Life <= 0
+triggerall = Time = 0
+trigger1 = Var(0) = 1
+trigger2 = Var(0) = 3
+trigger3 = Var(0) = 5
+trigger4 = Var(0) = 7
+trigger5 = Var(0) = 9
+value = 189
+
+[State 180, 1];タイムオーバー時　強制　勝利ポーズA
+type = ChangeState
+triggerall = P2Life >= 1
+trigger1 = Time = 0
+value = 181
+
+
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+; 　　　　　　　　　　　　　　　　　　　　勝利ポーズＡ　
+[Statedef 181]
+type = S
+ctrl = 0
+anim = 181
+velset = 0,0
+
+[State 181,CAMERA]
+type = helper
+trigger1 = pos X != 0
+trigger1 = Time = 0
+name = "helper1"
+id = 6001
+pos = 0,0
+postype = p1
+stateno = 6001
+helpertype = normal
+ownpal = 1
+keyctrl = 1
+
+[state 2, bar]
+type = assertspecial
+trigger1 = Time >= 0
+flag = NoBarDisplay
+
+[State 1651,222];画面
+type = ScreenBound
+trigger1 = Time >= 0
+value = 1
+movecamera = 1, 0
+
+[State 181, 1]
+type = NotHitBy
+trigger1 = Time >= 0
+value = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+time = 1
+
+[State 200, 0]
+type = VarRandom
+trigger1 = Time = 0
+v = 0
+range = 0,2
+[State 200, 1]
+type = PlaySnd
+triggerall = Var(0) = 0
+trigger1 = Animelem = 1
+trigger2 = Animelem = 3
+value = 200, 0;
+volume = 99999
+channel = 0
+[State 200, 1]
+type = PlaySnd
+triggerall = Var(0) = 0
+trigger1 = Animelem = 5
+value = 200, 1;
+volume = 99999
+channel = 0
+[State 200, 1]
+type = PlaySnd
+triggerall = Var(0) = 1
+trigger1 = Animelem = 1
+trigger2 = Animelem = 3
+value = 200, 3;
+volume = 99999
+channel = 0
+[State 200, 1]
+type = PlaySnd
+triggerall = Var(0) = 1
+trigger1 = Animelem = 5
+value = 200, 4;
+volume = 99999
+channel = 0
+[State 200, 1]
+type = PlaySnd
+triggerall = Var(0) = 2
+trigger1 = Animelem = 1
+trigger2 = Animelem = 3
+value = 200, 6;
+volume = 99999
+channel = 0
+[State 200, 1]
+type = PlaySnd
+triggerall = Var(0) = 2
+trigger1 = Animelem = 5
+value = 200, 7;
+volume = 99999
+channel = 0
+[State 200, 1];おかわりはいかが
+type = PlaySnd
+triggerall = Var(0) = 0
+trigger1 = Animelem = 18
+value = 108, 0;
+volume = 99999
+channel = 0
+[State 200, 1];皿洗い決定
+type = PlaySnd
+triggerall = Var(0) = 1
+trigger1 = Animelem = 18
+value = 108, 1;
+volume = 99999
+channel = 0
+[State 200, 1];朝飯前
+type = PlaySnd
+triggerall = Var(0) = 2
+trigger1 = Animelem = 18
+value = 108, 2;
+volume = 99999
+channel = 0
+
+
+[State 2 ,2]
+type = PlaySnd
+trigger1 = Animelem = 8
+value = 500, 0;
+Volume = 99999
+channel = 1
+
+[State 2 ,2]
+type = PlaySnd
+trigger1 = Animelem = 15
+value = 501, 0;
+Volume = 99999
+channel = 1
+
+[State 0, 2]
+type = VelSet
+trigger1 = Animelem = 8
+y = -9
+
+[State 0, 2]
+type = VelSet
+trigger1 = Animelem = 10
+y = -3
+
+[State 0, 2]
+type = Velset
+trigger1 = Animelem = 12
+y = 7
+
+[State 0, 2]
+type = VelSet
+trigger1 = Animelem = 15
+y = 0
+[State 0, 2]
+type = PosSet
+trigger1 = Animelem = 15
+y = 0
+
+[State 180, begin]
+type = AssertSpecial
+trigger1 = time = [0, 550]
+flag = roundnotover
+
+
+[State 750, 3];お皿右呼び出し
+type = helper
+trigger1 = Animelem = 1
+ID = 2060
+ignorehitpause = 1
+persistent = 0
+pos = 32,-301
+priority = 2
+stateno = 2060
+
+[State 750, 3];お皿左呼び出し
+type = helper
+trigger1 = Animelem = 3
+ID = 2061
+ignorehitpause = 1
+persistent = 0
+pos = -30,-310
+priority = 2
+stateno = 2061
+
+[State 750, 3];お皿まんなか呼び出し
+type = helper
+trigger1 = Animelem = 5
+ID = 2062
+ignorehitpause = 1
+persistent = 0
+pos = 9,-308
+priority = 2
+stateno = 2062
+
+[State 750, 3];お皿重なり呼び出し
+type = helper
+trigger1 = Animelem = 15
+ID = 183
+ignorehitpause = 1
+persistent = 0
+pos = -33,-341
+priority = 2
+stateno = 183
+
+[State 750, 3];お皿重なり呼び出し
+type = helper
+trigger1 = Animelem = 15
+ID = 184
+ignorehitpause = 1
+persistent = 0
+pos = -33,-361
+priority = 2
+stateno = 184
+
+[State 750, 3];お皿重なり呼び出し
+type = helper
+trigger1 = Animelem = 15
+ID = 185
+ignorehitpause = 1
+persistent = 0
+pos = -33,-381
+priority = 2
+stateno = 185
+
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+;　　　　　　　　　　　　　　　　　　勝利ポーズＡ　お皿重なりA
+[Statedef 183]
+type = A
+movetype = I
+physics = N
+anim = 183
+ctrl = 0
+velset = 0,0
+
+[State 181,CAMERA]
+type = helper
+trigger1 = pos X != 0
+trigger1 = Time = 0
+name = "helper1"
+id = 6001
+pos = 0,0
+postype = p1
+stateno = 6001
+helpertype = normal
+ownpal = 1
+keyctrl = 1
+
+[State 7011, 10]
+type = assertspecial
+trigger1 = Time>=0
+flag = noshadow
+
+[State 200, 1]
+type = PlaySnd
+trigger1 = Pos Y = -101
+value = 407, 0
+persistent = 0
+volume = 99999
+
+[State 50, 1]
+type = sprpriority
+Trigger1 = Time >= 0 
+value = 10 
+
+[State 255, 7]
+type = velset
+trigger1 = Time = 0
+y = 7
+
+[State 255, 7]
+type = velset
+trigger1 = ParentDist y <= 108
+y = 0
+
+[State 255, 7]
+type = posset
+trigger1 = ParentDist y <= 108
+y = -101
+
+[State 255, 7]
+type = destroyself
+trigger1 = Time = 9999
+
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+;　　　　　　　　　　　　　　　　　　勝利ポーズＡ　お皿重なりB
+[Statedef 184]
+type = A
+movetype = I
+physics = N
+anim = 183
+ctrl = 0
+velset = 0,0
+
+[State 7011, 10]
+type = assertspecial
+trigger1 = Time>=0
+flag = noshadow
+
+[State 200, 1]
+type = PlaySnd
+trigger1 = Pos Y = -106
+value = 407, 0
+persistent = 0
+volume = 99999
+
+[State 50, 1]
+type = sprpriority
+Trigger1 = Time >= 0 
+value = 9 
+
+[State 255, 7]
+type = velset
+trigger1 = Time = 0
+y = 7
+
+[State 255, 7]
+type = velset
+trigger1 = ParentDist y <= 113
+y = 0
+
+[State 255, 7]
+type = posset
+trigger1 = ParentDist y <= 113
+y = -106
+
+[State 255, 7]
+type = destroyself
+trigger1 = Time = 9999
+
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+;　　　　　　　　　　　　　　　　　　勝利ポーズＡ　お皿重なりC
+[Statedef 185]
+type = A
+movetype = I
+physics = N
+anim = 183
+ctrl = 0
+velset = 0,0
+
+[State 181,CAMERA]
+type = helper
+trigger1 = pos X != 0
+trigger1 = Time = 0
+name = "helper1"
+id = 6001
+pos = 0,0
+postype = p1
+stateno = 6001
+helpertype = normal
+ownpal = 1
+keyctrl = 1
+
+[State 7011, 10]
+type = assertspecial
+trigger1 = Time>=0
+flag = noshadow
+
+[State 200, 1]
+type = PlaySnd
+trigger1 = Pos Y = -111
+value = 407, 0
+persistent = 0
+volume = 99999
+
+[State 50, 1]
+type = sprpriority
+Trigger1 = Time >= 0 
+value = 8 
+
+[State 255, 7]
+type = velset
+trigger1 = Time = 0
+y = 7
+
+[State 255, 7]
+type = velset
+trigger1 = ParentDist y <= 118
+y = 0
+
+[State 255, 7]
+type = posset
+trigger1 = ParentDist y <= 118
+y = -111
+
+[State 255, 7]
+type = destroyself
+trigger1 = Time = 9999
+
+
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+; 　　　　　　　　　　　　　　　　　　　　勝利ポーズＢ　
+[Statedef 189]
+type = S
+physics = S
+ctrl = 0
+anim = 20
+velset = 0,0
+
+[State 181,CAMERA]
+type = helper
+trigger1 = pos X != 0
+trigger1 = Time = 0
+name = "helper1"
+id = 6001
+pos = 0,0
+postype = p1
+stateno = 6001
+helpertype = normal
+ownpal = 1
+keyctrl = 1
+
+[State 2, 0];勝利Ｂ声
+type = VarRandom
+trigger1 = Time = 0
+v = 0
+range = 0,2
+
+[State 180, begin];
+type = AssertSpecial
+trigger1 = Anim = 189 
+trigger1 = Time = [0,300]
+trigger2 = Anim != 189
+flag = roundnotover
+
+[state 2, bar]
+type = assertspecial
+trigger1 = Time >= 0
+flag = NoBarDisplay
+
+[State 181, 1]
+type = NotHitBy
+trigger1 = Time >= 0
+value = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+time = 1
+
+[State 3000,0];
+type = Varadd
+triggerall = Anim != 189 
+trigger1 = Var(31) > 0
+ignorehitpause = 1
+v = 31
+value = -3
+
+[State 3000,0];
+type = Varadd
+triggerall = Anim != 189 
+trigger1 = Var(31) < 0
+ignorehitpause = 1
+v = 31
+value = 3
+
+[State 255, 7]
+type = velset
+triggerall = Anim != 189 
+trigger1 = Var(31) != 0
+x = 3
+
+[State 2 ,2]
+type = PlaySnd
+triggerall = Anim != 189 
+trigger1 = time =12
+trigger2 = time >=12
+trigger2 = timemod =41, 0
+value = 501, 0;
+Volume = 99999
+channel = 1
+
+[State 20, 3]
+type = ChangeAnim
+trigger1 = Var(31) =[-30,30]
+trigger1 = Anim != 189 
+value = 189
+
+[State 255, 7]
+type = velset
+trigger1 = Anim = 189 
+x = 0
+
+[State 200, 1]
+type = PlaySnd
+trigger1 = Anim = 189 
+trigger1 = Animelem = 6
+trigger1 = Var(0) = 0
+value = 109, 0;
+volume = 99999
+channel = 0
+[State 200, 1]
+type = PlaySnd
+trigger1 = Anim = 189 
+trigger1 = Animelem = 6
+trigger1 = Var(0) = 1
+value = 109, 1;
+volume = 99999
+channel = 0
+[State 200, 1]
+type = PlaySnd
+trigger1 = Anim = 189 
+trigger1 = Animelem = 6
+trigger1 = Var(0) = 2
+value = 109, 2;
+volume = 99999
+channel = 0
+
+
+
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+; 　　　　　　　　　　　　　　　　　　　　登場Ａ　１Ｐ　
+[Statedef 191]
+type = S
+ctrl = 0
+anim = 190
+velset = 0,0
+
+[state 2, bar]
+type = assertspecial
+trigger1 = Time >= 0
+flag = NoBarDisplay
+
+[State 200, 0]
+type = VarRandom
+trigger1 = Time = 0
+v = 0
+range = 0,9
+
+[State 3,0];登場Ｂへ
+type = ChangeState
+triggerall = Time = 0
+trigger1 = Var(0) = 1
+trigger2 = Var(0) = 3
+trigger3 = Var(0) = 5
+trigger4 = Var(0) = 7
+trigger5 = Var(0) = 9
+value = 2015
+
+[State 3,0];同キャラ対戦
+type = ChangeState
+triggerall = Time >= 0
+triggerall = teamSide = 2
+trigger1 = P2Name = "JAM KURADOBERI"
+trigger2 = P4Name = "JAM KURADOBERI"
+value = 192
+
+;[State 191, 1]
+;type = ChangeAnim
+;trigger1 = RoundState = 0
+;value = 190
+
+[State 200, 1]
+type = PlaySnd
+trigger1 = Animelem = 2
+value = 100, 0;たんと召し上がれ
+volume = 99999
+channel = 0
+
+[State 750, 2];脱いだ服
+type = Explod
+trigger1 = Animelem = 29
+pos = 0,0
+ownpal = 1
+ignorehitpause = 1
+persistent = 0
+sprpriority = 8
+anim = 193
+[State 200, 1];脱いだ服
+type = PlaySnd
+trigger1 = Animelem = 28
+value = 406, 0
+volume = 99999
+channel = 1
+
+[State 200, 0]
+type = VarRandom
+trigger1 = Animelem = 30
+v = 0
+range = 0,1
+[State 200, 1]
+type = PlaySnd
+trigger1 = Animelem = 30
+trigger1 = Var(0) = 0
+value = 100, 1;私の拳
+volume = 99999
+channel = 0
+[State 200, 1]
+type = PlaySnd
+trigger1 = Animelem = 30
+trigger1 = Var(0) = 1
+value = 100, 2;激辛で良ければ
+volume = 99999
+channel = 0
+
+[State 750, 3];着地煙ヘルパー
+type = helper
+trigger1 = Animelem = 30
+ID = 4001
+ignorehitpause = 1
+persistent = 0
+pos = 0,0
+priority = 2
+stateno = 4001
+ownpal = 1
+supermove = 1
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+
+[State 191, 2]
+type = AssertSpecial
+trigger1 = Time = [0,500]
+flag = Intro
+
+[State 191,4]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 0
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+; 　　　　　　　　　　　　　　　　　　　　登場Ａ　２Ｐ　
+[Statedef 192]
+type = S
+ctrl = 0
+anim = 191
+velset = 0,0
+
+[state 2, bar]
+type = assertspecial
+trigger1 = Time >= 0
+flag = NoBarDisplay
+
+;[State 191, 1]
+;type = ChangeAnim
+;trigger1 = RoundState = 0
+;value = 190
+
+[State 200, 1]
+type = PlaySnd
+trigger1 = Animelem = 2
+value = 100, 0;たんと召し上がれ
+volume = 99999
+channel = 0
+
+[State 750, 2];脱いだ服
+type = Explod
+trigger1 = Animelem = 29
+pos = 0,0
+ownpal = 1
+ignorehitpause = 1
+persistent = 0
+sprpriority = 8
+anim = 193
+[State 200, 1];脱いだ服
+type = PlaySnd
+trigger1 = Animelem = 28
+value = 406, 0
+volume = 99999
+channel = 1
+
+[State 200, 0]
+type = VarRandom
+trigger1 = Animelem = 30
+v = 0
+range = 0,1
+[State 200, 1]
+type = PlaySnd
+trigger1 = Animelem = 30
+trigger1 = Var(0) = 0
+value = 100, 1;私の拳
+volume = 99999
+channel = 0
+[State 200, 1]
+type = PlaySnd
+trigger1 = Animelem = 30
+trigger1 = Var(0) = 1
+value = 100, 2;激辛で良ければ
+volume = 99999
+channel = 0
+
+[State 750, 3];着地煙ヘルパー
+type = helper
+trigger1 = Animelem = 30
+ID = 4001
+ignorehitpause = 1
+persistent = 0
+pos = 0,0
+priority = 2
+stateno = 4001
+ownpal = 1
+supermove = 1
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+
+[State 191, 2]
+type = AssertSpecial
+trigger1 = Time = [0,500]
+flag = Intro
+
+[State 191,4]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 0
+
+
+
+
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+;                                 挑発
+[Statedef 195]
+type = S
+physics = N
+ctrl = 0
+anim = 195
+;velset = 0,0
+movetype = I
+physics = S
+sprpriority = 2
+
+[State 108, 0]
+type = VelAdd
+trigger1 = time >= 0
+trigger1 = Vel X > 0
+x = -0.2
+
+[State 108, 0]
+type = Velset
+trigger1 = time >= 0
+trigger1 = Vel X < 0
+x = 0
+
+[State 2, ga3];
+type = PlaySnd
+trigger1 = Animelem = 4
+value = 507, 0
+Volume = 99999
+channel = 1
+
+[State 200, 0]
+type = VarRandom
+trigger1 = Animelem = 8
+v = 0
+range = 0,2
+[State 200, 1]
+type = PlaySnd
+trigger1 = Animelem = 8
+trigger1 = Var(0) = 0
+value = 111, 0;
+volume = 99999
+channel = 0
+[State 200, 1]
+type = PlaySnd
+trigger1 = Animelem = 8
+trigger1 = Var(0) = 1
+value = 111, 1;
+volume = 99999
+channel = 0
+[State 200, 1]
+type = PlaySnd
+trigger1 = Animelem = 8
+trigger1 = Var(0) = 2
+value = 111, 2;
+volume = 99999
+channel = 0
+
+;[State 195, 1]
+;type = CtrlSet
+;trigger1 = Animelem = 7
+;value = 1
+
+[State 195, 2]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+;                                 敬意
+[Statedef 196]
+type = S
+physics = N
+ctrl = 0
+anim = 196
+;velset = 0,0
+movetype = I
+physics = S
+sprpriority = 2
+
+[State 108, 0]
+type = VelAdd
+trigger1 = time >= 0
+trigger1 = Vel X > 0
+x = -0.2
+
+[State 108, 0]
+type = Velset
+trigger1 = time >= 0
+trigger1 = Vel X < 0
+x = 0
+
+;[State 195, 1]
+;type = CtrlSet
+;trigger1 = Time = 40
+;value = 1
+
+[State 200, 0]
+type = VarRandom
+trigger1 = Animelem = 2
+v = 0
+range = 0,2
+[State 200, 1]
+type = PlaySnd
+trigger1 = Animelem = 2
+trigger1 = Var(0) = 0
+value = 110, 0;
+volume = 99999
+channel = 0
+[State 200, 1]
+type = PlaySnd
+trigger1 = Animelem = 2
+trigger1 = Var(0) = 1
+value = 110, 2;
+volume = 99999
+channel = 0
+[State 200, 1]
+type = PlaySnd
+trigger1 = Animelem = 2
+trigger1 = Var(0) = 2
+value = 110, 4;
+volume = 99999
+channel = 0
+
+[State 200, 1]
+type = PlaySnd
+trigger1 = Animelem = 4
+trigger1 = Var(0) = 0
+value = 110, 1;
+volume = 99999
+channel = 0
+[State 200, 1]
+type = PlaySnd
+trigger1 = Animelem = 4
+trigger1 = Var(0) = 1
+value = 110, 3;
+volume = 99999
+channel = 0
+[State 200, 1]
+type = PlaySnd
+trigger1 = Animelem = 4
+trigger1 = Var(0) = 2
+value = 110, 5;
+volume = 99999
+channel = 0
+
+[State 195, 2]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1

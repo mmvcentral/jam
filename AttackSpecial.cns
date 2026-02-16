@@ -1,0 +1,7122 @@
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;                                     爆蹴
+[Statedef 1000]
+type    = S
+movetype= I
+physics = S
+juggle  = 0
+poweradd= 20
+velset = 0,0
+anim = 1000
+ctrl = 0
+sprpriority = 2
+
+[State 2, ga3]
+type = PlaySnd
+trigger1 = AnimElem = 5
+value = 404, 0
+Volume = 99999
+channel = 1
+
+[State 50, 12];画面揺らし
+type = EnvShake
+trigger1 = Time = 5
+Time = 10
+
+[State 240, 3]
+type = Velset
+trigger1 = Time = [5,25]
+x = 10
+
+[State 240, 3]
+type = Velset
+trigger1 = Time > 25
+x = 1
+
+[State 240, 3];ピンクの煙
+type = Explod
+trigger1 = AnimElem = 4
+pos = 0, 5
+;Postype = p1
+;facing = 1
+persistent = 0
+ignorehitpause = 1
+sprpriority = 999
+ownpal = 1
+;ontop = 1
+;pausemovetime = 99999999999999
+;supermovetime = 99999999999999
+;supermove = 1
+bindtime = 1
+anim = 1005
+
+[State 1000, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;                                     爆蹴　回り込み
+[Statedef 1010]
+type    = S
+movetype= I
+physics = S
+juggle  = 0
+poweradd= 0
+velset = 0,0
+anim = 1010
+ctrl = 0
+sprpriority = -1
+
+[State 20, 3]
+type = playerpush
+trigger1 = time >= 0
+value = 0
+
+[State 240, 3]
+type = Velset
+trigger1 = Time = [4,23]
+x = 4
+
+[State 240, 3]
+type = Velset
+trigger1 = Time > 23
+x = 1
+
+[State -2]
+type = VarRandom
+trigger1 = time = 0
+v = 0
+range = 0, 2
+[State -2, ga2];
+type = PlaySnd
+triggerall = Var(0) = 0
+trigger1 = time = 0
+value = 306, 0
+Volume = 99999
+channel = 0
+
+[State -2, ga3];
+type = PlaySnd
+triggerall = Var(0) = 1
+trigger1 = time = 0
+value = 306, 1
+Volume = 99999
+channel = 0
+
+[State -2, ga3];
+type = PlaySnd
+triggerall = Var(0) = 2
+trigger1 = time = 0
+value = 306, 2
+Volume = 99999
+channel = 0
+
+[State 1000]
+type = AfterImage
+trigger1 = Time = 0
+time = 15
+length = 4
+frameGap = 1
+timeGap = 3
+PalAdd = 0,0,0
+palmul = 1,1,1
+PalBright = 0, 0, 0
+PalContrast = 128,128,128
+Trans = Add1
+
+[State 750, 2];ダッシュ煙
+type = Explod
+trigger1 = Time = 0
+pos = 20,0
+ownpal = 1
+ignorehitpause = 1
+persistent = 1
+sprpriority = 999
+anim = F801
+
+[State 1000, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;                                     祓斧
+[Statedef 1020]
+type    = S
+movetype= A
+physics = N
+juggle  = 0
+poweradd= 0
+;velset = 0,0
+anim = 1020
+ctrl = 0
+;sprpriority = -1
+
+[State 108, 0];地上ダッシュ後の慣性用
+type = VelAdd
+trigger1 = time >= 0
+trigger1 = Vel X > 0
+x = -0.2
+
+[State 108, 0];地上ダッシュ後の慣性用
+type = Velset
+trigger1 = time >= 0
+trigger1 = Vel X < 0
+x = 0
+
+[State 210, 1]
+type = Width
+trigger1 = Time >= 0
+player= 20,0
+
+[State 2, ga3]
+type = PlaySnd
+trigger1 = AnimElem = 3
+value = 507, 1
+Volume = 99999
+channel = 1
+
+[State 9200, 1]
+type = ReversalDef
+trigger1 = AnimElem = 1
+reversal.attr = SA, NA, SA, HA, NP, SP, HP
+numhits = 0
+pausetime = 0,10
+sparkno = -1 + 0 * (var(53) := 8013)
+guard.sparkno = -1 + 0 * (var(54) := 8001)
+hitsound = -1
+guardsound =-1
+P1stateno = 1025
+
+[State 1000, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;                                     祓斧受身成功時
+[Statedef 1025]
+type    = S
+movetype= I
+physics = N
+juggle  = 0
+poweradd= 0
+;velset = 0,0
+anim = 1025
+ctrl = 0
+sprpriority = -1
+
+[State 108, 0];地上ダッシュ後の慣性用
+type = VelAdd
+trigger1 = time >= 0
+trigger1 = Vel X > 0
+x = -0.2
+
+[State 108, 0];地上ダッシュ後の慣性用
+type = Velset
+trigger1 = time >= 0
+trigger1 = Vel X < 0
+x = 0
+
+[State 210, 1]
+type = Width
+trigger1 = Time >= 0
+player= 20,0
+
+[State 240, 3];緑エフェクト
+type = Explod
+trigger1 = Time = 0
+pos = 40, -65
+;Postype = p1
+;facing = 1
+random = 15, 15
+persistent = 0
+ignorehitpause = 1
+sprpriority = 999
+ownpal = 1
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+supermove = 1
+bindtime = 1
+anim = 1026
+
+[State -2, ga3];
+type = PlaySnd
+trigger1 = time = 0
+value = 401, 0
+Volume = 99999
+;channel = 0
+
+[State -2]
+type = VarRandom
+trigger1 = time = 0
+v = 0
+range = 0, 2
+
+[State -2, ga2];
+type = PlaySnd
+triggerall = Var(0) = 0
+trigger1 = time = 0
+value = 306, 0
+Volume = 99999
+channel = 0
+
+[State -2, ga3];
+type = PlaySnd
+triggerall = Var(0) = 1
+trigger1 = time = 0
+value = 306, 1
+Volume = 99999
+channel = 0
+
+[State -2, ga3];
+type = PlaySnd
+triggerall = Var(0) = 2
+trigger1 = time = 0
+value = 306, 2
+Volume = 99999
+channel = 0
+
+[State 5201, 5];Blink white
+type = PalFX
+trigger1 = Time = 0
+time = 2
+add = 200,200,200
+
+;[State 195, 1]
+;type = CtrlSet
+;trigger1 = Time = 1
+;value = 1
+
+[State 1000, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;                                  鷹嬰脚   
+[Statedef 1030]
+type    = A
+movetype= A
+physics = N
+juggle  = 0
+poweradd= 0
+velset = 0,0
+anim = 1030
+ctrl = 0
+;sprpriority = -1
+
+[State 2, ga3];
+type = PlaySnd
+trigger1 = AnimElem = 2
+value = 507, 2
+Volume = 99999
+;channel = 1
+
+[State 1000, 7]
+type = velset
+trigger1 = AnimElem = 1
+x = 0
+y = 0
+
+[State 1000, 7]
+type = velset
+trigger1 = AnimElem = 2
+x = 3
+y = 8
+
+[State 200, 1];
+type = HitDef
+trigger1 = AnimElem = 1
+attr = A, SA
+damage = ceil(16*Var(5)/256)+Var(15), 5
+animtype = hard
+guardflag = HA
+hitflag = MAFD
+priority = 3, Miss
+pausetime = 14,14+Var(15)
+guard.pausetime = 14,13
+sparkno = -1 + 0 * (var(53) := 8013)
+guard.sparkno = -1 + 0 * (var(54) := 8001)
+sparkxy = -10 + 0 * (var(56) := 89), var(57):= -30
+hitsound = S5, 3
+guardsound =S509, 4
+ground.type = High
+ground.slidetime = 14
+ground.hittime  = 14
+ground.velocity = -3
+airguard.velocity =-2.5,-7+Var(6)
+air.type = High
+air.velocity =-2.5,-7+Var(6)
+air.hittime = 14
+;fall = 0;落下させる
+;fall.recover = 0;受身可否
+fall.recovertime = 30-Var(6);受身出来るまでの時間
+air.fall = 1;相手が空中時のみ落下させる
+down.velocity = 0,-3
+down.hittime = 6
+down.bounce = 1
+getpower = 16,0
+givepower = 5,0
+palfx.time = 1
+palfx.add = 0,0,0
+p2facing = 1
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+[State 10,combo];攻撃力補正用ＶＡＲ
+type = Varadd
+trigger1 = MoveHit = 1
+persistent = 0
+ignorehitpause = 1
+v = 4
+value = 1
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
+[State 2, ga3];カウンターヒット時
+type = PlaySnd
+trigger1 =  var(14) >= 128
+trigger1 = movehit = 1
+persistent = 0
+ignorehitpause = 1
+value = 511, 1
+Volume = 99999
+;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
+;あああああああああああああああああ
+[State 2,guardLEVEL];ガードレベル増加
+type = Varadd
+trigger1 =  var(14) <= 251
+trigger1 = moveguarded = 1
+persistent = 0
+ignorehitpause = 1
+var(14) = 5
+[State 2,guardLEVEL];ガードレベル増加
+type = Varadd
+trigger1 =  var(14) > 251
+trigger1 = moveguarded = 1
+persistent = 0
+ignorehitpause = 1
+var(14) = 256-Var(14)
+[State 2,guardLEVEL];ガードレベル減少
+type = Varadd
+trigger1 =  movehit = 1
+trigger1 =  var(14) >= 5
+persistent = 0
+ignorehitpause = 1
+var(14) = -5
+[State 2,guardLEVEL];ガードレベル減少
+type = Varadd
+trigger1 =  movehit = 1
+trigger1 =  var(14) < 5
+persistent = 0
+ignorehitpause = 1
+var(14) = -Var(14)
+;あああああああああああああああああ
+;HHHHHHHHHHHHHHHHHHHHHHHH
+;ＨＩＴ炎エフェクトのヘルパー強制消去用
+;HHHHHHHHHHHHHHHHHHHHHHHH
+
+[State 1,1]
+type = Varset
+triggerall = Var(17)  != 1
+trigger1 = MoveContact = 1
+ignorehitpause = 1
+v = 17
+value = 1
+;HHHHHHHHHHHHHHHHHHHHHHHH
+
+
+;+++++++++++++++++++++++++++++++
+; ロマンキャンセル許可  
+;+++++++++++++++++++++++++++++++
+[State 10, 10];
+type = Varset
+trigger1 = MoveContact = 1
+trigger1 = var(3) != 1
+persistent = 0
+ignorehitpause = 1
+var(3) = 1
+;+++++++++++++++++++++++++++++++
+;+++++++++++++++++++++++++++++++
+; ロマンキャンセル解除ガトリング暴発防止
+;+++++++++++++++++++++++++++++++
+[State 10, 10];
+type = Varset
+trigger1 = Time = 0
+trigger1 = var(3) = 1
+persistent = 0
+ignorehitpause = 1
+var(3) = 0
+;+++++++++++++++++++++++++++++++
+
+[State 1000, 7];ＨＩＴ時フミフミ攻撃へ
+type = ChangeState
+trigger1 = MoveHit = 1
+value = 1032
+ctrl = 0
+
+[State 1000, 7]
+type = ChangeState
+trigger1 = Pos Y >= -1
+value = 1031
+ctrl = 0
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;                                  鷹嬰脚　着地   
+[Statedef 1031]
+type    = S
+movetype= I
+physics = S
+juggle  = 0
+poweradd= 0
+velset = 0,0
+anim = 1031
+ctrl = 0
+;sprpriority = -1
+
+[State 750, 3];着地煙ヘルパー
+type = helper
+trigger1 = Animelem = 1
+ID = 4001
+ignorehitpause = 1
+persistent = 0
+pos = 0,0
+priority = 2
+stateno = 4001
+ownpal = 1
+supermove = 1
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+
+[State 2 ,2];着地音
+type = PlaySnd
+trigger1 = Animelem = 1
+value = 501, 0;
+Volume = 99999
+channel = 1
+
+[State 1000, 7]
+type = Posset
+trigger1 = Pos Y  != 0
+y = 0
+
+[State 1000, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;                                  鷹嬰脚  フミフミ攻撃 
+[Statedef 1032]
+type    = A
+movetype= A
+physics = N
+juggle  = 0
+poweradd= 0
+velset = 0,0
+anim = 1032
+ctrl = 0
+;sprpriority = -1
+
+[State 1000, 7]
+type = velset
+trigger1 = AnimElem = 1
+x = 3
+y = 5
+
+[State 200, 1];
+type = HitDef
+trigger1 = AnimElem = 1
+attr = A, SA
+damage = ceil(10*Var(5)/256)+Var(15), 5
+animtype = Medium
+guardflag = HA
+hitflag = MAF
+priority = 3, Miss
+pausetime = 8,10+Var(15)
+guard.pausetime = 8,7
+sparkno = -1 + 0 * (var(53) := 8013)
+guard.sparkno = -1 + 0 * (var(54) := 8001)
+sparkxy = -10 + 0 * (var(56) := 89), var(57):= -25
+hitsound = S5, 3
+guardsound =S509, 4
+ground.type = High
+ground.slidetime = 10
+ground.hittime  = 10
+ground.velocity = -3
+airguard.velocity =-4,2+Var(6)
+air.type = High
+air.velocity =-4,-7+Var(6)
+air.hittime = 10
+;fall = 0;落下させる
+;fall.recover = 0;受身可否
+fall.recovertime = 30-Var(6);受身出来るまでの時間
+air.fall = 1;相手が空中時のみ落下させる
+getpower = 10,0
+givepower = 5,0
+palfx.time = 1
+palfx.add = 0,0,0
+p2facing = 1
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+[State 10,combo];攻撃力補正用ＶＡＲ
+type = Varadd
+trigger1 = MoveHit = 1
+persistent = 0
+ignorehitpause = 1
+v = 4
+value = 1
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
+[State 2, ga3];カウンターヒット時
+type = PlaySnd
+trigger1 =  var(14) >= 128
+trigger1 = movehit = 1
+persistent = 0
+ignorehitpause = 1
+value = 511, 1
+Volume = 99999
+;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
+;あああああああああああああああああ
+[State 2,guardLEVEL];ガードレベル増加
+type = Varadd
+trigger1 =  var(14) <= 251
+trigger1 = moveguarded = 1
+persistent = 0
+ignorehitpause = 1
+var(14) = 5
+[State 2,guardLEVEL];ガードレベル増加
+type = Varadd
+trigger1 =  var(14) > 251
+trigger1 = moveguarded = 1
+persistent = 0
+ignorehitpause = 1
+var(14) = 256-Var(14)
+[State 2,guardLEVEL];ガードレベル減少
+type = Varadd
+trigger1 =  movehit = 1
+trigger1 =  var(14) >= 5
+persistent = 0
+ignorehitpause = 1
+var(14) = -5
+[State 2,guardLEVEL];ガードレベル減少
+type = Varadd
+trigger1 =  movehit = 1
+trigger1 =  var(14) < 5
+persistent = 0
+ignorehitpause = 1
+var(14) = -Var(14)
+;あああああああああああああああああ
+;HHHHHHHHHHHHHHHHHHHHHHHH
+;ＨＩＴ炎エフェクトのヘルパー強制消去用
+;HHHHHHHHHHHHHHHHHHHHHHHH
+[State 1,1]
+type = Varset
+triggerall = Var(17)  != 1
+trigger1 = MoveContact = 1
+ignorehitpause = 1
+v = 17
+value = 1
+;HHHHHHHHHHHHHHHHHHHHHHHH
+
+;+++++++++++++++++++++++++++++++
+; ロマンキャンセル許可  
+;+++++++++++++++++++++++++++++++
+[State 10, 10];
+type = Varset
+trigger1 = MoveContact = 1
+trigger1 = var(3) != 1
+persistent = 0
+ignorehitpause = 1
+var(3) = 1
+;+++++++++++++++++++++++++++++++
+
+[State 1000, 7];着地へ
+type = ChangeState
+trigger1 = Pos Y >= -1
+value = 1031
+ctrl = 0
+
+[State 1000, 7];次の攻撃へ
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 1033
+ctrl = 0
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;                                  鷹嬰脚  フミフミ攻撃２ 
+[Statedef 1033]
+type    = A
+movetype= A
+physics = N
+juggle  = 0
+poweradd= 0
+velset = 0,0
+anim = 1033
+ctrl = 0
+;sprpriority = -1
+
+[State 1000, 7]
+type = velset
+trigger1 = AnimElem = 1
+x = 3
+y = 5
+
+[State 200, 1];
+type = HitDef
+trigger1 = AnimElem = 1
+attr = A, SA
+damage = ceil(10*Var(5)/256)+Var(15), 5
+animtype = hard
+guardflag = HA
+hitflag = MAF
+priority = 3, Miss
+pausetime = 8,10+Var(15)
+guard.pausetime = 8,7
+sparkno = -1 + 0 * (var(53) := 8013)
+guard.sparkno = -1 + 0 * (var(54) := 8001)
+sparkxy = -10 + 0 * (var(56) := 89), var(57):= -20
+hitsound = S5, 3
+guardsound =S509, 4
+ground.type = High
+ground.slidetime = 10
+ground.hittime  = 10
+ground.velocity = -3
+airguard.velocity =-4,2+Var(6)
+air.type = High
+air.velocity =-4,-7+Var(6)
+air.hittime = 10
+;fall = 0;落下させる
+;fall.recover = 0;受身可否
+fall.recovertime = 30-Var(6);受身出来るまでの時間
+air.fall = 1;相手が空中時のみ落下させる
+getpower = 10,0
+givepower = 5,0
+palfx.time = 1
+palfx.add = 0,0,0
+p2facing = 1
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+[State 10,combo];攻撃力補正用ＶＡＲ
+type = Varadd
+trigger1 = MoveHit = 1
+persistent = 0
+ignorehitpause = 1
+v = 4
+value = 1
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
+[State 2, ga3];カウンターヒット時
+type = PlaySnd
+trigger1 =  var(14) >= 128
+trigger1 = movehit = 1
+persistent = 0
+ignorehitpause = 1
+value = 511, 1
+Volume = 99999
+;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
+;あああああああああああああああああ
+[State 2,guardLEVEL];ガードレベル増加
+type = Varadd
+trigger1 =  var(14) <= 251
+trigger1 = moveguarded = 1
+persistent = 0
+ignorehitpause = 1
+var(14) = 5
+[State 2,guardLEVEL];ガードレベル増加
+type = Varadd
+trigger1 =  var(14) > 251
+trigger1 = moveguarded = 1
+persistent = 0
+ignorehitpause = 1
+var(14) = 256-Var(14)
+[State 2,guardLEVEL];ガードレベル減少
+type = Varadd
+trigger1 =  movehit = 1
+trigger1 =  var(14) >= 5
+persistent = 0
+ignorehitpause = 1
+var(14) = -5
+[State 2,guardLEVEL];ガードレベル減少
+type = Varadd
+trigger1 =  movehit = 1
+trigger1 =  var(14) < 5
+persistent = 0
+ignorehitpause = 1
+var(14) = -Var(14)
+;あああああああああああああああああ
+;HHHHHHHHHHHHHHHHHHHHHHHH
+;ＨＩＴ炎エフェクトのヘルパー強制消去用
+;HHHHHHHHHHHHHHHHHHHHHHHH
+[State 1,1]
+type = Varset
+triggerall = Var(17)  != 1
+trigger1 = MoveContact = 1
+ignorehitpause = 1
+v = 17
+value = 1
+;HHHHHHHHHHHHHHHHHHHHHHHH
+
+;+++++++++++++++++++++++++++++++
+; ロマンキャンセル許可  
+;+++++++++++++++++++++++++++++++
+[State 10, 10];
+type = Varset
+trigger1 = MoveContact = 1
+trigger1 = var(3) != 1
+persistent = 0
+ignorehitpause = 1
+var(3) = 1
+;+++++++++++++++++++++++++++++++
+
+[State 1000, 7];着地へ
+type = ChangeState
+trigger1 = Pos Y >= -1
+value = 1031
+ctrl = 0
+
+[State 1000, 7];次の攻撃へ
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 1032
+ctrl = 0
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;                                     爆蹴　足払い
+[Statedef 1040]
+type    = S
+movetype= A
+physics = S
+juggle  = 0
+poweradd= 0
+velset = 0,0
+anim = 1040
+ctrl = 0
+;sprpriority = 2
+
+;+++++++++++++++++++
+;龍刃・逆鱗・剣楼閣・爆蹴足払いの
+;繋がり回数カウント（３回まで）
+[State 2,1]
+type = Varadd
+trigger1 = time = 0
+persistent = 0
+ignorehitpause = 1
+v = 21
+value = 1
+;+++++++++++++++++++
+
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+;ＥＸ・何でもアリモードの時
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+[State 2, ga3]
+type = PlaySnd
+triggerall = Var(43) = 10 || Var(43) = 15;ＥＸ・何でもアリモード
+trigger1 = AnimElem = 1
+value = 404, 0
+Volume = 99999
+channel = 1
+
+[State 50, 12];画面揺らし
+type = EnvShake
+triggerall = Var(43) = 10 || Var(43) = 15;ＥＸ・何でもアリモード
+trigger1 = AnimElem = 4
+Time = 10
+
+[State 240, 3];ピンクの煙
+type = Explod
+triggerall = Var(43) = 10 || Var(43) = 15;ＥＸ・何でもアリモード
+trigger1 = AnimElem = 1
+pos = 0, 5
+;Postype = p1
+;facing = 1
+persistent = 0
+ignorehitpause = 1
+sprpriority = 999
+ownpal = 1
+;ontop = 1
+;pausemovetime = 99999999999999
+;supermovetime = 99999999999999
+;supermove = 1
+bindtime = 1
+anim = 1005
+
+[State 240, 3]
+type = velset
+triggerall = Var(43) = 10 || Var(43) = 15;ＥＸ・何でもアリモード
+trigger1 = AnimElem = 4
+x = 10
+
+[State 240, 3]
+type = velset
+triggerall = Var(43) = 10 || Var(43) = 15;ＥＸ・何でもアリモード
+trigger1 = AnimElem = 5
+x = 0
+
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+[State 2, ga3];
+type = PlaySnd
+trigger1 = AnimElem = 1
+value = 507, 7
+Volume = 99999
+;channel = 1
+
+[State 2, ga3];
+type = PlaySnd
+trigger1 = AnimElem = 1
+value = 507, 3
+Volume = 99999
+;channel = 1
+
+[State -2]
+type = VarRandom
+trigger1 = time = 0
+v = 0
+range = 0, 2
+[State -2, ga2];
+type = PlaySnd
+triggerall = Var(0) = 0
+trigger1 = time = 0
+value = 103, 0
+Volume = 99999
+channel = 0
+[State -2, ga3];
+type = PlaySnd
+triggerall = Var(0) = 1
+trigger1 = time = 0
+value = 103, 1
+Volume = 99999
+channel = 0
+[State -2, ga3];
+type = PlaySnd
+triggerall = Var(0) = 2
+trigger1 = time = 0
+value = 103, 2
+Volume = 99999
+channel = 0
+
+[State 200, 1];
+type = HitDef
+trigger1 = AnimElem = 1
+attr = C, SA
+damage = ceil(30*Var(5)/256)+Var(15), 5
+animtype = hard
+guardflag = LA
+hitflag = MAFD
+priority = 3, Miss
+pausetime = 14,14+Var(15)
+guard.pausetime = 14,13
+sparkno = -1 + 0 * (var(53) := 8013)
+guard.sparkno = -1 + 0 * (var(54) := 8001)
+sparkxy = -10 + 0 * (var(53) := 89), var(54):= -10
+hitsound = S5, 5
+guardsound =S509, 4
+ground.type = Low
+ground.slidetime = 19
+ground.hittime  = 19
+ground.velocity = -1.5,-2.5
+airguard.velocity =-1.5,-2.5+Var(6)
+air.type = Low
+air.velocity =-1.5,-2.5+Var(6)
+air.hittime = 14
+fall = 1;落下させる
+fall.recover = 0;受身可否
+;fall.recovertime = 30;受身出来るまでの時間
+air.fall = 1;相手が空中時のみ落下させる
+down.velocity = 0,-3
+down.hittime = 6
+down.bounce = 1
+getpower = 72,0
+givepower = 5,0
+palfx.time = 1
+palfx.add = 0,0,0
+p2facing = 1
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+[State 10,combo];攻撃力補正用ＶＡＲ
+type = Varadd
+trigger1 = MoveHit = 1
+persistent = 0
+ignorehitpause = 1
+v = 4
+value = 1
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
+[State 2, ga3];カウンターヒット時
+type = PlaySnd
+trigger1 =  var(14) >= 128
+trigger1 = movehit = 1
+persistent = 0
+ignorehitpause = 1
+value = 511, 1
+Volume = 99999
+;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
+;あああああああああああああああああ
+[State 2,guardLEVEL];ガードレベル増加
+type = Varadd
+trigger1 =  var(14) <= 236
+trigger1 = moveguarded = 1
+persistent = 0
+ignorehitpause = 1
+var(14) = 20
+[State 2,guardLEVEL];ガードレベル増加
+type = Varadd
+trigger1 =  var(14) > 236
+trigger1 = moveguarded = 1
+persistent = 0
+ignorehitpause = 1
+var(14) = 256-Var(14)
+[State 2,guardLEVEL];ガードレベル減少
+type = Varadd
+trigger1 =  movehit = 1
+trigger1 =  var(14) >= 20
+persistent = 0
+ignorehitpause = 1
+var(14) = -20
+[State 2,guardLEVEL];ガードレベル減少
+type = Varadd
+trigger1 =  movehit = 1
+trigger1 =  var(14) < 20
+persistent = 0
+ignorehitpause = 1
+var(14) = -Var(14)
+;あああああああああああああああああ
+;HHHHHHHHHHHHHHHHHHHHHHHH
+;ＨＩＴ炎エフェクトのヘルパー強制消去用
+;HHHHHHHHHHHHHHHHHHHHHHHH
+[State 1,1]
+type = Varset
+triggerall = Var(17)  != 1
+trigger1 = MoveContact = 1
+ignorehitpause = 1
+v = 17
+value = 1
+;HHHHHHHHHHHHHHHHHHHHHHHH
+
+
+;+++++++++++++++++++++++++++++++
+; ロマンキャンセル許可  
+;+++++++++++++++++++++++++++++++
+[State 10, 10];
+type = Varset
+trigger1 = MoveContact = 1
+trigger1 = var(3) != 1
+persistent = 0
+ignorehitpause = 1
+var(3) = 1
+;+++++++++++++++++++++++++++++++
+;+++++++++++++++++++++++++++++++
+; ロマンキャンセル解除ガトリング暴発防止
+;+++++++++++++++++++++++++++++++
+[State 10, 10];
+type = Varset
+trigger1 = Time = 0
+trigger1 = var(3) = 1
+persistent = 0
+ignorehitpause = 1
+var(3) = 0
+;+++++++++++++++++++++++++++++++
+
+[State 1000, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;                                     剣楼閣１撃目
+[Statedef 1050]
+type    = A
+movetype= A
+physics = A;N
+juggle  = 0
+poweradd= 20
+;velset = 0,0
+anim = 1050
+ctrl = 0
+;sprpriority = 2
+
+;+++++++++++++++++++
+;龍刃・逆鱗・剣楼閣・爆蹴足払いの
+;繋がり回数カウント（３回まで）
+[State 2,1]
+type = Varadd
+trigger1 = time = 0
+persistent = 0
+ignorehitpause = 1
+v = 21
+value = 1
+;+++++++++++++++++++
+
+[State 170, 1]
+type = NotHitBy
+trigger1 = Time = 0
+value = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+time = 6
+
+[State 2,1];龍刃・逆鱗・剣楼閣の空中ダッシュ直後の特殊移動用
+type = Varset
+trigger1 = numhelper(2007)= 1
+trigger2 = numhelper(2008)= 1
+ignorehitpause = 1
+v = 20
+value = 5
+
+[State 2, ga3];龍刃とか効果音
+type = PlaySnd
+trigger1 = AnimElem = 1
+value = 405, 0
+Volume = 99999
+channel = 1
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\
+[State -2]
+type = VarRandom
+trigger1 = time = 0
+v = 0
+range = 0, 2
+
+[State -2, ga2];剣楼閣1
+type = PlaySnd
+triggerall = Var(0) = 0
+trigger1 = time = 0
+value = 302, 0
+Volume = 99999
+channel = 0
+
+[State -2, ga3];剣楼閣2
+type = PlaySnd
+triggerall = Var(0) = 1
+trigger1 = time = 0
+value = 302, 1
+Volume = 99999
+channel = 0
+
+[State -2, ga3];剣楼閣3
+type = PlaySnd
+triggerall = Var(0) = 2
+trigger1 = time = 0
+value = 302, 2
+Volume = 99999
+channel = 0
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+[State 1000, 7];上昇通常時
+type = velset
+triggerall = Time >= 0
+trigger1  = Var(20) = 0
+y = -6
+
+[State 1000, 7];空中ダッシュ直後の特殊時
+type = velset
+triggerall = Time >= 0
+trigger1  = Var(20) != 0
+x = 0.4
+y = 0
+
+[State 1000, 7];地上ダッシュ慣性の時
+type = velset
+triggerall = Var(16) != 0;地上ダッシュ慣性ＶＡＲ
+trigger1 = Time = 0
+x = 4
+
+[State 1000, 7];慣性無しの時
+type = velset
+triggerall = Var(16) = 0;地上ダッシュ慣性ＶＡＲ
+triggerall = Time = 0
+trigger1 = Vel x <= 3
+trigger2 = Prevstateno = 1091 ;龍刃
+trigger3 = Prevstateno = 1096 ;龍刃  朝凪強化
+x = 0.4
+
+[State 1000, 7];空中ダッシュ通常攻撃後
+type = velset
+triggerall = Var(16) = 0;地上ダッシュ慣性ＶＡＲ
+triggerall = Time = 0
+trigger1 = Vel x >= 8;空中ダッシュの速さ
+x = 0.4
+
+[State 240, 3];炎カス
+type = Explod
+trigger1 = Timemod = 4,0
+pos = 0, -60
+;Postype = p1
+;facing = 1
+;persistent = 0
+ignorehitpause = 1
+sprpriority = 999
+ownpal = 1
+;ontop = 1
+random = 30, 30
+;pausemovetime = 99999999999999
+;supermovetime = 99999999999999
+;supermove = 1
+bindtime = 1
+anim = 1056
+ID     = 1056
+
+[State 200, 1];
+type = HitDef
+trigger1 = AnimElem = 1
+attr = A, SA
+damage = ceil(14*Var(5)/256)+Var(15), 5
+animtype = hard
+guardflag = MA
+hitflag = MAF
+priority = 3, Miss
+pausetime = 8,8+Var(15)
+guard.pausetime = 8,7
+sparkno = -1 + 0 * (var(53) := 8013)
+guard.sparkno = -1 + 0 * (var(54) := 8001)
+sparkxy = -10 + 0 * (var(56) := 89), var(57):= -76
+hitsound = S5, 3
+guardsound =S509, 4
+ground.type = Low
+ground.slidetime = 12
+ground.hittime  = 12
+ground.velocity = 1,-10+Var(6)
+guard.velocity = 1
+airguard.velocity =1,-2+Var(6)
+air.type = Low
+air.velocity =1,-10+Var(6)
+air.hittime = 12
+fall = 1;落下させる
+;fall.recover = 1;受身可否
+fall.recovertime = 50-Var(6);受身出来るまでの時間
+air.fall = 1;相手が空中時のみ落下させる
+getpower = 24,0
+givepower = 5,0
+palfx.time = 1
+palfx.add = 0,0,0
+p2facing = 1
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+[State 10,combo];攻撃力補正用ＶＡＲ
+type = Varadd
+trigger1 = MoveHit = 1
+persistent = 0
+ignorehitpause = 1
+v = 4
+value = 1
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
+[State 2, ga3];カウンターヒット時
+type = PlaySnd
+trigger1 =  var(14) >= 128
+trigger1 = movehit = 1
+persistent = 0
+ignorehitpause = 1
+value = 511, 1
+Volume = 99999
+;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
+;あああああああああああああああああ
+[State 2,guardLEVEL];ガードレベル増加
+type = Varadd
+trigger1 =  var(14) <= 246
+trigger1 = moveguarded = 1
+persistent = 0
+ignorehitpause = 1
+var(14) = 10
+[State 2,guardLEVEL];ガードレベル増加
+type = Varadd
+trigger1 =  var(14) > 246
+trigger1 = moveguarded = 1
+persistent = 0
+ignorehitpause = 1
+var(14) = 256-Var(14)
+[State 2,guardLEVEL];ガードレベル減少
+type = Varadd
+trigger1 =  movehit = 1
+trigger1 =  var(14) >= 10
+persistent = 0
+ignorehitpause = 1
+var(14) = -10
+[State 2,guardLEVEL];ガードレベル減少
+type = Varadd
+trigger1 =  movehit = 1
+trigger1 =  var(14) < 10
+persistent = 0
+ignorehitpause = 1
+var(14) = -Var(14)
+;あああああああああああああああああ
+;HHHHHHHHHHHHHHHHHHHHHHHH
+;ＨＩＴ炎エフェクトのヘルパー強制消去用
+;HHHHHHHHHHHHHHHHHHHHHHHH
+[State 1,1]
+type = Varset
+triggerall = Var(17)  != 1
+trigger1 = MoveContact = 1
+ignorehitpause = 1
+v = 17
+value = 1
+;HHHHHHHHHHHHHHHHHHHHHHHH
+
+;+++++++++++++++++++++++++++++++
+; ロマンキャンセル許可  
+;+++++++++++++++++++++++++++++++
+[State 10, 10];
+type = Varset
+trigger1 = MoveContact = 1
+trigger1 = var(3) != 1
+persistent = 0
+ignorehitpause = 1
+var(3) = 1
+;+++++++++++++++++++++++++++++++
+;+++++++++++++++++++++++++++++++
+; ロマンキャンセル解除ガトリング暴発防止
+;+++++++++++++++++++++++++++++++
+[State 10, 10];
+type = Varset
+trigger1 = Time = 0
+trigger1 = var(3) = 1
+persistent = 0
+ignorehitpause = 1
+var(3) = 0
+;+++++++++++++++++++++++++++++++
+
+[State 1000, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 1051
+ctrl = 0
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;                                     剣楼閣２撃目
+[Statedef 1051]
+type    = A
+movetype= A
+physics = A;N
+juggle  = 0
+poweradd= 0
+;velset = 0,0
+anim = 1051
+ctrl = 0
+;sprpriority = 2
+
+[State 1000, 7];上昇通常時
+type = velset
+triggerall  = Var(20) = 0
+trigger1 = Time >= 0
+y = -5
+[State 1000, 7];空中ダッシュ直後の特殊時
+type = velset
+triggerall  = Var(20) != 0
+trigger1 = Time >= 0
+y = 0
+
+[State 240, 3];炎カス
+type = Explod
+trigger1 = Timemod = 4,0
+pos = 0, -60
+;Postype = p1
+;facing = 1
+;persistent = 0
+ignorehitpause = 1
+sprpriority = 999
+ownpal = 1
+;ontop = 1
+random = 30, 30
+;pausemovetime = 99999999999999
+;supermovetime = 99999999999999
+;supermove = 1
+bindtime = 1
+anim = 1056
+ID     = 1056
+
+[State 200, 1];
+type = HitDef
+trigger1 = AnimElem = 1
+attr = A, SA
+damage = ceil(14*Var(5)/256)+Var(15), 5
+animtype = hard
+guardflag = MA
+hitflag = MAF
+priority = 3, Miss
+pausetime = 8,8+Var(15)
+guard.pausetime = 8,7
+sparkno = -1 + 0 * (var(53) := 8013)
+guard.sparkno = -1 + 0 * (var(54) := 8001)
+sparkxy = -10 + 0 * (var(56) := 89), var(57):= -76
+hitsound = S5, 3
+guardsound =S509, 4
+ground.type = Low
+ground.slidetime = 12
+ground.hittime  = 12
+ground.velocity = 0,-10+Var(6)
+guard.velocity = 1
+airguard.velocity =0,-2+Var(6)
+air.type = Low
+air.velocity =0,-10+Var(6)
+air.hittime = 12
+fall = 1;落下させる
+;fall.recover = 1;受身可否
+fall.recovertime = 50-Var(6);受身出来るまでの時間
+air.fall = 1;相手が空中時のみ落下させる
+getpower = 24,0
+givepower = 5,0
+palfx.time = 1
+palfx.add = 0,0,0
+p2facing = 1
+
+;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
+[State 2, ga3];カウンターヒット時
+type = PlaySnd
+trigger1 =  var(14) >= 128
+trigger1 = movehit = 1
+persistent = 0
+ignorehitpause = 1
+value = 511, 1
+Volume = 99999
+;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
+;あああああああああああああああああ
+[State 2,guardLEVEL];ガードレベル増加
+type = Varadd
+trigger1 =  var(14) <= 246
+trigger1 = moveguarded = 1
+persistent = 0
+ignorehitpause = 1
+var(14) = 10
+[State 2,guardLEVEL];ガードレベル増加
+type = Varadd
+trigger1 =  var(14) > 246
+trigger1 = moveguarded = 1
+persistent = 0
+ignorehitpause = 1
+var(14) = 256-Var(14)
+[State 2,guardLEVEL];ガードレベル減少
+type = Varadd
+trigger1 =  movehit = 1
+trigger1 =  var(14) >= 10
+persistent = 0
+ignorehitpause = 1
+var(14) = -10
+[State 2,guardLEVEL];ガードレベル減少
+type = Varadd
+trigger1 =  movehit = 1
+trigger1 =  var(14) < 10
+persistent = 0
+ignorehitpause = 1
+var(14) = -Var(14)
+;あああああああああああああああああ
+;HHHHHHHHHHHHHHHHHHHHHHHH
+;ＨＩＴ炎エフェクトのヘルパー強制消去用
+;HHHHHHHHHHHHHHHHHHHHHHHH
+[State 1,1]
+type = Varset
+triggerall = Var(17)  != 1
+trigger1 = MoveContact = 1
+ignorehitpause = 1
+v = 17
+value = 1
+;HHHHHHHHHHHHHHHHHHHHHHHH
+
+
+;+++++++++++++++++++++++++++++++
+; ロマンキャンセル許可  
+;+++++++++++++++++++++++++++++++
+[State 10, 10];
+type = Varset
+trigger1 = MoveContact = 1
+trigger1 = var(3) != 1
+persistent = 0
+ignorehitpause = 1
+var(3) = 1
+;+++++++++++++++++++++++++++++++
+
+[State 1000, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 1052
+ctrl = 0
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;                                     剣楼閣３撃目
+[Statedef 1052]
+type    = A
+movetype= A
+physics = A;N
+juggle  = 0
+poweradd= 0
+;velset = 0,0
+anim = 1052
+ctrl = 0
+;sprpriority = 2
+
+[State 1000, 7];上昇通常時
+type = velset
+triggerall  = Var(20) = 0
+trigger1 = Time >= 0
+y = -4
+[State 1000, 7];空中ダッシュ直後の特殊時
+type = velset
+triggerall  = Var(20) != 0
+trigger1 = Time >= 0
+y = 0
+
+[State 240, 3];炎カス
+type = Explod
+trigger1 = Timemod = 4,0
+pos = 0, -60
+;Postype = p1
+;facing = 1
+;persistent = 0
+ignorehitpause = 1
+sprpriority = 999
+ownpal = 1
+;ontop = 1
+random = 30, 30
+;pausemovetime = 99999999999999
+;supermovetime = 99999999999999
+;supermove = 1
+bindtime = 1
+anim = 1056
+ID     = 1056
+
+[State 200, 1];
+type = HitDef
+trigger1 = AnimElem = 1
+attr = A, SA
+damage = ceil(14*Var(5)/256)+Var(15), 5
+animtype = hard
+guardflag = MA
+hitflag = MAF
+priority = 3, Miss
+pausetime = 8,8+Var(15)
+guard.pausetime = 8,7
+sparkno = -1 + 0 * (var(53) := 8013)
+guard.sparkno = -1 + 0 * (var(54) := 8001)
+sparkxy = -10 + 0 * (var(56) := 89), var(57):= -76
+hitsound = S5, 3
+guardsound =S509, 4
+ground.type = Low
+ground.slidetime = 12
+ground.hittime  = 12
+ground.velocity = 0,-10+Var(6)
+guard.velocity = 0
+airguard.velocity =0,-2+Var(6)
+air.type = Low
+air.velocity =0,-10+Var(6)
+air.hittime = 12
+fall = 1;落下させる
+;fall.recover = 1;受身可否
+fall.recovertime = 50-Var(6);受身出来るまでの時間
+air.fall = 1;相手が空中時のみ落下させる
+getpower = 24,0
+givepower = 5,0
+palfx.time = 1
+palfx.add = 0,0,0
+p2facing = 1
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+[State 10,combo];攻撃力補正用ＶＡＲ
+type = Varadd
+trigger1 = MoveHit = 1
+persistent = 0
+ignorehitpause = 1
+v = 4
+value = 1
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
+[State 2, ga3];カウンターヒット時
+type = PlaySnd
+trigger1 =  var(14) >= 128
+trigger1 = movehit = 1
+persistent = 0
+ignorehitpause = 1
+value = 511, 1
+Volume = 99999
+;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
+;あああああああああああああああああ
+[State 2,guardLEVEL];ガードレベル増加
+type = Varadd
+trigger1 =  var(14) <= 246
+trigger1 = moveguarded = 1
+persistent = 0
+ignorehitpause = 1
+var(14) = 10
+[State 2,guardLEVEL];ガードレベル増加
+type = Varadd
+trigger1 =  var(14) > 246
+trigger1 = moveguarded = 1
+persistent = 0
+ignorehitpause = 1
+var(14) = 256-Var(14)
+[State 2,guardLEVEL];ガードレベル減少
+type = Varadd
+trigger1 =  movehit = 1
+trigger1 =  var(14) >= 10
+persistent = 0
+ignorehitpause = 1
+var(14) = -10
+[State 2,guardLEVEL];ガードレベル減少
+type = Varadd
+trigger1 =  movehit = 1
+trigger1 =  var(14) < 10
+persistent = 0
+ignorehitpause = 1
+var(14) = -Var(14)
+;あああああああああああああああああ
+;HHHHHHHHHHHHHHHHHHHHHHHH
+;ＨＩＴ炎エフェクトのヘルパー強制消去用
+;HHHHHHHHHHHHHHHHHHHHHHHH
+[State 1,1]
+type = Varset
+triggerall = Var(17)  != 1
+trigger1 = MoveContact = 1
+ignorehitpause = 1
+v = 17
+value = 1
+;HHHHHHHHHHHHHHHHHHHHHHHH
+
+;+++++++++++++++++++++++++++++++
+; ロマンキャンセル許可  
+;+++++++++++++++++++++++++++++++
+[State 10, 10];
+type = Varset
+trigger1 = MoveContact = 1
+trigger1 = var(3) != 1
+persistent = 0
+ignorehitpause = 1
+var(3) = 1
+;+++++++++++++++++++++++++++++++
+
+[State 1000, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 1053
+ctrl = 0
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;                                     剣楼閣４撃目
+[Statedef 1053]
+type    = A
+movetype= A
+physics = A;N
+juggle  = 0
+poweradd= 0
+;velset = 0,0
+anim = 1053
+ctrl = 0
+;sprpriority = 2
+
+[State 1000, 7];上昇通常時
+type = velset
+triggerall  = Var(20) = 0
+trigger1 = Time >= 0
+y = -3
+[State 1000, 7];空中ダッシュ直後の特殊時
+type = velset
+triggerall  = Var(20) != 0
+trigger1 = Time >= 0
+y = 0
+
+[State 240, 3];炎カス
+type = Explod
+trigger1 = Timemod = 4,0
+pos = 0, -60
+;Postype = p1
+;facing = 1
+;persistent = 0
+ignorehitpause = 1
+sprpriority = 999
+ownpal = 1
+;ontop = 1
+random = 30, 30
+;pausemovetime = 99999999999999
+;supermovetime = 99999999999999
+;supermove = 1
+bindtime = 1
+anim = 1056
+ID     = 1056
+
+[State 200, 1];
+type = HitDef
+trigger1 = AnimElem = 1
+attr = A, SA
+damage = ceil(14*Var(5)/256)+Var(15), 5
+animtype = hard
+guardflag = MA
+hitflag = MAF
+priority = 3, Miss
+pausetime = 8,8+Var(15)
+guard.pausetime = 8,7
+sparkno = -1 + 0 * (var(53) := 8013)
+guard.sparkno = -1 + 0 * (var(54) := 8001)
+sparkxy = -10 + 0 * (var(56) := 89), var(57):= -76
+hitsound = S5, 3
+guardsound =S509, 4
+ground.type = Low
+ground.slidetime = 12
+ground.hittime  = 12
+ground.velocity = -2,-10+Var(6)
+guard.velocity = -2
+airguard.velocity =-2,-2+Var(6)
+air.type = Low
+air.velocity =-2,-10+Var(6)
+air.hittime = 12
+fall = 1;落下させる
+;fall.recover = 1;受身可否
+fall.recovertime = 50-Var(6);受身出来るまでの時間
+air.fall = 1;相手が空中時のみ落下させる
+getpower = 24,0
+givepower = 5,0
+palfx.time = 1
+palfx.add = 0,0,0
+p2facing = 1
+
+;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
+[State 2, ga3];カウンターヒット時
+type = PlaySnd
+trigger1 =  var(14) >= 128
+trigger1 = movehit = 1
+persistent = 0
+ignorehitpause = 1
+value = 511, 1
+Volume = 99999
+;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
+;あああああああああああああああああ
+[State 2,guardLEVEL];ガードレベル増加
+type = Varadd
+trigger1 =  var(14) <= 246
+trigger1 = moveguarded = 1
+persistent = 0
+ignorehitpause = 1
+var(14) = 10
+[State 2,guardLEVEL];ガードレベル増加
+type = Varadd
+trigger1 =  var(14) > 246
+trigger1 = moveguarded = 1
+persistent = 0
+ignorehitpause = 1
+var(14) = 256-Var(14)
+[State 2,guardLEVEL];ガードレベル減少
+type = Varadd
+trigger1 =  movehit = 1
+trigger1 =  var(14) >= 10
+persistent = 0
+ignorehitpause = 1
+var(14) = -10
+[State 2,guardLEVEL];ガードレベル減少
+type = Varadd
+trigger1 =  movehit = 1
+trigger1 =  var(14) < 10
+persistent = 0
+ignorehitpause = 1
+var(14) = -Var(14)
+;あああああああああああああああああ
+;HHHHHHHHHHHHHHHHHHHHHHHH
+;ＨＩＴ炎エフェクトのヘルパー強制消去用
+;HHHHHHHHHHHHHHHHHHHHHHHH
+[State 1,1]
+type = Varset
+triggerall = Var(17)  != 1
+trigger1 = MoveContact = 1
+ignorehitpause = 1
+v = 17
+value = 1
+;HHHHHHHHHHHHHHHHHHHHHHHH
+
+
+
+;+++++++++++++++++++++++++++++++
+; ロマンキャンセル許可  
+;+++++++++++++++++++++++++++++++
+[State 10, 10];
+type = Varset
+trigger1 = MoveContact = 1
+trigger1 = var(3) != 1
+persistent = 0
+ignorehitpause = 1
+var(3) = 1
+;+++++++++++++++++++++++++++++++
+
+[State 1000, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 1054
+ctrl = 0
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;                                     剣楼閣終了時
+[Statedef 1054]
+type    = A
+movetype= A
+physics = N
+juggle  = 0
+poweradd= 0
+;velset = 0,0
+anim = 1054
+ctrl = 0
+;sprpriority = 2
+
+;+++++++++++++++++++++++++++++++
+; ロマンキャンセル解除ガトリング暴発防止
+;+++++++++++++++++++++++++++++++
+[State 10, 10];
+type = Varset
+trigger1 = Animelem = 8
+trigger1 = var(3) = 1
+persistent = 0
+ignorehitpause = 1
+var(3) = 0
+;+++++++++++++++++++++++++++++++
+
+[State 1000, 7];上昇通常時
+type = velset
+triggerall  = Var(20) = 0
+trigger1 = Time = 0
+y = -3
+[State 1000, 7];空中ダッシュ直後の特殊時
+type = velset
+triggerall  = Var(20) != 0
+trigger1 = Time = 0
+y = 0
+
+[State 1000, 7]
+type = veladd
+trigger1 = Time > 0
+y = 0.44
+
+[State 240, 3];炎カス
+type = Explod
+trigger1 = Timemod = 4,0
+pos = 0, -60
+;Postype = p1
+;facing = 1
+;persistent = 0
+ignorehitpause = 1
+sprpriority = 999
+ownpal = 1
+;ontop = 1
+random = 30, 30
+;pausemovetime = 99999999999999
+;supermovetime = 99999999999999
+;supermove = 1
+bindtime = 1
+anim = 1056
+ID     = 1056
+
+[State 1000, 7]
+type = ChangeState
+trigger1 = Pos Y >= -1
+value = 1055
+ctrl = 0
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;                                     剣楼閣着地
+[Statedef 1055]
+type    = S
+movetype= I
+physics = S
+juggle  = 0
+poweradd= 0
+velset = 0,0
+anim = 1055
+ctrl = 0
+;sprpriority = 2
+
+[State 1000, 7]
+type = Posset
+trigger1 = Pos y != 0
+y = 0
+
+[State 750, 3];着地煙ヘルパー
+type = helper
+trigger1 = Time = 0
+ID = 4001
+ignorehitpause = 1
+persistent = 0
+pos = 0,0
+priority = 2
+stateno = 4001
+ownpal = 1
+supermove = 1
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+
+[State 2 ,2]
+type = PlaySnd
+trigger1 = time = 0
+value = 501, 0;
+Volume = 99999
+channel = 2
+
+[State 1000, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;                                     朝凪強化　剣楼閣１撃目
+[Statedef 1060]
+type    = A
+movetype= A
+physics = A;N
+juggle  = 0
+poweradd= 20
+;velset = 0,0
+anim = 1060
+ctrl = 0
+;sprpriority = 2
+
+;<><><><><><><><><><><><><><><><><><>
+[State 10, 10];朝凪の呼吸　剣楼閣　　ＬＶ
+type = Varadd
+trigger1 = var(24) != 0
+trigger1 = AnimElem = 1
+persistent = 0
+ignorehitpause = 1
+var(24) = -1
+;<><><><><><><><><><><><><><><><><><>
+
+[State 1000]
+type = AfterImage
+trigger1 = Time = 0
+time = 15
+length = 4
+frameGap = 1
+timeGap = 3
+PalAdd = 0,0,0
+palmul = 1,1,1
+PalBright = 0, 0, 0
+PalContrast = 128,128,128
+Trans = Add1
+
+;+++++++++++++++++++
+;龍刃・逆鱗・剣楼閣・爆蹴足払いの
+;繋がり回数カウント（３回まで）
+[State 2,1]
+type = Varadd
+trigger1 = time = 0
+persistent = 0
+ignorehitpause = 1
+v = 21
+value = 1
+;+++++++++++++++++++
+
+[State 170, 1]
+type = NotHitBy
+trigger1 = Time = 0
+value = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+time = 20
+
+[State 2,1];龍刃・逆鱗・剣楼閣の空中ダッシュ直後の特殊移動用
+type = Varset
+trigger1 = numhelper(2007)= 1
+trigger2 = numhelper(2008)= 1
+ignorehitpause = 1
+v = 20
+value = 5
+
+[State 2, ga3];龍刃とか効果音
+type = PlaySnd
+trigger1 = AnimElem = 1
+value = 405, 0
+Volume = 99999
+channel = 1
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\
+[State -2]
+type = VarRandom
+trigger1 = time = 0
+v = 0
+range = 0, 2
+
+[State -2, ga2];剣楼閣1
+type = PlaySnd
+triggerall = Var(0) = 0
+trigger1 = time = 0
+value = 302, 0
+Volume = 99999
+channel = 0
+
+[State -2, ga3];剣楼閣2
+type = PlaySnd
+triggerall = Var(0) = 1
+trigger1 = time = 0
+value = 302, 1
+Volume = 99999
+channel = 0
+
+[State -2, ga3];剣楼閣3
+type = PlaySnd
+triggerall = Var(0) = 2
+trigger1 = time = 0
+value = 302, 2
+Volume = 99999
+channel = 0
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+[State 1000, 7];上昇通常時
+type = velset
+triggerall = Time >= 0
+trigger1  = Var(20) = 0
+y = -5
+
+[State 1000, 7];空中ダッシュ直後の特殊時
+type = velset
+triggerall = Time >= 0
+trigger1  = Var(20) != 0
+x = 0.4
+y = 0
+
+[State 1000, 7];地上ダッシュ慣性の時
+type = velset
+triggerall = Var(16) != 0;地上ダッシュ慣性ＶＡＲ
+trigger1 = Time = 0
+x = 4
+
+[State 1000, 7];慣性無しの時
+type = velset
+triggerall = Var(16) = 0;地上ダッシュ慣性ＶＡＲ
+triggerall = Time = 0
+trigger1 = Vel x <= 3
+trigger2 = Prevstateno = 1091 ;龍刃
+trigger3 = Prevstateno = 1096 ;龍刃  朝凪強化
+x = 0.4
+
+[State 1000, 7];空中ダッシュ通常攻撃後
+type = velset
+triggerall = Var(16) = 0;地上ダッシュ慣性ＶＡＲ
+triggerall = Time = 0
+trigger1 = Vel x >= 8;空中ダッシュの速さ
+x = 0.4
+
+[State 240, 3];炎カス
+type = Explod
+trigger1 = Timemod = 4,0
+pos = 0, -60
+;Postype = p1
+;facing = 1
+;persistent = 0
+ignorehitpause = 1
+sprpriority = 999
+ownpal = 1
+;ontop = 1
+random = 30, 30
+;pausemovetime = 99999999999999
+;supermovetime = 99999999999999
+;supermove = 1
+bindtime = 1
+anim = 1056
+ID     = 1056
+
+[State 200, 1];
+type = HitDef
+trigger1 = AnimElem = 1
+attr = A, SA
+damage = ceil(15*Var(5)/256)+Var(15), 5
+animtype = hard
+guardflag = MA
+hitflag = MAF
+priority = 3, Miss
+pausetime = 7,7+Var(15)
+guard.pausetime = 7,6
+sparkno = -1 + 0 * (var(53) := 8013)
+guard.sparkno = -1 + 0 * (var(54) := 8001)
+sparkxy = -10 + 0 * (var(56) := 89), var(57):= -76
+hitsound = S5, 4
+guardsound =S509, 4
+ground.type = Low
+ground.slidetime = 7
+ground.hittime  = 7
+ground.velocity = 1,-11+Var(6)
+guard.velocity = 1
+airguard.velocity =1,-2+Var(6)
+air.type = Low
+air.velocity =1,-11+Var(6)
+air.hittime = 7
+fall = 1;落下させる
+fall.recover = 0;受身可否
+;fall.recovertime = 50;受身出来るまでの時間
+air.fall = 1;相手が空中時のみ落下させる
+getpower = 24,0
+givepower = 5,0
+palfx.time = 1
+palfx.add = 0,0,0
+p2facing = 1
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+[State 10,combo];攻撃力補正用ＶＡＲ
+type = Varadd
+trigger1 = MoveHit = 1
+persistent = 0
+ignorehitpause = 1
+v = 4
+value = 1
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
+[State 2, ga3];カウンターヒット時
+type = PlaySnd
+trigger1 =  var(14) >= 128
+trigger1 = movehit = 1
+persistent = 0
+ignorehitpause = 1
+value = 511, 1
+Volume = 99999
+;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
+;あああああああああああああああああ
+[State 2,guardLEVEL];ガードレベル増加
+type = Varadd
+trigger1 =  var(14) <= 246
+trigger1 = moveguarded = 1
+persistent = 0
+ignorehitpause = 1
+var(14) = 10
+
+[State 2,guardLEVEL];ガードレベル増加
+type = Varadd
+trigger1 =  var(14) > 246
+trigger1 = moveguarded = 1
+persistent = 0
+ignorehitpause = 1
+var(14) = 256-Var(14)
+
+[State 2,guardLEVEL];ガードレベル減少
+type = Varadd
+trigger1 =  movehit = 1
+trigger1 =  var(14) >= 10
+persistent = 0
+ignorehitpause = 1
+var(14) = -10
+
+[State 2,guardLEVEL];ガードレベル減少
+type = Varadd
+trigger1 =  movehit = 1
+trigger1 =  var(14) < 10
+persistent = 0
+ignorehitpause = 1
+var(14) = -Var(14)
+;あああああああああああああああああ
+;HHHHHHHHHHHHHHHHHHHHHHHH
+;ＨＩＴ炎エフェクトのヘルパー強制消去用
+;HHHHHHHHHHHHHHHHHHHHHHHH
+[State 1,1]
+type = Varset
+triggerall = Var(17)  != 1
+trigger1 = MoveContact = 1
+ignorehitpause = 1
+v = 17
+value = 1
+;HHHHHHHHHHHHHHHHHHHHHHHH
+
+;+++++++++++++++++++++++++++++++
+; ロマンキャンセル許可  
+;+++++++++++++++++++++++++++++++
+[State 10, 10];
+type = Varset
+trigger1 = MoveContact = 1
+trigger1 = var(3) != 1
+persistent = 0
+ignorehitpause = 1
+var(3) = 1
+;+++++++++++++++++++++++++++++++
+;+++++++++++++++++++++++++++++++
+; ロマンキャンセル解除ガトリング暴発防止
+;+++++++++++++++++++++++++++++++
+[State 10, 10];
+type = Varset
+trigger1 = Time = 0
+trigger1 = var(3) = 1
+persistent = 0
+ignorehitpause = 1
+var(3) = 0
+;+++++++++++++++++++++++++++++++
+
+[State 1000, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 1061
+ctrl = 0
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;                                     朝凪強化　剣楼閣２撃目
+[Statedef 1061]
+type    = A
+movetype= A
+physics = A;N
+juggle  = 0
+poweradd= 0
+;velset = 0,0
+anim = 1061
+ctrl = 0
+;sprpriority = 2
+
+[State 1000, 7];上昇通常時
+type = velset
+triggerall  = Var(20) = 0
+trigger1 = Time >= 0
+y = -5
+[State 1000, 7];空中ダッシュ直後の特殊時
+type = velset
+triggerall  = Var(20) != 0
+trigger1 = Time >= 0
+y = 0
+
+[State 240, 3];炎カス
+type = Explod
+trigger1 = Timemod = 4,0
+pos = 0, -60
+;Postype = p1
+;facing = 1
+;persistent = 0
+ignorehitpause = 1
+sprpriority = 999
+ownpal = 1
+;ontop = 1
+random = 30, 30
+;pausemovetime = 99999999999999
+;supermovetime = 99999999999999
+;supermove = 1
+bindtime = 1
+anim = 1056
+ID     = 1056
+
+[State 200, 1];
+type = HitDef
+trigger1 = AnimElem = 1
+attr = A, SA
+damage = ceil(15*Var(5)/256)+Var(15), 5
+animtype = hard
+guardflag = MA
+hitflag = MAF
+priority = 3, Miss
+pausetime = 7,7+Var(15)
+guard.pausetime = 7,6
+sparkno = -1 + 0 * (var(53) := 8013)
+guard.sparkno = -1 + 0 * (var(54) := 8001)
+sparkxy = -10 + 0 * (var(56) := 89), var(57):= -76
+hitsound = S5, 4
+guardsound =S509, 4
+ground.type = Low
+ground.slidetime = 7
+ground.hittime  = 7
+ground.velocity = 0,-11+Var(6)
+guard.velocity = 1
+airguard.velocity =0,-2+Var(6)
+air.type = Low
+air.velocity =0,-11+Var(6)
+air.hittime = 7
+fall = 1;落下させる
+fall.recover = 0;受身可否
+;fall.recovertime = 50;受身出来るまでの時間
+air.fall = 1;相手が空中時のみ落下させる
+getpower = 24,0
+givepower = 5,0
+palfx.time = 1
+palfx.add = 0,0,0
+p2facing = 1
+
+;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
+[State 2, ga3];カウンターヒット時
+type = PlaySnd
+trigger1 =  var(14) >= 128
+trigger1 = movehit = 1
+persistent = 0
+ignorehitpause = 1
+value = 511, 1
+Volume = 99999
+
+;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
+;あああああああああああああああああ
+[State 2,guardLEVEL];ガードレベル増加
+type = Varadd
+trigger1 =  var(14) <= 246
+trigger1 = moveguarded = 1
+persistent = 0
+ignorehitpause = 1
+var(14) = 10
+
+[State 2,guardLEVEL];ガードレベル増加
+type = Varadd
+trigger1 =  var(14) > 246
+trigger1 = moveguarded = 1
+persistent = 0
+ignorehitpause = 1
+var(14) = 256-Var(14)
+
+[State 2,guardLEVEL];ガードレベル減少
+type = Varadd
+trigger1 =  movehit = 1
+trigger1 =  var(14) >= 10
+persistent = 0
+ignorehitpause = 1
+var(14) = -10
+
+[State 2,guardLEVEL];ガードレベル減少
+type = Varadd
+trigger1 =  movehit = 1
+trigger1 =  var(14) < 10
+persistent = 0
+ignorehitpause = 1
+var(14) = -Var(14)
+
+;あああああああああああああああああ
+;HHHHHHHHHHHHHHHHHHHHHHHH
+;ＨＩＴ炎エフェクトのヘルパー強制消去用
+;HHHHHHHHHHHHHHHHHHHHHHHH
+[State 1,1]
+type = Varset
+triggerall = Var(17)  != 1
+trigger1 = MoveContact = 1
+ignorehitpause = 1
+v = 17
+value = 1
+;HHHHHHHHHHHHHHHHHHHHHHHH
+
+
+
+;+++++++++++++++++++++++++++++++
+; ロマンキャンセル許可  
+;+++++++++++++++++++++++++++++++
+[State 10, 10];
+type = Varset
+trigger1 = MoveContact = 1
+trigger1 = var(3) != 1
+persistent = 0
+ignorehitpause = 1
+var(3) = 1
+;+++++++++++++++++++++++++++++++
+
+[State 1000, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 1062
+ctrl = 0
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;                                     朝凪強化　剣楼閣３撃目
+[Statedef 1062]
+type    = A
+movetype= A
+physics = A;N
+juggle  = 0
+poweradd= 0
+;velset = 0,0
+anim = 1062
+ctrl = 0
+;sprpriority = 2
+
+[State 1000, 7];上昇通常時
+type = velset
+triggerall  = Var(20) = 0
+trigger1 = Time >= 0
+y = -5
+[State 1000, 7];空中ダッシュ直後の特殊時
+type = velset
+triggerall  = Var(20) != 0
+trigger1 = Time >= 0
+y = 0
+
+[State 240, 3];炎カス
+type = Explod
+trigger1 = Timemod = 4,0
+pos = 0, -60
+;Postype = p1
+;facing = 1
+;persistent = 0
+ignorehitpause = 1
+sprpriority = 999
+ownpal = 1
+;ontop = 1
+random = 30, 30
+;pausemovetime = 99999999999999
+;supermovetime = 99999999999999
+;supermove = 1
+bindtime = 1
+anim = 1056
+ID     = 1056
+
+[State 200, 1];
+type = HitDef
+trigger1 = AnimElem = 1
+attr = A, SA
+damage = ceil(15*Var(5)/256)+Var(15), 5
+animtype = hard
+guardflag = MA
+hitflag = MAF
+priority = 3, Miss
+pausetime = 7,7+Var(15)
+guard.pausetime = 7,6
+sparkno = -1 + 0 * (var(53) := 8013)
+guard.sparkno = -1 + 0 * (var(54) := 8001)
+sparkxy = -10 + 0 * (var(56) := 89), var(57):= -76
+hitsound = S5, 4
+guardsound =S509, 4
+ground.type = Low
+ground.slidetime = 7
+ground.hittime  = 7
+ground.velocity = 0,-11+Var(6)
+guard.velocity = 1
+airguard.velocity =0,-2+Var(6)
+air.type = Low
+air.velocity =0,-11+Var(6)
+air.hittime = 7
+fall = 1;落下させる
+fall.recover = 0;受身可否
+;fall.recovertime = 50;受身出来るまでの時間
+air.fall = 1;相手が空中時のみ落下させる
+getpower = 24,0
+givepower = 5,0
+palfx.time = 1
+palfx.add = 0,0,0
+p2facing = 1
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+[State 10,combo];攻撃力補正用ＶＡＲ
+type = Varadd
+trigger1 = MoveHit = 1
+persistent = 0
+ignorehitpause = 1
+v = 4
+value = 1
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
+[State 2, ga3];カウンターヒット時
+type = PlaySnd
+trigger1 =  var(14) >= 128
+trigger1 = movehit = 1
+persistent = 0
+ignorehitpause = 1
+value = 511, 1
+Volume = 99999
+;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
+;あああああああああああああああああ
+[State 2,guardLEVEL];ガードレベル増加
+type = Varadd
+trigger1 =  var(14) <= 246
+trigger1 = moveguarded = 1
+persistent = 0
+ignorehitpause = 1
+var(14) = 10
+
+[State 2,guardLEVEL];ガードレベル増加
+type = Varadd
+trigger1 =  var(14) > 246
+trigger1 = moveguarded = 1
+persistent = 0
+ignorehitpause = 1
+var(14) = 256-Var(14)
+
+[State 2,guardLEVEL];ガードレベル減少
+type = Varadd
+trigger1 =  movehit = 1
+trigger1 =  var(14) >= 10
+persistent = 0
+ignorehitpause = 1
+var(14) = -10
+
+[State 2,guardLEVEL];ガードレベル減少
+type = Varadd
+trigger1 =  movehit = 1
+trigger1 =  var(14) < 10
+persistent = 0
+ignorehitpause = 1
+var(14) = -Var(14)
+;あああああああああああああああああ
+;HHHHHHHHHHHHHHHHHHHHHHHH
+;ＨＩＴ炎エフェクトのヘルパー強制消去用
+;HHHHHHHHHHHHHHHHHHHHHHHH
+[State 1,1]
+type = Varset
+triggerall = Var(17)  != 1
+trigger1 = MoveContact = 1
+ignorehitpause = 1
+v = 17
+value = 1
+;HHHHHHHHHHHHHHHHHHHHHHHH
+
+
+
+;+++++++++++++++++++++++++++++++
+; ロマンキャンセル許可  
+;+++++++++++++++++++++++++++++++
+[State 10, 10];
+type = Varset
+trigger1 = MoveContact = 1
+trigger1 = var(3) != 1
+persistent = 0
+ignorehitpause = 1
+var(3) = 1
+;+++++++++++++++++++++++++++++++
+
+[State 1000, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 1063
+ctrl = 0
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;                                     朝凪強化　剣楼閣４撃目
+[Statedef 1063]
+type    = A
+movetype= A
+physics = A;N
+juggle  = 0
+poweradd= 0
+;velset = 0,0
+anim = 1063
+ctrl = 0
+;sprpriority = 2
+
+[State 1000, 7];上昇通常時
+type = velset
+triggerall  = Var(20) = 0
+trigger1 = Time >= 0
+y = -5
+[State 1000, 7];空中ダッシュ直後の特殊時
+type = velset
+triggerall  = Var(20) != 0
+trigger1 = Time >= 0
+y = 0
+
+[State 240, 3];炎カス
+type = Explod
+trigger1 = Timemod = 4,0
+pos = 0, -60
+;Postype = p1
+;facing = 1
+;persistent = 0
+ignorehitpause = 1
+sprpriority = 999
+ownpal = 1
+;ontop = 1
+random = 30, 30
+;pausemovetime = 99999999999999
+;supermovetime = 99999999999999
+;supermove = 1
+bindtime = 1
+anim = 1056
+ID     = 1056
+
+[State 200, 1];
+type = HitDef
+trigger1 = AnimElem = 1
+attr = A, SA
+damage = ceil(15*Var(5)/256)+Var(15), 5
+animtype = hard
+guardflag = MA
+hitflag = MAF
+priority = 3, Miss
+pausetime = 7,7+Var(15)
+guard.pausetime = 7,6
+sparkno = -1 + 0 * (var(53) := 8013)
+guard.sparkno = -1 + 0 * (var(54) := 8001)
+sparkxy = -10 + 0 * (var(56) := 89), var(57):= -76
+hitsound = S5, 4
+guardsound =S509, 4
+ground.type = Low
+ground.slidetime = 7
+ground.hittime  = 7
+ground.velocity = 0,-11+Var(6)
+guard.velocity = 1
+airguard.velocity =0,-2+Var(6)
+air.type = Low
+air.velocity =0,-11+Var(6)
+air.hittime = 7
+fall = 1;落下させる
+fall.recover = 0;受身可否
+;fall.recovertime = 50;受身出来るまでの時間
+air.fall = 1;相手が空中時のみ落下させる
+getpower = 24,0
+givepower = 5,0
+palfx.time = 1
+palfx.add = 0,0,0
+p2facing = 1
+
+;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
+[State 2, ga3];カウンターヒット時
+type = PlaySnd
+trigger1 =  var(14) >= 128
+trigger1 = movehit = 1
+persistent = 0
+ignorehitpause = 1
+value = 511, 1
+Volume = 99999
+;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
+;あああああああああああああああああ
+[State 2,guardLEVEL];ガードレベル増加
+type = Varadd
+trigger1 =  var(14) <= 246
+trigger1 = moveguarded = 1
+persistent = 0
+ignorehitpause = 1
+var(14) = 10
+[State 2,guardLEVEL];ガードレベル増加
+type = Varadd
+trigger1 =  var(14) > 246
+trigger1 = moveguarded = 1
+persistent = 0
+ignorehitpause = 1
+var(14) = 256-Var(14)
+[State 2,guardLEVEL];ガードレベル減少
+type = Varadd
+trigger1 =  movehit = 1
+trigger1 =  var(14) >= 10
+persistent = 0
+ignorehitpause = 1
+var(14) = -10
+[State 2,guardLEVEL];ガードレベル減少
+type = Varadd
+trigger1 =  movehit = 1
+trigger1 =  var(14) < 10
+persistent = 0
+ignorehitpause = 1
+var(14) = -Var(14)
+;あああああああああああああああああ
+;HHHHHHHHHHHHHHHHHHHHHHHH
+;ＨＩＴ炎エフェクトのヘルパー強制消去用
+;HHHHHHHHHHHHHHHHHHHHHHHH
+[State 1,1]
+type = Varset
+triggerall = Var(17)  != 1
+trigger1 = MoveContact = 1
+ignorehitpause = 1
+v = 17
+value = 1
+;HHHHHHHHHHHHHHHHHHHHHHHH
+
+
+
+;+++++++++++++++++++++++++++++++
+; ロマンキャンセル許可  
+;+++++++++++++++++++++++++++++++
+[State 10, 10];
+type = Varset
+trigger1 = MoveContact = 1
+trigger1 = var(3) != 1
+persistent = 0
+ignorehitpause = 1
+var(3) = 1
+;+++++++++++++++++++++++++++++++
+
+[State 1000, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 1064
+ctrl = 0
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;                                     朝凪強化　剣楼閣５撃目
+[Statedef 1064]
+type    = A
+movetype= A
+physics = A;N
+juggle  = 0
+poweradd= 0
+;velset = 0,0
+anim = 1064
+ctrl = 0
+;sprpriority = 2
+
+[State 1000, 7];上昇通常時
+type = velset
+triggerall  = Var(20) = 0
+trigger1 = Time >= 0
+y = -5
+[State 1000, 7];空中ダッシュ直後の特殊時
+type = velset
+triggerall  = Var(20) != 0
+trigger1 = Time >= 0
+y = 0
+
+[State 240, 3];炎カス
+type = Explod
+trigger1 = Timemod = 4,0
+pos = 0, -60
+;Postype = p1
+;facing = 1
+;persistent = 0
+ignorehitpause = 1
+sprpriority = 999
+ownpal = 1
+;ontop = 1
+random = 30, 30
+;pausemovetime = 99999999999999
+;supermovetime = 99999999999999
+;supermove = 1
+bindtime = 1
+anim = 1056
+ID     = 1056
+
+[State 200, 1];
+type = HitDef
+trigger1 = AnimElem = 1
+attr = A, SA
+damage = ceil(15*Var(5)/256)+Var(15), 5
+animtype = hard
+guardflag = MA
+hitflag = MAF
+priority = 3, Miss
+pausetime = 7,7+Var(15)
+guard.pausetime = 7,6
+sparkno = -1 + 0 * (var(53) := 8013)
+guard.sparkno = -1 + 0 * (var(54) := 8001)
+sparkxy = -10 + 0 * (var(56) := 89), var(57):= -76
+hitsound = S5, 4
+guardsound =S509, 4
+ground.type = Low
+ground.slidetime = 7
+ground.hittime  = 7
+ground.velocity = 0,-11+Var(6)
+guard.velocity = 1
+airguard.velocity =0,-2+Var(6)
+air.type = Low
+air.velocity =0,-11+Var(6)
+air.hittime = 7
+fall = 1;落下させる
+fall.recover = 0;受身可否
+;fall.recovertime = 50;受身出来るまでの時間
+air.fall = 1;相手が空中時のみ落下させる
+getpower = 24,0
+givepower = 5,0
+palfx.time = 1
+palfx.add = 0,0,0
+p2facing = 1
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+[State 10,combo];攻撃力補正用ＶＡＲ
+type = Varadd
+trigger1 = MoveHit = 1
+persistent = 0
+ignorehitpause = 1
+v = 4
+value = 1
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
+[State 2, ga3];カウンターヒット時
+type = PlaySnd
+trigger1 =  var(14) >= 128
+trigger1 = movehit = 1
+persistent = 0
+ignorehitpause = 1
+value = 511, 1
+Volume = 99999
+;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
+;あああああああああああああああああ
+[State 2,guardLEVEL];ガードレベル増加
+type = Varadd
+trigger1 =  var(14) <= 246
+trigger1 = moveguarded = 1
+persistent = 0
+ignorehitpause = 1
+var(14) = 10
+[State 2,guardLEVEL];ガードレベル増加
+type = Varadd
+trigger1 =  var(14) > 246
+trigger1 = moveguarded = 1
+persistent = 0
+ignorehitpause = 1
+var(14) = 256-Var(14)
+[State 2,guardLEVEL];ガードレベル減少
+type = Varadd
+trigger1 =  movehit = 1
+trigger1 =  var(14) >= 10
+persistent = 0
+ignorehitpause = 1
+var(14) = -10
+[State 2,guardLEVEL];ガードレベル減少
+type = Varadd
+trigger1 =  movehit = 1
+trigger1 =  var(14) < 10
+persistent = 0
+ignorehitpause = 1
+var(14) = -Var(14)
+;あああああああああああああああああ
+;HHHHHHHHHHHHHHHHHHHHHHHH
+;ＨＩＴ炎エフェクトのヘルパー強制消去用
+;HHHHHHHHHHHHHHHHHHHHHHHH
+[State 1,1]
+type = Varset
+triggerall = Var(17)  != 1
+trigger1 = MoveContact = 1
+ignorehitpause = 1
+v = 17
+value = 1
+;HHHHHHHHHHHHHHHHHHHHHHHH
+
+
+
+;+++++++++++++++++++++++++++++++
+; ロマンキャンセル許可  
+;+++++++++++++++++++++++++++++++
+[State 10, 10];
+type = Varset
+trigger1 = MoveContact = 1
+trigger1 = var(3) != 1
+persistent = 0
+ignorehitpause = 1
+var(3) = 1
+;+++++++++++++++++++++++++++++++
+
+[State 1000, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 1065
+ctrl = 0
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;                                     朝凪強化　剣楼閣６撃目
+[Statedef 1065]
+type    = A
+movetype= A
+physics = A;N
+juggle  = 0
+poweradd= 0
+;velset = 0,0
+anim = 1065
+ctrl = 0
+;sprpriority = 2
+
+[State 1000, 7];上昇通常時
+type = velset
+triggerall  = Var(20) = 0
+trigger1 = Time >= 0
+y = -5
+[State 1000, 7];空中ダッシュ直後の特殊時
+type = velset
+triggerall  = Var(20) != 0
+trigger1 = Time >= 0
+y = 0
+
+[State 240, 3];炎カス
+type = Explod
+trigger1 = Timemod = 4,0
+pos = 0, -60
+;Postype = p1
+;facing = 1
+;persistent = 0
+ignorehitpause = 1
+sprpriority = 999
+ownpal = 1
+;ontop = 1
+random = 30, 30
+;pausemovetime = 99999999999999
+;supermovetime = 99999999999999
+;supermove = 1
+bindtime = 1
+anim = 1056
+ID     = 1056
+
+[State 200, 1];
+type = HitDef
+trigger1 = AnimElem = 1
+attr = A, SA
+damage = ceil(15*Var(5)/256)+Var(15), 5
+animtype = hard
+guardflag = MA
+hitflag = MAF
+priority = 3, Miss
+pausetime = 7,7+Var(15)
+guard.pausetime = 7,6
+sparkno = -1 + 0 * (var(53) := 8013)
+guard.sparkno = -1 + 0 * (var(54) := 8001)
+sparkxy = -10 + 0 * (var(56) := 89), var(57):= -76
+hitsound = S5, 4
+guardsound =S509, 4
+ground.type = Low
+ground.slidetime = 7
+ground.hittime  = 7
+ground.velocity = 0,-11+Var(6)
+guard.velocity = 1
+airguard.velocity =0,-2+Var(6)
+air.type = Low
+air.velocity =0,-11+Var(6)
+air.hittime = 7
+fall = 1;落下させる
+fall.recover = 0;受身可否
+;fall.recovertime = 50;受身出来るまでの時間
+air.fall = 1;相手が空中時のみ落下させる
+getpower = 24,0
+givepower = 5,0
+palfx.time = 1
+palfx.add = 0,0,0
+p2facing = 1
+
+;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
+[State 2, ga3];カウンターヒット時
+type = PlaySnd
+trigger1 =  var(14) >= 128
+trigger1 = movehit = 1
+persistent = 0
+ignorehitpause = 1
+value = 511, 1
+Volume = 99999
+;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
+;あああああああああああああああああ
+[State 2,guardLEVEL];ガードレベル増加
+type = Varadd
+trigger1 =  var(14) <= 246
+trigger1 = moveguarded = 1
+persistent = 0
+ignorehitpause = 1
+var(14) = 10
+[State 2,guardLEVEL];ガードレベル増加
+type = Varadd
+trigger1 =  var(14) > 246
+trigger1 = moveguarded = 1
+persistent = 0
+ignorehitpause = 1
+var(14) = 256-Var(14)
+[State 2,guardLEVEL];ガードレベル減少
+type = Varadd
+trigger1 =  movehit = 1
+trigger1 =  var(14) >= 10
+persistent = 0
+ignorehitpause = 1
+var(14) = -10
+[State 2,guardLEVEL];ガードレベル減少
+type = Varadd
+trigger1 =  movehit = 1
+trigger1 =  var(14) < 10
+persistent = 0
+ignorehitpause = 1
+var(14) = -Var(14)
+;あああああああああああああああああ
+;HHHHHHHHHHHHHHHHHHHHHHHH
+;ＨＩＴ炎エフェクトのヘルパー強制消去用
+;HHHHHHHHHHHHHHHHHHHHHHHH
+[State 1,1]
+type = Varset
+triggerall = Var(17)  != 1
+trigger1 = MoveContact = 1
+ignorehitpause = 1
+v = 17
+value = 1
+;HHHHHHHHHHHHHHHHHHHHHHHH
+
+
+
+;+++++++++++++++++++++++++++++++
+; ロマンキャンセル許可  
+;+++++++++++++++++++++++++++++++
+[State 10, 10];
+type = Varset
+trigger1 = MoveContact = 1
+trigger1 = var(3) != 1
+persistent = 0
+ignorehitpause = 1
+var(3) = 1
+;+++++++++++++++++++++++++++++++
+
+[State 1000, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 1066
+ctrl = 0
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;                                     朝凪強化　剣楼閣７撃目
+[Statedef 1066]
+type    = A
+movetype= A
+physics = A;N
+juggle  = 0
+poweradd= 0
+;velset = 0,0
+anim = 1066
+ctrl = 0
+;sprpriority = 2
+
+[State 1000, 7];上昇通常時
+type = velset
+triggerall  = Var(20) = 0
+trigger1 = Time >= 0
+y = -5
+[State 1000, 7];空中ダッシュ直後の特殊時
+type = velset
+triggerall  = Var(20) != 0
+trigger1 = Time >= 0
+y = 0
+
+[State 240, 3];炎カス
+type = Explod
+trigger1 = Timemod = 4,0
+pos = 0, -60
+;Postype = p1
+;facing = 1
+;persistent = 0
+ignorehitpause = 1
+sprpriority = 999
+ownpal = 1
+;ontop = 1
+random = 30, 30
+;pausemovetime = 99999999999999
+;supermovetime = 99999999999999
+;supermove = 1
+bindtime = 1
+anim = 1056
+ID     = 1056
+
+[State 200, 1];
+type = HitDef
+trigger1 = AnimElem = 1
+attr = A, SA
+damage = ceil(15*Var(5)/256)+Var(15), 5
+animtype = hard
+guardflag = MA
+hitflag = MAF
+priority = 3, Miss
+pausetime = 7,7+Var(15)
+guard.pausetime = 7,6
+sparkno = -1 + 0 * (var(53) := 8013)
+guard.sparkno = -1 + 0 * (var(54) := 8001)
+sparkxy = -10 + 0 * (var(56) := 89), var(57):= -76
+hitsound = S5, 4
+guardsound =S509, 4
+ground.type = Low
+ground.slidetime = 7
+ground.hittime  = 7
+ground.velocity = -1,-11+Var(6)
+guard.velocity = 1
+airguard.velocity =-1,-2+Var(6)
+air.type = Low
+air.velocity =-1,-11+Var(6)
+air.hittime = 7
+fall = 1;落下させる
+fall.recover = 0;受身可否
+;fall.recovertime = 50;受身出来るまでの時間
+air.fall = 1;相手が空中時のみ落下させる
+getpower = 24,0
+givepower = 5,0
+palfx.time = 1
+palfx.add = 0,0,0
+p2facing = 1
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+[State 10,combo];攻撃力補正用ＶＡＲ
+type = Varadd
+trigger1 = MoveHit = 1
+persistent = 0
+ignorehitpause = 1
+v = 4
+value = 1
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
+[State 2, ga3];カウンターヒット時
+type = PlaySnd
+trigger1 =  var(14) >= 128
+trigger1 = movehit = 1
+persistent = 0
+ignorehitpause = 1
+value = 511, 1
+Volume = 99999
+;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
+;あああああああああああああああああ
+[State 2,guardLEVEL];ガードレベル増加
+type = Varadd
+trigger1 =  var(14) <= 246
+trigger1 = moveguarded = 1
+persistent = 0
+ignorehitpause = 1
+var(14) = 10
+[State 2,guardLEVEL];ガードレベル増加
+type = Varadd
+trigger1 =  var(14) > 246
+trigger1 = moveguarded = 1
+persistent = 0
+ignorehitpause = 1
+var(14) = 256-Var(14)
+[State 2,guardLEVEL];ガードレベル減少
+type = Varadd
+trigger1 =  movehit = 1
+trigger1 =  var(14) >= 10
+persistent = 0
+ignorehitpause = 1
+var(14) = -10
+[State 2,guardLEVEL];ガードレベル減少
+type = Varadd
+trigger1 =  movehit = 1
+trigger1 =  var(14) < 10
+persistent = 0
+ignorehitpause = 1
+var(14) = -Var(14)
+;あああああああああああああああああ
+;HHHHHHHHHHHHHHHHHHHHHHHH
+;ＨＩＴ炎エフェクトのヘルパー強制消去用
+;HHHHHHHHHHHHHHHHHHHHHHHH
+[State 1,1]
+type = Varset
+triggerall = Var(17)  != 1
+trigger1 = MoveContact = 1
+ignorehitpause = 1
+v = 17
+value = 1
+;HHHHHHHHHHHHHHHHHHHHHHHH
+
+
+
+;+++++++++++++++++++++++++++++++
+; ロマンキャンセル許可  
+;+++++++++++++++++++++++++++++++
+[State 10, 10];
+type = Varset
+trigger1 = MoveContact = 1
+trigger1 = var(3) != 1
+persistent = 0
+ignorehitpause = 1
+var(3) = 1
+;+++++++++++++++++++++++++++++++
+
+[State 1000, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 1067
+ctrl = 0
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;                                     朝凪強化　剣楼閣終了時
+[Statedef 1067]
+type    = A
+movetype= A
+physics = N
+juggle  = 0
+poweradd= 0
+;velset = 0,0
+anim = 1067
+ctrl = 0
+;sprpriority = 2
+
+;+++++++++++++++++++++++++++++++
+; ロマンキャンセル解除ガトリング暴発防止
+;+++++++++++++++++++++++++++++++
+[State 10, 10];
+type = Varset
+trigger1 = Animelem = 8
+trigger1 = var(3) = 1
+persistent = 0
+ignorehitpause = 1
+var(3) = 0
+;+++++++++++++++++++++++++++++++
+
+[State 1000, 7];上昇通常時
+type = velset
+triggerall  = Var(20) = 0
+trigger1 = Time = 0
+y = -4
+[State 1000, 7];空中ダッシュ直後の特殊時
+type = velset
+triggerall  = Var(20) != 0
+trigger1 = Time = 0
+y = 0
+
+[State 1000, 7]
+type = veladd
+trigger1 = Time > 0
+y = 0.44
+
+[State 240, 3];炎カス
+type = Explod
+trigger1 = Timemod = 4,0
+pos = 0, -60
+;Postype = p1
+;facing = 1
+;persistent = 0
+ignorehitpause = 1
+sprpriority = 999
+ownpal = 1
+;ontop = 1
+random = 30, 30
+;pausemovetime = 99999999999999
+;supermovetime = 99999999999999
+;supermove = 1
+bindtime = 1
+anim = 1056
+ID     = 1056
+
+[State 1000, 7]
+type = ChangeState
+trigger1 = Pos Y >= -1
+value = 1055
+ctrl = 0
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;                                     逆鱗
+[Statedef 1070]
+type    = A
+movetype= A
+physics = N
+juggle  = 0
+poweradd= 20
+;velset = 0,0
+anim = 1070
+ctrl = 0
+sprpriority = 1
+
+[State 20, 3]
+type = playerpush
+trigger1 = time >= 0
+value = 1
+
+;+++++++++++++++++++
+;龍刃・逆鱗・剣楼閣・爆蹴足払いの
+;繋がり回数カウント（３回まで）
+[State 2,1]
+type = Varadd
+trigger1 = time = 0
+persistent = 0
+ignorehitpause = 1
+v = 21
+value = 1
+;+++++++++++++++++++
+
+[State 170, 1]
+type = NotHitBy
+trigger1 = Time = 0
+value = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+time = 7
+
+[State 2,1];龍刃・逆鱗・剣楼閣の空中ダッシュ直後の特殊移動用
+type = Varset
+trigger1 = numhelper(2007)= 1
+trigger2 = numhelper(2008)= 1
+ignorehitpause = 1
+v = 20
+value = 5
+
+[State 2, ga3];
+type = PlaySnd
+trigger1 = AnimElem = 4
+value = 507, 7
+Volume = 99999
+;channel = 1
+
+[State 2, ga3];
+type = PlaySnd
+trigger1 = AnimElem = 4
+value = 507, 3
+Volume = 99999
+;channel = 1
+
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\
+[State -2]
+type = VarRandom
+trigger1 = time = 0
+v = 0
+range = 0, 2
+[State -2, ga2];剣楼閣1
+type = PlaySnd
+triggerall = Var(0) = 0
+trigger1 = time = 0
+value = 302, 0
+Volume = 99999
+channel = 0
+[State -2, ga3];剣楼閣2
+type = PlaySnd
+triggerall = Var(0) = 1
+trigger1 = time = 0
+value = 302, 1
+Volume = 99999
+channel = 0
+[State -2, ga3];剣楼閣3
+type = PlaySnd
+triggerall = Var(0) = 2
+trigger1 = time = 0
+value = 302, 2
+Volume = 99999
+channel = 0
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+[State 1000, 7];上昇通常時
+type = velset
+triggerall = Time <= 1
+trigger1  = Var(20) = 0
+y = -11
+
+[State 1000, 7];上昇通常時重力
+type = veladd
+trigger1 = Time >= 0
+y = 0.66
+
+[State 1000, 7];空中ダッシュ直後の特殊時
+type = velset
+triggerall = Time <= 7
+trigger1  = Var(20) != 0
+x = 1.5
+y = 0
+
+[State 1000, 7];地上ダッシュ慣性の時
+type = velset
+triggerall = Var(16) != 0;地上ダッシュ慣性ＶＡＲ
+trigger1 = Time = 0
+x = 4
+
+[State 1000, 7];慣性無しの時
+type = velset
+triggerall = Var(16) = 0;地上ダッシュ慣性ＶＡＲ
+triggerall = Time = 0
+trigger1 = Vel x <= 3
+trigger2 = Prevstateno = 1091 ;龍刃
+trigger3 = Prevstateno = 1096 ;龍刃  朝凪強化
+x = 1.5
+
+[State 1000, 7];空中ダッシュ通常攻撃後
+type = velset
+triggerall = Var(16) = 0;地上ダッシュ慣性ＶＡＲ
+triggerall = Time = 0
+trigger1 = Vel x >= 8;空中ダッシュの速さ
+x = 1.5
+
+[State 240, 3];炎カス
+type = Explod
+trigger1 = Time >= 16
+trigger1 = Timemod = 3,0
+pos = 30, -60
+;Postype = p1
+;facing = 1
+;persistent = 0
+ignorehitpause = 1
+sprpriority = 999
+ownpal = 1
+;ontop = 1
+random = 60, 60
+;pausemovetime = 99999999999999
+;supermovetime = 99999999999999
+;supermove = 1
+bindtime = 1
+anim = 1056
+ID     = 1056
+
+[State 250, 6];炎１消去
+type = RemoveExplod
+trigger1 = Time = 0
+ignorehitpause = 1
+ID = 1071
+[State 250, 6];炎２消去
+type = RemoveExplod
+trigger1 = Time = 0
+ignorehitpause = 1
+ID = 1072
+[State 250, 6];炎３消去
+type = RemoveExplod
+trigger1 = Time = 0
+ignorehitpause = 1
+ID = 1073
+[State 250, 6];炎４消去
+type = RemoveExplod
+trigger1 = Time = 0
+ignorehitpause = 1
+ID = 1074
+
+[State 240, 3];炎１
+type = Explod
+trigger1 = AnimElem = 3
+pos = 0, 0
+;Postype = p1
+persistent = 0
+ignorehitpause = 1
+sprpriority = 999
+ownpal = 1
+bindtime = -1
+Removetime = 1000
+anim = 1071
+ID   = 1071
+[State 250, 6];炎１消去
+type = RemoveExplod
+trigger1 = AnimElem = 4
+ignorehitpause = 1
+ID = 1071
+
+[State 240, 3];炎２
+type = Explod
+trigger1 = AnimElem = 4
+pos = 0, 0
+;Postype = p1
+persistent = 0
+ignorehitpause = 1
+sprpriority = 999
+ownpal = 1
+bindtime = -1
+Removetime = 1000
+anim = 1072
+ID   = 1072
+[State 250, 6];炎２消去
+type = RemoveExplod
+trigger1 = AnimElem = 5
+ignorehitpause = 1
+ID = 1072
+
+[State 240, 3];炎３
+type = Explod
+trigger1 = AnimElem = 5
+pos = 0, 0
+;Postype = p1
+persistent = 0
+ignorehitpause = 1
+sprpriority = 999
+ownpal = 1
+bindtime = -1
+Removetime = 1000
+anim = 1073
+ID   = 1073
+[State 250, 6];炎３消去
+type = RemoveExplod
+trigger1 = AnimElem = 6
+ignorehitpause = 1
+ID = 1073
+
+[State 240, 3];炎４
+type = Explod
+trigger1 = AnimElem = 6
+pos = 0, 0
+;Postype = p1
+persistent = 0
+ignorehitpause = 1
+sprpriority = 999
+ownpal = 1
+bindtime = -1
+Removetime = 1000
+anim = 1074
+ID   = 1074
+[State 250, 6];炎４消去
+type = RemoveExplod
+trigger1 = AnimElem = 7
+ignorehitpause = 1
+ID = 1074
+
+[State 240, 3];炎ラスト
+type = Explod
+trigger1 = AnimElem = 7
+pos = 0, 0
+;Postype = p1
+persistent = 0
+ignorehitpause = 1
+sprpriority = 999
+ownpal = 1
+;bindtime = 1
+anim = 1075
+ID   = 1075
+
+[State 200, 1];
+type = HitDef
+trigger1 = AnimElem = 1
+attr = A, SA
+damage = ceil(40*Var(5)/256)+Var(15), 5
+animtype = hard
+guardflag = HA
+hitflag = MAFD
+priority = 3, Miss
+pausetime = 14,14+Var(15)
+guard.pausetime = 14,10
+sparkno = -1 + 0 * (var(53) := 8013)
+guard.sparkno = -1 + 0 * (var(54) := 8001)
+sparkxy = -10 + 0 * (var(56) := 89), var(57):= -76
+hitsound = S5, 4
+guardsound =S509, 4
+ground.type = Low
+ground.slidetime = 14
+ground.hittime  = 14
+ground.velocity = -2,-4+Var(6)
+guard.velocity = -4
+airguard.velocity =-2,-2+Var(6)
+air.type = Low
+air.velocity =-2,-7+Var(6)
+air.hittime = 14
+fall = 1;落下させる
+;fall.recover = 0;受身可否
+fall.recovertime = 40-Var(6);受身出来るまでの時間
+air.fall = 1;相手が空中時のみ落下させる
+down.velocity = 0,-3
+down.hittime = 6
+down.bounce = 1
+getpower = 48,0
+givepower = 5,0
+palfx.time = 60
+palfx.add = 150,0,-100
+palfx.sinadd = 50,50,0,10
+palfx.color = 0
+palfx.invertall = 1
+p2facing = 1
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+[State 10,combo];攻撃力補正用ＶＡＲ
+type = Varadd
+trigger1 = MoveHit = 1
+persistent = 0
+ignorehitpause = 1
+v = 4
+value = 1
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
+[State 2, ga3];カウンターヒット時
+type = PlaySnd
+trigger1 =  var(14) >= 128
+trigger1 = movehit = 1
+persistent = 0
+ignorehitpause = 1
+value = 511, 1
+Volume = 99999
+;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
+;あああああああああああああああああ
+[State 2,guardLEVEL];ガードレベル増加
+type = Varadd
+trigger1 =  var(14) <= 236
+trigger1 = moveguarded = 1
+persistent = 0
+ignorehitpause = 1
+var(14) = 20
+[State 2,guardLEVEL];ガードレベル増加
+type = Varadd
+trigger1 =  var(14) > 236
+trigger1 = moveguarded = 1
+persistent = 0
+ignorehitpause = 1
+var(14) = 256-Var(14)
+[State 2,guardLEVEL];ガードレベル減少
+type = Varadd
+trigger1 =  movehit = 1
+trigger1 =  var(14) >= 20
+persistent = 0
+ignorehitpause = 1
+var(14) = -20
+[State 2,guardLEVEL];ガードレベル減少
+type = Varadd
+trigger1 =  movehit = 1
+trigger1 =  var(14) < 20
+persistent = 0
+ignorehitpause = 1
+var(14) = -Var(14)
+;あああああああああああああああああ
+;HHHHHHHHHHHHHHHHHHHHHHHH
+;ＨＩＴ炎エフェクトのヘルパー強制消去リセット
+;HHHHHHHHHHHHHHHHHHHHHHHH
+[State 1,1]
+type = Varset
+triggerall = Var(17)  != 0
+trigger1 = MoveHit = 1
+ignorehitpause = 1
+v = 17
+value = 0
+[State 2, 3]
+type = PlaySnd
+trigger1 = MoveHit = 1
+value = 508, 3
+persistent = 0
+ignorehitpause = 1
+Volume = 99999
+channel = 10
+;HHHHHHHHHHHHHHHHHHHHHHHH
+
+
+
+;+++++++++++++++++++++++++++++++
+; ロマンキャンセル許可  
+;+++++++++++++++++++++++++++++++
+[State 10, 10];
+type = Varset
+trigger1 = MoveContact = 1
+trigger1 = var(3) != 1
+persistent = 0
+ignorehitpause = 1
+var(3) = 1
+;+++++++++++++++++++++++++++++++
+;+++++++++++++++++++++++++++++++
+; ロマンキャンセル解除ガトリング暴発防止
+;+++++++++++++++++++++++++++++++
+[State 10, 10];
+type = Varset
+trigger1 = Time = 0
+trigger1 = var(3) = 1
+trigger2 = AnimElem = 10
+trigger2 = var(3) = 1
+;persistent = 0
+ignorehitpause = 1
+var(3) = 0
+;+++++++++++++++++++++++++++++++
+
+[State 1000, 7]
+type = ChangeState
+trigger1 = Time >= 7
+trigger1 = Pos Y >= -1
+value = 1055
+ctrl = 0
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;                                     朝凪強化　逆鱗１撃目
+[Statedef 1080]
+type    = A
+movetype= A
+physics = N
+juggle  = 0
+poweradd= 20
+;velset = 0,0
+anim = 1080
+ctrl = 0
+sprpriority = 1
+
+;<><><><><><><><><><><><><><><><><><>
+[State 10, 10];朝凪の呼吸　逆鱗　　ＬＶ
+type = Varadd
+trigger1 = var(23) != 0
+trigger1 = AnimElem = 1
+persistent = 0
+ignorehitpause = 1
+var(23) = -1
+;<><><><><><><><><><><><><><><><><><>
+
+[State 1000]
+type = AfterImage
+trigger1 = Time = 0
+time = 15
+length = 4
+frameGap = 1
+timeGap = 3
+PalAdd = 0,0,0
+palmul = 1,1,1
+PalBright = 0, 0, 0
+PalContrast = 128,128,128
+Trans = Add1
+
+[State 20, 3]
+type = playerpush
+trigger1 = time >= 0
+value = 1
+
+;+++++++++++++++++++
+;龍刃・逆鱗・剣楼閣・爆蹴足払いの
+;繋がり回数カウント（３回まで）
+[State 2,1]
+type = Varadd
+trigger1 = time = 0
+persistent = 0
+ignorehitpause = 1
+v = 21
+value = 1
+;+++++++++++++++++++
+
+[State 170, 1]
+type = NotHitBy
+trigger1 = Time = 0
+value = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+time = 20
+
+[State 2,1];龍刃・逆鱗・剣楼閣の空中ダッシュ直後の特殊移動用
+type = Varset
+trigger1 = numhelper(2007)= 1
+trigger2 = numhelper(2008)= 1
+ignorehitpause = 1
+v = 20
+value = 5
+
+[State 2, ga3];
+type = PlaySnd
+trigger1 = AnimElem = 4
+value = 507, 7
+Volume = 99999
+;channel = 1
+
+[State 2, ga3];
+type = PlaySnd
+trigger1 = AnimElem = 4
+value = 507, 3
+Volume = 99999
+;channel = 1
+
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\
+[State -2]
+type = VarRandom
+trigger1 = time = 0
+v = 0
+range = 0, 2
+[State -2, ga2];剣楼閣1
+type = PlaySnd
+triggerall = Var(0) = 0
+trigger1 = time = 0
+value = 302, 0
+Volume = 99999
+channel = 0
+[State -2, ga3];剣楼閣2
+type = PlaySnd
+triggerall = Var(0) = 1
+trigger1 = time = 0
+value = 302, 1
+Volume = 99999
+channel = 0
+[State -2, ga3];剣楼閣3
+type = PlaySnd
+triggerall = Var(0) = 2
+trigger1 = time = 0
+value = 302, 2
+Volume = 99999
+channel = 0
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+[State 1000, 7];上昇通常時
+type = velset
+triggerall = Time <= 1
+trigger1  = Var(20) = 0
+y = -11
+
+[State 1000, 7];上昇通常時重力
+type = veladd
+trigger1 = Time >= 0
+y = 0.66
+
+[State 1000, 7];空中ダッシュ直後の特殊時
+type = velset
+triggerall = Time <= 7
+trigger1  = Var(20) != 0
+x = 1.5
+y = 0
+
+[State 1000, 7];地上ダッシュ慣性の時
+type = velset
+triggerall = Var(16) != 0;地上ダッシュ慣性ＶＡＲ
+trigger1 = Time = 0
+x = 4
+
+[State 1000, 7];慣性無しの時
+type = velset
+triggerall = Var(16) = 0;地上ダッシュ慣性ＶＡＲ
+triggerall = Time = 0
+trigger1 = Vel x <= 3
+trigger2 = Prevstateno = 1091 ;龍刃
+trigger3 = Prevstateno = 1096 ;龍刃  朝凪強化
+x = 4
+
+[State 1000, 7];空中ダッシュ通常攻撃後
+type = velset
+triggerall = Var(16) = 0;地上ダッシュ慣性ＶＡＲ
+triggerall = Time = 0
+trigger1 = Vel x >= 8;空中ダッシュの速さ
+x = 4
+
+[State 240, 3];炎カス
+type = Explod
+trigger1 = Time >= 16
+trigger1 = Timemod = 3,0
+pos = 30, -60
+;Postype = p1
+;facing = 1
+;persistent = 0
+ignorehitpause = 1
+sprpriority = 999
+ownpal = 1
+;ontop = 1
+random = 60, 60
+;pausemovetime = 99999999999999
+;supermovetime = 99999999999999
+;supermove = 1
+bindtime = 1
+anim = 1056
+ID     = 1056
+
+[State 250, 6];炎１消去
+type = RemoveExplod
+trigger1 = Time = 0
+ignorehitpause = 1
+ID = 1071
+[State 250, 6];炎２消去
+type = RemoveExplod
+trigger1 = Time = 0
+ignorehitpause = 1
+ID = 1072
+[State 250, 6];炎３消去
+type = RemoveExplod
+trigger1 = Time = 0
+ignorehitpause = 1
+ID = 1073
+[State 250, 6];炎４消去
+type = RemoveExplod
+trigger1 = Time = 0
+ignorehitpause = 1
+ID = 1074
+
+[State 240, 3];炎１
+type = Explod
+trigger1 = AnimElem = 3
+pos = 0, 0
+;Postype = p1
+persistent = 0
+ignorehitpause = 1
+sprpriority = 999
+ownpal = 1
+bindtime = -1
+Removetime = 1000
+anim = 1071
+ID   = 1071
+[State 250, 6];炎１消去
+type = RemoveExplod
+trigger1 = AnimElem = 4
+ignorehitpause = 1
+ID = 1071
+[State 240, 3];炎２
+type = Explod
+trigger1 = AnimElem = 4
+pos = 0, 0
+;Postype = p1
+persistent = 0
+ignorehitpause = 1
+sprpriority = 999
+ownpal = 1
+bindtime = -1
+Removetime = 1000
+anim = 1072
+ID   = 1072
+
+[State 200, 1];
+type = HitDef
+trigger1 = AnimElem = 1
+attr = A, SA
+damage = ceil(32*Var(5)/256)+Var(15), 5
+animtype = hard
+guardflag = HA
+hitflag = MAFD
+priority = 3, Miss
+pausetime = 14,14+Var(15)
+guard.pausetime = 14,10
+sparkno = -1 + 0 * (var(53) := 8013)
+guard.sparkno = -1 + 0 * (var(54) := 8001)
+sparkxy = -10 + 0 * (var(56) := 89), var(57):= -76
+hitsound = S5, 4
+guardsound =S509, 4
+ground.type = Low
+ground.slidetime = 14
+ground.hittime  = 14
+ground.velocity = -2,-4+Var(6)
+guard.velocity = -4
+airguard.velocity =-2,-2+Var(6)
+air.type = Low
+air.velocity =-2,-7+Var(6)
+air.hittime = 14
+fall = 1;落下させる
+fall.recover = 0;受身可否
+;fall.recovertime = 40-Var(6);受身出来るまでの時間
+air.fall = 1;相手が空中時のみ落下させる
+down.velocity = 0,-3
+down.hittime = 6
+down.bounce = 1
+getpower = 48,0
+givepower = 5,0
+palfx.time = 60
+palfx.add = 150,0,-100
+palfx.sinadd = 50,50,0,10
+palfx.color = 0
+palfx.invertall = 1
+p2facing = 1
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+[State 10,combo];攻撃力補正用ＶＡＲ
+type = Varadd
+trigger1 = MoveHit = 1
+persistent = 0
+ignorehitpause = 1
+v = 4
+value = 1
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
+[State 2, ga3];カウンターヒット時
+type = PlaySnd
+trigger1 =  var(14) >= 128
+trigger1 = movehit = 1
+persistent = 0
+ignorehitpause = 1
+value = 511, 1
+Volume = 99999
+;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
+;あああああああああああああああああ
+[State 2,guardLEVEL];ガードレベル増加
+type = Varadd
+trigger1 =  var(14) <= 236
+trigger1 = moveguarded = 1
+persistent = 0
+ignorehitpause = 1
+var(14) = 20
+[State 2,guardLEVEL];ガードレベル増加
+type = Varadd
+trigger1 =  var(14) > 236
+trigger1 = moveguarded = 1
+persistent = 0
+ignorehitpause = 1
+var(14) = 256-Var(14)
+[State 2,guardLEVEL];ガードレベル減少
+type = Varadd
+trigger1 =  movehit = 1
+trigger1 =  var(14) >= 20
+persistent = 0
+ignorehitpause = 1
+var(14) = -20
+[State 2,guardLEVEL];ガードレベル減少
+type = Varadd
+trigger1 =  movehit = 1
+trigger1 =  var(14) < 20
+persistent = 0
+ignorehitpause = 1
+var(14) = -Var(14)
+;あああああああああああああああああ
+;HHHHHHHHHHHHHHHHHHHHHHHH
+;ＨＩＴ炎エフェクトのヘルパー強制消去リセット
+;HHHHHHHHHHHHHHHHHHHHHHHH
+[State 1,1]
+type = Varset
+triggerall = Var(17)  != 0
+trigger1 = MoveHit = 1
+ignorehitpause = 1
+v = 17
+value = 0
+
+[State 2, 3]
+type = PlaySnd
+trigger1 = MoveHit = 1
+value = 508, 3
+persistent = 0
+ignorehitpause = 1
+Volume = 99999
+channel = 10
+;HHHHHHHHHHHHHHHHHHHHHHHH
+
+
+;+++++++++++++++++++++++++++++++
+; ロマンキャンセル許可  
+;+++++++++++++++++++++++++++++++
+[State 10, 10];
+type = Varset
+trigger1 = MoveContact = 1
+trigger1 = var(3) != 1
+persistent = 0
+ignorehitpause = 1
+var(3) = 1
+;+++++++++++++++++++++++++++++++
+;+++++++++++++++++++++++++++++++
+; ロマンキャンセル解除ガトリング暴発防止
+;+++++++++++++++++++++++++++++++
+[State 10, 10];
+type = Varset
+trigger1 = Time = 0
+trigger1 = var(3) = 1
+persistent = 0
+ignorehitpause = 1
+var(3) = 0
+;+++++++++++++++++++++++++++++++
+
+[State 1000, 7]
+type = ChangeState
+trigger1 = Time >= 7
+trigger1 = Pos Y >= -1
+value = 1055
+ctrl = 0
+
+[State 1000, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 1081
+ctrl = 0
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;                                     朝凪強化　逆鱗２撃目
+[Statedef 1081]
+type    = A
+movetype= A
+physics = N
+juggle  = 0
+poweradd= 0
+;velset = 0,0
+anim = 1081
+ctrl = 0
+sprpriority = 1
+
+[State 20, 3]
+type = playerpush
+trigger1 = time >= 0
+value = 1
+
+[State 1000, 7];上昇通常時重力
+type = veladd
+trigger1 = Time >= 0
+y = 0.66
+
+[State 240, 3];炎カス
+type = Explod
+trigger1 = Timemod = 3,0
+pos = 30, -60
+;Postype = p1
+;facing = 1
+;persistent = 0
+ignorehitpause = 1
+sprpriority = 999
+ownpal = 1
+;ontop = 1
+random = 60, 60
+;pausemovetime = 99999999999999
+;supermovetime = 99999999999999
+;supermove = 1
+bindtime = 1
+anim = 1056
+ID     = 1056
+
+[State 250, 6];炎２消去
+type = RemoveExplod
+trigger1 = Time = 0
+ignorehitpause = 1
+ID = 1072
+[State 240, 3];炎３
+type = Explod
+trigger1 = AnimElem = 1
+pos = 0, 0
+;Postype = p1
+persistent = 0
+ignorehitpause = 1
+sprpriority = 999
+ownpal = 1
+bindtime = -1
+Removetime = 1000
+anim = 1073
+ID   = 1073
+
+[State 200, 1];
+type = HitDef
+trigger1 = AnimElem = 1
+attr = A, SA
+damage = ceil(32*Var(5)/256)+Var(15), 5
+animtype = hard
+guardflag = HA
+hitflag = MAFD
+priority = 3, Miss
+pausetime = 14,14+Var(15)
+guard.pausetime = 14,10
+sparkno = -1 + 0 * (var(53) := 8013)
+guard.sparkno = -1 + 0 * (var(54) := 8001)
+sparkxy = -10 + 0 * (var(56) := 89), var(57):= -76
+hitsound = S5, 4
+guardsound =S509, 4
+ground.type = Low
+ground.slidetime = 14
+ground.hittime  = 14
+ground.velocity = -2,-4+Var(6)
+guard.velocity = -4
+airguard.velocity =-2,-2+Var(6)
+air.type = Low
+air.velocity =-2,-7+Var(6)
+air.hittime = 14
+fall = 1;落下させる
+fall.recover = 0;受身可否
+;fall.recovertime = 40-Var(6);受身出来るまでの時間
+air.fall = 1;相手が空中時のみ落下させる
+down.velocity = 0,-3
+down.hittime = 6
+down.bounce = 1
+getpower = 48,0
+givepower = 5,0
+palfx.time = 60
+palfx.add = 150,0,-100
+palfx.sinadd = 50,50,0,10
+palfx.color = 0
+palfx.invertall = 1
+p2facing = 1
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+[State 10,combo];攻撃力補正用ＶＡＲ
+type = Varadd
+trigger1 = MoveHit = 1
+persistent = 0
+ignorehitpause = 1
+v = 4
+value = 1
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
+[State 2, ga3];カウンターヒット時
+type = PlaySnd
+trigger1 =  var(14) >= 128
+trigger1 = movehit = 1
+persistent = 0
+ignorehitpause = 1
+value = 511, 1
+Volume = 99999
+;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
+;あああああああああああああああああ
+[State 2,guardLEVEL];ガードレベル増加
+type = Varadd
+trigger1 =  var(14) <= 236
+trigger1 = moveguarded = 1
+persistent = 0
+ignorehitpause = 1
+var(14) = 20
+[State 2,guardLEVEL];ガードレベル増加
+type = Varadd
+trigger1 =  var(14) > 236
+trigger1 = moveguarded = 1
+persistent = 0
+ignorehitpause = 1
+var(14) = 256-Var(14)
+[State 2,guardLEVEL];ガードレベル減少
+type = Varadd
+trigger1 =  movehit = 1
+trigger1 =  var(14) >= 20
+persistent = 0
+ignorehitpause = 1
+var(14) = -20
+[State 2,guardLEVEL];ガードレベル減少
+type = Varadd
+trigger1 =  movehit = 1
+trigger1 =  var(14) < 20
+persistent = 0
+ignorehitpause = 1
+var(14) = -Var(14)
+;あああああああああああああああああ
+;HHHHHHHHHHHHHHHHHHHHHHHH
+;ＨＩＴ炎エフェクトのヘルパー強制消去リセット
+;HHHHHHHHHHHHHHHHHHHHHHHH
+[State 1,1]
+type = Varset
+triggerall = Var(17)  != 0
+trigger1 = MoveHit = 1
+ignorehitpause = 1
+v = 17
+value = 0
+
+[State 2, 3]
+type = PlaySnd
+trigger1 = MoveHit = 1
+value = 508, 3
+persistent = 0
+ignorehitpause = 1
+Volume = 99999
+channel = 10
+;HHHHHHHHHHHHHHHHHHHHHHHH
+
+
+
+;+++++++++++++++++++++++++++++++
+; ロマンキャンセル許可  
+;+++++++++++++++++++++++++++++++
+[State 10, 10];
+type = Varset
+trigger1 = MoveContact = 1
+trigger1 = var(3) != 1
+persistent = 0
+ignorehitpause = 1
+var(3) = 1
+;+++++++++++++++++++++++++++++++
+
+[State 1000, 7]
+type = ChangeState
+trigger1 = Pos Y >= -1
+value = 1055
+ctrl = 0
+
+[State 1000, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 1082
+ctrl = 0
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;                                     朝凪強化　逆鱗３撃目
+[Statedef 1082]
+type    = A
+movetype= A
+physics = N
+juggle  = 0
+poweradd= 0
+;velset = 0,0
+anim = 1082
+ctrl = 0
+sprpriority = 1
+
+[State 20, 3]
+type = playerpush
+trigger1 = time >= 0
+value = 1
+
+[State 1000, 7];上昇通常時重力
+type = veladd
+trigger1 = Time >= 0
+y = 0.66
+
+[State 240, 3];炎カス
+type = Explod
+trigger1 = Timemod = 3,0
+pos = 30, -60
+;Postype = p1
+;facing = 1
+;persistent = 0
+ignorehitpause = 1
+sprpriority = 999
+ownpal = 1
+;ontop = 1
+random = 60, 60
+;pausemovetime = 99999999999999
+;supermovetime = 99999999999999
+;supermove = 1
+bindtime = 1
+anim = 1056
+ID     = 1056
+
+[State 250, 6];炎３消去
+type = RemoveExplod
+trigger1 = Time = 0
+ignorehitpause = 1
+ID = 1073
+[State 240, 3];炎４
+type = Explod
+trigger1 = AnimElem = 1
+pos = 0, 0
+;Postype = p1
+persistent = 0
+ignorehitpause = 1
+sprpriority = 999
+ownpal = 1
+bindtime = -1
+Removetime = 1000
+anim = 1074
+ID   = 1074
+[State 250, 6];炎４消去
+type = RemoveExplod
+trigger1 = AnimElem = 2
+ignorehitpause = 1
+ID = 1074
+[State 240, 3];炎ラスト
+type = Explod
+trigger1 = AnimElem = 2
+pos = 0, 0
+;Postype = p1
+persistent = 0
+ignorehitpause = 1
+sprpriority = 999
+ownpal = 1
+;bindtime = 1
+anim = 1075
+ID   = 1075
+
+[State 200, 1];
+type = HitDef
+trigger1 = AnimElem = 1
+attr = A, SA
+damage = ceil(32*Var(5)/256)+Var(15), 5
+animtype = hard
+guardflag = HA
+hitflag = MAFD
+priority = 3, Miss
+pausetime = 14,14+Var(15)
+guard.pausetime = 14,10
+sparkno = -1 + 0 * (var(53) := 8013)
+guard.sparkno = -1 + 0 * (var(54) := 8001)
+sparkxy = -10 + 0 * (var(56) := 89), var(57):= -76
+hitsound = S5, 4
+guardsound =S509, 4
+ground.type = Low
+ground.slidetime = 14
+ground.hittime  = 14
+ground.velocity = -2,-4+Var(6)
+guard.velocity = -4
+airguard.velocity =-2,-2+Var(6)
+air.type = Low
+air.velocity =-2,-7+Var(6)
+air.hittime = 14
+fall = 1;落下させる
+fall.recover = 0;受身可否
+;fall.recovertime = 40-Var(6);受身出来るまでの時間
+air.fall = 1;相手が空中時のみ落下させる
+down.velocity = 0,-3
+down.hittime = 6
+down.bounce = 1
+getpower = 48,0
+givepower = 5,0
+palfx.time = 60
+palfx.add = 150,0,-100
+palfx.sinadd = 50,50,0,10
+palfx.color = 0
+palfx.invertall = 1
+p2facing = 1
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+[State 10,combo];攻撃力補正用ＶＡＲ
+type = Varadd
+trigger1 = MoveHit = 1
+persistent = 0
+ignorehitpause = 1
+v = 4
+value = 1
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
+[State 2, ga3];カウンターヒット時
+type = PlaySnd
+trigger1 =  var(14) >= 128
+trigger1 = movehit = 1
+persistent = 0
+ignorehitpause = 1
+value = 511, 1
+Volume = 99999
+;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
+;あああああああああああああああああ
+[State 2,guardLEVEL];ガードレベル増加
+type = Varadd
+trigger1 =  var(14) <= 236
+trigger1 = moveguarded = 1
+persistent = 0
+ignorehitpause = 1
+var(14) = 20
+[State 2,guardLEVEL];ガードレベル増加
+type = Varadd
+trigger1 =  var(14) > 236
+trigger1 = moveguarded = 1
+persistent = 0
+ignorehitpause = 1
+var(14) = 256-Var(14)
+[State 2,guardLEVEL];ガードレベル減少
+type = Varadd
+trigger1 =  movehit = 1
+trigger1 =  var(14) >= 20
+persistent = 0
+ignorehitpause = 1
+var(14) = -20
+[State 2,guardLEVEL];ガードレベル減少
+type = Varadd
+trigger1 =  movehit = 1
+trigger1 =  var(14) < 20
+persistent = 0
+ignorehitpause = 1
+var(14) = -Var(14)
+;あああああああああああああああああ
+;HHHHHHHHHHHHHHHHHHHHHHHH
+;ＨＩＴ炎エフェクトのヘルパー強制消去リセット
+;HHHHHHHHHHHHHHHHHHHHHHHH
+[State 1,1]
+type = Varset
+triggerall = Var(17)  != 0
+trigger1 = MoveHit = 1
+ignorehitpause = 1
+v = 17
+value = 0
+
+[State 2, 3]
+type = PlaySnd
+trigger1 = MoveHit = 1
+value = 508, 3
+persistent = 0
+ignorehitpause = 1
+Volume = 99999
+channel = 10
+;HHHHHHHHHHHHHHHHHHHHHHHH
+
+
+
+;+++++++++++++++++++++++++++++++
+; ロマンキャンセル許可  
+;+++++++++++++++++++++++++++++++
+[State 10, 10];
+type = Varset
+trigger1 = MoveContact = 1
+trigger1 = var(3) != 1
+persistent = 0
+ignorehitpause = 1
+var(3) = 1
+;+++++++++++++++++++++++++++++++
+;+++++++++++++++++++++++++++++++
+; ロマンキャンセル解除ガトリング暴発防止
+;+++++++++++++++++++++++++++++++
+[State 10, 10];
+type = Varset
+trigger1 = AnimElem = 6
+trigger1 = var(3) = 1
+persistent = 0
+ignorehitpause = 1
+var(3) = 0
+;+++++++++++++++++++++++++++++++
+
+[State 1000, 7]
+type = ChangeState
+trigger1 = Time >= 0
+trigger1 = Pos Y >= -1
+value = 1055
+ctrl = 0
+
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;                                     龍刃　地上開始
+[Statedef 1090]
+type    = S
+movetype= I
+physics = S
+juggle  = 0
+poweradd= 0
+velset = 0,0
+anim = 1090
+ctrl = 0
+;sprpriority = 2
+
+[State 1000, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 1091
+ctrl = 1
+
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;                                     龍刃　攻撃
+[Statedef 1091]
+type    = A
+movetype= A
+physics = N
+juggle  = 0
+poweradd= 25
+;velset = 0,0
+anim = 1091
+ctrl = 0
+;sprpriority = 2
+
+[State 20, 3]
+type = playerpush
+trigger1 = time >= 0
+value = 1
+
+;+++++++++++++++++++
+;龍刃・逆鱗・剣楼閣・爆蹴足払いの
+;繋がり回数カウント（３回まで）
+[State 2,1]
+type = Varadd
+trigger1 = time = 0
+persistent = 0
+ignorehitpause = 1
+v = 21
+value = 1
+;+++++++++++++++++++
+
+[State 170, 1]
+type = NotHitBy
+trigger1 = Time = 0
+value = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+time = 7
+
+[State 2,1];龍刃・逆鱗・剣楼閣の空中ダッシュ直後の特殊移動用
+type = Varset
+trigger1 = numhelper(2007)= 1
+trigger2 = numhelper(2008)= 1
+ignorehitpause = 1
+v = 20
+value = 5
+
+[State 2, ga3];龍刃とか効果音
+type = PlaySnd
+trigger1 = AnimElem = 1
+value = 405, 0
+Volume = 99999
+channel = 1
+
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\
+[State -2]
+type = VarRandom
+trigger1 = time = 0
+v = 0
+range = 0, 2
+[State -2, ga2];龍刃1
+type = PlaySnd
+triggerall = Var(0) = 0
+trigger1 = time = 0
+value = 301, 0
+Volume = 99999
+channel = 0
+[State -2, ga3];龍刃2
+type = PlaySnd
+triggerall = Var(0) = 1
+trigger1 = time = 0
+value = 301, 1
+Volume = 99999
+channel = 0
+[State -2, ga3];龍刃3
+type = PlaySnd
+triggerall = Var(0) = 2
+trigger1 = time = 0
+value = 301, 2
+Volume = 99999
+channel = 0
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+[State 1000, 7];上昇通常時
+type = velset
+triggerall = Time <= 1
+trigger1  = Var(20) = 0
+y = -2
+[State 1000, 7];上昇通常時重力
+type = veladd
+trigger1 = Time = [25,35]
+y = 0.22
+
+[State 1000, 7];上昇通常時重力
+type = veladd
+trigger1 = Time >= 35
+y = 0.44
+
+[State 1000, 7];上昇通常時重力
+type = veladd
+trigger1 = Time >= 35
+trigger1 = Vel X >= 2
+x = -0.7
+
+[State 1000, 7];空中ダッシュ直後の特殊時
+type = velset
+triggerall = Time < 35
+trigger1  = Var(20) != 0
+x = 3
+y = -1
+
+
+[State 1000, 7];慣性無しの時
+type = velset
+trigger1 = Time <= 1
+x = 7.9
+
+
+[State 240, 3];炎カス
+type = Explod
+trigger1 = Timemod = 3,0
+pos = 10, -60
+;Postype = p1
+;facing = 1
+;persistent = 0
+ignorehitpause = 1
+sprpriority = 999
+ownpal = 1
+;ontop = 1
+random = 60, 60
+;pausemovetime = 99999999999999
+;supermovetime = 99999999999999
+;supermove = 1
+bindtime = 1
+anim = 1056
+ID     = 1056
+
+[State 240, 3];エフェクト丸
+type = Explod
+trigger1 = AnimElem = 6
+pos = 20, -90
+;Postype = p1
+persistent = 0
+ignorehitpause = 1
+sprpriority = 999
+ownpal = 1
+bindtime = 1
+anim = 1093
+ID   = 1093
+
+
+[State 200, 1];
+type = HitDef
+trigger1 = AnimElem = 1
+attr = A, SA
+damage = ceil(72*Var(5)/256)+Var(15), 5
+animtype = hard
+guardflag = MA
+hitflag = MAF
+priority = 3, Miss
+pausetime = 12,12+Var(15)
+guard.pausetime = 12,11
+sparkno = -1 + 0 * (var(53) := 8013)
+guard.sparkno = -1 + 0 * (var(54) := 8001)
+sparkxy = -10 + 0 * (var(56) := 89), var(57):= -76
+hitsound = S5, 5
+guardsound =S509, 4
+ground.type = Low
+ground.slidetime = 12
+ground.hittime  = 12
+ground.velocity = -5,-10+Var(6)
+guard.velocity = -5
+airguard.velocity =-2,-2+Var(6)
+air.type = Low
+air.velocity =-5,-10+Var(6)
+air.hittime = 12
+fall = 1;落下させる
+;fall.recover = 0;受身可否
+fall.recovertime = 50-Var(6);受身出来るまでの時間
+air.fall = 1;相手が空中時のみ落下させる
+getpower = 84,0
+givepower = 5,0
+palfx.time = 1
+palfx.add = 0,0,0
+p2facing = 1
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+[State 10,combo];攻撃力補正用ＶＡＲ
+type = Varadd
+trigger1 = MoveHit = 1
+persistent = 0
+ignorehitpause = 1
+v = 4
+value = 1
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
+[State 2, ga3];カウンターヒット時
+type = PlaySnd
+trigger1 =  var(14) >= 128
+trigger1 = movehit = 1
+persistent = 0
+ignorehitpause = 1
+value = 511, 1
+Volume = 99999
+;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
+;あああああああああああああああああ
+[State 2,guardLEVEL];ガードレベル増加
+type = Varadd
+trigger1 =  var(14) <= 236
+trigger1 = moveguarded = 1
+persistent = 0
+ignorehitpause = 1
+var(14) = 20
+[State 2,guardLEVEL];ガードレベル増加
+type = Varadd
+trigger1 =  var(14) > 236
+trigger1 = moveguarded = 1
+persistent = 0
+ignorehitpause = 1
+var(14) = 256-Var(14)
+[State 2,guardLEVEL];ガードレベル減少
+type = Varadd
+trigger1 =  movehit = 1
+trigger1 =  var(14) >= 20
+persistent = 0
+ignorehitpause = 1
+var(14) = -20
+[State 2,guardLEVEL];ガードレベル減少
+type = Varadd
+trigger1 =  movehit = 1
+trigger1 =  var(14) < 20
+persistent = 0
+ignorehitpause = 1
+var(14) = -Var(14)
+;あああああああああああああああああ
+;HHHHHHHHHHHHHHHHHHHHHHHH
+;ＨＩＴ炎エフェクトのヘルパー強制消去用
+;HHHHHHHHHHHHHHHHHHHHHHHH
+[State 1,1]
+type = Varset
+triggerall = Var(17)  != 1
+trigger1 = MoveContact = 1
+ignorehitpause = 1
+v = 17
+value = 1
+;HHHHHHHHHHHHHHHHHHHHHHHH
+
+
+;+++++++++++++++++++++++++++++++
+; ロマンキャンセル許可  
+;+++++++++++++++++++++++++++++++
+[State 10, 10];
+type = Varset
+trigger1 = MoveContact = 1
+trigger1 = var(3) != 1
+persistent = 0
+ignorehitpause = 1
+var(3) = 1
+;+++++++++++++++++++++++++++++++
+;+++++++++++++++++++++++++++++++
+; ロマンキャンセル解除ガトリング暴発防止
+;+++++++++++++++++++++++++++++++
+[State 10, 10];
+type = Varset
+trigger1 = Time = 0
+trigger1 = var(3) = 1
+trigger2 = AnimElem = 14
+trigger2 = var(3) = 1
+;persistent = 0
+ignorehitpause = 1
+var(3) = 0
+;+++++++++++++++++++++++++++++++
+
+[State 1000, 7]
+type = ChangeState
+trigger1 = Time >= 10
+trigger1 = Pos Y >= -1
+value = 1092
+ctrl = 0
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;                                     龍刃　着地
+[Statedef 1092]
+type    = S
+movetype= I
+physics = S
+juggle  = 0
+poweradd= 0
+velset = 0,0
+anim = 1092
+ctrl = 0
+;sprpriority = 2
+
+[State 1000, 7]
+type = Posset
+trigger1 = Pos y != 0
+y = 0
+
+[State 750, 3];着地煙ヘルパー
+type = helper
+trigger1 = Time = 0
+ID = 4001
+ignorehitpause = 1
+persistent = 0
+pos = 0,0
+priority = 2
+stateno = 4001
+ownpal = 1
+supermove = 1
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+
+[State 2 ,2]
+type = PlaySnd
+trigger1 = time = 0
+value = 501, 0;
+Volume = 99999
+channel = 2
+
+[State 1000, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+
+
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;                                     朝凪強化  龍刃　地上開始
+[Statedef 1095]
+type    = S
+movetype= I
+physics = S
+juggle  = 0
+poweradd= 0
+velset = 0,0
+anim = 1095
+ctrl = 0
+;sprpriority = 2
+
+[State 170, 1]
+type = NotHitBy
+trigger1 = Time >= 0
+value = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+time = 2
+
+[State 1000, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 1096
+ctrl = 1
+
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;                                     朝凪強化  龍刃　攻撃
+[Statedef 1096]
+type    = A
+movetype= A
+physics = N
+juggle  = 0
+poweradd= 25
+;velset = 0,0
+anim = 1096
+ctrl = 0
+;sprpriority = 2
+
+;<><><><><><><><><><><><><><><><><><>
+[State 10, 10];朝凪の呼吸　龍刃　　ＬＶ
+type = Varadd
+trigger1 = var(22) != 0
+trigger1 = AnimElem = 1
+persistent = 0
+ignorehitpause = 1
+var(22) = -1
+;<><><><><><><><><><><><><><><><><><>
+
+[State 1000]
+type = AfterImage
+trigger1 = Time = 0
+time = 15
+length = 4
+frameGap = 1
+timeGap = 3
+PalAdd = 0,0,0
+palmul = 1,1,1
+PalBright = 0, 0, 0
+PalContrast = 128,128,128
+Trans = Add1
+
+[State 20, 3]
+type = playerpush
+trigger1 = time >= 0
+value = 1
+
+;+++++++++++++++++++
+;龍刃・逆鱗・剣楼閣・爆蹴足払いの
+;繋がり回数カウント（３回まで）
+[State 2,1]
+type = Varadd
+trigger1 = time = 0
+persistent = 0
+ignorehitpause = 1
+v = 21
+value = 1
+;+++++++++++++++++++
+
+[State 170, 1]
+type = NotHitBy
+trigger1 = Time = 0
+value = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+time = 20
+
+[State 2,1];龍刃・逆鱗・剣楼閣の空中ダッシュ直後の特殊移動用
+type = Varset
+trigger1 = numhelper(2007)= 1
+trigger2 = numhelper(2008)= 1
+ignorehitpause = 1
+v = 20
+value = 5
+
+[State 2, ga3];龍刃とか効果音
+type = PlaySnd
+trigger1 = AnimElem = 1
+value = 405, 0
+Volume = 99999
+channel = 1
+
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\
+[State -2]
+type = VarRandom
+trigger1 = time = 0
+v = 0
+range = 0, 2
+[State -2, ga2];龍刃1
+type = PlaySnd
+triggerall = Var(0) = 0
+trigger1 = time = 0
+value = 301, 0
+Volume = 99999
+channel = 0
+[State -2, ga3];龍刃2
+type = PlaySnd
+triggerall = Var(0) = 1
+trigger1 = time = 0
+value = 301, 1
+Volume = 99999
+channel = 0
+[State -2, ga3];龍刃3
+type = PlaySnd
+triggerall = Var(0) = 2
+trigger1 = time = 0
+value = 301, 2
+Volume = 99999
+channel = 0
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+[State 1000, 7];上昇通常時
+type = velset
+triggerall = Time <= 1
+trigger1  = Var(20) = 0
+y = -1.3
+[State 1000, 7];上昇通常時重力
+type = veladd
+trigger1 = Time = [40,50]
+y = 0.22
+
+[State 1000, 7];上昇通常時重力
+type = veladd
+trigger1 = Time >= 50
+y = 0.44
+
+[State 1000, 7];上昇通常時重力
+type = veladd
+trigger1 = Time >= 50
+trigger1 = Vel X >= 2
+x = -0.7
+
+
+[State 1000, 7];空中ダッシュ直後の特殊時
+type = velset
+triggerall = Time < 30
+trigger1  = Var(20) != 0
+x = 3
+y = -1
+
+[State 1000, 7];慣性無しの時
+type = velset
+trigger1  = Var(20) = 0
+trigger1 = Time <= 1
+x = 7.9
+
+[State 240, 3];炎カス
+type = Explod
+trigger1 = Timemod = 3,0
+pos = 10, -60
+;Postype = p1
+;facing = 1
+;persistent = 0
+ignorehitpause = 1
+sprpriority = 999
+ownpal = 1
+;ontop = 1
+random = 60, 60
+;pausemovetime = 99999999999999
+;supermovetime = 99999999999999
+;supermove = 1
+bindtime = 1
+anim = 1056
+ID     = 1056
+
+[State 240, 3];エフェクト丸
+type = Explod
+trigger1 = AnimElem = 6
+trigger2 = AnimElem = 9
+trigger3 = AnimElem = 12
+pos = 20, -90
+;Postype = p1
+;persistent = 0
+ignorehitpause = 1
+sprpriority = 999
+ownpal = 1
+bindtime = 1
+anim = 1093
+ID   = 1093
+
+
+[State 200, 1];
+type = HitDef
+trigger1 = AnimElem = 1
+attr = A, SA
+damage = ceil(105*Var(5)/256)+Var(15), 5
+animtype = hard
+guardflag = MA
+hitflag = MAF
+priority = 3, Miss
+pausetime = 12,12+Var(15)
+guard.pausetime = 12,11
+sparkno = -1 + 0 * (var(53) := 8013)
+guard.sparkno = -1 + 0 * (var(54) := 8001)
+sparkxy = -10 + 0 * (var(56) := 89), var(57):= -76
+hitsound = S5, 5
+guardsound =S509, 4
+ground.type = Low
+ground.slidetime = 12
+ground.hittime  = 12
+ground.velocity = -5,-10+Var(6)
+guard.velocity = -5
+airguard.velocity =-2,-2+Var(6)
+air.type = Low
+air.velocity =-5,-10+Var(6)
+air.hittime = 12
+fall = 1;落下させる
+fall.recover = 0;受身可否
+;fall.recovertime = 50-Var(6);受身出来るまでの時間
+air.fall = 1;相手が空中時のみ落下させる
+getpower = 84,0
+givepower = 5,0
+palfx.time = 1
+palfx.add = 0,0,0
+p2facing = 1
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+[State 10,combo];攻撃力補正用ＶＡＲ
+type = Varadd
+trigger1 = MoveHit = 1
+persistent = 0
+ignorehitpause = 1
+v = 4
+value = 1
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
+[State 2, ga3];カウンターヒット時
+type = PlaySnd
+trigger1 =  var(14) >= 128
+trigger1 = movehit = 1
+persistent = 0
+ignorehitpause = 1
+value = 511, 1
+Volume = 99999
+;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
+;あああああああああああああああああ
+[State 2,guardLEVEL];ガードレベル増加
+type = Varadd
+trigger1 =  var(14) <= 236
+trigger1 = moveguarded = 1
+persistent = 0
+ignorehitpause = 1
+var(14) = 20
+[State 2,guardLEVEL];ガードレベル増加
+type = Varadd
+trigger1 =  var(14) > 236
+trigger1 = moveguarded = 1
+persistent = 0
+ignorehitpause = 1
+var(14) = 256-Var(14)
+[State 2,guardLEVEL];ガードレベル減少
+type = Varadd
+trigger1 =  movehit = 1
+trigger1 =  var(14) >= 20
+persistent = 0
+ignorehitpause = 1
+var(14) = -20
+[State 2,guardLEVEL];ガードレベル減少
+type = Varadd
+trigger1 =  movehit = 1
+trigger1 =  var(14) < 20
+persistent = 0
+ignorehitpause = 1
+var(14) = -Var(14)
+;あああああああああああああああああ
+;HHHHHHHHHHHHHHHHHHHHHHHH
+;ＨＩＴ炎エフェクトのヘルパー強制消去用
+;HHHHHHHHHHHHHHHHHHHHHHHH
+[State 1,1]
+type = Varset
+triggerall = Var(17)  != 1
+trigger1 = MoveContact = 1
+ignorehitpause = 1
+v = 17
+value = 1
+;HHHHHHHHHHHHHHHHHHHHHHHH
+
+
+;+++++++++++++++++++++++++++++++
+; ロマンキャンセル許可  
+;+++++++++++++++++++++++++++++++
+[State 10, 10];
+type = Varset
+trigger1 = MoveContact = 1
+trigger1 = var(3) != 1
+persistent = 0
+ignorehitpause = 1
+var(3) = 1
+;+++++++++++++++++++++++++++++++
+;+++++++++++++++++++++++++++++++
+; ロマンキャンセル解除ガトリング暴発防止
+;+++++++++++++++++++++++++++++++
+[State 10, 10];
+type = Varset
+trigger1 = Time = 0
+trigger1 = var(3) = 1
+trigger2 = AnimElem = 18
+trigger2 = var(3) = 1
+;persistent = 0
+ignorehitpause = 1
+var(3) = 0
+;+++++++++++++++++++++++++++++++
+
+[State 1000, 7]
+type = ChangeState
+trigger1 = Time >= 10
+trigger1 = Pos Y >= -0.5
+value = 1097
+ctrl = 0
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;                                   朝凪強化  龍刃　着地
+[Statedef 1097]
+type    = S
+movetype= I
+physics = S
+juggle  = 0
+poweradd= 0
+velset = 0,0
+anim = 1097
+ctrl = 0
+;sprpriority = 2
+
+[State 1000, 7]
+type = Posset
+trigger1 = Pos y != 0
+y = 0
+
+[State 750, 3];着地煙ヘルパー
+type = helper
+trigger1 = Time = 0
+ID = 4001
+ignorehitpause = 1
+persistent = 0
+pos = 0,0
+priority = 2
+stateno = 4001
+ownpal = 1
+supermove = 1
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+
+[State 2 ,2]
+type = PlaySnd
+trigger1 = time = 0
+value = 501, 0;
+Volume = 99999
+channel = 2
+
+[State 1000, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;                                   朝凪の呼吸 Ｋ
+[Statedef 1100]
+type    = S
+movetype= I
+physics = N
+juggle  = 0
+poweradd= 0
+;velset = 0,0
+anim = 1100
+ctrl = 0
+;sprpriority = 2
+
+;<><><><><><><><><><><><><><><><><><>
+[State 10, 10];朝凪の呼吸　龍刃　　ＬＶ
+type = Varadd
+trigger1 = var(22) != 3
+trigger1 = AnimElem = 11
+persistent = 0
+ignorehitpause = 1
+var(22) = 1
+;<><><><><><><><><><><><><><><><><><>
+
+[State 108, 0];地上ダッシュ後の慣性用
+type = VelAdd
+trigger1 = time >= 0
+trigger1 = Vel X > 0
+x = -0.2
+
+[State 108, 0];地上ダッシュ後の慣性用
+type = Velset
+trigger1 = time >= 0
+trigger1 = Vel X < 0
+x = 0
+
+[State 2 ,2]
+type = PlaySnd
+trigger1 = timemod =15,0
+trigger1 = time >= 18
+value = 402, 0;
+Volume = 99999
+
+[State 2 ,2]
+type = PlaySnd
+trigger1 = time = 0
+value = 402, 1;
+Volume = 99999
+
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\
+[State 2]
+type = VarRandom
+trigger1 = AnimElem = 10
+v = 0
+range = 0, 2
+[State 2, ga2];
+type = PlaySnd
+triggerall = Var(0) = 0
+trigger1 = AnimElem = 10
+value = 303, 0
+Volume = 99999
+channel = 0
+[State 2, ga3];
+type = PlaySnd
+triggerall = Var(0) = 1
+trigger1 = AnimElem = 10
+value = 303, 1
+Volume = 99999
+channel = 0
+[State 2, ga3];
+type = PlaySnd
+triggerall = Var(0) = 2
+trigger1 = AnimElem = 10
+value = 303, 2
+Volume = 99999
+channel = 0
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+[State 240, 3];朝凪の呼吸エフェクト
+type = Explod
+trigger1 = AnimElem = 7
+pos = -9, -83
+ignorehitpause = 1
+persistent = 0
+sprpriority = 999
+ownpal = 1
+bindtime = 1
+anim = 1101
+
+[State 240, 3];朝凪の呼吸チビ丸エフェクト 左上
+type = Explod
+trigger1 = NumExplod(1102) <= 20
+trigger1 = time = [20,40]
+trigger1 = timemod =12,0
+pos = -49, -113
+;persistent = 0
+ignorehitpause = 1
+sprpriority = 999
+random = 50, 10
+Vel = 1,1
+ownpal = 1
+bindtime = 1
+Removetime = 20
+anim = 1102
+ID = 1102
+
+[State 240, 3];朝凪の呼吸チビ丸エフェクト 右上
+type = Explod
+trigger1 = NumExplod(1102) <= 20
+trigger1 = time = [20,40]
+trigger1 = timemod =11,0
+pos = 31, -113
+;persistent = 0
+ignorehitpause = 1
+sprpriority = 999
+random = 50, 10
+Vel = -1,1
+ownpal = 1
+bindtime = 1
+Removetime = 20
+anim = 1102
+ID = 1102
+
+[State 240, 3];朝凪の呼吸チビ丸エフェクト 左下
+type = Explod
+trigger1 = NumExplod(1102) <= 20
+trigger1 = time = [20,40]
+trigger1 = timemod =11,0
+pos = -49, -53
+;persistent = 0
+ignorehitpause = 1
+sprpriority = 999
+random = 50, 10
+Vel = 1,-1
+ownpal = 1
+bindtime = 1
+Removetime = 20
+anim = 1102
+ID = 1102
+
+[State 240, 3];朝凪の呼吸チビ丸エフェクト 右下
+type = Explod
+trigger1 = NumExplod(1102) <= 20
+trigger1 = time = [20,40]
+trigger1 = timemod =12,0
+pos = 31, -53
+;persistent = 0
+ignorehitpause = 1
+sprpriority = 999
+random = 50, 10
+Vel = -1,-1
+ownpal = 1
+bindtime = 1
+Removetime = 20
+anim = 1102
+ID = 1102
+
+[State 240, 3];朝凪の呼吸チビ丸エフェクト 上
+type = Explod
+trigger1 = NumExplod(1102) <= 20
+trigger1 = time = [20,40]
+trigger1 = timemod =11,0
+pos = -9, -133
+;persistent = 0
+ignorehitpause = 1
+sprpriority = 999
+random = 30, 30
+Vel = 0,1
+ownpal = 1
+bindtime = 1
+Removetime = 20
+anim = 1102
+ID = 1102
+
+[State 240, 3];朝凪の呼吸チビ丸エフェクト 下
+type = Explod
+trigger1 = NumExplod(1102) <= 20
+trigger1 = time = [20,40]
+trigger1 = timemod =12,0
+pos = -9, -33
+;persistent = 0
+ignorehitpause = 1
+sprpriority = 999
+random = 30, 30
+Vel = 0,-1
+ownpal = 1
+bindtime = 1
+Removetime = 20
+anim = 1102
+ID = 1102
+
+[State 1000, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;                                   朝凪の呼吸 Ｓ
+[Statedef 1105]
+type    = S
+movetype= I
+physics = N
+juggle  = 0
+poweradd= 0
+;velset = 0,0
+anim = 1100
+ctrl = 0
+;sprpriority = 2
+
+;<><><><><><><><><><><><><><><><><><>
+[State 10, 10];朝凪の呼吸　逆鱗　　ＬＶ
+type = Varadd
+trigger1 = var(23) != 3
+trigger1 = AnimElem = 11
+persistent = 0
+ignorehitpause = 1
+var(23) = 1
+;<><><><><><><><><><><><><><><><><><>
+
+[State 108, 0];地上ダッシュ後の慣性用
+type = VelAdd
+trigger1 = time >= 0
+trigger1 = Vel X > 0
+x = -0.2
+
+[State 108, 0];地上ダッシュ後の慣性用
+type = Velset
+trigger1 = time >= 0
+trigger1 = Vel X < 0
+x = 0
+
+[State 2 ,2]
+type = PlaySnd
+trigger1 = timemod =15,0
+trigger1 = time >= 18
+value = 402, 0;
+Volume = 99999
+
+[State 2 ,2]
+type = PlaySnd
+trigger1 = time = 0
+value = 402, 1;
+Volume = 99999
+
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\
+[State 2]
+type = VarRandom
+trigger1 = AnimElem = 10
+v = 0
+range = 0, 2
+[State 2, ga2];
+type = PlaySnd
+triggerall = Var(0) = 0
+trigger1 = AnimElem = 10
+value = 303, 0
+Volume = 99999
+channel = 0
+[State 2, ga3];
+type = PlaySnd
+triggerall = Var(0) = 1
+trigger1 = AnimElem = 10
+value = 303, 1
+Volume = 99999
+channel = 0
+[State 2, ga3];
+type = PlaySnd
+triggerall = Var(0) = 2
+trigger1 = AnimElem = 10
+value = 303, 2
+Volume = 99999
+channel = 0
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+[State 240, 3];朝凪の呼吸エフェクト
+type = Explod
+trigger1 = AnimElem = 7
+pos = -9, -83
+ignorehitpause = 1
+persistent = 0
+sprpriority = 999
+ownpal = 1
+bindtime = 1
+anim = 1101
+
+[State 240, 3];朝凪の呼吸チビ丸エフェクト 左上
+type = Explod
+trigger1 = NumExplod(1102) <= 20
+trigger1 = time = [20,40]
+trigger1 = timemod =12,0
+pos = -49, -113
+;persistent = 0
+ignorehitpause = 1
+sprpriority = 999
+random = 50, 10
+Vel = 1,1
+ownpal = 1
+bindtime = 1
+Removetime = 20
+anim = 1102
+ID = 1102
+
+[State 240, 3];朝凪の呼吸チビ丸エフェクト 右上
+type = Explod
+trigger1 = NumExplod(1102) <= 20
+trigger1 = time = [20,40]
+trigger1 = timemod =11,0
+pos = 31, -113
+;persistent = 0
+ignorehitpause = 1
+sprpriority = 999
+random = 50, 10
+Vel = -1,1
+ownpal = 1
+bindtime = 1
+Removetime = 20
+anim = 1102
+ID = 1102
+
+[State 240, 3];朝凪の呼吸チビ丸エフェクト 左下
+type = Explod
+trigger1 = NumExplod(1102) <= 20
+trigger1 = time = [20,40]
+trigger1 = timemod =11,0
+pos = -49, -53
+;persistent = 0
+ignorehitpause = 1
+sprpriority = 999
+random = 50, 10
+Vel = 1,-1
+ownpal = 1
+bindtime = 1
+Removetime = 20
+anim = 1102
+ID = 1102
+
+[State 240, 3];朝凪の呼吸チビ丸エフェクト 右下
+type = Explod
+trigger1 = NumExplod(1102) <= 20
+trigger1 = time = [20,40]
+trigger1 = timemod =12,0
+pos = 31, -53
+;persistent = 0
+ignorehitpause = 1
+sprpriority = 999
+random = 50, 10
+Vel = -1,-1
+ownpal = 1
+bindtime = 1
+Removetime = 20
+anim = 1102
+ID = 1102
+
+[State 240, 3];朝凪の呼吸チビ丸エフェクト 上
+type = Explod
+trigger1 = NumExplod(1102) <= 20
+trigger1 = time = [20,40]
+trigger1 = timemod =11,0
+pos = -9, -133
+;persistent = 0
+ignorehitpause = 1
+sprpriority = 999
+random = 30, 30
+Vel = 0,1
+ownpal = 1
+bindtime = 1
+Removetime = 20
+anim = 1102
+ID = 1102
+
+[State 240, 3];朝凪の呼吸チビ丸エフェクト 下
+type = Explod
+trigger1 = NumExplod(1102) <= 20
+trigger1 = time = [20,40]
+trigger1 = timemod =12,0
+pos = -9, -33
+;persistent = 0
+ignorehitpause = 1
+sprpriority = 999
+random = 30, 30
+Vel = 0,-1
+ownpal = 1
+bindtime = 1
+Removetime = 20
+anim = 1102
+ID = 1102
+
+[State 1000, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;                                   朝凪の呼吸 ＨＳ
+[Statedef 1110]
+type    = S
+movetype= I
+physics = N
+juggle  = 0
+poweradd= 0
+;velset = 0,0
+anim = 1100
+ctrl = 0
+;sprpriority = 2
+
+;<><><><><><><><><><><><><><><><><><>
+[State 10, 10];朝凪の呼吸　剣楼閣　　ＬＶ
+type = Varadd
+trigger1 = var(24) != 3
+trigger1 = AnimElem = 11
+persistent = 0
+ignorehitpause = 1
+var(24) = 1
+;<><><><><><><><><><><><><><><><><><>
+
+[State 108, 0];地上ダッシュ後の慣性用
+type = VelAdd
+trigger1 = time >= 0
+trigger1 = Vel X > 0
+x = -0.2
+
+[State 108, 0];地上ダッシュ後の慣性用
+type = Velset
+trigger1 = time >= 0
+trigger1 = Vel X < 0
+x = 0
+
+[State 2 ,2]
+type = PlaySnd
+trigger1 = timemod =15,0
+trigger1 = time >= 18
+value = 402, 0;
+Volume = 99999
+
+[State 2 ,2]
+type = PlaySnd
+trigger1 = time = 0
+value = 402, 1;
+Volume = 99999
+
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\
+[State 2]
+type = VarRandom
+trigger1 = AnimElem = 10
+v = 0
+range = 0, 2
+[State 2, ga2];
+type = PlaySnd
+triggerall = Var(0) = 0
+trigger1 = AnimElem = 10
+value = 303, 0
+Volume = 99999
+channel = 0
+[State 2, ga3];
+type = PlaySnd
+triggerall = Var(0) = 1
+trigger1 = AnimElem = 10
+value = 303, 1
+Volume = 99999
+channel = 0
+[State 2, ga3];
+type = PlaySnd
+triggerall = Var(0) = 2
+trigger1 = AnimElem = 10
+value = 303, 2
+Volume = 99999
+channel = 0
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+[State 240, 3];朝凪の呼吸エフェクト
+type = Explod
+trigger1 = AnimElem = 7
+pos = -9, -83
+ignorehitpause = 1
+persistent = 0
+sprpriority = 999
+ownpal = 1
+bindtime = 1
+anim = 1101
+
+[State 240, 3];朝凪の呼吸チビ丸エフェクト 左上
+type = Explod
+trigger1 = NumExplod(1102) <= 20
+trigger1 = time = [20,40]
+trigger1 = timemod =12,0
+pos = -49, -113
+;persistent = 0
+ignorehitpause = 1
+sprpriority = 999
+random = 50, 10
+Vel = 1,1
+ownpal = 1
+bindtime = 1
+Removetime = 20
+anim = 1102
+ID = 1102
+
+[State 240, 3];朝凪の呼吸チビ丸エフェクト 右上
+type = Explod
+trigger1 = NumExplod(1102) <= 20
+trigger1 = time = [20,40]
+trigger1 = timemod =11,0
+pos = 31, -113
+;persistent = 0
+ignorehitpause = 1
+sprpriority = 999
+random = 50, 10
+Vel = -1,1
+ownpal = 1
+bindtime = 1
+Removetime = 20
+anim = 1102
+ID = 1102
+
+[State 240, 3];朝凪の呼吸チビ丸エフェクト 左下
+type = Explod
+trigger1 = NumExplod(1102) <= 20
+trigger1 = time = [20,40]
+trigger1 = timemod =11,0
+pos = -49, -53
+;persistent = 0
+ignorehitpause = 1
+sprpriority = 999
+random = 50, 10
+Vel = 1,-1
+ownpal = 1
+bindtime = 1
+Removetime = 20
+anim = 1102
+ID = 1102
+
+[State 240, 3];朝凪の呼吸チビ丸エフェクト 右下
+type = Explod
+trigger1 = NumExplod(1102) <= 20
+trigger1 = time = [20,40]
+trigger1 = timemod =12,0
+pos = 31, -53
+;persistent = 0
+ignorehitpause = 1
+sprpriority = 999
+random = 50, 10
+Vel = -1,-1
+ownpal = 1
+bindtime = 1
+Removetime = 20
+anim = 1102
+ID = 1102
+
+[State 240, 3];朝凪の呼吸チビ丸エフェクト 上
+type = Explod
+trigger1 = NumExplod(1102) <= 20
+trigger1 = time = [20,40]
+trigger1 = timemod =11,0
+pos = -9, -133
+;persistent = 0
+ignorehitpause = 1
+sprpriority = 999
+random = 30, 30
+Vel = 0,1
+ownpal = 1
+bindtime = 1
+Removetime = 20
+anim = 1102
+ID = 1102
+
+[State 240, 3];朝凪の呼吸チビ丸エフェクト 下
+type = Explod
+trigger1 = NumExplod(1102) <= 20
+trigger1 = time = [20,40]
+trigger1 = timemod =12,0
+pos = -9, -33
+;persistent = 0
+ignorehitpause = 1
+sprpriority = 999
+random = 30, 30
+Vel = 0,-1
+ownpal = 1
+bindtime = 1
+Removetime = 20
+anim = 1102
+ID = 1102
+
+
+[State 1000, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;                                   百歩沁鐘　１撃目
+[Statedef 1120]
+type    = S
+movetype= A
+physics = S
+juggle  = 0
+poweradd= 20
+velset = 0,0
+anim = 1120
+ctrl = 0
+;sprpriority = 2
+
+[State 170, 1]
+type = NotHitBy
+trigger1 = Time = 0
+value = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+time = 11
+
+[State 2, ga3]
+type = PlaySnd
+trigger1 = AnimElem = 7
+value = 404, 0
+Volume = 99999
+channel = 1
+
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\
+[State 2]
+type = VarRandom
+trigger1 = AnimElem = 7
+v = 0
+range = 0, 2
+[State 2, ga2];
+type = PlaySnd
+triggerall = Var(0) = 0
+trigger1 = AnimElem = 7
+value = 304, 0
+Volume = 99999
+channel = 0
+[State 2, ga3];
+type = PlaySnd
+triggerall = Var(0) = 1
+trigger1 = AnimElem = 7
+value = 304, 1
+Volume = 99999
+channel = 0
+[State 2, ga3];
+type = PlaySnd
+triggerall = Var(0) = 2
+trigger1 = AnimElem = 7
+value = 304, 2
+Volume = 99999
+channel = 0
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+[State 2, ga3]
+type = Posadd
+trigger1 = AnimElem = 7
+x = 12
+
+[State 20, 3]
+type = playerpush
+trigger1 = time >= 0
+value = 1
+
+[State 210, 1]
+type = Width
+trigger1 = AnimElem = 8
+trigger2 = AnimElem = 9
+trigger3 = AnimElem = 10
+trigger4 = AnimElem = 11
+player= 15,0
+
+[State 50, 12];画面揺らし
+type = EnvShake
+trigger1 = AnimElem = 7
+Time = 10
+
+[State 240, 3];ピンクの煙
+type = Explod
+trigger1 = AnimElem = 7
+pos = 80, 5
+;Postype = p1
+;facing = 1
+persistent = 0
+ignorehitpause = 1
+sprpriority = 999
+ownpal = 1
+;ontop = 1
+;pausemovetime = 99999999999999
+;supermovetime = 99999999999999
+;supermove = 1
+bindtime = 1
+anim = 1005
+
+[State 200, 1];
+type = HitDef
+trigger1 = AnimElem = 1
+attr = S, SA
+damage = ceil(18*Var(5)/256)+Var(15), 5
+animtype = hard
+guardflag = MA
+hitflag = MAF
+priority = 3, Miss
+pausetime = 10,10+Var(15)
+guard.pausetime = 10,9
+sparkno = -1 + 0 * (var(53) := 8013)
+guard.sparkno = -1 + 0 * (var(54) := 8001)
+sparkxy = -10 + 0 * (var(56) := 89), var(57):= -76
+hitsound = S5, 2
+guardsound =S509, 4
+ground.type = Low
+ground.slidetime = 14
+ground.hittime  = 14
+ground.velocity = -7,-6+Var(6)
+guard.velocity = -4
+airguard.velocity = -4,-1+Var(6)
+air.type = Low
+air.velocity =-7,-6+Var(6)
+air.hittime = 14
+fall = 1;落下させる
+;fall.recover = 1;受身可否
+fall.recovertime = 50-Var(6);受身出来るまでの時間
+air.fall = 1;相手が空中時のみ落下させる
+getpower = 24,0
+givepower = 5,0
+palfx.time = 1
+palfx.add = 0,0,0
+p2facing = 1
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+[State 10,combo];攻撃力補正用ＶＡＲ
+type = Varadd
+trigger1 = MoveHit = 1
+persistent = 0
+ignorehitpause = 1
+v = 4
+value = 1
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
+[State 2, ga3];カウンターヒット時
+type = PlaySnd
+trigger1 =  var(14) >= 128
+trigger1 = movehit = 1
+persistent = 0
+ignorehitpause = 1
+value = 511, 1
+Volume = 99999
+;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
+;あああああああああああああああああ
+[State 2,guardLEVEL];ガードレベル増加
+type = Varadd
+trigger1 =  var(14) <= 246
+trigger1 = moveguarded = 1
+persistent = 0
+ignorehitpause = 1
+var(14) = 10
+[State 2,guardLEVEL];ガードレベル増加
+type = Varadd
+trigger1 =  var(14) > 246
+trigger1 = moveguarded = 1
+persistent = 0
+ignorehitpause = 1
+var(14) = 256-Var(14)
+[State 2,guardLEVEL];ガードレベル減少
+type = Varadd
+trigger1 =  movehit = 1
+trigger1 =  var(14) >= 10
+persistent = 0
+ignorehitpause = 1
+var(14) = -10
+[State 2,guardLEVEL];ガードレベル減少
+type = Varadd
+trigger1 =  movehit = 1
+trigger1 =  var(14) < 10
+persistent = 0
+ignorehitpause = 1
+var(14) = -Var(14)
+;あああああああああああああああああ
+;HHHHHHHHHHHHHHHHHHHHHHHH
+;ＨＩＴ炎エフェクトのヘルパー強制消去用
+;HHHHHHHHHHHHHHHHHHHHHHHH
+[State 1,1]
+type = Varset
+triggerall = Var(17)  != 1
+trigger1 = MoveContact = 1
+ignorehitpause = 1
+v = 17
+value = 1
+;HHHHHHHHHHHHHHHHHHHHHHHH
+
+
+;+++++++++++++++++++++++++++++++
+; ロマンキャンセル許可  
+;+++++++++++++++++++++++++++++++
+[State 10, 10];
+type = Varset
+trigger1 = MoveContact = 1
+trigger1 = var(3) != 1
+persistent = 0
+ignorehitpause = 1
+var(3) = 1
+;+++++++++++++++++++++++++++++++
+;+++++++++++++++++++++++++++++++
+; ロマンキャンセル解除ガトリング暴発防止
+;+++++++++++++++++++++++++++++++
+[State 10, 10];
+type = Varset
+trigger1 = Time = 0
+trigger1 = var(3) = 1
+persistent = 0
+ignorehitpause = 1
+var(3) = 0
+;+++++++++++++++++++++++++++++++
+
+[State 1000, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 1121
+ctrl = 0
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;                                   百歩沁鐘　２撃目
+[Statedef 1121]
+type    = S
+movetype= A
+physics = S
+juggle  = 0
+poweradd= 0
+velset = 0,0
+anim = 1121
+ctrl = 0
+;sprpriority = 2
+
+[State 210, 1]
+type = Width
+trigger1 = Time >= 0
+player= 15,0
+
+
+[State 200, 1];
+type = HitDef
+trigger1 = AnimElem = 1
+attr = S, SA
+damage = ceil(18*Var(5)/256)+Var(15), 5
+animtype = hard
+guardflag = MA
+hitflag = MAF
+priority = 3, Miss
+pausetime = 10,10+Var(15)
+guard.pausetime = 10,9
+sparkno = -1 + 0 * (var(53) := 8013)
+guard.sparkno = -1 + 0 * (var(54) := 8001)
+sparkxy = -10 + 0 * (var(56) := 89), var(57):= -76
+hitsound = S5, 2
+guardsound =S509, 4
+ground.type = Low
+ground.slidetime = 14
+ground.hittime  = 14
+ground.velocity = -7,-6+Var(6)
+guard.velocity = -4
+airguard.velocity = -4,-1+Var(6)
+air.type = Low
+air.velocity =-7,-6+Var(6)
+air.hittime = 14
+fall = 1;落下させる
+;fall.recover = 1;受身可否
+fall.recovertime = 50-Var(6);受身出来るまでの時間
+air.fall = 1;相手が空中時のみ落下させる
+getpower = 24,0
+givepower = 5,0
+palfx.time = 1
+palfx.add = 0,0,0
+p2facing = 1
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+[State 10,combo];攻撃力補正用ＶＡＲ
+type = Varadd
+trigger1 = MoveHit = 1
+persistent = 0
+ignorehitpause = 1
+v = 4
+value = 1
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
+[State 2, ga3];カウンターヒット時
+type = PlaySnd
+trigger1 =  var(14) >= 128
+trigger1 = movehit = 1
+persistent = 0
+ignorehitpause = 1
+value = 511, 1
+Volume = 99999
+;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
+;あああああああああああああああああ
+[State 2,guardLEVEL];ガードレベル増加
+type = Varadd
+trigger1 =  var(14) <= 246
+trigger1 = moveguarded = 1
+persistent = 0
+ignorehitpause = 1
+var(14) = 10
+[State 2,guardLEVEL];ガードレベル増加
+type = Varadd
+trigger1 =  var(14) > 246
+trigger1 = moveguarded = 1
+persistent = 0
+ignorehitpause = 1
+var(14) = 256-Var(14)
+[State 2,guardLEVEL];ガードレベル減少
+type = Varadd
+trigger1 =  movehit = 1
+trigger1 =  var(14) >= 10
+persistent = 0
+ignorehitpause = 1
+var(14) = -10
+[State 2,guardLEVEL];ガードレベル減少
+type = Varadd
+trigger1 =  movehit = 1
+trigger1 =  var(14) < 10
+persistent = 0
+ignorehitpause = 1
+var(14) = -Var(14)
+;あああああああああああああああああ
+;HHHHHHHHHHHHHHHHHHHHHHHH
+;ＨＩＴ炎エフェクトのヘルパー強制消去用
+;HHHHHHHHHHHHHHHHHHHHHHHH
+[State 1,1]
+type = Varset
+triggerall = Var(17)  != 1
+trigger1 = MoveContact = 1
+ignorehitpause = 1
+v = 17
+value = 1
+;HHHHHHHHHHHHHHHHHHHHHHHH
+
+
+
+;+++++++++++++++++++++++++++++++
+; ロマンキャンセル許可  
+;+++++++++++++++++++++++++++++++
+[State 10, 10];
+type = Varset
+trigger1 = MoveContact = 1
+trigger1 = var(3) != 1
+persistent = 0
+ignorehitpause = 1
+var(3) = 1
+;+++++++++++++++++++++++++++++++
+
+[State 1000, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 1122
+ctrl = 0
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;                                   百歩沁鐘　３撃目
+[Statedef 1122]
+type    = S
+movetype= A
+physics = S
+juggle  = 0
+poweradd= 0
+velset = 0,0
+anim = 1122
+ctrl = 0
+;sprpriority = 2
+
+[State 210, 1]
+type = Width
+trigger1 = AnimElem = 1
+trigger2 = AnimElem = 2
+trigger3 = AnimElem = 3
+trigger4 = AnimElem = 4
+trigger5 = AnimElem = 5
+trigger6 = AnimElem = 6
+trigger7 = AnimElem = 7
+trigger8 = AnimElem = 8
+player= 15,0
+
+[State 200, 1];
+type = HitDef
+trigger1 = AnimElem = 1
+attr = S, SA
+damage = ceil(18*Var(5)/256)+Var(15), 5
+animtype = hard
+guardflag = MA
+hitflag = MAF
+priority = 3, Miss
+pausetime = 10,10+Var(15)
+guard.pausetime = 10,9
+sparkno = -1 + 0 * (var(53) := 8013)
+guard.sparkno = -1 + 0 * (var(54) := 8001)
+sparkxy = -10 + 0 * (var(56) := 89), var(57):= -76
+hitsound = S5, 2
+guardsound =S509, 4
+ground.type = Low
+ground.slidetime = 14
+ground.hittime  = 14
+ground.velocity = -7,-6+Var(6)
+guard.velocity = -4
+airguard.velocity = -4,-1+Var(6)
+air.type = Low
+air.velocity =-7,-6+Var(6)
+air.hittime = 14
+fall = 1;落下させる
+;fall.recover = 1;受身可否
+fall.recovertime = 50-Var(6);受身出来るまでの時間
+air.fall = 1;相手が空中時のみ落下させる
+getpower = 24,0
+givepower = 5,0
+palfx.time = 1
+palfx.add = 0,0,0
+p2facing = 1
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+[State 10,combo];攻撃力補正用ＶＡＲ
+type = Varadd
+trigger1 = MoveHit = 1
+persistent = 0
+ignorehitpause = 1
+v = 4
+value = 1
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
+[State 2, ga3];カウンターヒット時
+type = PlaySnd
+trigger1 =  var(14) >= 128
+trigger1 = movehit = 1
+persistent = 0
+ignorehitpause = 1
+value = 511, 1
+Volume = 99999
+;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
+;あああああああああああああああああ
+[State 2,guardLEVEL];ガードレベル増加
+type = Varadd
+trigger1 =  var(14) <= 246
+trigger1 = moveguarded = 1
+persistent = 0
+ignorehitpause = 1
+var(14) = 10
+[State 2,guardLEVEL];ガードレベル増加
+type = Varadd
+trigger1 =  var(14) > 246
+trigger1 = moveguarded = 1
+persistent = 0
+ignorehitpause = 1
+var(14) = 256-Var(14)
+[State 2,guardLEVEL];ガードレベル減少
+type = Varadd
+trigger1 =  movehit = 1
+trigger1 =  var(14) >= 10
+persistent = 0
+ignorehitpause = 1
+var(14) = -10
+[State 2,guardLEVEL];ガードレベル減少
+type = Varadd
+trigger1 =  movehit = 1
+trigger1 =  var(14) < 10
+persistent = 0
+ignorehitpause = 1
+var(14) = -Var(14)
+;あああああああああああああああああ
+;HHHHHHHHHHHHHHHHHHHHHHHH
+;ＨＩＴ炎エフェクトのヘルパー強制消去用
+;HHHHHHHHHHHHHHHHHHHHHHHH
+[State 1,1]
+type = Varset
+triggerall = Var(17)  != 1
+trigger1 = MoveContact = 1
+ignorehitpause = 1
+v = 17
+value = 1
+;HHHHHHHHHHHHHHHHHHHHHHHH
+
+
+;+++++++++++++++++++++++++++++++
+; ロマンキャンセル許可  
+;+++++++++++++++++++++++++++++++
+[State 10, 10];
+type = Varset
+trigger1 = MoveContact = 1
+trigger1 = var(3) != 1
+persistent = 0
+ignorehitpause = 1
+var(3) = 1
+;+++++++++++++++++++++++++++++++
+
+[State 1000, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;                                   千里沁鐘　最初の移動
+[Statedef 1130]
+type    = S
+movetype= I
+physics = S
+juggle  = 0
+poweradd= 24
+velset = 0,0
+anim = 1130
+ctrl = 0
+;sprpriority = 2
+
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\
+;ＥＸ・何でもアリモード
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\
+[State 1000]
+type = AfterImage
+trigger1 = Time = 0
+time = 15
+length = 4
+frameGap = 1
+timeGap = 3
+PalAdd = 0,0,0
+palmul = 1,1,1
+PalBright = 0, 0, 0
+PalContrast = 128,128,128
+Trans = Add1
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+[State 240, 3]
+type = Velset
+trigger1 = Time >= 0
+x = 9
+
+[State 2, ga3]
+type = PlaySnd
+trigger1 = AnimElem = 1
+value = 404, 0
+Volume = 99999
+channel = 1
+
+[State 2, ga3];
+type = PlaySnd
+trigger1 = AnimElem = 1
+value = 305, 0
+Volume = 99999
+channel = 0
+
+[State 20, 3]
+type = playerpush
+trigger1 = time >= 0
+value = 0
+
+[State 50, 12];画面揺らし
+type = EnvShake
+trigger1 = AnimElem = 1
+Time = 10
+
+[State 240, 3];ピンクの煙
+type = Explod
+trigger1 = AnimElem = 1
+pos = 50, 5
+;Postype = p1
+;facing = 1
+persistent = 0
+ignorehitpause = 1
+sprpriority = 999
+ownpal = 1
+;ontop = 1
+;pausemovetime = 99999999999999
+;supermovetime = 99999999999999
+;supermove = 1
+bindtime = 1
+anim = 1005
+
+[State 1000, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+trigger2 = p2dist X < -40
+value = 1131
+ctrl = 0
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;                                   千里沁鐘　ブレーキアンド振り向き
+[Statedef 1131]
+type    = S
+movetype= I
+physics = N
+juggle  = 0
+poweradd= 0
+;velset = 0,0
+anim = 1131
+ctrl = 0
+;sprpriority = 2
+
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\
+;ＥＸ・何でもアリモード  百歩沁鐘
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\
+[State 2, 1];残像
+type = AfterImage
+triggerall = Var(43) = 10 || Var(43) = 15;ＥＸ・何でもアリモード
+trigger1 = Time = 0
+time = 15
+length = 4
+frameGap = 1
+timeGap = 3
+PalAdd = 0,0,0
+palmul = 1,1,1
+PalBright = 0, 0, 0
+PalContrast = 128,128,128
+Trans = Add1
+
+[State 2]
+type = VarRandom
+triggerall = PrevStateNo  != 1130
+triggerall = Var(43) = 10 || Var(43) = 15;ＥＸ・何でもアリモード
+trigger1 = AnimTime = 0
+v = 0
+range = 0, 2
+[State 2, ga2];
+type = PlaySnd
+triggerall = PrevStateNo  != 1130
+triggerall = Var(0) = 0
+triggerall = Var(43) = 10 || Var(43) = 15;ＥＸ・何でもアリモード
+trigger1 = AnimTime = 0
+value = 304, 0
+Volume = 99999
+channel = 0
+[State 2, ga3];
+type = PlaySnd
+triggerall = PrevStateNo  != 1130
+triggerall = Var(0) = 1
+triggerall = Var(43) = 10 || Var(43) = 15;ＥＸ・何でもアリモード
+trigger1 = AnimTime = 0
+value = 304, 1
+Volume = 99999
+channel = 0
+[State 2, ga3];
+type = PlaySnd
+triggerall = PrevStateNo  != 1130
+triggerall = Var(0) = 2
+triggerall = Var(43) = 10 || Var(43) = 15;ＥＸ・何でもアリモード
+trigger1 = AnimTime = 0
+value = 304, 2
+Volume = 99999
+channel = 0
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+[State 240, 3]
+type = Veladd
+trigger1 = Time >= 0
+trigger1 = Vel X > 0
+x = -0.7
+
+[State 0, 1]
+type = ChangeAnim
+triggerall = PrevStateNo  = 1130
+trigger1 = AnimTime = 0
+trigger1 = Anim != 1132
+trigger1 = p2dist X < -5
+value = 1132
+
+[State 5201, 1]
+type = Turn
+triggerall = PrevStateNo  = 1130
+trigger1 = Anim = 1132
+persistent = 0
+ignorehitpause = 1
+
+[State 240, 3]
+type = velset
+triggerall = PrevStateNo  = 1130
+trigger1 = Anim = 1132
+x = 0
+
+[State 2, ga3]
+type = PlaySnd
+triggerall = PrevStateNo  = 1130
+trigger1 = AnimElem = 4
+trigger1 = p2dist X < -5
+value = 505, 0
+persistent = 0
+ignorehitpause = 1
+Volume = 99999
+;channel = 1
+
+
+[State 1000, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 1133
+ctrl = 0
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;                                   千里沁鐘　１撃目
+[Statedef 1133]
+type    = S
+movetype= A
+physics = N
+juggle  = 0
+poweradd= 0
+velset = 0,0
+anim = 1133
+ctrl = 0
+;sprpriority = 2
+
+[State 210, 1]
+type = Width
+trigger1 = Time >= 0
+player= 15,0
+
+[State 240, 3]
+type = Velset
+trigger1 = Time = 0
+x = 10
+
+[State 240, 3]
+type = Veladd
+trigger1 = Time >= 0
+trigger1 = Vel X > 0
+x = -0.5
+
+[State 2, ga3]
+type = PlaySnd
+trigger1 = AnimElem = 1
+value = 404, 0
+Volume = 99999
+;channel = 1
+
+[State 20, 3]
+type = playerpush
+trigger1 = time >= 0
+value = 1
+
+[State 50, 12];画面揺らし
+type = EnvShake
+trigger1 = AnimElem = 1
+Time = 10
+
+[State 240, 3];ピンクの煙
+type = Explod
+trigger1 = AnimElem = 1
+pos = 60, 5
+;Postype = p1
+;facing = 1
+persistent = 0
+ignorehitpause = 1
+sprpriority = 999
+ownpal = 1
+;ontop = 1
+;pausemovetime = 99999999999999
+;supermovetime = 99999999999999
+;supermove = 1
+bindtime = 1
+anim = 1005
+
+
+[State 200, 1];
+type = HitDef
+trigger1 = AnimElem = 1
+attr = S, SA
+damage = ceil(18*Var(5)/256)+Var(15), 5
+animtype = hard
+guardflag = MA
+hitflag = MAF
+priority = 3, Miss
+pausetime = 8,8+Var(15)
+guard.pausetime = 8,7
+sparkno = -1 + 0 * (var(53) := 8013)
+guard.sparkno = -1 + 0 * (var(54) := 8001)
+sparkxy = -10 + 0 * (var(56) := 89), var(57):= -76
+hitsound = S5, 2
+guardsound =S509, 4
+ground.type = Low
+ground.slidetime = 12
+ground.hittime  = 12
+ground.velocity = -7,-6+Var(6)
+guard.velocity = -4
+airguard.velocity = -4,-1+Var(6)
+air.type = Low
+air.velocity =-7,-6+Var(6)
+air.hittime = 12
+fall = 1;落下させる
+;fall.recover = 1;受身可否
+fall.recovertime = 50-Var(6);受身出来るまでの時間
+air.fall = 1;相手が空中時のみ落下させる
+getpower = 72,0
+givepower = 5,0
+palfx.time = 1
+palfx.add = 0,0,0
+p2facing = 1
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+[State 10,combo];攻撃力補正用ＶＡＲ
+type = Varadd
+trigger1 = MoveHit = 1
+persistent = 0
+ignorehitpause = 1
+v = 4
+value = 1
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
+[State 2, ga3];カウンターヒット時
+type = PlaySnd
+trigger1 =  var(14) >= 128
+trigger1 = movehit = 1
+persistent = 0
+ignorehitpause = 1
+value = 511, 1
+Volume = 99999
+;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
+;あああああああああああああああああ
+[State 2,guardLEVEL];ガードレベル増加
+type = Varadd
+trigger1 =  var(14) <= 246
+trigger1 = moveguarded = 1
+persistent = 0
+ignorehitpause = 1
+var(14) = 10
+[State 2,guardLEVEL];ガードレベル増加
+type = Varadd
+trigger1 =  var(14) > 246
+trigger1 = moveguarded = 1
+persistent = 0
+ignorehitpause = 1
+var(14) = 256-Var(14)
+[State 2,guardLEVEL];ガードレベル減少
+type = Varadd
+trigger1 =  movehit = 1
+trigger1 =  var(14) >= 10
+persistent = 0
+ignorehitpause = 1
+var(14) = -10
+[State 2,guardLEVEL];ガードレベル減少
+type = Varadd
+trigger1 =  movehit = 1
+trigger1 =  var(14) < 10
+persistent = 0
+ignorehitpause = 1
+var(14) = -Var(14)
+;あああああああああああああああああ
+;HHHHHHHHHHHHHHHHHHHHHHHH
+;ＨＩＴ炎エフェクトのヘルパー強制消去用
+;HHHHHHHHHHHHHHHHHHHHHHHH
+[State 1,1]
+type = Varset
+triggerall = Var(17)  != 1
+trigger1 = MoveContact = 1
+ignorehitpause = 1
+v = 17
+value = 1
+;HHHHHHHHHHHHHHHHHHHHHHHH
+
+
+;+++++++++++++++++++++++++++++++
+; ロマンキャンセル許可  
+;+++++++++++++++++++++++++++++++
+[State 10, 10];
+type = Varset
+trigger1 = MoveContact = 1
+trigger1 = var(3) != 1
+persistent = 0
+ignorehitpause = 1
+var(3) = 1
+;+++++++++++++++++++++++++++++++
+;+++++++++++++++++++++++++++++++
+; ロマンキャンセル解除ガトリング暴発防止
+;+++++++++++++++++++++++++++++++
+[State 10, 10];
+type = Varset
+trigger1 = Time = 0
+trigger1 = var(3) = 1
+persistent = 0
+ignorehitpause = 1
+var(3) = 0
+;+++++++++++++++++++++++++++++++
+
+[State 1000, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 1134
+ctrl = 0
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;                                   千里沁鐘　２撃目
+[Statedef 1134]
+type    = S
+movetype= A
+physics = N
+juggle  = 0
+poweradd= 0
+velset = 0,0
+anim = 1134
+ctrl = 0
+;sprpriority = 2
+
+[State 210, 1]
+type = Width
+trigger1 = Time >= 0
+player= 15,0
+
+[State 240, 3]
+type = Veladd
+trigger1 = Time >= 0
+trigger1 = Vel X > 0
+x = -0.5
+
+[State 20, 3]
+type = playerpush
+trigger1 = time >= 0
+value = 1
+
+[State 200, 1];
+type = HitDef
+trigger1 = AnimElem = 1
+attr = S, SA
+damage = ceil(18*Var(5)/256)+Var(15), 5
+animtype = hard
+guardflag = MA
+hitflag = MAF
+priority = 3, Miss
+pausetime = 8,8+Var(15)
+guard.pausetime = 8,7
+sparkno = -1 + 0 * (var(53) := 8013)
+guard.sparkno = -1 + 0 * (var(54) := 8001)
+sparkxy = -10 + 0 * (var(56) := 89), var(57):= -76
+hitsound = S5, 2
+guardsound =S509, 4
+ground.type = Low
+ground.slidetime = 12
+ground.hittime  = 12
+ground.velocity = -7,-6+Var(6)
+guard.velocity = -4
+airguard.velocity = -4,-1+Var(6)
+air.type = Low
+air.velocity =-7,-6+Var(6)
+air.hittime = 12
+fall = 1;落下させる
+;fall.recover = 1;受身可否
+fall.recovertime = 50-Var(6);受身出来るまでの時間
+air.fall = 1;相手が空中時のみ落下させる
+getpower = 72,0
+givepower = 5,0
+palfx.time = 1
+palfx.add = 0,0,0
+p2facing = 1
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+[State 10,combo];攻撃力補正用ＶＡＲ
+type = Varadd
+trigger1 = MoveHit = 1
+persistent = 0
+ignorehitpause = 1
+v = 4
+value = 1
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
+[State 2, ga3];カウンターヒット時
+type = PlaySnd
+trigger1 =  var(14) >= 128
+trigger1 = movehit = 1
+persistent = 0
+ignorehitpause = 1
+value = 511, 1
+Volume = 99999
+;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
+;あああああああああああああああああ
+[State 2,guardLEVEL];ガードレベル増加
+type = Varadd
+trigger1 =  var(14) <= 246
+trigger1 = moveguarded = 1
+persistent = 0
+ignorehitpause = 1
+var(14) = 10
+[State 2,guardLEVEL];ガードレベル増加
+type = Varadd
+trigger1 =  var(14) > 246
+trigger1 = moveguarded = 1
+persistent = 0
+ignorehitpause = 1
+var(14) = 256-Var(14)
+[State 2,guardLEVEL];ガードレベル減少
+type = Varadd
+trigger1 =  movehit = 1
+trigger1 =  var(14) >= 10
+persistent = 0
+ignorehitpause = 1
+var(14) = -10
+[State 2,guardLEVEL];ガードレベル減少
+type = Varadd
+trigger1 =  movehit = 1
+trigger1 =  var(14) < 10
+persistent = 0
+ignorehitpause = 1
+var(14) = -Var(14)
+;あああああああああああああああああ
+;HHHHHHHHHHHHHHHHHHHHHHHH
+;ＨＩＴ炎エフェクトのヘルパー強制消去用
+;HHHHHHHHHHHHHHHHHHHHHHHH
+[State 1,1]
+type = Varset
+triggerall = Var(17)  != 1
+trigger1 = MoveContact = 1
+ignorehitpause = 1
+v = 17
+value = 1
+;HHHHHHHHHHHHHHHHHHHHHHHH
+
+
+;+++++++++++++++++++++++++++++++
+; ロマンキャンセル許可  
+;+++++++++++++++++++++++++++++++
+[State 10, 10];
+type = Varset
+trigger1 = MoveContact = 1
+trigger1 = var(3) != 1
+persistent = 0
+ignorehitpause = 1
+var(3) = 1
+;+++++++++++++++++++++++++++++++
+
+[State 1000, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 1135
+ctrl = 0
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;                                   千里沁鐘　３撃目
+[Statedef 1135]
+type    = S
+movetype= A
+physics = N
+juggle  = 0
+poweradd= 0
+velset = 0,0
+anim = 1135
+ctrl = 0
+;sprpriority = 2
+
+[State 210, 1]
+type = Width
+trigger1 = Time >= 0
+player= 15,0
+
+[State 240, 3]
+type = Veladd
+trigger1 = Time >= 0
+trigger1 = Vel X > 0
+x = -0.5
+
+[State 20, 3]
+type = playerpush
+trigger1 = time >= 0
+value = 1
+
+[State 200, 1];
+type = HitDef
+trigger1 = AnimElem = 1
+attr = S, SA
+damage = ceil(18*Var(5)/256)+Var(15), 5
+animtype = hard
+guardflag = MA
+hitflag = MAF
+priority = 3, Miss
+pausetime = 8,8+Var(15)
+guard.pausetime = 8,7
+sparkno = -1 + 0 * (var(53) := 8013)
+guard.sparkno = -1 + 0 * (var(54) := 8001)
+sparkxy = -10 + 0 * (var(56) := 89), var(57):= -76
+hitsound = S5, 2
+guardsound =S509, 4
+ground.type = Low
+ground.slidetime = 12
+ground.hittime  = 12
+ground.velocity = -7,-6+Var(6)
+guard.velocity = -4
+airguard.velocity = -4,-1+Var(6)
+air.type = Low
+air.velocity =-7,-6+Var(6)
+air.hittime = 12
+fall = 1;落下させる
+;fall.recover = 1;受身可否
+fall.recovertime = 50-Var(6);受身出来るまでの時間
+air.fall = 1;相手が空中時のみ落下させる
+getpower = 72,0
+givepower = 5,0
+palfx.time = 1
+palfx.add = 0,0,0
+p2facing = 1
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+[State 10,combo];攻撃力補正用ＶＡＲ
+type = Varadd
+trigger1 = MoveHit = 1
+persistent = 0
+ignorehitpause = 1
+v = 4
+value = 1
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
+[State 2, ga3];カウンターヒット時
+type = PlaySnd
+trigger1 =  var(14) >= 128
+trigger1 = movehit = 1
+persistent = 0
+ignorehitpause = 1
+value = 511, 1
+Volume = 99999
+;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
+;あああああああああああああああああ
+[State 2,guardLEVEL];ガードレベル増加
+type = Varadd
+trigger1 =  var(14) <= 246
+trigger1 = moveguarded = 1
+persistent = 0
+ignorehitpause = 1
+var(14) = 10
+[State 2,guardLEVEL];ガードレベル増加
+type = Varadd
+trigger1 =  var(14) > 246
+trigger1 = moveguarded = 1
+persistent = 0
+ignorehitpause = 1
+var(14) = 256-Var(14)
+[State 2,guardLEVEL];ガードレベル減少
+type = Varadd
+trigger1 =  movehit = 1
+trigger1 =  var(14) >= 10
+persistent = 0
+ignorehitpause = 1
+var(14) = -10
+[State 2,guardLEVEL];ガードレベル減少
+type = Varadd
+trigger1 =  movehit = 1
+trigger1 =  var(14) < 10
+persistent = 0
+ignorehitpause = 1
+var(14) = -Var(14)
+;あああああああああああああああああ
+;HHHHHHHHHHHHHHHHHHHHHHHH
+;ＨＩＴ炎エフェクトのヘルパー強制消去用
+;HHHHHHHHHHHHHHHHHHHHHHHH
+[State 1,1]
+type = Varset
+triggerall = Var(17)  != 1
+trigger1 = MoveContact = 1
+ignorehitpause = 1
+v = 17
+value = 1
+;HHHHHHHHHHHHHHHHHHHHHHHH
+
+
+;+++++++++++++++++++++++++++++++
+; ロマンキャンセル許可  
+;+++++++++++++++++++++++++++++++
+[State 10, 10];
+type = Varset
+trigger1 = MoveContact = 1
+trigger1 = var(3) != 1
+persistent = 0
+ignorehitpause = 1
+var(3) = 1
+;+++++++++++++++++++++++++++++++
+
+[State 1000, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 1136
+ctrl = 0
+
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;                                   千里沁鐘　４撃目
+[Statedef 1136]
+type    = S
+movetype= A
+physics = N
+juggle  = 0
+poweradd= 0
+velset = 0,0
+anim = 1136
+ctrl = 0
+;sprpriority = 2
+
+[State 210, 1]
+type = Width
+trigger1 = Time >= 0
+player= 15,0
+
+[State 240, 3]
+type = Veladd
+trigger1 = Time >= 0
+trigger1 = Vel X > 0
+x = -0.5
+
+[State 20, 3]
+type = playerpush
+trigger1 = time >= 0
+value = 1
+
+[State 200, 1];
+type = HitDef
+trigger1 = AnimElem = 1
+attr = S, SA
+damage = ceil(18*Var(5)/256)+Var(15), 5
+animtype = hard
+guardflag = MA
+hitflag = MAF
+priority = 3, Miss
+pausetime = 8,8+Var(15)
+guard.pausetime = 8,7
+sparkno = -1 + 0 * (var(53) := 8013)
+guard.sparkno = -1 + 0 * (var(54) := 8001)
+sparkxy = -10 + 0 * (var(56) := 89), var(57):= -76
+hitsound = S5, 2
+guardsound =S509, 4
+ground.type = Low
+ground.slidetime = 12
+ground.hittime  = 12
+ground.velocity = -7,-6+Var(6)
+guard.velocity = -4
+airguard.velocity = -4,-1+Var(6)
+air.type = Low
+air.velocity =-7,-6+Var(6)
+air.hittime = 12
+fall = 1;落下させる
+;fall.recover = 1;受身可否
+fall.recovertime = 50-Var(6);受身出来るまでの時間
+air.fall = 1;相手が空中時のみ落下させる
+getpower = 72,0
+givepower = 5,0
+palfx.time = 1
+palfx.add = 0,0,0
+p2facing = 1
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+[State 10,combo];攻撃力補正用ＶＡＲ
+type = Varadd
+trigger1 = MoveHit = 1
+persistent = 0
+ignorehitpause = 1
+v = 4
+value = 1
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
+[State 2, ga3];カウンターヒット時
+type = PlaySnd
+trigger1 =  var(14) >= 128
+trigger1 = movehit = 1
+persistent = 0
+ignorehitpause = 1
+value = 511, 1
+Volume = 99999
+;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
+;あああああああああああああああああ
+[State 2,guardLEVEL];ガードレベル増加
+type = Varadd
+trigger1 =  var(14) <= 246
+trigger1 = moveguarded = 1
+persistent = 0
+ignorehitpause = 1
+var(14) = 10
+[State 2,guardLEVEL];ガードレベル増加
+type = Varadd
+trigger1 =  var(14) > 246
+trigger1 = moveguarded = 1
+persistent = 0
+ignorehitpause = 1
+var(14) = 256-Var(14)
+[State 2,guardLEVEL];ガードレベル減少
+type = Varadd
+trigger1 =  movehit = 1
+trigger1 =  var(14) >= 10
+persistent = 0
+ignorehitpause = 1
+var(14) = -10
+[State 2,guardLEVEL];ガードレベル減少
+type = Varadd
+trigger1 =  movehit = 1
+trigger1 =  var(14) < 10
+persistent = 0
+ignorehitpause = 1
+var(14) = -Var(14)
+;あああああああああああああああああ
+;HHHHHHHHHHHHHHHHHHHHHHHH
+;ＨＩＴ炎エフェクトのヘルパー強制消去用
+;HHHHHHHHHHHHHHHHHHHHHHHH
+[State 1,1]
+type = Varset
+triggerall = Var(17)  != 1
+trigger1 = MoveContact = 1
+ignorehitpause = 1
+v = 17
+value = 1
+;HHHHHHHHHHHHHHHHHHHHHHHH
+
+
+;+++++++++++++++++++++++++++++++
+; ロマンキャンセル許可  
+;+++++++++++++++++++++++++++++++
+[State 10, 10];
+type = Varset
+trigger1 = MoveContact = 1
+trigger1 = var(3) != 1
+persistent = 0
+ignorehitpause = 1
+var(3) = 1
+;+++++++++++++++++++++++++++++++
+
+[State 1000, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;========================< PUNCH ZERO COUNTER >=============================
+[Statedef 2900]
+type = S
+physics = N
+movetype = A
+anim = 2900
+ctrl = 0
+velset = 0, 0
+sprpriority = 1
+poweradd = 0
+
+[State 2900, NHB]
+type = nothitby
+trigger1 = animelemtime(3) < 0
+value = SCA
+time = 1
+ignorehitpause = 1
+
+[State 220, Snd]
+type=playsnd
+trigger1= !time
+value= 4, ifelse(random<500, 1, 2)
+channel=0
+
+[State 220, Snd]
+type=playsnd
+trigger1= !time
+value=1,2
+channel=1
+
+[State 2900, Hit]
+type = hitdef
+trigger1 = !var(16) && var(15) < 1
+trigger1 = animelem = 3
+attr = S, SA
+hitflag = MAF
+guardflag = M
+priority = 4, Hit
+damage = ceil(ifelse(fvar(11) * 42 < 7, 7, fvar(11) * 42)), 7
+getpower = 0, 0
+givepower = 36, 36
+pausetime = 12, 12
+guard.pausetime = 12, 12
+animtype = Diagup
+air.animtype = Diagup
+fall.animtype = Diagup
+ground.type = Low
+air.type = Low
+ground.hittime = 18
+ground.slidetime = 18
+guard.hittime = 18
+air.hittime = 120
+ground.velocity = -5.54, -5.25
+ground.cornerpush.veloff = 0
+guard.velocity = -10.52
+guard.cornerpush.veloff = 0
+air.velocity = -5.54, -5.25
+air.cornerpush.veloff = 0
+yaccel = 0.58
+fall = 1
+fall.recover = 1
+fall.recovertime = 120;24
+forcestand = 1
+hitsound = -1 + 0 * (var(31) := 2)
+guardsound = -1 + 0 * (var(32) := 0)
+sparkno = -1 + 0 * (var(33) := 8013)
+guard.sparkno = -1 + 0 * (var(34) := 8001)
+sparkxy = -10 + 0*(var(35):=63), var(36):=-69
+palfx.time = 12 * var(9)
+palfx.add = 255, 255, 255
+palfx.sinadd = -255, -255, -255, 48
+envshake.time = 14
+envshake.ampl = 4
+envshake.freq = 120
+kill = 0
+
+[State 2900, Type]
+type = statetypeset
+trigger1 = animelemtime(5) >= 0
+movetype = I
+
+[State 2900, End]
+type = changestate
+trigger1 = !animtime
+value = 0
+ctrl = 1
+
+
+;========================< KICK ZERO COUNTER >=============================
+[Statedef 2910]
+type = S
+physics = N
+movetype = A
+anim = 2910
+ctrl = 0
+velset = 0, 0
+sprpriority = 1
+poweradd = 0
+
+[State 2910, NHB]
+type = nothitby
+trigger1 = animelemtime(3) < 0
+value = SCA
+time = 1
+ignorehitpause = 1
+
+[State 450, Snd]
+type=playsnd
+trigger1= animelem=2
+value= 4, ifelse(random<500, 1, 2)
+channel=0
+
+[State 450, Snd]
+type=playsnd
+trigger1= animelem=2
+value=1,5
+channel=1
+
+[State 2910, Hit]
+type = hitdef
+trigger1 = !var(16) && var(15) < 1
+trigger1 = animelem = 3
+attr = C, SA
+hitflag = MAF
+guardflag = M
+priority = 4, Hit
+damage = ceil(ifelse(fvar(11) * 42 < 7, 7, fvar(11) * 42)), 7
+getpower = 0, 0
+givepower = 36, 36
+pausetime = 12, 12
+guard.pausetime = 12, 12
+animtype = Diagup
+air.animtype = Diagup
+fall.animtype = Diagup
+ground.type = Low
+air.type = Low
+ground.hittime = 18
+ground.slidetime = 18
+guard.hittime = 18
+air.hittime = 120
+ground.velocity = -5.54, -5.25
+ground.cornerpush.veloff = 0
+guard.velocity = -10.52
+guard.cornerpush.veloff = 0
+air.velocity = -5.54, -5.25
+air.cornerpush.veloff = 0
+yaccel = 0.58
+fall = 1
+fall.recover = 1
+fall.recovertime = 120;24
+forcestand = 1
+hitsound = -1 + 0 * (var(31) := 5)
+guardsound = -1 + 0 * (var(32) := 0)
+sparkno = -1 + 0 * (var(33) := 8013)
+guard.sparkno = -1 + 0 * (var(34) := 8001)
+sparkxy = -10 + 0*(var(35):=83), var(36):=-10
+palfx.time = 12 * var(9)
+palfx.add = 255, 255, 255
+palfx.sinadd = -255, -255, -255, 48
+envshake.time = 14
+envshake.ampl = 4
+envshake.freq = 120
+kill = 0
+
+[State 2910, Type]
+type = statetypeset
+trigger1 = animelemtime(4) >= 0
+movetype = I
+
+[State 2910, End]
+type = changestate
+trigger1 = !animtime
+value = 0
+ctrl = 1
+

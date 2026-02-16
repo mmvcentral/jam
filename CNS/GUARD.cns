@@ -1,0 +1,1156 @@
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+; @@@@@@@@@@@@@@@@ƒK[ƒhƒQ[ƒW•\¦ƒwƒ‹ƒp[
+[Statedef 2050]
+type    = A                      
+movetype= I                      
+physics = N                     
+juggle  = 0                      
+;velset = 0,0                   
+ctrl = 0                       
+anim = 9999                      
+poweradd = 0    
+
+;====================================================================================================
+;====================================================================================================
+;====================================================================================================
+;                   @@@@@@ƒK[ƒhƒQ[ƒWŠÖŒW
+;====================================================================================================
+;====================================================================================================
+;====================================================================================================
+
+[State 2090, 4];ƒK[ƒhƒQ[ƒW˜g‚P‚o
+type = Explod
+triggerall = P2name != "Dizzy By Third";Q†‚³‚ñƒfƒBƒW[‚ÍœŠO
+triggerall = roundstate = 2
+triggerall = parent,stateno != [170,192]
+triggerall = parent,stateno != [2015,2018]
+triggerall = parent,Lose != 1
+triggerall = parent,Win != 1
+triggerall = parent,teamSide = 1
+trigger1 = NumExplod(11502) = 0
+anim = F1502
+id = 11502
+pos = 320,50
+postype = left
+sprpriority = -3
+facing = 1
+bindtime = -1
+ownpal = 1
+removetime = 99999
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+supermove = 1
+
+[State 2090, 4];ƒK[ƒhƒQ[ƒWƒo[‚P‚o
+type = Explod
+triggerall = P2name != "Dizzy By Third";Q†‚³‚ñƒfƒBƒW[‚ÍœŠO
+triggerall = roundstate = 2
+triggerall = parent,stateno != [170,192]
+triggerall = parent,stateno != [2015,2018]
+triggerall = parent,Lose    != 1
+triggerall = parent,Win    != 1
+triggerall = parent,teamSide = 1
+trigger1 = NumExplod(11501) = 0
+trigger1 = root,Var(14) < 128
+anim = F1501
+id = 11501
+pos = 236,53
+postype = left
+sprpriority = -2
+facing = 1
+bindtime = -1
+ownpal = 0
+removetime = 99999
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+supermove = 1
+
+[State 2090, 4];ƒK[ƒhƒQ[ƒWƒo[‚P‚o
+type = Explod
+triggerall = P2name != "Dizzy By Third";Q†‚³‚ñƒfƒBƒW[‚ÍœŠO
+triggerall = roundstate = 2
+triggerall = parent,stateno != [170,192]
+triggerall = parent,stateno != [2015,2018]
+triggerall = parent,Lose    != 1
+triggerall = parent,Win    != 1
+triggerall = parent,teamSide = 1
+trigger1 = NumExplod(11504) = 0
+trigger1 = root,Var(14) >= 128
+anim = F1504
+id = 11504
+pos = 236,53
+postype = left
+sprpriority = -2
+facing = 1
+bindtime = -1
+ownpal = 0
+removetime = 99999
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+supermove = 1
+
+[State 2090, 7];ƒK[ƒhƒQ[ƒWŒ¸­‚P‚o
+type = ModifyExplod
+trigger1 = Time >= 0
+ID = 11501
+scale = root,Var(14)/256.0,1
+
+[State 2090, 7];ƒK[ƒhƒQ[ƒWŒ¸­‚P‚o
+type = ModifyExplod
+trigger1 = Time >= 0
+ID = 11504
+scale = root,Var(14)/256.0,1
+
+[State 2090, 4];ƒK[ƒhƒQ[ƒW˜g‚Q‚o
+type = Explod
+triggerall = P2name != "Dizzy By Third";Q†‚³‚ñƒfƒBƒW[‚ÍœŠO
+triggerall = roundstate = 2
+triggerall = parent,stateno != [170,192]
+triggerall = parent,stateno != [2015,2018]
+triggerall = parent,Lose != 1
+triggerall = parent,Win != 1
+triggerall = parent,teamSide = 2
+trigger1 = NumExplod(11500) = 0
+anim = F1500
+id = 11500
+pos = 0,50
+postype = left
+sprpriority = -3
+facing = 1
+bindtime = -1
+ownpal = 1
+removetime = 99999
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+supermove = 1
+
+[State 2090, 4];ƒK[ƒhƒQ[ƒWƒo[‚Q‚o
+type = Explod
+triggerall = P2name != "Dizzy By Third";Q†‚³‚ñƒfƒBƒW[‚ÍœŠO
+triggerall = roundstate = 2
+triggerall = parent,stateno != [170,192]
+triggerall = parent,stateno != [2015,2018]
+triggerall = parent,Lose != 1
+triggerall = parent,Win != 1
+triggerall = parent,teamSide = 2
+trigger1 = NumExplod(11503) = 0
+trigger1 = root,Var(14) < 128
+anim = F1503
+id = 11503
+pos = 84,53
+postype = left
+sprpriority = -2
+facing = 1
+bindtime = -1
+ownpal = 0
+removetime = 99999
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+supermove = 1
+
+[State 2090, 4];ƒK[ƒhƒQ[ƒWƒo[‚Q‚o
+type = Explod
+triggerall = P2name != "Dizzy By Third";Q†‚³‚ñƒfƒBƒW[‚ÍœŠO
+triggerall = roundstate = 2
+triggerall = parent,stateno != [170,192]
+triggerall = parent,stateno != [2015,2018]
+triggerall = parent,Lose != 1
+triggerall = parent,Win != 1
+triggerall = parent,teamSide = 2
+trigger1 = NumExplod(11505) = 0
+trigger1 = root,Var(14) >= 128
+anim = F1505
+id = 11505
+pos = 84,53
+postype = left
+sprpriority = -2
+facing = 1
+bindtime = -1
+ownpal = 0
+removetime = 99999
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+supermove = 1
+
+[State 2090, 7];ƒK[ƒhƒQ[ƒWŒ¸­‚Q‚o
+type = ModifyExplod
+trigger1 = Time >= 0
+ID = 11503
+scale = root,Var(14)/256.0,1
+
+[State 2090, 7];ƒK[ƒhƒQ[ƒWŒ¸­‚Q‚o
+type = ModifyExplod
+trigger1 = Time >= 0
+ID = 11505
+scale = root,Var(14)/256.0,1
+
+[State 5201, 5]
+type = PalFX
+trigger1 = root,Var(14) >= 128
+trigger1 = Timemod = 7,0
+time = 4
+add = 200,200,200
+
+[State 2,11];ƒK[ƒhƒQ[ƒWŒ¸­
+type = parentVaradd
+trigger1 = parent,var(14) != 0
+trigger1 = Timemod = 10,0 
+ignorehitpause = 1
+var(14) = -1;‚±‚±‚ğ‚P‚O‚O‚Æ‚©‚É‚·‚ê‚ÎƒXƒO‚ÉƒQ[ƒW‚l‚`‚w‚É‚È‚é
+
+[State 2,0];ƒK[ƒhƒQ[ƒW‚OˆÈ‰º‘j~
+type = parentVarset
+trigger1   = parent,var(14) < 0
+ignorehitpause = 1
+v = 14
+value = 0
+[State -2,0];ƒK[ƒhƒQ[ƒW‚Q‚T‚UˆÈã‘j~
+type = parentVarset
+trigger1   = parent,var(14) >= 256
+ignorehitpause = 1
+v = 14
+value = 256
+
+[State 2,0];ƒJƒEƒ“ƒ^[ƒqƒbƒgƒ|[ƒYƒ^ƒCƒ€‘‰Á
+type = parentVarset
+trigger1   = parent,var(14) >= 128
+ignorehitpause = 1
+v = 15
+value = 10
+
+[State 2,0];ƒ|[ƒYƒ^ƒCƒ€‚»‚Ì‚Ü‚Ü
+type = parentVarset
+trigger1   = parent,var(14) < 128
+ignorehitpause = 1
+v = 15
+value = 0
+
+[State 2090, 7];ƒK[ƒhƒQ[ƒWÁ‹
+type = RemoveExplod
+triggerall = Time >= 0
+triggerall = roundstate != 2
+trigger1 = parent,stateno = [170,192]
+trigger2 = parent,stateno = [2015,2018]
+trigger3 = parent,Lose = 1
+trigger4 = parent,Win = 1
+ID = 11500
+[State 2090, 7];ƒK[ƒhƒQ[ƒWÁ‹
+type = RemoveExplod
+triggerall = Time >= 0
+triggerall = roundstate != 2
+trigger1 = parent,stateno = [170,192]
+trigger2 = parent,stateno = [2015,2018]
+trigger3 = parent,Lose = 1
+trigger4 = parent,Win = 1
+ID = 11501
+[State 2090, 7];ƒK[ƒhƒQ[ƒWÁ‹
+type = RemoveExplod
+triggerall = Time >= 0
+triggerall = roundstate != 2
+trigger1 = parent,stateno = [170,192]
+trigger2 = parent,stateno = [2015,2018]
+trigger3 = parent,Lose = 1
+trigger4 = parent,Win = 1
+ID = 11502
+[State 2090, 7];ƒK[ƒhƒQ[ƒWÁ‹
+type = RemoveExplod
+triggerall = Time >= 0
+triggerall = roundstate != 2
+trigger1 = parent,stateno = [170,192]
+trigger2 = parent,stateno = [2015,2018]
+trigger3 = parent,Lose = 1
+trigger4 = parent,Win = 1
+ID = 11503
+
+;******************************
+;“_–Åˆ——p‚ÌÁ‹
+;******************************
+[State 2090, 7];ƒK[ƒhƒQ[ƒWÁ‹
+type = RemoveExplod
+triggerall = Time >= 0
+trigger1 = root,Var(14) >= 128
+ID = 11501
+[State 2090, 7];ƒK[ƒhƒQ[ƒWÁ‹
+type = RemoveExplod
+triggerall = Time >= 0
+trigger1 = root,Var(14) >= 128
+ID = 11503
+[State 2090, 7];ƒK[ƒhƒQ[ƒWÁ‹
+type = RemoveExplod
+triggerall = Time >= 0
+trigger1 = root,Var(14) < 127
+ID = 11504
+[State 2090, 7];ƒK[ƒhƒQ[ƒWÁ‹
+type = RemoveExplod
+triggerall = Time >= 0
+trigger1 = root,Var(14) < 127
+ID = 11505
+;******************************
+
+;====================================================================================================
+;====================================================================================================
+;====================================================================================================
+;                   @@@@@@—´nE‹t—ØEŒ•˜OŠt@ƒGƒ“ƒuƒŒƒ€
+;====================================================================================================
+;====================================================================================================
+;====================================================================================================
+;===============
+;@‚P‚o‚Ìê‡
+;===============
+[State 2090, 4];—´n LV1
+type = Explod
+triggerall = parent,teamSide = 1
+trigger1 = NumExplod(1105)= 0;—´n LV1
+trigger1 = parent,Var(22) = [1,3]
+pos = 10,200
+postype = left
+sprpriority = -1
+facing = 1
+bindtime = -1
+ownpal = 1
+ontop = 1
+removetime = 99999
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+supermove = 1
+anim = 1105
+id   = 1105
+[State 2090, 4];—´n LV2
+type = Explod
+triggerall = parent,teamSide = 1
+trigger1 = NumExplod(1106)= 0;—´n LV2
+trigger1 = parent,Var(22) = [2,3]
+pos = 10,195
+postype = left
+sprpriority = -2
+facing = 1
+bindtime = -1
+ownpal = 1
+ontop = 1
+removetime = 99999
+anim = 1108
+id   = 1106
+[State 2090, 4];—´n LV3
+type = Explod
+triggerall = parent,teamSide = 1
+trigger1 = NumExplod(1107)= 0;—´n LV3
+trigger1 = parent,Var(22) = 3
+pos = 10,190
+postype = left
+sprpriority = -3
+facing = 1
+bindtime = -1
+ownpal = 1
+ontop = 1
+removetime = 99999
+anim = 1108
+id   = 1107
+
+[State 2090, 4];‹t—Ø LV1
+type = Explod
+triggerall = parent,teamSide = 1
+trigger1 = NumExplod(1108)= 0;‹t—Ø LV1
+trigger1 = parent,Var(23) = [1,3]
+pos = 27,200
+postype = left
+sprpriority = -1
+facing = 1
+bindtime = -1
+ownpal = 1
+ontop = 1
+removetime = 99999
+anim = 1106
+id   = 1108
+[State 2090, 4];‹t—Ø LV2
+type = Explod
+triggerall = parent,teamSide = 1
+trigger1 = NumExplod(1109)= 0;‹t—Ø LV2
+trigger1 = parent,Var(23) = [2,3]
+pos = 27,195
+postype = left
+sprpriority = -2
+facing = 1
+bindtime = -1
+ownpal = 1
+ontop = 1
+removetime = 99999
+anim = 1109
+id   = 1109
+[State 2090, 4];‹t—Ø LV3
+type = Explod
+triggerall = parent,teamSide = 1
+trigger1 = NumExplod(1110)= 0;‹t—Ø LV3
+trigger1 = parent,Var(23) = 3
+pos = 27,190
+postype = left
+sprpriority = -3
+facing = 1
+bindtime = -1
+ownpal = 1
+ontop = 1
+removetime = 99999
+anim = 1109
+id   = 1110
+
+[State 2090, 4];Œ•˜OŠt LV1
+type = Explod
+triggerall = parent,teamSide = 1
+trigger1 = NumExplod(1111)= 0;Œ•˜OŠt LV1
+trigger1 = parent,Var(24) = [1,3]
+pos = 44,200
+postype = left
+sprpriority = -1
+facing = 1
+bindtime = -1
+ownpal = 1
+ontop = 1
+removetime = 99999
+anim = 1107
+id   = 1111
+[State 2090, 4];Œ•˜OŠt LV2
+type = Explod
+triggerall = parent,teamSide = 1
+trigger1 = NumExplod(1112)= 0;Œ•˜OŠt LV2
+trigger1 = parent,Var(24) = [2,3]
+pos = 44,195
+postype = left
+sprpriority = -2
+facing = 1
+bindtime = -1
+ownpal = 1
+ontop = 1
+removetime = 99999
+anim = 1110
+id   = 1112
+[State 2090, 4];Œ•˜OŠt LV3
+type = Explod
+triggerall = parent,teamSide = 1
+trigger1 = NumExplod(1113)= 0;Œ•˜OŠt LV3
+trigger1 = parent,Var(24) = 3
+pos = 44,190
+postype = left
+sprpriority = -3
+facing = 1
+bindtime = -1
+ownpal = 1
+ontop = 1
+removetime = 99999
+anim = 1110
+id   = 1113
+
+;===============
+;@‚Q‚o‚Ìê‡
+;===============
+[State 2090, 4];—´n LV1
+type = Explod
+triggerall = parent,teamSide = 2
+trigger1 = NumExplod(1105)= 0;—´n LV1
+trigger1 = parent,Var(22) = [1,3]
+pos = 293,200
+postype = left
+sprpriority = -1
+facing = 1
+bindtime = -1
+ownpal = 1
+ontop = 1
+removetime = 99999
+anim = 1105
+id   = 1105
+[State 2090, 4];—´n LV2
+type = Explod
+triggerall = parent,teamSide = 2
+trigger1 = NumExplod(1106)= 0;—´n LV2
+trigger1 = parent,Var(22) = [2,3]
+pos = 293,195
+postype = left
+sprpriority = -2
+facing = 1
+bindtime = -1
+ownpal = 1
+ontop = 1
+removetime = 99999
+anim = 1108
+id   = 1106
+[State 2090, 4];—´n LV3
+type = Explod
+triggerall = parent,teamSide = 2
+trigger1 = NumExplod(1107)= 0;—´n LV3
+trigger1 = parent,Var(22) = 3
+pos = 293,190
+postype = left
+sprpriority = -3
+facing = 1
+bindtime = -1
+ownpal = 1
+ontop = 1
+removetime = 99999
+anim = 1108
+id   = 1107
+
+[State 2090, 4];‹t—Ø LV1
+type = Explod
+triggerall = parent,teamSide = 2
+trigger1 = NumExplod(1108)= 0;‹t—Ø LV1
+trigger1 = parent,Var(23) = [1,3]
+pos = 276,200
+postype = left
+sprpriority = -1
+facing = 1
+bindtime = -1
+ownpal = 1
+ontop = 1
+removetime = 99999
+anim = 1106
+id   = 1108
+[State 2090, 4];‹t—Ø LV2
+type = Explod
+triggerall = parent,teamSide = 2
+trigger1 = NumExplod(1109)= 0;‹t—Ø LV2
+trigger1 = parent,Var(23) = [2,3]
+pos = 276,195
+postype = left
+sprpriority = -2
+facing = 1
+bindtime = -1
+ownpal = 1
+ontop = 1
+removetime = 99999
+anim = 1109
+id   = 1109
+[State 2090, 4];‹t—Ø LV3
+type = Explod
+triggerall = parent,teamSide = 2
+trigger1 = NumExplod(1110)= 0;‹t—Ø LV3
+trigger1 = parent,Var(23) = 3
+pos = 276,190
+postype = left
+sprpriority = -3
+facing = 1
+bindtime = -1
+ownpal = 1
+ontop = 1
+removetime = 99999
+anim = 1109
+id   = 1110
+
+[State 2090, 4];Œ•˜OŠt LV1
+type = Explod
+triggerall = parent,teamSide = 2
+trigger1 = NumExplod(1111)= 0;Œ•˜OŠt LV1
+trigger1 = parent,Var(24) = [1,3]
+pos = 259,200
+postype = left
+sprpriority = -1
+facing = 1
+bindtime = -1
+ownpal = 1
+ontop = 1
+removetime = 99999
+anim = 1107
+id   = 1111
+[State 2090, 4];Œ•˜OŠt LV2
+type = Explod
+triggerall = parent,teamSide = 2
+trigger1 = NumExplod(1112)= 0;Œ•˜OŠt LV2
+trigger1 = parent,Var(24) = [2,3]
+pos = 259,195
+postype = left
+sprpriority = -2
+facing = 1
+bindtime = -1
+ownpal = 1
+ontop = 1
+removetime = 99999
+anim = 1110
+id   = 1112
+[State 2090, 4];Œ•˜OŠt LV3
+type = Explod
+triggerall = parent,teamSide = 2
+trigger1 = NumExplod(1113)= 0;Œ•˜OŠt LV3
+trigger1 = parent,Var(24) = 3
+pos = 259,190
+postype = left
+sprpriority = -3
+facing = 1
+bindtime = -1
+ownpal = 1
+ontop = 1
+removetime = 99999
+anim = 1110
+id   = 1113
+
+[State 200, 1];—´n LV1Á‹
+type = RemoveExplod
+trigger1 = parent,Var(22) = 0
+trigger2 = Root,StateNo = 2302;‰ä‘A›
+ignorehitpause = 1
+ID = 1105
+[State 200, 1];—´n LV2Á‹
+type = RemoveExplod
+trigger1 = parent,Var(22) = 1
+trigger2 = Root,StateNo = 2302;‰ä‘A›
+ignorehitpause = 1
+ID = 1106
+[State 200, 1];—´n LV3Á‹
+type = RemoveExplod
+trigger1 = parent,Var(22) = 2
+trigger2 = Root,StateNo = 2302;‰ä‘A›
+ignorehitpause = 1
+ID = 1107
+
+[State 200, 1];‹t—Ø LV1Á‹
+type = RemoveExplod
+trigger1 = parent,Var(23) = 0
+trigger2 = Root,StateNo = 2302;‰ä‘A›
+ignorehitpause = 1
+ID = 1108
+[State 200, 1];‹t—Ø LV2Á‹
+type = RemoveExplod
+trigger1 = parent,Var(23) = 1
+trigger2 = Root,StateNo = 2302;‰ä‘A›
+ignorehitpause = 1
+ID = 1109
+[State 200, 1];‹t—Ø LV3Á‹
+type = RemoveExplod
+trigger1 = parent,Var(23) = 2
+trigger2 = Root,StateNo = 2302;‰ä‘A›
+ignorehitpause = 1
+ID = 1110
+
+[State 200, 1];Œ•˜OŠt LV1Á‹
+type = RemoveExplod
+trigger1 = parent,Var(24) = 0
+trigger2 = Root,StateNo = 2302;‰ä‘A›
+ignorehitpause = 1
+ID = 1111
+[State 200, 1];Œ•˜OŠt LV2Á‹
+type = RemoveExplod
+trigger1 = parent,Var(24) = 1
+trigger2 = Root,StateNo = 2302;‰ä‘A›
+ignorehitpause = 1
+ID = 1112
+[State 200, 1];Œ•˜OŠt LV3Á‹
+type = RemoveExplod
+trigger1 = parent,Var(24) = 2
+trigger2 = Root,StateNo = 2302;‰ä‘A›
+ignorehitpause = 1
+ID = 1113
+;====================================================================================================
+;====================================================================================================
+;====================================================================================================
+;                   @@@@@@@@ŠoÁ•KE‹ZŠÖŒW
+;====================================================================================================
+;====================================================================================================
+;====================================================================================================
+;+++++++++++++++++++++++++++++++++++++++++++++++++++
+;ŠoÁ‹ZƒtƒF[ƒhƒAƒEƒg­‚µ‚¸‚Â^‚Á•
+;+++++++++++++++++++++++++++++++++++++++++++++++++++
+[State 240, 3]
+type = Explod
+triggerall = NumExplod(11005)= 0;ŠoÁ‹ZƒtƒF[ƒhƒAƒEƒg
+triggerall = Root,movetype != H;©•ª‚ÌƒXƒe[ƒg‚Ì‚Ì‚İ
+triggerall = Root,AnimElem  = 1
+trigger1   = Root,StateNo = 3000;’›‹r–P™€¸
+trigger2   = Root,StateNo = 3101;œö•öì
+trigger3   = Root,StateNo = 2300;‰ä‘A›
+trigger4   = Root,StateNo = 6000;’†‰Øˆú—”­î–º
+pos = 0, 0
+postype = left
+persistent = 1
+ignorehitpause = 1
+sprpriority = -9999
+ownpal = 1
+under  = 1
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+supermove = 1
+bindtime = -1
+scale = 9999,9999
+anim = F1005
+ID = 11005
+
+;+++++++++++++++++++++++++++++++++++++++++++++++++++
+;ŠoÁ‹Z@”wŒi—¬‚ê
+;+++++++++++++++++++++++++++++++++++++++++++++++++++
+[State 240, 3]
+type = Explod
+triggerall = NumExplod(11010)= 0;ŠoÁ‹Z@”wŒi—¬‚ê
+triggerall = Root,movetype != H;©•ª‚ÌƒXƒe[ƒg‚Ì‚Ì‚İ
+triggerall = Root,AnimElem = 1
+trigger1   = Root,StateNo = [3000,3049];’›‹r–P™€¸
+trigger2   = Root,StateNo = [3101,3108];œö•öì
+trigger3   = Root,StateNo = [2300,2302];‰ä‘A›
+trigger4   = Root,StateNo = [6000,6001];’†‰Øˆú—”­î–º
+pos = 0, 0
+postype = left
+persistent = 1
+ignorehitpause = 1
+sprpriority = -9999
+ownpal = 1
+under  = 1
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+supermove = 1
+bindtime = -1
+Removetime = 99999999999999
+anim = F1010
+ID = 11010
+
+;+++++++++++++++++++++++++++++++++++++++++++++++++++
+;ŠoÁ‹ZI—¹^‚Á•‚©‚çŒ³‚Ìó‘Ô‚Ö
+;+++++++++++++++++++++++++++++++++++++++++++++++++++
+[State 240, 3]
+type = Explod
+triggerall = NumExplod(11006)  = 0;ŠoÁ‹ZI—¹^‚Á•‚©‚çŒ³‚Ìó‘Ô‚Ö
+triggerall = Root,movetype    != H;©•ª‚ÌƒXƒe[ƒg‚Ì‚Ì‚İ
+triggerall = Root,AnimElem     = 1
+trigger1   = Root,PrevStateNo  = [3000,3049];’›‹r–P™€¸
+trigger1   = Root,    StateNo != [3000,3049];’›‹r–P™€¸
+trigger2   = Root,PrevStateNo  = [3101,3108];œö•öì
+trigger2   = Root,    StateNo != [3101,3108];œö•öì
+trigger3   = Root,PrevStateNo  = [2300,2302];‰ä‘A›
+trigger3   = Root,    StateNo != [2300,2302];‰ä‘A›
+trigger4   = Root,PrevStateNo  = [6000,6001];’†‰Øˆú—”­î–º
+trigger4   = Root,    StateNo != [6000,6001];’†‰Øˆú—”­î–º
+pos = 0, 0
+postype = left
+persistent = 1
+ignorehitpause = 1
+sprpriority = -9999
+ownpal = 1
+under  = 1
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+supermove = 1
+bindtime = -1
+scale = 9999,9999
+anim = F1006
+ID = 11006
+
+;+++++++++++++++++++++++++++++++++++++++++++++++++++
+;ŠoÁ‹ZI—¹^‚Á•‚©‚çŒ³‚Ìó‘Ô‚Ö(ŠoÁ‹Z’†‚Éƒ_ƒ[ƒWó‚¯‚½—p)
+;+++++++++++++++++++++++++++++++++++++++++++++++++++
+[State 240, 3]
+type = Explod
+triggerall = NumExplod(11006)= 0;ŠoÁ‹ZI—¹^‚Á•‚©‚çŒ³‚Ìó‘Ô‚Ö
+triggerall = NumExplod(11010)= 1;ŠoÁ‹Z@”wŒi—¬‚ê
+trigger1   = Root,movetype = H;‚â‚ç‚ê’†
+trigger2   = Root, StateNo = [2030,2031];ƒƒ}ƒ“ƒLƒƒƒ“ƒZƒ‹
+pos = 0, 0
+postype = left
+persistent = 1
+ignorehitpause = 1
+sprpriority = -9999
+ownpal = 1
+under  = 1
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+supermove = 1
+bindtime = -1
+scale = 9999,9999
+anim = F1006
+ID = 11006
+
+[State 2, 6];ŠoÁ‹Z@”wŒi—¬‚êÁ‹
+type = RemoveExplod
+triggerall = Root,movetype != A;UŒ‚“®ì
+trigger1   = Root,StateNo  != [3000,3049];’›‹r–P™€¸
+trigger1   = Root,StateNo  != [3101,3108];œö•öì
+trigger1   = Root,StateNo  != [2300,2302];‰ä‘A›
+trigger1   = Root,StateNo  != [6000,6001];’†‰Øˆú—”­î–º
+ignorehitpause = 1
+ID = 11010
+
+[State 2, 6];ŠoÁ‹Z@”wŒi—¬‚êÁ‹
+type = RemoveExplod
+trigger1   = Root, StateNo = [2030,2031];ƒƒ}ƒ“ƒLƒƒƒ“ƒZƒ‹
+ignorehitpause = 1
+ID = 11010
+
+[State 7011, 10];ƒŒƒCƒ„[Á‹
+type = assertspecial
+triggerall = Time>=0
+trigger1 = NumExplod(11005)= 1;ŠoÁ‹ZƒtƒF[ƒhƒAƒEƒg
+trigger2 = NumExplod(11010)= 1;ŠoÁ‹Z@”wŒi—¬‚ê
+trigger3 = NumExplod(11006)= 1;ŠoÁ‹ZI—¹^‚Á•‚©‚çŒ³‚Ìó‘Ô‚Ö
+flag = nofg
+ignorehitpause = 1
+;+++++++++++++++++++++++++++++++++++++++++++++++++++
+;====================================================================================================
+;====================================================================================================
+;====================================================================================================
+;                   @@@@@ˆêŒ‚•KE‹ZŠÖŒW
+;====================================================================================================
+;====================================================================================================
+;====================================================================================================
+[State 2000, 7];ˆêŒ‚•KE‹ZƒQ[ƒW‰Šú@ƒeƒ“ƒVƒ‡ƒ“ƒQ[ƒW‚ª‚O‹ß‚­‚Ì‚É
+type = parentVarSet
+trigger1 = Power           <= 100
+trigger1 = NumExplod(11511) = 0   ;ˆêŒ‚•KE‹ZƒQ[ƒW˜g
+trigger1 = parent,Var(26)   = 2222;ˆêŒ‚•KE‹Z€”õ@‹–‰Â
+v = 27
+value = (Power+300)/25
+
+[State 2000, 7];ˆêŒ‚•KE‹ZƒQ[ƒW‰Šú@ƒeƒ“ƒVƒ‡ƒ“ƒQ[ƒW‚ª•’Ê‚Ì‚É
+type = parentVarSet
+trigger1 = Power            > 100
+trigger1 = NumExplod(11511) = 0   ;ˆêŒ‚•KE‹ZƒQ[ƒW˜g
+trigger1 = parent,Var(26)   = 2222;ˆêŒ‚•KE‹Z€”õ@‹–‰Â
+v = 27
+value = Power/25
+
+[State 2090, 4];ˆêŒ‚•KE‹ZƒQ[ƒW˜g‚P‚o
+type = Explod
+triggerall = parent,Var(42)   = 0   ;ˆêŒ‚•KE‹Z@••ˆó@
+triggerall = parent,Var(26)   = 2222;ˆêŒ‚•KE‹Z€”õ@‹–‰Â
+triggerall = parent,teamSide  = 1
+trigger1   = NumExplod(11511) = 0   ;ˆêŒ‚•KE‹ZƒQ[ƒW˜g
+anim = F1511
+id = 11511
+pos = 1,59
+postype = left
+sprpriority = -2
+facing = 1
+bindtime = -1
+ownpal = 1
+removetime = 99999
+
+[State 2090, 4];ˆêŒ‚•KE‹Z  ƒQ[ƒW  ‚P‚o
+type = Explod
+triggerall = parent,Var(42)   = 0   ;ˆêŒ‚•KE‹Z@••ˆó@
+triggerall = parent,Var(26)   = 2222;ˆêŒ‚•KE‹Z€”õ@‹–‰Â
+triggerall = parent,teamSide  = 1
+trigger1   = NumExplod(11510) = 0   ;ˆêŒ‚•KE‹Z  ƒQ[ƒW
+anim = F1510
+id = 11510
+pos = 2,62
+postype = left
+sprpriority = -3
+facing = 1
+bindtime = -1
+ownpal = 1
+removetime = 99999
+
+[State 2090, 4];ˆêŒ‚•KE‹ZƒQ[ƒW˜g‚Q‚o
+type = Explod
+triggerall = parent,Var(42)   = 0   ;ˆêŒ‚•KE‹Z@••ˆó@
+triggerall = parent,Var(26)   = 2222;ˆêŒ‚•KE‹Z€”õ@‹–‰Â
+triggerall = parent,teamSide  = 2
+trigger1   = NumExplod(11511) = 0   ;ˆêŒ‚•KE‹ZƒQ[ƒW˜g
+anim = F1511
+id = 11511
+pos = 319,59
+postype = left
+sprpriority = -2
+facing = -1
+bindtime = -1
+ownpal = 1
+removetime = 99999
+
+[State 2090, 4];ˆêŒ‚•KE‹Z  ƒQ[ƒW  ‚Q‚o
+type = Explod
+triggerall = parent,Var(42)   = 0   ;ˆêŒ‚•KE‹Z@••ˆó@
+triggerall = parent,Var(26)   = 2222;ˆêŒ‚•KE‹Z€”õ@‹–‰Â
+triggerall = parent,teamSide  = 2
+trigger1   = NumExplod(11510) = 0   ;ˆêŒ‚•KE‹Z  ƒQ[ƒW
+anim = F1510
+id = 11510
+pos = 318,62
+postype = left
+sprpriority = -3
+facing = -1
+bindtime = -1
+ownpal = 1
+removetime = 99999
+
+[State 2222, 10];ˆêŒ‚•KE‹ZƒQ[ƒWŒ¸‚ç‚µ
+type = parentVarAdd
+trigger1 = Timemod        = 15,0
+trigger1 = parent,Var(27) > 0
+var(27) = -1
+ignorehitpause = 1
+
+[State 2090, 7];ˆêŒ‚•KE‹ZƒQ[ƒWŒ¸­
+type = ModifyExplod
+trigger1 = Time >= 0
+ID = 11510
+scale = parent,Var(27)/80.0,1
+
+[State 2222, 10];ˆêŒ‚•KE‹Zƒ‰ƒCƒtŒ¸‚ç‚µ@‹–‰Â
+type = parentVarSet
+triggerall = parent,Var(26) = 2222;ˆêŒ‚•KE‹Z€”õ@‹–‰Â
+trigger1   = parent,Var(27) = 0   ;ˆêŒ‚•KE‹ZƒQ[ƒWƒJƒEƒ“ƒg
+v = 28
+value = 999
+ignorehitpause = 1
+
+[State 2222, 10];ˆêŒ‚•KE‹Zƒ‰ƒCƒtŒ¸‚ç‚µ@‰ğœ
+type = parentVarSet
+trigger1 = parent,Var(26) = 0;ˆêŒ‚•KE‹Z€”õ@‰ğœ
+v = 28
+value = 0
+ignorehitpause = 1
+
+[State 2222, 10];ˆêŒ‚•KE‹Zƒ‰ƒCƒtŒ¸‚ç‚µTimemod‚Ì‘ã‚í‚è
+type = parentVarSet
+trigger1 = parent,var(28) = 999;ˆêŒ‚•KE‹Zƒ‰ƒCƒtŒ¸‚ç‚µ@‹–‰Â
+trigger1 = parent,var(29) =  0 ;ˆêŒ‚•KE‹Zƒ‰ƒCƒtŒ¸‚ç‚µTimemod‚Ì‘ã‚í‚è
+trigger1 = Timemod        = 4,0
+v = 29
+value = 10
+ignorehitpause = 1
+
+[State 2222, 10];ˆêŒ‚•KE‹Zƒ‰ƒCƒtŒ¸‚ç‚µTimemod‚Ì‘ã‚í‚è
+type = parentVarSet
+trigger1 = parent,var(28) = 999;ˆêŒ‚•KE‹Zƒ‰ƒCƒtŒ¸‚ç‚µ@‹–‰Â
+trigger1 = parent,var(29) = 10 ;ˆêŒ‚•KE‹Zƒ‰ƒCƒtŒ¸‚ç‚µTimemod‚Ì‘ã‚í‚è
+trigger1 = Timemod        = 8,0
+v = 29
+value = 0
+ignorehitpause = 1
+
+[State 2, 6];ˆêŒ‚•KE‹ZƒQ[ƒW˜gÁ‹
+type = RemoveExplod
+trigger1 = parent,Var(26) != 2222;ˆêŒ‚•KE‹Z€”õ@‹–‰Â
+trigger2 = parent,Var(42) != 0   ;ˆêŒ‚•KE‹Z@••ˆó@
+ignorehitpause = 1
+ID = 11511
+
+[State 2, 6];ˆêŒ‚•KE‹Z  ƒQ[ƒW  Á‹
+type = RemoveExplod
+trigger1 = parent,Var(26) != 2222;ˆêŒ‚•KE‹Z€”õ@‹–‰Â
+trigger2 = parent,Var(42) != 0   ;ˆêŒ‚•KE‹Z@••ˆó@
+ignorehitpause = 1
+ID = 11510
+
+[State 3000, pow];ƒeƒ“ƒVƒ‡ƒ“ƒQ[ƒW‰Šú‰»
+type = PowerAdd
+triggerall = parent,Var(26) = 2222;ˆêŒ‚•KE‹Z€”õ@‹–‰Â
+trigger1 = Time >= 0
+value = -10000
+
+
+
+
+;====================================================================================================
+;====================================================================================================
+;====================================================================================================
+;                   @@@@@@‰½‚Å‚à—L‚èƒ‚[ƒhŠÖŒW
+;====================================================================================================
+;====================================================================================================
+;====================================================================================================
+
+[State 500,500];F‘‰Á@‹–‰Â
+type = Varset
+trigger1   = Var(51) <= -9
+ignorehitpause = 1
+v = 50
+value = 0
+
+[State 500,500];FŒ¸­@‹–‰Â
+type = Varset
+trigger1   = Var(51) >= 200
+ignorehitpause = 1
+v = 50
+value = 1
+
+[State 500,500];F•Ï‰»@@‘‰Á
+type = Varadd
+trigger1   = Var(50) = 0
+trigger1   = Time >= 0
+ignorehitpause = 1
+v = 51
+value = 2
+
+[State 500,500];F•Ï‰»@@Œ¸­
+type = Varadd
+trigger1   = Var(50) = 1
+trigger1   = Time >= 0
+ignorehitpause = 1
+v = 51
+value = -2
+
+
+;====================================================================================================
+;====================================================================================================
+;====================================================================================================
+;                   @@@@@@ƒ_ƒXƒgƒAƒ^ƒbƒNŠÖŒW
+;====================================================================================================
+;====================================================================================================
+;====================================================================================================
+
+;+++++++++++++++++++++++++++++++++++++++++++++++++++
+;Å‰‚ÌƒtƒF[ƒhƒAƒEƒg
+;+++++++++++++++++++++++++++++++++++++++++++++++++++
+[State 240, 3]
+type = Explod
+triggerall = Root,PrevStateNo  = 2700;
+triggerall = Root,    StateNo  = 50  ;
+triggerall = NumExplod(11600)= 0;Å‰‚ÌƒtƒF[ƒhƒAƒEƒg
+triggerall = NumExplod(11601)= 0;ƒIƒŒƒ“ƒW‚Ì”wŒi
+trigger1   = Root,Var(47) != 0
+pos = 0, 0
+postype = left
+persistent = 1
+ignorehitpause = 1
+sprpriority = -9999
+ownpal = 1
+under  = 1
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+supermove = 1
+bindtime = -1
+scale = 9999,9999
+;Removetime = 99999999999999
+anim = F1600
+ID = 11600
+
+;+++++++++++++++++++++++++++++++++++++++++++++++++++
+;ƒIƒŒƒ“ƒW‚Ì”wŒi
+;+++++++++++++++++++++++++++++++++++++++++++++++++++
+[State 240, 3]
+type = Explod
+triggerall = Root,PrevStateNo  = 2700;
+triggerall = Root,    StateNo  = 50  ;
+triggerall = NumExplod(11601)= 0;ƒIƒŒƒ“ƒW‚Ì”wŒi
+trigger1   = Root,Var(47) != 0
+pos = 0, 0
+postype = left
+persistent = 1
+ignorehitpause = 1
+sprpriority = -99999
+ownpal = 1
+under  = 1
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+supermove = 1
+bindtime = -1
+Removetime = 99999999999999
+anim = F1601
+ID = 11601
+
+;+++++++++++++++++++++++++++++++++++++++++++++++++++
+;ƒ‰ƒXƒgƒtƒF[ƒhƒAƒEƒg
+;+++++++++++++++++++++++++++++++++++++++++++++++++++
+[State 240, 3]
+type = Explod
+triggerall = NumExplod(11602)= 0;ƒ‰ƒXƒgƒtƒF[ƒhƒAƒEƒg
+triggerall = NumExplod(11601)= 1;ƒIƒŒƒ“ƒW‚Ì”wŒi
+trigger1   = Root,Var(47)    = 0
+pos = 0, 0
+postype = left
+persistent = 1
+ignorehitpause = 1
+sprpriority = -9999
+ownpal = 1
+under  = 1
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+supermove = 1
+bindtime = -1
+scale = 9999,9999
+anim = F1602
+ID = 11602
+
+[State 2, 6];ƒIƒŒƒ“ƒW‚Ì”wŒi@Á‹
+type = RemoveExplod
+trigger1 = NumExplod(11602)= 1;ƒ‰ƒXƒgƒtƒF[ƒhƒAƒEƒg
+ignorehitpause = 1
+ID = 11601
+
+[State 7011, 10];ƒŒƒCƒ„[Á‹
+type = assertspecial
+triggerall = Time>=0
+trigger1   = Root,Var(47) != 0
+flag = nofg
+ignorehitpause = 1
+
+
+[State 255, 7];ƒK[ƒhƒQ[ƒW•\¦ƒwƒ‹ƒp[Á‹
+type = destroyself
+trigger1 = Time = 999999
+
+;====================================================================================================
+;====================================================================================================
+;====================================================================================================
+;                   @@@@@@‚`‚hƒXƒCƒbƒ`ŠÖŒW
+;====================================================================================================
+;====================================================================================================
+;====================================================================================================
+[Statedef 2051]
+anim = 9999
+ctrl = 0
+
+[State 208, a1]
+type = Turn
+trigger1 = facing != parent, facing
+
+[State 208, ww2]
+type = ParentVarSet
+triggerall = (Parent, Stateno != [5000,5999]) && (Parent, Anim != [5,6]) && parent, Movetype = I
+triggerall = root,stateno = [0,99]
+triggerall = root,ctrl = 1
+triggerall = var(6) = 0
+triggerall = parent, RoundState = 2
+trigger1 = parent, command = "a"
+trigger2 = parent, command = "b"
+trigger3 = parent, command = "c"
+trigger4 = parent, command = "x"
+trigger5 = parent, command = "y"
+trigger6 = parent, command = "z"
+trigger7 = parent, command = "holdfwd"
+trigger8 = parent, command = "holdback"
+trigger9 = parent, command = "holdup"
+trigger10 = parent, command = "holddown"
+var(50) = 1
+
+[State 208, s3]
+type = ParentVarSet
+triggerall = (Parent, Stateno != [5000,5999]) && (Parent, Anim != [5,6]) && parent, Movetype = I
+triggerall = root,stateno = [0,99]
+triggerall = root,ctrl = 1
+triggerall = parent, var(50) = 1
+triggerall = parent, RoundState = 2
+trigger1 = (command = "a" && parent, command = "a")
+trigger2 = (command = "b" && parent, command = "b")
+trigger3 = (command = "c" && parent, command = "c")
+trigger4 = (command = "x" && parent, command = "x")
+trigger5 = (command = "y" && parent, command = "y")
+trigger6 = (command = "z" && parent, command = "z")
+trigger7 = (command = "holdfwd" && parent, command = "holdfwd")
+trigger8 = (command = "holdback" && parent, command = "holdback")
+trigger9 = (command = "holdup" && parent, command = "holdup")
+trigger10 = (command = "holddown" && parent, command = "holddown")
+var(50) = 0
+
+[State 208, d4]
+type = VarSet
+trigger1 = var(6) = 1
+var(6) = 0
+
+[State 208, 5]
+type = VarSet
+triggerall = (Parent, Stateno != [5000,5999]) && (Parent, Anim != [5,6]) && parent, Movetype = I
+triggerall = root,stateno = [0,99]
+triggerall = root,ctrl = 1
+triggerall = var(6) = 0
+triggerall = root, RoundState = 2
+trigger1 = parent, command = "a"
+trigger2 = parent, command = "b"
+trigger3 = parent, command = "c"
+trigger4 = parent, command = "x"
+trigger5 = parent, command = "y"
+trigger6 = parent, command = "z"
+trigger7 = parent, command = "holdfwd"
+trigger8 = parent, command = "holdback"
+trigger9 = parent, command = "holdup"
+trigger10 = parent, command = "holddown"
+var(6) = 1
+;====================================================================================================
+;====================================================================================================
+;====================================================================================================
+
+[State 208, w6]
+type = Destroyself
+trigger1 = RoundState = 3
+trigger2 = parent, var(50) = 1

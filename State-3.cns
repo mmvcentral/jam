@@ -1,0 +1,668 @@
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;===========================================================================
+[Statedef -3]
+;===========================================================================
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+;                                FX‚Æ•\¦
+[state -3, hyoji]
+type = DisplayToClipboard
+trigger1 = 1
+text=  "*var(26)*:%d,*var(50)*:%d,*var(51)*:%d,*,roundstate*:%d,*Helper*:%d"; %d‚Í”š‚Ì•”•ª
+params = var(26)     ,var(50)     ,var(51)      ,roundstate,Numhelper + Enemy,numHelper     
+
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+;                                ‚b‚o‚t‚É•Ï‰»ƒwƒ‹ƒp[
+[State -3]
+type = Helper
+trigger1 = NumHelper(2051) = 0
+trigger1 = Var(50) = 0
+trigger1 = RoundState = 2
+name = "JAM CPU"
+ignorehitpause = 1
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+supermove = 1
+pos = 999, 999
+stateno = 2051
+id = 2051
+helpertype = normal
+keyctrl = 1
+
+;<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+;<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+;<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+;<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+;                                  ‚`‚h“®ì
+;<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+;<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+;<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+;<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+;                                  ‚`‚hs“®ƒ‰ƒ“ƒ_ƒ€VAR
+[State -3]
+type = VarRandom
+triggerall = Alive        = 1
+trigger1   = var(50)      = 1        ;‚`‚hƒXƒCƒbƒ`‚u‚`‚q
+ignorehitpause = 1
+v = 51
+range = 0,300
+
+;<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+;                                  Š„‚è‚İ’›‹r–P™€¸
+;<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+;[State -3];
+;type = ChangeState
+;triggerall = Alive        = 1
+;triggerall = var(50)      = 1        ;‚`‚hƒXƒCƒbƒ`‚u‚`‚q
+;triggerall = var(51)      = [280,300];‚`‚hs“®ƒ‰ƒ“ƒ_ƒ€VAR
+;triggerall = Power       >= 1000
+;triggerall = MoveType    != A
+;trigger1   = statetype    = S
+;trigger1   = ctrl         = 1
+;triggerall = P2StateType != A
+;triggerall = P2MoveType   = A
+;triggerall = p2bodydist X = [-10,70]
+;value = 3000
+
+;<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+;                                  ƒKƒgƒŠƒ“ƒOŒã‚Ì”šRŒn‚Ö
+;<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+[State -3];”šR
+type = ChangeState
+triggerall = Var(43)      = 0        ;’Êíƒ‚[ƒh
+triggerall = Alive        = 1
+triggerall = var(50)      = 1        ;‚`‚hƒXƒCƒbƒ`‚u‚`‚q
+triggerall = MoveContact  = 1
+trigger1   = stateno      = [240,242];—§‚¿@‚g‚r
+trigger2   = stateno      = [440,444];‚µ‚á‚ª‚İ@‚g‚r
+value = 1000
+
+[State -3];”šR¨”šR‘«•¥‚¢‚Ö
+type = ChangeState
+triggerall = Var(43)      = 0        ;’Êíƒ‚[ƒh
+triggerall = Alive        = 1
+triggerall = var(50)      = 1        ;‚`‚hƒXƒCƒbƒ`‚u‚`‚q
+trigger1   = stateno      = 1000
+trigger1   = Time         = [6,25]
+value = 1040
+
+[State -3];”šR‘«•¥‚¢¨’©“â‹­‰»@‹t—Ø
+type = ChangeState
+triggerall = Var(43) = 5 || Var(43) = 15;ƒS[ƒ‹ƒhE‰½‚Å‚àƒAƒŠƒ‚[ƒh
+triggerall = Alive        = 1
+triggerall = var(50)      = 1        ;‚`‚hƒXƒCƒbƒ`‚u‚`‚q
+triggerall = var(51)      = [100,200];‚`‚hs“®ƒ‰ƒ“ƒ_ƒ€VAR
+trigger1   = stateno      = 1040
+trigger1   = Time        >= 9
+triggerall = P2MoveType  != H
+triggerall = p2bodydist X = [-10,70]
+value = 1080
+
+[State -3];”šR‘«•¥‚¢¨‹t—Ø
+type = ChangeState
+triggerall = Var(43)  = 0 ;’Êíƒ‚[ƒh
+triggerall = Var(23)  = 0 ;’©“â‚ÌŒÄ‹z@‹t—Ø@@‚k‚u
+triggerall = Alive        = 1
+triggerall = var(50)      = 1        ;‚`‚hƒXƒCƒbƒ`‚u‚`‚q
+triggerall = var(51)      = [100,200];‚`‚hs“®ƒ‰ƒ“ƒ_ƒ€VAR
+trigger1   = stateno      = 1040
+trigger1   = Time        >= 9
+triggerall = P2StateType  = C
+triggerall = P2MoveType  != H
+triggerall = p2bodydist X = [-10,70]
+value = 1070
+
+[State -3];”šR‘«•¥‚¢¨’©“â‹­‰»@‹t—Ø
+type = ChangeState
+triggerall = Var(43)  = 0 ;’Êíƒ‚[ƒh
+triggerall = Var(23) != 0 ;’©“â‚ÌŒÄ‹z@‹t—Ø@@‚k‚u
+triggerall = Alive        = 1
+triggerall = var(50)      = 1        ;‚`‚hƒXƒCƒbƒ`‚u‚`‚q
+triggerall = var(51)      = [100,200];‚`‚hs“®ƒ‰ƒ“ƒ_ƒ€VAR
+trigger1   = stateno      = 1040
+trigger1   = Time        >= 9
+triggerall = P2StateType  = C
+triggerall = P2MoveType  != H
+triggerall = p2bodydist X = [-10,70]
+value = 1080
+
+;<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+;                                  âP•€
+;<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+[State -3];ƒ~ƒX‚Á‚½‚ÉƒWƒƒƒ“ƒv‚³‚¹‚é
+type = ChangeState
+triggerall = Alive        = 1
+triggerall = var(50)      = 1        ;‚`‚hƒXƒCƒbƒ`‚u‚`‚q
+trigger1   = stateno      = 1020     ;âP•€
+trigger1   = AnimTime     = 0
+value = 40
+
+[State -3];
+type = ChangeState
+triggerall = Alive        = 1
+triggerall = var(50)      = 1        ;‚`‚hƒXƒCƒbƒ`‚u‚`‚q
+triggerall = var(51)      = [100,250];‚`‚hs“®ƒ‰ƒ“ƒ_ƒ€VAR
+triggerall = StateType   != A
+triggerall = MoveType    != A
+trigger1   = Ctrl         = 1
+trigger2   = Stateno      = 100
+trigger3   = Stateno      = 2002
+triggerall = P2StateType  = S || P2StateType  = A
+triggerall = p2bodydist X = [-10,70]
+triggerall = p2bodydist Y = [-50,50]
+triggerall = P2MoveType   = A
+value = 1020
+
+;<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+;                                  ‹ó’†ƒ_ƒbƒVƒ… 
+;<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+[State -3]
+type = ChangeState
+value = 40
+triggerall = Alive       = 1
+triggerall = var(50)     = 1        ;‚`‚hƒXƒCƒbƒ`‚u‚`‚q
+triggerall = var(51)     = [101,300];‚`‚hs“®ƒ‰ƒ“ƒ_ƒ€VAR
+triggerall = StateType   = S 
+triggerall = p2bodydist X >= 50
+triggerall = P2MoveType   != A
+trigger1 = ctrl
+
+[State -3]
+type = ChangeState
+value = 2005
+triggerall = Alive       = 1
+triggerall = var(50)     = 1        ;‚`‚hƒXƒCƒbƒ`‚u‚`‚q
+triggerall = var(51)     = [0,200]  ;‚`‚hs“®ƒ‰ƒ“ƒ_ƒ€VAR
+triggerall = Pos Y  <= -15 
+triggerall = var(8) != 2;‚Q’iƒWƒƒƒ“ƒv‘O‚Ìó‘Ô@‚O‰Šú@‚P‰Â”\@‚Q•s‰Â
+triggerall = Var(10) < 1
+trigger1 = statetype = A
+trigger1 = ctrl
+trigger1 = P2MoveType   != A
+trigger1 = Stateno != 2005
+trigger1 = Stateno != 2006
+
+[State -3]
+type = ChangeState
+value = 2006
+triggerall = Alive       = 1
+triggerall = var(50)     = 1        ;‚`‚hƒXƒCƒbƒ`‚u‚`‚q
+triggerall = var(51)     = [250,300];‚`‚hs“®ƒ‰ƒ“ƒ_ƒ€VAR
+triggerall = Pos Y  <= -15 
+triggerall = var(8) != 2;‚Q’iƒWƒƒƒ“ƒv‘O‚Ìó‘Ô@‚O‰Šú@‚P‰Â”\@‚Q•s‰Â
+triggerall = Var(10) < 1
+trigger1 = statetype = A
+trigger1 = ctrl
+trigger1 = P2MoveType   != A
+trigger1 = Stateno != 2005
+trigger1 = Stateno != 2006
+
+[State -3];ƒWƒƒƒ“ƒvHS‚Ö
+type = ChangeState
+triggerall = Alive       = 1
+triggerall = var(50)     = 1        ;‚`‚hƒXƒCƒbƒ`‚u‚`‚q
+triggerall = p2bodydist X <= 100
+triggerall = p2bodydist Y  = [-50,50]
+trigger1 = Stateno       = 2005
+trigger2 = Stateno       = 2006
+value = 640
+
+[State -3];‘é‰d‹r‚Ö
+type = ChangeState
+triggerall = Alive       = 1
+triggerall = var(50)     = 1        ;‚`‚hƒXƒCƒbƒ`‚u‚`‚q
+triggerall = var(51)      = [200,300];‚`‚hs“®ƒ‰ƒ“ƒ_ƒ€VAR
+triggerall = P2StateType  = S || P2StateType  = C
+triggerall = MoveContact = 1
+trigger1   = stateno     = 640      ;ƒWƒƒƒ“ƒvHS
+value = 1030
+
+;<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+;                                  ’nãƒ_ƒbƒVƒ…
+;<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+[State -3]
+type = ChangeState
+value = 100
+triggerall = Alive       = 1
+triggerall = var(50)     = 1        ;‚`‚hƒXƒCƒbƒ`‚u‚`‚q
+triggerall = var(51)     = [0,100]  ;‚`‚hs“®ƒ‰ƒ“ƒ_ƒ€VAR
+triggerall = p2bodydist X >= 120
+triggerall = statetype = S
+trigger1 = ctrl
+
+[State -3];‘«•¥‚¢‚Ö
+type = ChangeState
+triggerall = Alive       = 1
+triggerall = var(50)     = 1        ;‚`‚hƒXƒCƒbƒ`‚u‚`‚q
+triggerall = var(51)     = [0,250]  ;‚`‚hs“®ƒ‰ƒ“ƒ_ƒ€VAR
+triggerall = p2bodydist X = [0,60]
+trigger1   = stateno     = 100 || stateno     = 2002;’nãƒ_ƒbƒVƒ…
+value = 450
+
+[State -3]
+type = ChangeState
+value = 40
+triggerall = Alive       = 1
+triggerall = var(50)     = 1        ;‚`‚hƒXƒCƒbƒ`‚u‚`‚q
+triggerall = var(51)     = [100,250];‚`‚hs“®ƒ‰ƒ“ƒ_ƒ€VAR
+trigger1   = MoveContact = 1
+trigger1   = stateno     = 450      ;‘«•¥‚¢
+value = 40
+
+;<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+;                                  âP•€ ¬Œ÷ ‚©‚çŒ•˜OŠt
+;<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+[State -3];’©“â‹­‰»@Œ•˜OŠt
+type = ChangeState
+triggerall = Var(43) = 5 || Var(43) = 15;ƒS[ƒ‹ƒhE‰½‚Å‚àƒAƒŠƒ‚[ƒh
+triggerall = Alive        = 1
+triggerall = var(50)      = 1        ;‚`‚hƒXƒCƒbƒ`‚u‚`‚q
+triggerall = var(51)      = [0,100]  ;‚`‚hs“®ƒ‰ƒ“ƒ_ƒ€VAR
+trigger1   = stateno      = 1025     ;âP•€ ¬Œ÷
+trigger1   = Time        >= 6
+value = 1060
+
+[State -3];Œ•˜OŠt
+type = ChangeState
+triggerall = Var(43)  = 0 ;’Êíƒ‚[ƒh
+triggerall = Var(24)  = 0;’©“â‚ÌŒÄ‹z@Œ•˜OŠt@‚k‚u
+triggerall = Alive        = 1
+triggerall = var(50)      = 1        ;‚`‚hƒXƒCƒbƒ`‚u‚`‚q
+triggerall = var(51)      = [0,100]  ;‚`‚hs“®ƒ‰ƒ“ƒ_ƒ€VAR
+trigger1   = stateno      = 1025     ;âP•€ ¬Œ÷
+trigger1   = Time        >= 6
+value = 1050
+
+[State -3];’©“â‹­‰»@Œ•˜OŠt
+type = ChangeState
+triggerall = Var(43)  = 0 ;’Êíƒ‚[ƒh
+triggerall = Var(24) != 0;’©“â‚ÌŒÄ‹z@Œ•˜OŠt@‚k‚u
+triggerall = Alive        = 1
+triggerall = var(50)      = 1        ;‚`‚hƒXƒCƒbƒ`‚u‚`‚q
+triggerall = var(51)      = [0,100]  ;‚`‚hs“®ƒ‰ƒ“ƒ_ƒ€VAR
+trigger1   = stateno      = 1025     ;âP•€ ¬Œ÷
+trigger1   = Time        >= 6
+value = 1060
+;<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+;                                  âP•€ ¬Œ÷ ‚©‚ç—´n
+;<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+[State -3];’©“â‹­‰»@—´n
+type = ChangeState
+triggerall = Var(43) = 5 || Var(43) = 15;ƒS[ƒ‹ƒhE‰½‚Å‚àƒAƒŠƒ‚[ƒh
+triggerall = Alive        = 1
+triggerall = var(50)      = 1        ;‚`‚hƒXƒCƒbƒ`‚u‚`‚q
+triggerall = var(51)      = [100,200];‚`‚hs“®ƒ‰ƒ“ƒ_ƒ€VAR
+trigger1   = stateno      = 1025     ;âP•€ ¬Œ÷
+trigger1   = Time        >= 6
+value = 1095
+
+[State -3];—´n
+type = ChangeState
+triggerall = Var(43)  = 0 ;’Êíƒ‚[ƒh
+triggerall = Var(22)  = 0 ;’©“â‚ÌŒÄ‹z@—´n@@‚k‚u
+triggerall = Alive        = 1
+triggerall = var(50)      = 1        ;‚`‚hƒXƒCƒbƒ`‚u‚`‚q
+triggerall = var(51)      = [100,200];‚`‚hs“®ƒ‰ƒ“ƒ_ƒ€VAR
+trigger1   = stateno      = 1025     ;âP•€ ¬Œ÷
+trigger1   = Time        >= 6
+value = 1090
+
+[State -3];’©“â‹­‰»@—´n
+type = ChangeState
+triggerall = Var(43)  = 0 ;’Êíƒ‚[ƒh
+triggerall = Var(22) != 0 ;’©“â‚ÌŒÄ‹z@—´n@@‚k‚u
+triggerall = Alive        = 1
+triggerall = var(50)      = 1        ;‚`‚hƒXƒCƒbƒ`‚u‚`‚q
+triggerall = var(51)      = [100,200];‚`‚hs“®ƒ‰ƒ“ƒ_ƒ€VAR
+trigger1   = stateno      = 1025     ;âP•€ ¬Œ÷
+trigger1   = Time        >= 6
+value = 1095
+
+;<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+;                                  âP•€ ¬Œ÷ ‚©‚ç‹t—Ø
+;<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+[State -3];’©“â‹­‰»@‹t—Ø
+type = ChangeState
+triggerall = Var(43) = 5 || Var(43) = 15;ƒS[ƒ‹ƒhE‰½‚Å‚àƒAƒŠƒ‚[ƒh
+triggerall = Alive        = 1
+triggerall = var(50)      = 1        ;‚`‚hƒXƒCƒbƒ`‚u‚`‚q
+triggerall = var(51)      = [200,300];‚`‚hs“®ƒ‰ƒ“ƒ_ƒ€VAR
+trigger1   = stateno      = 1025     ;âP•€ ¬Œ÷
+trigger1   = Time        >= 6
+value = 1080
+
+[State -3];‹t—Ø
+type = ChangeState
+triggerall = Var(43)  = 0 ;’Êíƒ‚[ƒh
+triggerall = Var(23)  = 0 ;’©“â‚ÌŒÄ‹z@‹t—Ø@@‚k‚u
+triggerall = Alive        = 1
+triggerall = var(50)      = 1        ;‚`‚hƒXƒCƒbƒ`‚u‚`‚q
+triggerall = var(51)      = [200,300];‚`‚hs“®ƒ‰ƒ“ƒ_ƒ€VAR
+trigger1   = stateno      = 1025     ;âP•€ ¬Œ÷
+trigger1   = Time        >= 6
+value = 1070
+
+[State -3];’©“â‹­‰»@‹t—Ø
+type = ChangeState
+triggerall = Var(43)  = 0 ;’Êíƒ‚[ƒh
+triggerall = Var(23) != 0 ;’©“â‚ÌŒÄ‹z@‹t—Ø@@‚k‚u
+triggerall = Alive        = 1
+triggerall = var(50)      = 1        ;‚`‚hƒXƒCƒbƒ`‚u‚`‚q
+triggerall = var(51)      = [200,300];‚`‚hs“®ƒ‰ƒ“ƒ_ƒ€VAR
+trigger1   = stateno      = 1025     ;âP•€ ¬Œ÷
+trigger1   = Time        >= 6
+value = 1080
+
+;<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+;                                  ‚`‚hƒKƒgƒŠƒ“ƒOŒn 
+;<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+;ƒKƒgƒŠƒ“ƒOƒRƒs[—p
+;trigger1   = stateno     = 200      ;—§‚¿@‚o
+;trigger2   = stateno     = 210      ;—§‚¿@‚r
+;trigger3   = stateno     = [230,232];—§‚¿@‚j
+;trigger4   = stateno     = [240,242];—§‚¿@‚g‚r
+;trigger5   = stateno     = 250      ;—§‚¿@‚r‹ß‹——£
+;trigger6   = stateno     = [260,261];—§‚¿@‚o‘O
+;trigger7   = stateno     = 400      ;‚µ‚á‚ª‚İ@‚o
+;trigger8   = stateno     = 410      ;‚µ‚á‚ª‚İ@‚r
+;trigger9   = stateno     = 430      ;‚µ‚á‚ª‚İ@‚j
+;trigger10  = stateno     = [440,444];‚µ‚á‚ª‚İ@‚g‚r
+;trigger11  = stateno     = 450      ;‘«•¥‚¢
+
+[State -3];ƒKƒgƒŠƒ“ƒOn“®
+type = ChangeState
+triggerall = Alive        = 1
+triggerall = var(50)      = 1;‚`‚hƒXƒCƒbƒ`‚u‚`‚q
+triggerall = StateType   != A
+triggerall = MoveType    != A
+triggerall = P2MoveType  != A
+triggerall = P2StateType  = S || P2StateType  = C
+triggerall = p2bodydist X = [-1,40]
+trigger1   = Ctrl = 1
+trigger2   = stateno     = 100      ;’nãƒ_ƒbƒVƒ…
+value = 430
+
+[State -3];‹üS‚Ö
+type = ChangeState
+triggerall = Alive       = 1
+triggerall = var(50)     = 1        ;‚`‚hƒXƒCƒbƒ`‚u‚`‚q
+triggerall = MoveContact = 1
+trigger1   = stateno     = 200      ;—§‚¿@‚o
+trigger2   = stateno     = 210      ;—§‚¿@‚r
+trigger3   = stateno     = [230,232];—§‚¿@‚j
+trigger4   = stateno     = 250      ;—§‚¿@‚r‹ß‹——£
+trigger5   = stateno     = [260,261];—§‚¿@‚o‘O
+trigger6   = stateno     = 400      ;‚µ‚á‚ª‚İ@‚o
+trigger7   = stateno     = 430      ;‚µ‚á‚ª‚İ@‚j
+value = 410
+
+[State -3];‹üHS‚Ö
+type = ChangeState
+triggerall = Alive       = 1
+triggerall = var(50)     = 1        ;‚`‚hƒXƒCƒbƒ`‚u‚`‚q
+triggerall = MoveContact = 1
+trigger1   = stateno     = 200      ;—§‚¿@‚o
+trigger2   = stateno     = 210      ;—§‚¿@‚r
+trigger3   = stateno     = [230,232];—§‚¿@‚j
+trigger4   = stateno     = 250      ;—§‚¿@‚r‹ß‹——£
+trigger5   = stateno     = [260,261];—§‚¿@‚o‘O
+trigger6   = stateno     = 400      ;‚µ‚á‚ª‚İ@‚o
+trigger7   = stateno     = 410      ;‚µ‚á‚ª‚İ@‚r
+trigger8   = stateno     = 430      ;‚µ‚á‚ª‚İ@‚j
+value = 440
+
+[State -3];‘«•¥‚¢‚Ö
+type = ChangeState
+triggerall = Alive       = 1
+triggerall = var(50)     = 1        ;‚`‚hƒXƒCƒbƒ`‚u‚`‚q
+triggerall = MoveContact = 1
+trigger1   = stateno     = 200      ;—§‚¿@‚o
+trigger2   = stateno     = 210      ;—§‚¿@‚r
+trigger3   = stateno     = [230,232];—§‚¿@‚j
+trigger4   = stateno     = [240,242];—§‚¿@‚g‚r
+trigger5   = stateno     = 250      ;—§‚¿@‚r‹ß‹——£
+trigger6   = stateno     = [260,261];—§‚¿@‚o‘O
+trigger7   = stateno     = 400      ;‚µ‚á‚ª‚İ@‚o
+trigger8   = stateno     = 410      ;‚µ‚á‚ª‚İ@‚r
+trigger9   = stateno     = 430      ;‚µ‚á‚ª‚İ@‚j
+trigger10  = stateno     = [440,444];‚µ‚á‚ª‚İ@‚g‚r
+value = 450
+
+[State -3];‘OP‚Ö
+type = ChangeState
+triggerall = Alive       = 1
+triggerall = var(50)     = 1        ;‚`‚hƒXƒCƒbƒ`‚u‚`‚q
+triggerall = MoveContact = 1
+trigger1   = stateno     = 200      ;—§‚¿@‚o
+trigger2   = stateno     = [230,232];—§‚¿@‚j
+trigger3   = stateno     = 250      ;—§‚¿@‚r‹ß‹——£
+trigger4   = stateno     = 400      ;‚µ‚á‚ª‚İ@‚o
+trigger5   = stateno     = 430      ;‚µ‚á‚ª‚İ@‚j
+value = 260
+
+[State -3];S‚Ö
+type = ChangeState
+triggerall = P2BodyDist X != [-30,30]
+triggerall = Alive       = 1
+triggerall = var(50)     = 1        ;‚`‚hƒXƒCƒbƒ`‚u‚`‚q
+triggerall = MoveContact = 1
+trigger1   = stateno     = 200      ;—§‚¿@‚o
+trigger2   = stateno     = [230,232];—§‚¿@‚j
+trigger3   = stateno     = 250      ;—§‚¿@‚r‹ß‹——£
+trigger4   = stateno     = [260,261];—§‚¿@‚o‘O
+trigger5   = stateno     = 400      ;‚µ‚á‚ª‚İ@‚o
+trigger6   = stateno     = 430      ;‚µ‚á‚ª‚İ@‚j
+value = 210
+
+[State -3];‹ßS‚Ö
+type = ChangeState
+triggerall = P2BodyDist X = [-30,30]
+triggerall = Alive       = 1
+triggerall = var(50)     = 1        ;‚`‚hƒXƒCƒbƒ`‚u‚`‚q
+triggerall = MoveContact = 1
+trigger1   = stateno     = 200      ;—§‚¿@‚o
+trigger2   = stateno     = [230,232];—§‚¿@‚j
+trigger3   = stateno     = [260,261];—§‚¿@‚o‘O
+trigger4   = stateno     = 400      ;‚µ‚á‚ª‚İ@‚o
+trigger5   = stateno     = 430      ;‚µ‚á‚ª‚İ@‚j
+value = 250
+
+;[State -3];HS‚Ö
+;type = ChangeState
+;triggerall = Alive       = 1
+;triggerall = var(50)     = 1        ;‚`‚hƒXƒCƒbƒ`‚u‚`‚q
+;triggerall = MoveContact = 1
+;trigger1   = stateno     = 200      ;—§‚¿@‚o
+;trigger2   = stateno     = 210      ;—§‚¿@‚r
+;trigger3   = stateno     = [230,232];—§‚¿@‚j
+;trigger4   = stateno     = 250      ;—§‚¿@‚r‹ß‹——£
+;trigger5   = stateno     = [260,261];—§‚¿@‚o‘O
+;trigger6   = stateno     = 400      ;‚µ‚á‚ª‚İ@‚o
+;trigger7   = stateno     = 410      ;‚µ‚á‚ª‚İ@‚r
+;trigger8   = stateno     = 430      ;‚µ‚á‚ª‚İ@‚j
+;value = 240
+
+[State -3];ƒWƒƒƒ“ƒvP‚Ö
+type = ChangeState
+triggerall = Alive       = 1
+triggerall = var(50)     = 1        ;‚`‚hƒXƒCƒbƒ`‚u‚`‚q
+triggerall = MoveContact = 1
+trigger1   = stateno     = 600      ;ƒWƒƒƒ“ƒv@‚o
+trigger2   = stateno     = 610      ;ƒWƒƒƒ“ƒv@‚r
+trigger3   = stateno     = 630      ;ƒWƒƒƒ“ƒv@‚j
+value = 600
+
+[State -3];ƒWƒƒƒ“ƒvS‚Ö
+type = ChangeState
+triggerall = Alive       = 1
+triggerall = var(50)     = 1        ;‚`‚hƒXƒCƒbƒ`‚u‚`‚q
+triggerall = MoveContact = 1
+trigger1   = stateno     = 600      ;ƒWƒƒƒ“ƒv@‚o
+trigger2   = stateno     = 630      ;ƒWƒƒƒ“ƒv@‚j
+value = 610
+
+[State -3];ƒWƒƒƒ“ƒvHS‚Ö
+type = ChangeState
+triggerall = Alive       = 1
+triggerall = var(50)     = 1        ;‚`‚hƒXƒCƒbƒ`‚u‚`‚q
+triggerall = MoveContact = 1
+trigger1   = stateno     = 600      ;ƒWƒƒƒ“ƒv@‚o
+trigger2   = stateno     = 610      ;ƒWƒƒƒ“ƒv@‚r
+trigger3   = stateno     = 630      ;ƒWƒƒƒ“ƒv@‚j
+value = 640
+
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+;                                   ‰ä‘A›
+[State -3]
+type = ChangeState
+triggerall = Alive       = 1
+triggerall = var(50)     = 1        ;‚`‚hƒXƒCƒbƒ`‚u‚`‚q
+triggerall = Var(26)     = 2222     ;ˆêŒ‚•KE‹Z€”õ@‹–‰Â
+triggerall = Var(42)     = 0        ;ˆêŒ‚•KE‹Z@••ˆó@
+triggerall = MoveType   != A
+trigger1   = statetype   = S
+trigger1   = ctrl        = 1
+triggerall = p2bodydist X = [-10,70]
+triggerall = P2MoveType != A
+value = 2300
+
+;<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+;                                  ‚`‚h–hŒäŒn 
+;<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+;                                  ƒK[ƒh—p
+[State -3];—§‚¿
+type = ChangeState
+value = 130
+triggerall = Alive = 1
+triggerall = var(50) = 1
+triggerall = statetype = S
+triggerall =   MoveType = I
+triggerall = P2MoveType = A
+trigger1 = Ctrl = 1
+
+[State -3];‚µ‚á‚ª‚İ
+type = ChangeState
+value = 131
+triggerall = Alive = 1
+triggerall = var(50) = 1
+triggerall = StateType = C
+triggerall =   MoveType = I
+triggerall = P2MoveType = A
+trigger1 = Ctrl = 1
+
+[State -3];‹ó’†
+type = ChangeState
+value = 132
+triggerall = Alive = 1
+triggerall = var(50) = 1
+triggerall = StateType = A
+triggerall =   MoveType = I
+triggerall = P2MoveType = A
+triggerall = StateNo != [2005,2006]
+trigger1 = Ctrl = 1
+
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+;                                  óg—p
+
+[State -3, ex];‹ó’†óg
+type = changestate
+triggerall = Alive = 1
+triggerall = var(50) = 1;‚`‚hƒXƒCƒbƒ`‚u‚`‚q
+triggerall = stateno = 5050
+triggerall = anim   != 5090;ƒ_ƒEƒ“’Ç‚¢“¢‚¿‚¶‚á–³‚¢
+triggerall = Pos Y <= -20
+trigger1 = canrecover = 1
+value = 5210
+
+;<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+;<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+[State -3, Movement Afterimage]
+type = afterimage
+trigger1 = time = 1 && (stateno = [991,993])
+time = 2
+timegap = 1
+framegap = 4
+length = 9
+palbright = 0, 0, 0
+palcontrast = 128, 128, 128
+palpostbright = 0, 0, 0
+paladd = 0, 0, 0
+palmul = 0.9, 0.9, 0.9
+trans = add1
+
+[State -3, lv1supershadow]
+type=afterimage
+trigger1= (stateno=[3100,3108]) && movetype = A && time = 38
+time=2
+timegap=1
+framegap=10
+length=30
+paladd=0,0,0
+palmul=.75,.75,.75
+palcontrast=128,128,128
+palpostbright=0,0,0
+trans=add1
+
+[State -3, Lv2 Shadows]
+type = afterimage
+trigger1= (stateno=[3000,3031]) && movetype = A && time = 38
+time = 2
+timegap = 1
+framegap = 10
+length = 21
+paladd = 0, 0, 0
+palmul = 0.75, 0.75, 0.75
+palcontrast = 32, 32, 160
+palpostbright = 0, 0, 0
+trans = add1
+
+[State -3, Lv3 Shadows]
+type = afterimage
+trigger1= (stateno=[2300,2310]) && movetype = A && time = 38
+trigger2= (stateno=[6000,6011]) && movetype = A && time = 38
+time = 2
+timegap = 1
+framegap = 10
+length = 21
+paladd = 0, 0, 0
+palmul = 0.75, 0.75, 0.75
+palcontrast = 160, 32, 32
+palpostbright = 0, 0, 0
+trans = add1
+
+[State -3, supershadowtime]
+type = AfterImageTime
+trigger1 = (stateno=[3000,4999]) && AnimElemTime(1) >= 0
+trigger2 = (stateno=[2000,2999]) && AnimElemTime(1) >= 0
+trigger3 = (stateno=[991,993]) && AnimElemTime(1) >= 0
+time = 2
+
+[State -3, Prevent Crossup]
+type=width
+trigger1= 1
+edge=8,0
+ignorehitpause=1
+
+[State -3, Super Finish]
+type = helper
+triggerall = winKO
+triggerall = roundstate = 3 && !numhelper(8600)
+trigger1 = MoveHit = 1 && (StateNo = [2300,4999])
+trigger1 = var(23) := stateno
+trigger2 = StateNo = [2300,3999]
+helpertype = normal
+stateno = 8600
+ID = 8600
+name = "Super Finish"
+postype = left
+pos = 160, -120
+ownpal = 1
+pausemovetime = 255
+supermovetime = 255
+ignorehitpause = 1

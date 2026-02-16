@@ -1,0 +1,2964 @@
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+;                              　　立ちステップ
+[Statedef 2000]
+type = S
+movetype = I
+physics = S
+;ctrl = 1
+
+[State 2 ,2]
+type = PlaySnd
+trigger1 = timemod =28, 0
+value = 501, 0;
+Volume = 99999
+channel = 1
+
+[State 2000, 1]
+type = ChangeAnim
+trigger1 = time = 0
+value = 2000
+
+[State 2000, 2]
+type = VarRandom
+trigger1 = AnimTime = 0
+v = 0
+range = 0, 1
+
+[State 2000, 3]
+type = ChangeAnim
+trigger1 = Animtime = 0
+trigger1 = var(0) = 1
+value = 2001
+
+[State 2000, 4]
+type = ChangeState
+trigger1 = AnimTime = 0
+trigger1 = Anim = 2001
+trigger2 = p2dist X < -5
+value = 0
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+; 　　　　　　　　　　　　　　　　　前ダッシュブレーキ
+[Statedef 2002]
+type    = S
+physics = N
+ctrl = 0
+Anim = 2002
+
+[State 200, 1];地上ダッシュブレーキ
+type = PlaySnd
+trigger1 = Animelem = 1
+value = 505, 0;
+volume = 99999
+channel = 1
+
+[State 100, 3]
+type = AssertSpecial
+trigger1 = 1
+flag = NoAutoTurn
+
+[State 108, 0]
+type = VelAdd
+trigger1 = time >= 0
+x = -0.2
+
+[State 108, 1]
+type = ChangeState
+trigger1 = animtime = 0
+value = 0
+ctrl = 1
+
+
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+;                                     空中前ダッシュ
+[Statedef 2005]
+type = A
+movetype = A
+physics = N
+anim = 2005
+ctrl = 1
+velset = 0,0
+
+[State -2, 7];２段ジャンプ不可にする　０＝初期　１＝可能　２＝不可
+type = VarSet
+trigger1 = Time >= 0
+var(8) = 2
+
+[State 200, 1];ダッシュ
+type = PlaySnd
+trigger1 = Animelem = 1
+value = 503, 0;
+volume = 99999
+;channel = 1
+
+[State 2000,1];必ゲージ増加
+type = poweradd
+trigger1 = time = [0,10]
+trigger1 = timemod = 2,0
+value = 3
+[State 2000,1];必ゲージ増加
+type = poweradd
+trigger1 = time > 10
+trigger1 = timemod = 2,0
+value = 1
+
+[State 101, 7];ダッシュ回数カウント
+type = Varset
+trigger1 = Time = 0
+var(10) = 1
+
+[State 750, 3];ダッシュ攻撃移動用呼び出し
+type = helper
+trigger1 = Time = 0
+ID = 2007
+ignorehitpause = 1
+persistent = 0
+pos = 500,-10
+priority = 2
+stateno = 2007
+
+[State 101, 1];移動
+type = Velset
+triggerall = Var(43) = 0;通常モード
+trigger1 = time <= 17
+trigger1 = Var(9) = 0
+x = 8
+
+[State 101, 1];移動
+type = Velset
+triggerall = Var(43) = 5;ゴールドカラーモード
+trigger1 = time <= 17
+trigger1 = Var(9) = 0
+x = 12
+
+[State 101, 1];移動
+type = Velset
+triggerall = Var(43) = 10 || Var(43) = 15;ＥＸ・何でもアリモード
+trigger1 = time <= 17
+trigger1 = Var(9) = 0
+x = 9.5
+
+[State 240, 3];
+type = Explod
+trigger1 = time = 0
+pos = 10, -80
+persistent = 0
+ignorehitpause = 1
+sprpriority = 9999
+ownpal = 1
+ontop = 1
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+supermove = 1
+bindtime = 1
+anim = F804
+
+[State 750, 3];光の粒呼び出し作業ヘルパー
+type = helper
+trigger1 = Time = 0
+ID = 2020
+ignorehitpause = 1
+persistent = 0
+pos = 0,0
+priority = 10
+ownpal = 1;コレが無いとヘルパーの色変化が出来ない
+postype = p1
+size.xscale=0.5
+size.yscale=0.5
+stateno = 2020
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+supermove = 1
+
+[State 101, 1];落下へ
+type = ChangeState
+trigger1 = time > 17
+value = 50
+
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+;                                空中後ろダッシュ
+[Statedef 2006]
+type = A
+movetype = A
+physics = N
+anim = 2006
+ctrl = 1
+velset = 0,0
+
+[State -2, 7];２段ジャンプ不可にする　０＝初期　１＝可能　２＝不可
+type = VarSet
+trigger1 = Time >= 0
+var(8) = 2
+
+[State 100, 3] ;Prevent from turning
+type = AssertSpecial
+trigger1 = 1
+flag = NoAutoTurn
+
+[State 101, 7];ダッシュ回数カウント
+type = Varset
+trigger1 = Time = 0
+var(10) = 1
+
+[State 200, 1];ダッシュ
+type = PlaySnd
+trigger1 = Animelem = 1
+value = 503, 0;
+volume = 99999
+;channel = 1
+
+[State 750, 3];ダッシュ攻撃移動用呼び出し
+type = helper
+trigger1 = Time = 0
+ID = 2008
+ignorehitpause = 1
+persistent = 0
+pos = 500,-10
+priority = 2
+stateno = 2008
+
+[State 101, 1];移動
+type = Velset
+triggerall = Var(43) = 0;通常モード
+trigger1 = time <= 12
+trigger1 = Var(9) = 0
+x = -8
+
+[State 101, 1];移動
+type = Velset
+triggerall = Var(43) = 5;ゴールドカラーモード
+trigger1 = time <= 12
+trigger1 = Var(9) = 0
+x = -12
+
+[State 101, 1];移動
+type = Velset
+triggerall = Var(43) = 10 || Var(43) = 15;ＥＸ・何でもアリモード
+trigger1 = time <= 12
+trigger1 = Var(9) = 0
+x = -9.5
+
+
+[State 240, 3];
+type = Explod
+trigger1 = time = 0
+pos = -10, -80
+persistent = 0
+ignorehitpause = 1
+sprpriority = 9999
+facing = -1
+ownpal = 1
+ontop = 1
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+supermove = 1
+bindtime = 1
+anim = F804
+
+[State 750, 3];光の粒呼び出し作業ヘルパー
+type = helper
+trigger1 = Time = 0
+ID = 2020
+ignorehitpause = 1
+persistent = 0
+pos = 0,0
+priority = 10
+ownpal = 1;コレが無いとヘルパーの色変化が出来ない
+postype = p1
+size.xscale=0.5
+size.yscale=0.5
+stateno = 2020
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+supermove = 1
+
+[State 101, 1];落下へ
+type = ChangeState
+trigger1 = time > 12
+value = 50
+
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+;　　　　　　　　　　　　　　　　　　空ダッシュ　前　攻撃監視用ヘルパー
+[Statedef 2007]
+type = A
+movetype = I
+physics = N
+anim = 9999
+ctrl = 0
+velset = 0,0
+
+[State 255, 7]
+type = destroyself
+trigger1 = Time = 17
+
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+;　　　　　　　　　　　　　　　　　　空ダッシュ　後ろ　攻撃監視用ヘルパー
+[Statedef 2008]
+type = A
+movetype = I
+physics = N
+anim = 9999
+ctrl = 0
+velset = 0,0
+
+[State 255, 7]
+type = destroyself
+trigger1 = Time = 12
+
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+; 　　　　　　　　　　　　　　　　　　　　登場Ｂ　１Ｐ　　
+[Statedef 2015]
+type = S
+ctrl = 0
+anim = 2015
+velset = 0,0
+
+[State 3,0];登場Ｂへ
+type = ChangeState
+triggerall = Time >= 0
+triggerall = teamSide = 2
+trigger1 = P2Name = "JAM KURADOBERI"
+trigger2 = P4Name = "JAM KURADOBERI"
+value = 2018
+
+[state 2, bar]
+type = assertspecial
+trigger1 = Time >= 0
+flag = NoBarDisplay
+
+;[State 191, 1]
+;type = ChangeAnim
+;trigger1 = RoundState = 0
+;value = 190
+
+[State 200, 0]
+type = VarRandom
+trigger1 = Time = 0
+v = 0
+range = 0,8
+
+[State 191, 1]
+type = ChangeAnim
+triggerall = Time = 0
+trigger1 = var(0) = 1
+trigger2 = var(0) = 4
+trigger3 = var(0) = 7
+value = 2016
+
+[State 191, 1]
+type = ChangeAnim
+triggerall = Time = 0
+trigger1 = var(0) = 2
+trigger2 = var(0) = 5
+trigger3 = var(0) = 8
+value = 2017
+
+[State 200, 1];
+type = PlaySnd
+trigger1 = Animelem = 12
+value = 505, 0;
+volume = 99999
+channel = 1
+
+[State 200, 1];たぁー
+type = PlaySnd
+triggerall = Animelem = 2
+trigger1 = var(0) = 0
+trigger2 = var(0) = 3
+trigger3 = var(0) = 6
+value = 101, 0;
+volume = 99999
+channel = 0
+[State 200, 1];クラドベリジャム参上
+type = PlaySnd
+triggerall = Animelem = 2
+trigger1 = var(0) = 1
+trigger2 = var(0) = 4
+trigger3 = var(0) = 7
+value = 101, 1;
+volume = 99999
+channel = 0
+[State 200, 1];ちゃちゃっと終わらせる
+type = PlaySnd
+triggerall = Animelem = 2
+trigger1 = var(0) = 2
+trigger2 = var(0) = 5
+trigger3 = var(0) = 8
+value = 101, 2;
+volume = 99999
+channel = 0
+
+[State 240, 3];ピンクの煙
+type = Explod
+trigger1 = AnimElem = 11
+pos = 60, 5
+;Postype = p1
+;facing = 1
+persistent = 0
+ignorehitpause = 1
+sprpriority = 999
+ownpal = 1
+;pausemovetime = 99999999999999
+;supermovetime = 99999999999999
+;supermove = 1
+bindtime = 1
+anim = 1005
+
+[State 191, 2]
+type = AssertSpecial
+trigger1 = Time = [0,500]
+flag = Intro
+
+[State 191,4]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 0
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+; 　　　　　　　　　　　　　　　　　　　　登場Ｂ　２Ｐ　　
+[Statedef 2018]
+type = S
+ctrl = 0
+anim = 2018
+velset = 0,0
+
+[state 2, bar]
+type = assertspecial
+trigger1 = Time >= 0
+flag = NoBarDisplay
+
+;[State 191, 1]
+;type = ChangeAnim
+;trigger1 = RoundState = 0
+;value = 190
+
+[State 200, 0]
+type = VarRandom
+trigger1 = Time = 0
+v = 0
+range = 0,8
+
+[State 191, 1]
+type = ChangeAnim
+triggerall = Time = 0
+trigger1 = var(0) = 1
+trigger2 = var(0) = 4
+trigger3 = var(0) = 7
+value = 2019
+
+[State 191, 1]
+type = ChangeAnim
+triggerall = Time = 0
+trigger1 = var(0) = 2
+trigger2 = var(0) = 5
+trigger3 = var(0) = 8
+value = 2020
+
+[State 200, 1];
+type = PlaySnd
+trigger1 = Animelem = 12
+value = 505, 0;
+volume = 99999
+channel = 1
+
+[State 200, 1];たぁー
+type = PlaySnd
+triggerall = Animelem = 2
+trigger1 = var(0) = 0
+trigger2 = var(0) = 3
+trigger3 = var(0) = 6
+value = 101, 0;
+volume = 99999
+channel = 0
+[State 200, 1];クラドベリジャム参上
+type = PlaySnd
+triggerall = Animelem = 2
+trigger1 = var(0) = 1
+trigger2 = var(0) = 4
+trigger3 = var(0) = 7
+value = 101, 1;
+volume = 99999
+channel = 0
+[State 200, 1];ちゃちゃっと終わらせる
+type = PlaySnd
+triggerall = Animelem = 2
+trigger1 = var(0) = 2
+trigger2 = var(0) = 5
+trigger3 = var(0) = 8
+value = 101, 2;
+volume = 99999
+channel = 0
+
+[State 240, 3];ピンクの煙
+type = Explod
+trigger1 = AnimElem = 11
+pos = 60, 5
+;Postype = p1
+;facing = 1
+persistent = 0
+ignorehitpause = 1
+sprpriority = 999
+ownpal = 1
+;pausemovetime = 99999999999999
+;supermovetime = 99999999999999
+;supermove = 1
+bindtime = 1
+anim = 1005
+
+[State 191, 2]
+type = AssertSpecial
+trigger1 = Time = [0,500]
+flag = Intro
+
+[State 191,4]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 0
+
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+;　　　　　　　　　　　　　　　　　　空中ダッシュ光の粒呼び出し作業ヘルパー
+[Statedef 2020]
+type = A
+movetype = I
+physics = N
+anim = 9999
+ctrl = 0
+velset = 0,0
+
+[State 1];
+type = Posset
+trigger1 = Pos x != root,Pos x
+x = root,Pos x
+
+[State 1];増殖阻止ＶＡＲ初期化
+type = Varset
+trigger1 = Time = 0
+var(25) = 1
+
+[State 2];増殖阻止ＶＡＲ許可
+type = Varset
+trigger1 = Time = 1
+var(25) = 0
+
+[State 7011, 10]
+type = assertspecial
+trigger1 = Time>=0
+flag = noshadow
+
+[State 5201, 1]
+type = Turn
+triggerall = root,stateno = 2006
+trigger1 = Time = 0
+
+[State 1];
+type = velset
+trigger1 = Time = [3,10]
+x = 9
+
+[State -2];出る場所Ｘ
+type = VarRandom
+trigger1 = Time <= 10
+v = 5
+range = -50, 20
+
+[State -2];出る場所Ｘ２
+type = VarRandom
+trigger1 = Time <= 10
+v = 6
+range = -50, 20
+
+[State -2];出る場所Ｙ
+type = VarRandom
+trigger1 = Time <= 10
+v = 7
+range = -100, -50
+
+[State 750, 3];光の粒呼び出し
+type = helper
+triggerall= Numhelper + Enemy,numHelper <= 24
+trigger1 = Time <= 17
+trigger1 = Timemod = 3,0
+trigger1 = Numhelper(2022) < 10
+ID = 2022
+ignorehitpause = 1
+;persistent = 0
+pos = Var(5),Var(7)
+priority = 10
+ownpal = 1;コレが無いとヘルパーの色変化が出来ない
+postype = p1
+size.xscale=0.7
+size.yscale=0.7
+stateno = 2022
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+supermove = 1
+
+[State 750, 3];光の粒呼び出し
+type = helper
+triggerall= Numhelper + Enemy,numHelper <= 24
+trigger1 = Time <= 17
+trigger1 = Timemod = 3,0
+trigger1 = Numhelper(2022) < 10
+ID = 2022
+ignorehitpause = 1
+;persistent = 0
+pos = Var(6),Var(7)
+priority = 10
+ownpal = 1;コレが無いとヘルパーの色変化が出来ない
+postype = p1
+size.xscale=0.5
+size.yscale=0.5
+stateno = 2022
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+supermove = 1
+
+[State 255, 7]
+type = destroyself
+trigger1 = Time = 17
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+;　　　　　　　　　　　　　　　　　　空中ダッシュ光の粒
+[Statedef 2022]
+type = A
+movetype = I
+physics = N
+anim = 711
+ctrl = 0
+velset = 0,0
+
+[State 7011, 10]
+type = assertspecial
+trigger1 = Time>=0
+flag = noshadow
+
+[State 50, 1]
+type = sprpriority
+Trigger1 = Time >= 0 
+value = 9999 
+
+
+[State 10, 10];フェードアウト用ＶＡＲ
+type = Varset
+triggerall= Ishelper(2022) = 1;空中ダッシュ光の粒
+trigger1 = Time = 0
+ignorehitpause = 1
+var(20) = 0
+
+[State 10, 10];フェードアウト用ＶＡＲ
+type = Varadd
+triggerall= Ishelper(2022) = 1;空中ダッシュ光の粒
+trigger1 = Time > 2
+ignorehitpause = 1
+var(20) = -7
+
+[State 2, 6];フェードアウトさせる
+type = PalFX
+triggerall= Ishelper(2022) = 1;空中ダッシュ光の粒
+trigger1 = Time > 2
+add = Var(20)-1,Var(20)-1,Var(20)-1
+time = 1
+
+[State -2]
+type = VarRandom
+triggerall= Ishelper(2022) = 1;空中ダッシュ光の粒
+trigger1 = Time >= 0
+v = 10
+range = 0, 5
+
+[State 240, 3]
+type = Velset
+trigger1 = var(10) = 0
+trigger1 = Time = 0
+x = 0.1
+
+[State 240, 3]
+type = Velset
+trigger1 = var(10) = 1
+trigger1 = Time = 0
+x = 0.3
+
+[State 240, 3]
+type = Velset
+trigger1 = var(10) = 2
+trigger1 = Time = 0
+x = 0.6
+
+[State 240, 3]
+type = Velset
+trigger1 = var(10) = 3
+trigger1 = Time = 0
+x = 0.9
+
+[State 240, 3]
+type = Velset
+trigger1 = var(10) = 4
+trigger1 = Time = 0
+x = 1
+
+[State 240, 3]
+type = Velset
+trigger1 = var(10) = 5
+trigger1 = Time = 0
+x = 1.5
+
+
+[State 240, 3]
+type = Veladd
+trigger1 = var(20) < -155
+trigger1 = Vel x > 1
+x = -0.5
+
+[State 2]
+type = VarRandom
+trigger1 = Time = 0
+trigger2 = var(20) = [-155,-145]
+v = 11
+range = 0, 5
+
+[State 240, 3]
+type = Velset
+trigger1 = var(11) = 1
+y = 0.3
+
+[State 240, 3]
+type = Velset
+trigger1 = var(11) = 2
+y = -0.3
+
+[State 240, 3]
+type = Velset
+trigger1 = var(11) = 3
+y = 0.7
+
+[State 240, 3]
+type = Velset
+trigger1 = var(11) = 4
+y = -0.7
+
+[State 255, 7]
+type = destroyself
+trigger1 = var(20) < -210
+trigger2 = parent, Var(25) = 1;呼び出しヘルパー増殖初期化
+;trigger3 = root, stateno != 2005;空中ダッシュ前
+;trigger3 = root, stateno != 2006;空中ダッシュ後
+trigger3 = root, Movetype = H
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+; 　　　　　　　　　　　　　　　　ロマンキャンセル地上　　　
+[Statedef 2030]
+type    = S                      
+movetype= A                      
+physics = N                     
+juggle  = 0                      
+velset = 0,0                   
+ctrl = 1                       
+;anim = 0                      
+poweradd = 0    
+
+
+[State 2000,1];テンションゲージ減少　フォースＲＣ時
+type = poweradd
+triggerall = time = 0
+trigger1   = var(3) = 0;ロマンキャンセル許可じゃない時
+value = -500
+
+[State 2000,1];テンションゲージ減少　ＲＣ時
+type = poweradd
+triggerall = time = 0
+trigger1   = var(3) = 1;ロマンキャンセル許可
+value = -1000
+
+[State 750, 3];フォースＲＣ青い円呼び出し
+type = helper
+triggerall = Time = 0
+trigger1   = var(3) = 0;ロマンキャンセル許可じゃない時
+ignorehitpause = 1
+persistent = 0;
+pos = 0, -70
+priority = 2
+stateno = 4051
+ID = 4051
+ownpal = 1
+supermove = 1
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+
+[State 750, 3];ＲＣ赤い円呼び出し
+type = helper
+triggerall = Time = 0
+trigger1   = var(3) = 1;ロマンキャンセル許可
+ignorehitpause = 1
+persistent = 0;
+pos = 0, -70
+priority = 2
+stateno = 4050
+ID = 4050
+ownpal = 1
+supermove = 1
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+
+[State 1150, 1]
+type = StatetypeSet
+triggerall = Time >= 0
+trigger1 = Pos Y < 0
+value = A
+
+[State 200, 1]
+type = PlaySnd
+trigger1 = Time = 0
+value = 511, 0;
+volume = 99999
+
+[State 1070, palfx]
+type = PalFx
+trigger1 = Time = 0
+add =  188, 188, 188
+time = 3
+
+[State 7000, KillSound];音消し
+type = StopSnd
+trigger1 = Time = 0
+channel = 1
+
+[State 7000, KillSound];音消し
+type = StopSnd
+trigger1 = Time = 0
+channel = 2
+
+[State 200, 7]
+type = ChangeState
+triggerall = Time >= 1
+trigger1 = Pos Y < 0
+value = 50
+ctrl = 1
+
+[State 200, 8]
+type = ChangeState
+trigger1 = Time = 1
+value = 0
+ctrl = 1
+
+
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+; 　　　　　　　　　　　　　　　　ロマンキャンセル空中　　　
+[Statedef 2031]
+type    = A                      
+movetype= A                      
+physics = A;N                     
+juggle  = 0                      
+;velset = 0,0                   
+ctrl = 1                       
+anim = 44                      
+poweradd = 0    
+
+
+[State 2000,1];テンションゲージ減少　フォースＲＣ時
+type = poweradd
+triggerall = time = 0
+trigger1   = var(3) = 0;ロマンキャンセル許可じゃない時
+value = -500
+
+[State 2000,1];テンションゲージ減少　ＲＣ時
+type = poweradd
+triggerall = time = 0
+trigger1   = var(3) = 1;ロマンキャンセル許可
+value = -1000
+
+[State 750, 3];フォースＲＣ青い円呼び出し
+type = helper
+triggerall = Time = 0
+trigger1   = var(3) = 0;ロマンキャンセル許可じゃない時
+ignorehitpause = 1
+persistent = 0;
+pos = 0, -70
+priority = 2
+stateno = 4051
+ID = 4051
+ownpal = 1
+supermove = 1
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+
+[State 750, 3];ＲＣ赤い円呼び出し
+type = helper
+triggerall = Time = 0
+trigger1   = var(3) = 1;ロマンキャンセル許可
+ignorehitpause = 1
+persistent = 0;
+pos = 0, -70
+priority = 2
+stateno = 4050
+ID = 4050
+ownpal = 1
+supermove = 1
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+
+;[State 1, 1];速度調整
+;type = velset
+;trigger1 = Vel Y > 0.44
+;y = 0.44
+
+;######################################################
+;　前のステートで速度を調整する場合
+;######################################################
+[State 1, 1];空中ダッシュ通常攻撃後の場合
+type = velset
+trigger1 = PrevStateno = [600,640]
+trigger1 = Vel X >= 8
+x = 2
+[State 1, 1];空中ダッシュ通常攻撃後の場合
+type = velset
+trigger1 = PrevStateno = [600,640]
+trigger1 = Vel X <= -8
+x = -2
+[State 1, 1];前ＨＳ攻撃後の場合
+type = velset
+trigger1 = PrevStateno = 271
+trigger2 = PrevStateno = 273
+y = -2
+;[State 1, 1];鷹嬰脚後の場合
+;type = velset
+;trigger1 = PrevStateno = [1030,1033]
+;x = 2
+;y = 0.44
+;######################################################
+
+
+;=======================================================
+[State -2, 7];２段ジャンプ不可にする
+type = VarSet
+triggerall= Time >= 0
+trigger1 = PrevStateno = 271;前ＨＳ
+trigger2 = PrevStateno = 273;前ＨＳ２段目
+trigger3 = PrevStateNo = [1050,1054];剣楼閣
+trigger4 = PrevStateNo = [1060,1067];剣楼閣　朝凪強化
+trigger5 = PrevStateNo = 1040       ;爆蹴　足払い
+trigger6 = PrevStateNo = 1070       ;逆鱗
+trigger7 = PrevStateNo = [1080,1082];逆鱗　朝凪強化
+trigger8 = PrevStateNo = 1091       ;龍刃
+trigger9 = PrevStateNo = 1096       ;龍刃　朝凪強化
+var(8) = 2
+
+[State 101, 7];空中ダッシュ不可にする
+type = Varset
+triggerall= Time >= 0
+trigger1 = PrevStateno = 271;前ＨＳ
+trigger2 = PrevStateno = 273;前ＨＳ２段目
+trigger3 = PrevStateNo = [1050,1054];剣楼閣
+trigger4 = PrevStateNo = [1060,1067];剣楼閣　朝凪強化
+trigger5 = PrevStateNo = 1040       ;爆蹴　足払い
+trigger6 = PrevStateNo = 1070       ;逆鱗
+trigger7 = PrevStateNo = [1080,1082];逆鱗　朝凪強化
+trigger8 = PrevStateNo = 1091       ;龍刃
+trigger9 = PrevStateNo = 1096       ;龍刃　朝凪強化
+var(10) = 1
+;=======================================================
+
+[State 1027, Stop moving]
+type = PosFreeze
+trigger1 = 1
+x = 1
+y = 1
+
+[State 200, 1]
+type = PlaySnd
+trigger1 = Time = 0
+value = 511, 0;
+volume = 99999
+
+[State 1070, palfx]
+type = PalFx
+trigger1 = Time = 0
+add =  188, 188, 188
+time = 3
+
+[State 7000, KillSound];音消し
+type = StopSnd
+trigger1 = Time = 0
+channel = 1
+
+[State 7000, KillSound];音消し
+type = StopSnd
+trigger1 = Time = 0
+channel = 2
+
+[State 200, 7]
+type = ChangeState
+trigger1 = Time = 1
+trigger2 = Pos Y >= -1
+value = 50
+ctrl = 1
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;                                     デッドアングルアタック
+[Statedef 2040]
+type    = C
+movetype= A
+physics = C
+juggle  = 0
+poweradd= 0
+ctrl = 0
+anim = 410
+;sprpriority = 2
+
+[State 2000,1];必ゲージ減らし
+type = poweradd
+trigger1 = time = 0
+value = -1000
+
+[State 170, 1]
+type = NotHitBy
+trigger1 = Time >= 0
+value = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+time = 2
+
+[State 2, ga3];
+type = PlaySnd
+trigger1 = Animelem = 4
+value = 507, 4
+Volume = 99999
+channel = 1
+
+[State 2, ga3];
+type = PlaySnd
+trigger1 = Animelem = 4
+value = 510, 0
+Volume = 99999
+
+[State 200, 1];
+type = HitDef
+trigger1 = AnimElem = 1
+attr = C, NA
+damage = ceil(28*Var(5)/256)+Var(15), 0
+animtype = Medium
+guardflag = MA
+hitflag = MAF
+priority = 3, Hit
+pausetime = 14,14+Var(15)
+guard.pausetime = 14,14
+sparkno = -1
+guard.sparkno = -1
+;sparkxy = 10, -76
+hitsound = S508, 1
+guardsound =S509, 1
+ground.type = Low 
+ground.slidetime = 14
+ground.hittime  = 14
+ground.velocity = -2.5,-5
+airguard.velocity =-2.5,-5+Var(6)
+air.type = High
+air.velocity =-2.5,-5+Var(6)
+air.hittime = 14
+fall = 1;落下させる
+fall.recover = 0;受身可否
+;fall.recovertime = 0;受身出来るまでの時間
+air.fall = 1;相手が空中時のみ落下させる
+down.velocity = 0,-5
+down.hittime = 14
+down.bounce = 1
+palfx.time = 1
+palfx.add = 0,0,0
+p2facing = 1
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+[State 10,combo];攻撃力補正用ＶＡＲ
+type = Varadd
+trigger1 = MoveHit = 1
+persistent = 0
+ignorehitpause = 1
+v = 4
+value = 1
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
+[State 2, ga3];カウンターヒット時
+type = PlaySnd
+trigger1 =  var(14) >= 128
+trigger1 = movehit = 1
+persistent = 0
+ignorehitpause = 1
+value = 511, 1
+Volume = 99999
+;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
+;あああああああああああああああああ
+[State 2,guardLEVEL];ガードレベル増加
+type = Varadd
+trigger1 =  var(14) <= 246
+trigger1 = moveguarded = 1
+persistent = 0
+ignorehitpause = 1
+var(14) = 10
+[State 2,guardLEVEL];ガードレベル増加
+type = Varadd
+trigger1 =  var(14) > 246
+trigger1 = moveguarded = 1
+persistent = 0
+ignorehitpause = 1
+var(14) = 256-Var(14)
+[State 2,guardLEVEL];ガードレベル減少
+type = Varadd
+trigger1 =  movehit = 1
+trigger1 =  var(14) >= 10
+persistent = 0
+ignorehitpause = 1
+var(14) = -10
+[State 2,guardLEVEL];ガードレベル減少
+type = Varadd
+trigger1 =  movehit = 1
+trigger1 =  var(14) < 10
+persistent = 0
+ignorehitpause = 1
+var(14) = -Var(14)
+;あああああああああああああああああ
+;HHHHHHHHHHHHHHHHHHHHHHHH
+;ＨＩＴ炎エフェクトのヘルパー強制消去用
+;HHHHHHHHHHHHHHHHHHHHHHHH
+[State 1,1]
+type = Varset
+triggerall = Var(17)  != 1
+trigger1 = MoveContact = 1
+ignorehitpause = 1
+v = 17
+value = 1
+;HHHHHHHHHHHHHHHHHHHHHHHH
+
+[State 240, 3];ヒットマーク
+type = Explod
+trigger1 = movehit = 1
+pos = 10, -51
+Postype = p2
+facing = -1
+persistent = 0
+ignorehitpause = 1
+sprpriority = 9999
+random = 5, 15
+ownpal = 1
+ontop = 1
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+supermove = 1
+bindtime = 1
+anim = F701
+[State 240, 3];ガードマーク
+type = Explod
+trigger1 = moveguarded = 1
+pos = 10, -51
+Postype = p2
+facing = -1
+persistent = 0
+ignorehitpause = 1
+sprpriority = 9999
+random = 5, 15
+ownpal = 1
+ontop = 1
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+supermove = 1
+bindtime = 1
+anim = F751
+
+[State 750, 3];光の粒　白　呼び出し
+type = helper
+triggerall= Numhelper + Enemy,numHelper <= 20
+trigger1 = movehit = 1
+ignorehitpause = 1
+persistent = 0;
+pos = 10, -51
+Postype = p2
+facing = -1
+priority = 2
+stateno = 4026
+ownpal = 1
+supermove = 1
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+
+;+++++++++++++++++++++++++++++++
+; ロマンキャンセル許可  
+;+++++++++++++++++++++++++++++++
+[State 10, 10];
+type = Varset
+trigger1 = MoveContact = 1
+trigger1 = var(3) != 1
+persistent = 0
+ignorehitpause = 1
+var(3) = 1
+;+++++++++++++++++++++++++++++++
+;+++++++++++++++++++++++++++++++
+; ロマンキャンセル解除ガトリング暴発防止
+;+++++++++++++++++++++++++++++++
+[State 10, 10];
+type = Varset
+trigger1 = Time = 0
+trigger1 = var(3) = 1
+persistent = 0
+ignorehitpause = 1
+var(3) = 0
+;+++++++++++++++++++++++++++++++
+
+[State 5201, 5] ;Blink white
+type = PalFX
+trigger1 = Time < 7
+time = 2
+add = 200,200,200
+
+[State 400, 4]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 11
+ctrl = 1
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+;　　　　　　　　　　　　　　　　　　お皿右
+[Statedef 2060]
+type = A
+movetype = I
+physics = N
+anim = 182
+ctrl = 0
+velset = 0,0
+sprpriority = 5
+
+[State 255, 7]
+type = velset
+trigger1 = Time = 0
+y = 7
+
+[State 255, 7]
+type = velset
+trigger1 = ParentDist y <= 106
+trigger1 = Time = [28,46]
+y = 0
+
+[State 255, 7]
+type = posset
+trigger1 = ParentDist y <= 106
+trigger1 = Time = [28,46]
+y = -101
+
+[State 255, 7]
+type = posadd
+trigger1 = root,AnimElem = 3
+x = -4
+
+[State 255, 7]
+type = posadd
+trigger1 = root,AnimElem = 4
+x = -2
+[State 255, 7]
+type = posadd
+trigger1 = root,AnimElem = 5
+x = 1
+y = 6
+[State 255, 7]
+type = posadd
+trigger1 = root,AnimElem = 6
+y = 6
+[State 255, 7]
+type = posadd
+trigger1 = root,AnimElem = 7
+x =-1
+y = 1
+
+[State 255, 7]
+type = velset
+trigger1 = root,AnimElem = 8
+y = -7
+
+[State 7011, 10]
+type = assertspecial
+trigger1 = Time>=0
+flag = noshadow
+
+[State 255, 7]
+type = destroyself
+trigger1 = root,AnimElem = 14
+
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+;　　　　　　　　　　　　　　　　　　お皿左
+[Statedef 2061]
+type = A
+movetype = I
+physics = N
+anim = 182
+ctrl = 0
+velset = 0,0
+sprpriority = 5
+
+[State 255, 7]
+type = velset
+trigger1 = Time = 0
+y = 7
+
+[State 255, 7]
+type = velset
+trigger1 = ParentDist y <= 115
+trigger1 = Time = [28,46]
+y = 0
+
+[State 255, 7]
+type = posset
+trigger1 = ParentDist y <= 115
+trigger1 = Time = [28,46]
+y = -110
+
+[State 255, 7]
+type = posadd
+trigger1 = root,AnimElem = 5
+y = 15
+
+[State 255, 7]
+type = posadd
+trigger1 = root,AnimElem = 6
+x = 1
+y = 16
+
+[State 255, 7]
+type = posadd
+trigger1 = root,AnimElem = 7
+x = 1
+y = 4
+
+[State 255, 7]
+type = velset
+trigger1 = root,AnimElem = 8
+y = -7
+
+[State 7011, 10]
+type = assertspecial
+trigger1 = Time>=0
+flag = noshadow
+
+[State 255, 7]
+type = destroyself
+trigger1 = root,AnimElem = 14
+
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+;　　　　　　　　　　　　　　　　　　お皿真中
+[Statedef 2062]
+type = A
+movetype = I
+physics = N
+anim = 182
+ctrl = 0
+velset = 0,0
+sprpriority = 5
+
+[State 255, 7]
+type = velset
+trigger1 = Time = 0
+y = 7
+
+[State 255, 7]
+type = velset
+trigger1 = ParentDist y <= 115
+trigger1 = Time = [28,52]
+y = 0
+
+[State 255, 7]
+type = posset
+trigger1 = ParentDist y <= 115
+trigger1 = Time = [28,52]
+y = -107
+
+[State 255, 7]
+type = velset
+trigger1 = root,AnimElem = 8
+y = -7
+
+
+[State 7011, 10]
+type = assertspecial
+trigger1 = Time>=0
+flag = noshadow
+
+[State 255, 7]
+type = destroyself
+trigger1 = root,AnimElem = 14
+;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+;　　　　　　　　　　　　　　　　　　覚醒技光のオーラ
+[Statedef 2100]
+type = A
+movetype = I
+physics = N
+anim = 9999
+ctrl = 0
+velset = 0,0
+
+[State 2, 1];光のオーラ拡大率初期化
+type = Varset
+trigger1 = Var(17) != 0
+trigger1 = time = 0
+var(17) = 0
+ignorehitpause = 1
+
+[State 240, 3];覚醒開始 光のオーラ
+type = Explod
+trigger1 = time = 0
+pos = 0, 0
+persistent = 0
+ignorehitpause = 1
+sprpriority = 9999
+ownpal = 1
+ontop = 1
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+supermove = 1
+bindtime = 1
+anim = F1000
+ID = 11000
+
+[State 222, 10];光のオーラ拡大率アップ
+type = VarAdd
+trigger1 = Var(17) >= 0
+var(17) = 1
+ignorehitpause = 1
+
+[State 2090, 7];光のオーラ拡大
+type = ModifyExplod
+trigger1 = Time >= 0
+ID = 11000
+scale = Var(17)/35.0,Var(17)/35.0
+
+[State 7011, 10]
+type = assertspecial
+trigger1 = Time>=0
+flag = noshadow
+
+[State 50, 1]
+type = sprpriority
+Trigger1 = Time >= 0 
+value = 9999 
+
+
+[State 2, 6]
+type = RemoveExplod
+trigger1 = Root,StateNo = 2302;我羨惚　決めポーズ
+ignorehitpause = 1
+ID = 11000
+
+[State 255, 7]
+type = destroyself
+trigger1 = Time = 100
+trigger2 = Root,StateNo = 2302;我羨惚　決めポーズ
+
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;                                     一撃必殺技準備
+[Statedef 2200]
+type    = S
+movetype= I
+physics = S
+juggle  = 0
+poweradd= 0
+ctrl = 0
+velset = 0,0
+anim = 2200
+;sprpriority = 2
+
+[State 2200,0];一撃必殺技準備　許可
+type = Varset
+trigger1 = Time = 10
+trigger1 = Var(26) = 0
+persistent = 0
+ignorehitpause = 1
+v = 26
+value = 1111
+
+[State 2200,1];一撃必殺技準備　解除
+type = Varset
+trigger1 = Time = 10
+trigger1 = Var(26) = 2222
+trigger2 = Time = 0
+trigger2 = Var(26) = 1111
+persistent = 0
+ignorehitpause = 1
+v = 26
+value = 0
+
+[State 2200,2];一撃必殺技準備　許可　その２
+type = Varset
+trigger1 = Time = 10
+trigger1 = Var(26) = 1111
+persistent = 0
+ignorehitpause = 1
+v = 26
+value = 2222
+
+[State 240, 3];覚醒技　背景流れ　紗夢一撃必殺技準備用
+trigger1 = Animelem = 1
+type = Explod
+pos = 0, 0
+postype = left
+persistent = 1
+ignorehitpause = 1
+sprpriority = -9999
+ownpal = 1
+under  = 1
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+supermove = 1
+bindtime = -1
+Removetime = 99999999999999
+anim = F1011
+ID = 11011
+
+[State 240, 3];一撃必殺技準備用フェードアウト終了元の色へ
+type = Explod
+trigger1 = Animelem = 5
+pos = 0, 0
+postype = left
+persistent = 1
+ignorehitpause = 1
+sprpriority = -9999
+ownpal = 1
+under  = 1
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+supermove = 1
+bindtime = -1
+scale = 9999,9999
+anim = F1008
+ID = 11008
+
+[State 2, 6]
+type = RemoveExplod
+trigger1 = Animelem = 5
+ignorehitpause = 1
+ID = 11011
+
+[State 7011, 10];レイヤー消去
+type = assertspecial
+trigger1 = Time>=0
+flag = nofg
+ignorehitpause = 1
+
+[State 200, 0]
+type = VarRandom
+trigger1 = Animelem = 1
+v = 0
+range = 0,2
+[State 200, 1];終わりアル
+type = PlaySnd
+trigger1 = Animelem = 1
+trigger1 = Var(0) = 0
+value = 105, 0;
+volume = 99999
+channel = 0
+[State 200, 1];お見舞いしてあげる
+type = PlaySnd
+trigger1 = Animelem = 1
+trigger1 = Var(0) = 1
+value = 105, 1;
+volume = 99999
+channel = 0
+[State 200, 1];恨まないでね
+type = PlaySnd
+trigger1 = Animelem = 1
+trigger1 = Var(0) = 2
+value = 105, 2;
+volume = 99999
+channel = 0
+
+[State 200, 0]
+type = VarRandom
+trigger1 = Time > 5
+v = 0
+range = 5,10
+
+[State 240, 3];一撃必殺技準備　赤い線
+type = Explod
+trigger1 = Time   <= 30
+trigger1 = Timemod = 8,0
+pos = 0, 5
+Random = 150,0
+persistent = 1
+ignorehitpause = 1
+sprpriority = 5
+ownpal = 1
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+supermove = 1
+bindtime = 1
+scale = Var(0)*0.1,1
+anim = F1512
+
+[State 240, 3];一撃必殺技準備　赤い線
+type = Explod
+trigger1 = Time   <= 40
+trigger1 = Timemod = 7,0
+pos = 0, 5
+Random = 150,0
+persistent = 1
+ignorehitpause = 1
+sprpriority = 5
+ownpal = 1
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+supermove = 1
+bindtime = 1
+scale = Var(0)*0.1,1
+anim = F1513
+
+[State 240, 3];一撃必殺技準備　赤い線
+type = Explod
+trigger1 = Time   <= 30
+trigger1 = Timemod = 8,0
+pos = 0, 5
+Random = 150,0
+persistent = 1
+ignorehitpause = 1
+sprpriority = -1
+ownpal = 1
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+supermove = 1
+bindtime = 1
+scale = Var(0)*0.1,0.8
+anim = F1512
+
+[State 240, 3];一撃必殺技準備　赤い線
+type = Explod
+trigger1 = Time   <= 40
+trigger1 = Timemod = 6,0
+pos = 0, 5
+Random = 150,0
+persistent = 1
+ignorehitpause = 1
+sprpriority = -1
+ownpal = 1
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+supermove = 1
+bindtime = 1
+scale = 1,1
+anim = F1513
+
+
+[State 2200, 3]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;                                     我羨惚
+[Statedef 2300]
+type    = S
+movetype= I
+physics = S
+juggle  = 0
+poweradd= -3000
+ctrl = 0
+velset = 0,0
+anim = 2300
+;sprpriority = 2
+
+[State -3, Lv3 Shadows]
+type = afterimage
+trigger1 = time = 1
+time = 75
+timegap = 1
+framegap = 10
+length = 30
+paladd = 0, 0, 0
+palmul = 0.75, 0.75, 0.75
+palcontrast = 160, 32, 32
+palpostbright = 0, 0, 0
+trans = add1
+
+[State 2200,2];一撃必殺技　封印
+type = Varset
+trigger1 = Time = 0
+trigger1 = Var(42) = 0
+persistent = 0
+ignorehitpause = 1
+v = 42
+value = 50
+
+[State 170, 1];無敵
+type = NotHitBy
+trigger1 = Time >= 0
+value = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+time = 1
+
+[State 3000, Superpause FX]
+type = helper
+trigger1 = Time = 3
+helpertype = normal
+stateno = 8520
+ID = 8500
+name = "Superpause FX"
+postype = p1
+pos = -10, -60
+supermovetime = 255
+size.xscale = 1
+size.yscale = 1
+ownpal = 1
+
+[State 3000, Superpause]
+type = superpause
+trigger1 = Time = 3
+time = 35
+movetime = 35
+p2defmul = 1.3
+unhittable = 1
+anim = -1
+sound = s8500,0
+darken = 0
+
+[State 240, 3];覚醒開始光の斜め線　上方向
+type = Explod
+trigger1 = time = 0
+pos = 0, -50
+persistent = 0
+ignorehitpause = 1
+sprpriority = 9999
+ownpal = 1
+ontop = 1
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+supermove = 1
+bindtime = 1
+anim = F1001
+ID = 950
+[State 240, 3];覚醒開始光の斜め線　下方向
+type = Explod
+trigger1 = time = 0
+pos = -480, 430
+persistent = 0
+ignorehitpause = 1
+sprpriority = 9999
+ownpal = 1
+ontop = 1
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+supermove = 1
+bindtime = 1
+anim = F1001
+ID = 951
+
+[State 240, 3];覚醒開始 光の粒　上
+type = Explod
+trigger1 = time <= 30
+trigger1 = timemod =6, 0
+trigger1 = NumExplod(952) <= 20
+pos = 0, -200
+;persistent = 0
+ignorehitpause = 1
+sprpriority = 9999
+ownpal = 1
+ontop = 1
+Removetime = 13
+Random = 50,50
+Vel = 0,10
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+supermove = 1
+bindtime = 1
+anim = F1002
+ID = 952
+
+[State 240, 3];覚醒開始 光の粒　下
+type = Explod
+trigger1 = time <= 30
+trigger1 = timemod =6, 0
+trigger1 = NumExplod(952) <= 20
+pos = 0, 100
+;persistent = 0
+ignorehitpause = 1
+sprpriority = 9999
+ownpal = 1
+ontop = 1
+Removetime = 13
+Random = 50,50
+Vel = 0,-10
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+supermove = 1
+bindtime = 1
+anim = F1002
+ID = 952
+
+[State 240, 3];覚醒開始 光の粒　前
+type = Explod
+trigger1 = time <= 30
+trigger1 = timemod =6, 0
+trigger1 = NumExplod(952) <= 20
+pos = 150, -50
+;persistent = 0
+ignorehitpause = 1
+sprpriority = 9999
+ownpal = 1
+ontop = 1
+Removetime = 13
+Random = 50,50
+Vel = -10,0
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+supermove = 1
+bindtime = 1
+anim = F1002
+ID = 952
+
+[State 240, 3];覚醒開始 光の粒　後
+type = Explod
+trigger1 = time <= 30
+trigger1 = timemod =6, 0
+trigger1 = NumExplod(952) <= 20
+pos = -150, -50
+;persistent = 0
+ignorehitpause = 1
+sprpriority = 9999
+ownpal = 1
+ontop = 1
+Removetime = 13
+Random = 50,50
+Vel = 10,0
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+supermove = 1
+bindtime = 1
+anim = F1002
+ID = 952
+
+[State 240, 3];覚醒開始 光の粒　右上
+type = Explod
+trigger1 = time <= 30
+trigger1 = timemod =6, 0
+trigger1 = NumExplod(952) <= 20
+pos = 150, -200
+;persistent = 0
+ignorehitpause = 1
+sprpriority = 9999
+ownpal = 1
+ontop = 1
+Removetime = 13
+Random = 50,50
+Vel = -10,10
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+supermove = 1
+bindtime = 1
+anim = F1002
+ID = 952
+
+[State 240, 3];覚醒開始 光の粒　左上
+type = Explod
+trigger1 = time <= 30
+trigger1 = timemod =6, 0
+trigger1 = NumExplod(952) <= 20
+pos = -150, -200
+;persistent = 0
+ignorehitpause = 1
+sprpriority = 9999
+ownpal = 1
+ontop = 1
+Removetime = 13
+Random = 50,50
+Vel = 10,10
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+supermove = 1
+bindtime = 1
+anim = F1002
+ID = 952
+
+[State 240, 3];覚醒開始 光の粒　右下
+type = Explod
+trigger1 = time <= 30
+trigger1 = timemod =6, 0
+trigger1 = NumExplod(952) <= 20
+pos = 150, 100
+;persistent = 0
+ignorehitpause = 1
+sprpriority = 9999
+ownpal = 1
+ontop = 1
+Removetime = 13
+Random = 50,50
+Vel = -10,-10
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+supermove = 1
+bindtime = 1
+anim = F1002
+ID = 952
+
+[State 240, 3];覚醒開始 光の粒　左下
+type = Explod
+trigger1 = time <= 30
+trigger1 = timemod =6, 0
+trigger1 = NumExplod(952) <= 20
+pos = -150, 100
+;persistent = 0
+ignorehitpause = 1
+sprpriority = 9999
+ownpal = 1
+ontop = 1
+Removetime = 13
+Random = 50,50
+Vel = 10,-10
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+supermove = 1
+bindtime = 1
+anim = F1002
+ID = 952
+
+[State 750, 3];覚醒開始光のオーラ呼び出し
+type = helper
+trigger1 = Time = 0
+ID = 2100
+ignorehitpause = 1
+persistent = 0
+pos = 0,-50
+priority = 10
+ownpal = 1;コレが無いとヘルパーの色変化が出来ない
+postype = p1
+;size.xscale=0.5
+;size.yscale=0.5
+stateno = 2100
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+supermove = 1
+
+[State 2, ga3];一撃必殺技  効果音
+type = PlaySnd
+trigger1 = time = 0
+value = 510, 1
+Volume = 99999
+channel = 1
+
+
+[State 3000, 7]
+type = ChangeState
+trigger1 = Time = 35
+value = 2301
+ctrl = 0
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;                                     我羨惚　体当たり攻撃時
+[Statedef 2301]
+type    = S
+movetype= A
+physics = S
+juggle  = 0
+poweradd= 0
+ctrl = 0
+velset = 0,0
+anim = 2301
+;sprpriority = 2
+
+[State 240, 3];天
+type = Explod
+trigger1 = Time = 0
+pos = 0, 0
+postype = left
+persistent = 0
+ignorehitpause = 1
+sprpriority = 10001
+ownpal = 1
+;ontop = 1
+removetime = 30
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+supermove = 1
+bindtime = -1
+anim = 2400
+
+[State 3000, 7]
+type = velset
+trigger1 = Time <= 10
+x = 7
+
+[State 200, 1];
+type = HitDef
+triggerall = P2movetype != H
+trigger1 = AnimElem = 1
+attr = S, HA
+damage = 0, 5
+animtype = hard
+guardflag = M
+hitflag = M
+priority = 3, Miss
+pausetime = 0,0
+guard.pausetime = 8,11
+sparkno = -1 + 0 * (var(53) := 8014)
+guard.sparkno = -1 + 0 * (var(54) := 8001)
+sparkxy = -10 + 0 * (var(56) := 89), var(57):= -76
+hitsound = S508, 2
+guardsound =S509, 4
+ground.type = Low
+ground.slidetime = 16
+ground.hittime  = 16
+ground.velocity = -5,0
+guard.velocity = -8
+getpower = 0,0
+givepower = 0,0
+palfx.time = 1
+palfx.add = 0,0,0
+P1StateNo =2302;我羨惚　決めポーズ
+P2StateNo =2310;我羨惚　相手側
+ID = 2310
+
+;あああああああああああああああああ
+[State 2,guardLEVEL];ガードレベル増加
+type = Varadd
+trigger1 =  var(14) <= 236
+trigger1 = moveguarded = 1
+persistent = 0
+ignorehitpause = 1
+var(14) = 20
+[State 2,guardLEVEL];ガードレベル増加
+type = Varadd
+trigger1 =  var(14) > 236
+trigger1 = moveguarded = 1
+persistent = 0
+ignorehitpause = 1
+var(14) = 256-Var(14)
+[State 2,guardLEVEL];ガードレベル減少
+type = Varadd
+trigger1 =  movehit = 1
+trigger1 =  var(14) >= 20
+persistent = 0
+ignorehitpause = 1
+var(14) = -20
+[State 2,guardLEVEL];ガードレベル減少
+type = Varadd
+trigger1 =  movehit = 1
+trigger1 =  var(14) < 20
+persistent = 0
+ignorehitpause = 1
+var(14) = -Var(14)
+;あああああああああああああああああ
+;HHHHHHHHHHHHHHHHHHHHHHHH
+;ＨＩＴ炎エフェクトのヘルパー強制消去用
+;HHHHHHHHHHHHHHHHHHHHHHHH
+[State 1,1]
+type = Varset
+triggerall = Var(17)  != 1
+trigger1 = MoveContact = 1
+ignorehitpause = 1
+v = 17
+value = 1
+;HHHHHHHHHHHHHHHHHHHHHHHH
+
+[State 240, 3];必殺系ガードマーク
+type = Explod
+trigger1 = moveguarded = 1
+pos = -10,-63
+postype = p2
+facing = -1
+persistent = 0
+ignorehitpause = 1
+sprpriority = 9999
+random = 5, 15
+ownpal = 1
+ontop = 1
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+supermove = 1
+bindtime = 1
+anim = F752
+
+[State 3000, 7]
+type = ChangeState
+trigger1 = animTime = 0
+value = 0
+ctrl = 1
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;                                     我羨惚　決めポーズ
+[Statedef 2302]
+type    = A
+movetype= A
+physics = A
+juggle  = 0
+poweradd= 0
+ctrl = 0
+velset = 0,0
+anim = 2302
+sprpriority = 1600
+
+[State 20, 3]
+type = playerpush
+trigger1 = time >= 0
+value = 0
+
+[State 170, 1];無敵
+type = NotHitBy
+trigger1 = Time >= 0
+value = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
+time = 5
+
+[State 200, 1];カイィィ‐ン音
+type = PlaySnd
+trigger1 = Time = 20
+trigger2 = Time = 50
+trigger3 = Time = 80
+trigger4 = Time = 110
+trigger5 = Time = 140
+trigger6 = Time = 170
+trigger7 = Time = 200
+trigger8 = Time = 230
+value = 514, 0;
+volume = 99999
+;channel = 1
+
+;[State 200, 1];デストロイ音
+;type = PlaySnd
+;trigger1 = Time = 300
+;value = 514, 2;
+;volume = 99999
+
+[State 200, 1];必殺系ＨＩＴ音
+type = PlaySnd
+trigger1 = Time = 230
+value = 508, 2;
+volume = 99999
+
+[State 200, 1];一撃技ＨＩＴ音
+type = PlaySnd
+trigger1 = Time = 230
+value = 514, 1;
+volume = 99999
+
+[State 200, 1];天
+type = PlaySnd
+trigger1 = Time = 20
+value = 310, 0;
+volume = 99999
+channel = 0
+[State 200, 1];上
+type = PlaySnd
+trigger1 = Time = 50
+value = 310, 1;
+volume = 99999
+channel = 0
+[State 200, 1];天
+type = PlaySnd
+trigger1 = Time = 80
+value = 310, 2;
+volume = 99999
+channel = 0
+[State 200, 1];下
+type = PlaySnd
+trigger1 = Time = 110
+value = 310, 3;
+volume = 99999
+channel = 0
+[State 200, 1];唯
+type = PlaySnd
+trigger1 = Time = 140
+value = 310, 4;
+volume = 99999
+channel = 0
+[State 200, 1];我
+type = PlaySnd
+trigger1 = Time = 170
+value = 310, 5;
+volume = 99999
+channel = 0
+[State 200, 1];独
+type = PlaySnd
+trigger1 = Time = 200
+value = 310, 6;
+volume = 99999
+channel = 0
+[State 200, 1];尊
+type = PlaySnd
+trigger1 = Time = 230
+value = 310, 7;
+volume = 99999
+channel = 0
+
+[State 240, 3];白い幕
+type = Explod
+trigger1 = Time = 0
+pos = 0, 0
+postype = left
+persistent = 0
+ignorehitpause = 1
+sprpriority = 10000
+ownpal = 1
+ontop = 1
+removetime = 20
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+supermove = 1
+bindtime = -1
+scale = 9999,9999
+anim = 2408
+
+[State 100,100];大きさ　初期化
+type = Varset
+trigger1   = Time = 20
+trigger2   = Time = 50
+trigger3   = Time = 80
+trigger4   = Time = 110
+trigger5   = Time = 140
+trigger6   = Time = 170
+trigger7   = Time = 200
+trigger8   = Time = 230
+persistent = 1
+ignorehitpause = 1
+v = 33
+value = 40
+
+;[State 100,100];大きさ　移動させる時の大きさ
+;type = Varset
+;trigger1   = Time = 30
+;trigger2   = Time = 60
+;trigger3   = Time = 90
+;trigger4   = Time = 120
+;trigger5   = Time = 150
+;trigger6   = Time = 180
+;trigger7   = Time = 210
+;trigger8   = Time = 240
+;persistent = 1
+;ignorehitpause = 1
+;v = 33
+;value = 30
+
+[State 101,101];大きさ　減少
+type = Varadd
+;trigger1   = Time >= 0
+triggerall   = Var(33) != 10
+trigger1     = Time = [30,49]
+trigger2     = Time = [60,79]
+trigger3     = Time = [90,109]
+trigger4     = Time = [120,139]
+trigger5     = Time = [150,169]
+trigger6     = Time = [180,199]
+trigger7     = Time = [210,229]
+trigger8     = Time = [240,259]
+persistent = 1
+ignorehitpause = 1
+v = 33
+value = -2
+
+[State 240, 3];天
+type = Explod
+trigger1 = Time = 20
+pos = 0, 0
+postype = left
+persistent = 0
+ignorehitpause = 1
+sprpriority = 10001
+ownpal = 1
+;ontop = 1
+removetime = 30
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+supermove = 1
+bindtime = -1
+anim = 2400
+
+[State 240, 3];上
+type = Explod
+trigger1 = Time = 50
+pos = 0, 0
+postype = left
+persistent = 0
+ignorehitpause = 1
+sprpriority = 10002
+ownpal = 1
+;ontop = 1
+removetime = 30
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+supermove = 1
+bindtime = -1
+anim = 2401
+
+[State 240, 3];天
+type = Explod
+trigger1 = Time = 80
+pos = 0, 0
+postype = left
+persistent = 0
+ignorehitpause = 1
+sprpriority = 10003
+ownpal = 1
+;ontop = 1
+removetime = 30
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+supermove = 1
+bindtime = -1
+anim = 2402
+
+[State 240, 3];下
+type = Explod
+trigger1 = Time = 110
+pos = 0, 0
+postype = left
+persistent = 0
+ignorehitpause = 1
+sprpriority = 10004
+ownpal = 1
+;ontop = 1
+removetime = 30
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+supermove = 1
+bindtime = -1
+anim = 2403
+
+[State 240, 3];唯
+type = Explod
+trigger1 = Time = 140
+pos = 0, 0
+postype = left
+persistent = 0
+ignorehitpause = 1
+sprpriority = 10005
+ownpal = 1
+;ontop = 1
+removetime = 30
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+supermove = 1
+bindtime = -1
+anim = 2404
+
+[State 240, 3];我
+type = Explod
+trigger1 = Time = 170
+pos = 0, 0
+postype = left
+persistent = 0
+ignorehitpause = 1
+sprpriority = 10006
+ownpal = 1
+;ontop = 1
+removetime = 30
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+supermove = 1
+bindtime = -1
+anim = 2405
+
+[State 240, 3];独
+type = Explod
+trigger1 = Time = 200
+pos = 0, 0
+postype = left
+persistent = 0
+ignorehitpause = 1
+sprpriority = 10007
+ownpal = 1
+;ontop = 1
+removetime = 30
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+supermove = 1
+bindtime = -1
+anim = 2406
+
+[State 240, 3];夕日
+type = Explod
+trigger1 = Time = 230
+pos = 0, 0
+postype = left
+persistent = 0
+ignorehitpause = 1
+sprpriority = 1400
+ownpal = 1
+removetime = 150
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+supermove = 1
+bindtime = -1
+anim = 2407
+
+;[State 240, 3];文字
+;type = Explod
+;trigger1 = Time = 20
+;pos = 0, 0
+;postype = left
+;persistent = 0
+;ignorehitpause = 1
+;sprpriority = 19050
+;ownpal = 1
+;;ontop = 1
+;removetime = 99999
+;pausemovetime = 99999999999999
+;supermovetime = 99999999999999
+;supermove = 1
+;bindtime = -1
+;anim = 2418
+
+[State 240, 3];文字　天
+type = Explod
+trigger1 = Time = 20
+pos = 160, 120
+postype = left
+persistent = 0
+ignorehitpause = 1
+sprpriority = 10050
+ownpal = 1
+;ontop = 1
+removetime = 99999
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+supermove = 1
+bindtime = -1
+anim = 2410
+ID = 2410
+
+[State 2090, 7];文字　天　大きさ変更
+type = ModifyExplod
+trigger1 = Time = [20,49]
+ID = 2410
+scale = Var(33)*0.1,Var(33)*0.1
+
+[State 240, 3];文字　上
+type = Explod
+trigger1 = Time = 50
+pos = 160, 120
+postype = left
+persistent = 0
+ignorehitpause = 1
+sprpriority = 10050
+ownpal = 1
+;ontop = 1
+removetime = 99999
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+supermove = 1
+bindtime = -1
+anim = 2411
+ID = 2411
+
+[State 2090, 7];文字　上　大きさ変更
+type = ModifyExplod
+trigger1 = Time = [50,79]
+ID = 2411
+scale = Var(33)*0.1,Var(33)*0.1
+
+[State 240, 3];文字　天
+type = Explod
+trigger1 = Time = 80
+pos = 160, 120
+postype = left
+persistent = 0
+ignorehitpause = 1
+sprpriority = 10050
+ownpal = 1
+;ontop = 1
+removetime = 99999
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+supermove = 1
+bindtime = -1
+anim = 2412
+ID = 2412
+
+[State 2090, 7];文字　天　大きさ変更
+type = ModifyExplod
+trigger1 = Time = [80,109]
+ID = 2412
+scale = Var(33)*0.1,Var(33)*0.1
+
+[State 240, 3];文字　下
+type = Explod
+trigger1 = Time = 110
+pos = 160, 120
+postype = left
+persistent = 0
+ignorehitpause = 1
+sprpriority = 10050
+ownpal = 1
+;ontop = 1
+removetime = 99999
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+supermove = 1
+bindtime = -1
+anim = 2413
+ID = 2413
+
+[State 2090, 7];文字　下　大きさ変更
+type = ModifyExplod
+trigger1 = Time = [110,139]
+ID = 2413
+scale = Var(33)*0.1,Var(33)*0.1
+
+[State 240, 3];文字　唯
+type = Explod
+trigger1 = Time = 140
+pos = 160, 120
+postype = left
+persistent = 0
+ignorehitpause = 1
+sprpriority = 10050
+ownpal = 1
+;ontop = 1
+removetime = 99999
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+supermove = 1
+bindtime = -1
+anim = 2414
+ID = 2414
+
+[State 2090, 7];文字　唯　大きさ変更
+type = ModifyExplod
+trigger1 = Time = [140,169]
+ID = 2414
+scale = Var(33)*0.1,Var(33)*0.1
+
+[State 240, 3];文字　我
+type = Explod
+trigger1 = Time = 170
+pos = 160, 120
+postype = left
+persistent = 0
+ignorehitpause = 1
+sprpriority = 10050
+ownpal = 1
+;ontop = 1
+removetime = 99999
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+supermove = 1
+bindtime = -1
+anim = 2415
+ID = 2415
+
+[State 2090, 7];文字　我　大きさ変更
+type = ModifyExplod
+trigger1 = Time = [170,199]
+ID = 2415
+scale = Var(33)*0.1,Var(33)*0.1
+
+[State 240, 3];文字　独
+type = Explod
+trigger1 = Time = 200
+pos = 160, 120
+postype = left
+persistent = 0
+ignorehitpause = 1
+sprpriority = 10050
+ownpal = 1
+;ontop = 1
+removetime = 99999
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+supermove = 1
+bindtime = -1
+anim = 2416
+ID = 2416
+
+[State 2090, 7];文字　独　大きさ変更
+type = ModifyExplod
+trigger1 = Time = [200,229]
+ID = 2416
+scale = Var(33)*0.1,Var(33)*0.1
+
+[State 240, 3];文字　尊
+type = Explod
+trigger1 = Time = 230
+pos = 160, 120
+postype = left
+persistent = 0
+ignorehitpause = 1
+sprpriority = 10050
+ownpal = 1
+;ontop = 1
+removetime = 99999
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+supermove = 1
+bindtime = -1
+anim = 2417
+ID = 2417
+
+[State 2090, 7];文字　尊　大きさ変更
+type = ModifyExplod
+trigger1 = Time = [230,259]
+ID = 2417
+scale = Var(33)*0.1,Var(33)*0.1
+
+[State 750, 3];必殺系ＨＩＴマーク
+type = helper
+trigger1 = Time = 230
+ID = 4000
+ignorehitpause = 1
+persistent = 0
+pos = 75,-90
+priority = 2
+stateno = 4000
+ownpal = 1
+supermove = 1
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+
+[State 7011, 10];時間ストップ
+type = assertspecial
+trigger1 = Time >= 0
+flag  = timerfreeze
+ignorehitpause = 1
+
+[State 7011, 10];音楽ストップ
+type = assertspecial
+trigger1 = Time >= 230
+flag  = nomusic
+ignorehitpause = 1
+
+[State 810, Hurt 11];距離縛り
+type = TargetBind
+trigger1 = Time >= 0
+pos = 68, -20
+ID = 2310
+
+[State 810, Hurt 11];
+type = TargetLifeAdd
+trigger1 = Time = 20
+value = -435
+ID = 2310
+
+[State 170, 1];位置固定１Ｐ
+type = Posset
+trigger1 = facing = 1
+trigger1 = Time <= 380
+x = -40
+y = -60
+
+[State 170, 1];位置固定２Ｐ
+type = Posset
+trigger1 = facing = -1
+trigger1 = Time <= 380
+x =  40
+y = -60
+
+[State 170, 1];位置固定１Ｐ
+type = Posset
+trigger1 = facing = 1
+trigger1 = Time >= 380
+x = -40
+y = -200
+
+[State 170, 1];位置固定２Ｐ
+type = Posset
+trigger1 = facing = -1
+trigger1 = Time >= 380
+x =  40
+y = -200
+
+[State 170, 1];位置固定
+type = velset
+trigger1 = Time >= 0
+x = 0
+y = 0
+
+[State 3001,4];覚醒時間停止
+type = SuperPause
+trigger1 = Time = 0
+ignorehitpause = 1
+movetime = 380
+time = 380
+ctrl = 0
+darken = 0
+unhittable = 0
+pos = 0, 999
+anim = 31
+
+[State 5000,222];画面
+type = ScreenBound
+trigger1 = time >= 0
+value = 0
+
+
+[State 2, 6];文字　天　強制消去
+type = RemoveExplod
+trigger1 = Time = 380
+ignorehitpause = 1
+ID = 2410
+[State 2, 6];文字　上　強制消去
+type = RemoveExplod
+trigger1 = Time = 380
+ignorehitpause = 1
+ID = 2411
+[State 2, 6];文字　天　強制消去
+type = RemoveExplod
+trigger1 = Time = 380
+ignorehitpause = 1
+ID = 2412
+[State 2, 6];文字　下　強制消去
+type = RemoveExplod
+trigger1 = Time = 380
+ignorehitpause = 1
+ID = 2413
+[State 2, 6];文字　唯　強制消去
+type = RemoveExplod
+trigger1 = Time = 380
+ignorehitpause = 1
+ID = 2414
+[State 2, 6];文字　我　強制消去
+type = RemoveExplod
+trigger1 = Time = 380
+ignorehitpause = 1
+ID = 2415
+[State 2, 6];文字　独　強制消去
+type = RemoveExplod
+trigger1 = Time = 380
+ignorehitpause = 1
+ID = 2416
+[State 2, 6];文字　尊　強制消去
+type = RemoveExplod
+trigger1 = Time = 380
+ignorehitpause = 1
+ID = 2417
+
+[State 3000, 7]
+type = ChangeState
+trigger1 = Time = 380
+value = 50
+ctrl = 0
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;                                     相手側
+[Statedef 2310]
+type    = A
+movetype= H
+physics = N
+velset = 0,0
+poweradd = 0
+sprpriority = 1500
+ctrl = 0
+
+[State 5000,222];画面
+type = ScreenBound
+trigger1 = Life >= 1
+trigger1 = time >= 0
+value = 0
+
+[State 3124, 1.1];
+type = changeanim2
+trigger1 = time = 0
+value = 2303
+
+[State 902, 2]
+type = HitFallSet
+trigger1 = Animtime = 0
+value = 1
+
+[State 170, 1];
+type = velset
+trigger1 = Time <= 5
+x = -1
+y = -4
+
+[State 1000, 7]
+type = veladd
+trigger1 = Time >= 0
+y = 0.33
+
+[State 902, 4];地面バウンドへ
+type = SelfState
+trigger1 = Pos Y > -0.5
+value = 5100
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;                                     ダストアタック　攻撃
+[Statedef 2700]
+type    = S
+movetype= A
+physics = N
+juggle  = 0
+poweradd= 0
+ctrl = 0
+;velset = 0,0
+anim = 2700
+;sprpriority = 2
+
+[State 108, 0]
+type = VelAdd
+trigger1 = time >= 0
+trigger1 = Vel X > 0
+x = -0.2
+
+[State 108, 0]
+type = Velset
+trigger1 = time >= 0
+trigger1 = Vel X < 0
+x = 0
+
+[State 2, ga3];
+type = PlaySnd
+trigger1 = Animelem = 5
+value = 507, 3
+Volume = 99999
+channel = 1
+
+[State 200, 0];声
+type = VarRandom
+trigger1 = Animelem = 5
+v = 0
+range = 0,2
+[State 200, 1];隙あり
+type = PlaySnd
+trigger1 = Animelem = 5
+trigger1 = Var(0) = 0
+value = 103, 0;
+volume = 99999
+channel = 0
+[State 200, 1];時間差
+type = PlaySnd
+trigger1 = Animelem = 5
+trigger1 = Var(0) = 1
+value = 103, 1;
+volume = 99999
+channel = 0
+[State 200, 1];吹っ飛ぶ
+type = PlaySnd
+trigger1 = Animelem = 5
+trigger1 = Var(0) = 2
+value = 103, 2;
+volume = 99999
+channel = 0
+
+[State 200, 1];
+type = HitDef
+trigger1 = AnimElem = 1
+attr = S, NA
+damage = ceil(20*Var(5)/256)+Var(15), 0
+animtype = hard
+guardflag = H
+hitflag = M
+priority = 3, miss
+pausetime = 12,12
+guard.pausetime = 12,9
+sparkno = 701
+guard.sparkno = 751
+sparkxy = 10, -83
+hitsound = S508, 1
+guardsound =S509, 1
+ground.type = High
+ground.slidetime = 19
+ground.hittime  = 19
+ground.velocity = -1,-11
+guard.velocity = -7
+fall = 1;落下させる
+;fall.recover = 0;受身可否
+fall.recovertime = 50;受身出来るまでの時間
+air.fall = 1;相手が空中時のみ落下させる
+getpower = 38,0
+givepower = 5,0
+palfx.time = 1
+palfx.add = 0,0,0
+p2facing = 1
+yaccel = 0.22
+
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+[State 10,combo];攻撃力補正用ＶＡＲ
+type = Varadd
+trigger1 = MoveHit = 1
+persistent = 0
+ignorehitpause = 1
+v = 4
+value = 1
+;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
+[State 2, ga3];カウンターヒット時
+type = PlaySnd
+trigger1 =  var(14) >= 128
+trigger1 = movehit = 1
+persistent = 0
+ignorehitpause = 1
+value = 511, 1
+Volume = 99999
+;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
+;あああああああああああああああああ
+[State 2,guardLEVEL];ガードレベル増加
+type = Varadd
+trigger1 =  var(14) <= 236
+trigger1 = moveguarded = 1
+persistent = 0
+ignorehitpause = 1
+var(14) = 20
+[State 2,guardLEVEL];ガードレベル増加
+type = Varadd
+trigger1 =  var(14) > 236
+trigger1 = moveguarded = 1
+persistent = 0
+ignorehitpause = 1
+var(14) = 256-Var(14)
+[State 2,guardLEVEL];ガードレベル減少
+type = Varadd
+trigger1 =  movehit = 1
+trigger1 =  var(14) >= 20
+persistent = 0
+ignorehitpause = 1
+var(14) = -20
+[State 2,guardLEVEL];ガードレベル減少
+type = Varadd
+trigger1 =  movehit = 1
+trigger1 =  var(14) < 20
+persistent = 0
+ignorehitpause = 1
+var(14) = -Var(14)
+;あああああああああああああああああ
+;HHHHHHHHHHHHHHHHHHHHHHHH
+;ＨＩＴ炎エフェクトのヘルパー強制消去用
+;HHHHHHHHHHHHHHHHHHHHHHHH
+[State 1,1]
+type = Varset
+triggerall = Var(17)  != 1
+trigger1 = MoveContact = 1
+ignorehitpause = 1
+v = 17
+value = 1
+;HHHHHHHHHHHHHHHHHHHHHHHH
+
+[State 750, 3];光の粒　白　呼び出し
+type = helper
+triggerall= Numhelper + Enemy,numHelper <= 20
+trigger1 = movehit = 1
+ignorehitpause = 1
+persistent = 0;
+pos = 10, -83
+Postype = p2
+facing = -1
+priority = 2
+stateno = 4026
+ownpal = 1
+supermove = 1
+pausemovetime = 99999999999999
+supermovetime = 99999999999999
+
+;+++++++++++++++++++++++++++++++
+; ロマンキャンセル許可  
+;+++++++++++++++++++++++++++++++
+[State 10, 10];
+type = Varset
+trigger1 = MoveContact = 1
+trigger1 = var(3) != 1
+persistent = 0
+ignorehitpause = 1
+var(3) = 1
+;+++++++++++++++++++++++++++++++
+;+++++++++++++++++++++++++++++++
+; ロマンキャンセル解除ガトリング暴発防止
+;+++++++++++++++++++++++++++++++
+[State 10, 10];
+type = Varset
+trigger1 = Time = 0
+trigger1 = var(3) = 1
+persistent = 0
+ignorehitpause = 1
+var(3) = 0
+;+++++++++++++++++++++++++++++++
+
+[State 230, 3]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+
+
+
+
+
+
