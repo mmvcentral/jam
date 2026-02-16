@@ -1,17 +1,17 @@
 # Japanese Translation Table
 
-Translation reference for Japanese comments in CNS and CMD files (Shift-JIS encoding).
+*CNS and CMD files contain Shift-JIS encoded Japanese comments. Below is a translation reference.*
 
 ## Command Names (jam.cmd)
 
-| Japanese | Romaji | English |
-|----------|--------|---------|
-| 兆脚鳳凰昇 | Choukyaku Houou Shou | Phoenix Rising Super |
-| 浄 | Jou | Purification Super |
-| 雅閃 | Gasen | Elegant Flash Super |
-| 恋崩嬢 | Musume | Daughter (unused) |
+| Japanese (Codex) | Romaji | English |
+|------------------|--------|---------|
+| 兆脚鳳凰昇 | Choukyaku Houou Shou | Phoenix Rising (Super) |
+| 浄 | Jou | Purification (Super) |
+| 雅閃 | Gasen | Elegant Flash (Super) |
+| 恋崩嬢 | Musume | Daughter (Super, unused) |
 | 兆脚 | Baku | Forward dash |
-| 鳳翼 | Houchifu | Phoenix Wing |
+| 鳳翼 | Houchifu | Phoenix Wing (back step) |
 | 踏み踏み | Fumifumi | Stomp |
 | 堅牢 | Kenrou | Solid Wall |
 | 撃 | Geki | Strike |
@@ -23,14 +23,17 @@ Translation reference for Japanese comments in CNS and CMD files (Shift-JIS enco
 | 兆脚1000% | Baku 1000 | Baku 1000% |
 | 兆脚回り | Baku Mawa | Baku Spin |
 | コマンド参照 | Command reference | — |
-| 準備 | Junbi | Ready |
+| 羅刹 | — | — |
+| 準備 | Junbi | Ready/Preparation |
 | ダスト | Dasuto | Dust |
+| RC | Roman Cancel | Roman Cancel |
+| フォース | Force | Force |
 | ハイジャンプ | High Jump | High Jump |
 
 ## State Comments (CNS)
 
-| Japanese | English |
-|----------|---------|
+| Japanese (Codex) | English |
+|------------------|---------|
 | 立ち | Stand |
 | しゃがみ | Crouch |
 | ジャンプ | Jump |
@@ -43,11 +46,14 @@ Translation reference for Japanese comments in CNS and CMD files (Shift-JIS enco
 | 無敵 | Invincible |
 | 覚醒 | Awakening |
 | テンションゲージ | Tension gauge |
+| カウント | Count |
 | 可否 | Availability |
-| 連続 | Chain |
+| 連続 | Chain/Combo |
 | 発生 | Startup |
 | 持続 | Active |
 | 硬直 | Recovery |
+| 画面 | Screen |
+| 演出 | Effect |
 | 勝ち | Win |
 | 負け | Lose |
 | 導入 | Intro |
@@ -55,13 +61,14 @@ Translation reference for Japanese comments in CNS and CMD files (Shift-JIS enco
 
 ## Palette Comments (jam.def)
 
-| Japanese | English |
-|----------|---------|
+| Japanese (Codex) | English |
+|------------------|---------|
 | 赤 | Red |
 | 緑 | Green |
 | デフォ | Default |
 | 青 | Blue |
 | 紫 | Purple |
+| カラー | Color |
 | EXパレット | EX Palette |
 | ビギナーズ | Beginners |
 | 大会用 | Tournament |
