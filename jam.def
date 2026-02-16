@@ -1,40 +1,40 @@
-; Definition file for kfm
-; Contains all the filenames needed for the character
-
-; Player information
-[Info]
-name = "Jam Kuradoberi"        ;Name of character
-displayname = "Jam" ;Name of character to display
-versiondate = 04,14,2001    ;Version date of character
-mugenversion = 1.0   ;Version of M.U.G.E.N character works on
-author = "AOAO"         ;Character author name
-pal.defaults = 1,2,3,4,5,6     ;Default palettes in order of preference
-localCoord  = 320,240
-; Files for the player
-[Files]
-cmd     = jam.cmd           ;ƒRƒ}ƒ“ƒhİ’è
-cns=Constant.cns
-st=Constant.cns
-;st1=interaction.cns
-stcommon=common1.cns
-sprite  = jam.sff   ;Sprite
-anim    = jam.air   ;Animation
-sound   = jam.snd   ;Sound
-pal1    = Color/jam.act   ;‚o
-pal2    = Color/jamoriginal5.act  ;‚g‚r
-pal3    = Color/jam3.act  ;ƒXƒ^[ƒg
-pal4    = Color/jamoriginal3.act  ;‚j
-pal5    = Color/jam5.act  ;‚r
-pal6    = Color/jamoriginal4.act  ;“¯ƒLƒƒƒ‰
-;pal7    = Color/jamEX.act ;‚d‚wƒJƒ‰[‚o
-;pal8    = Color/jamEX2.act;‚d‚wƒJƒ‰[‚j
-;pal9    = Color/jamEX3.act;‚d‚wƒJƒ‰[‚g‚r
-;pal10   = Color/jamEX4.act;‚d‚wƒJƒ‰[‚r
-;pal11   = Color/jamEX5.act;‚d‚wƒJƒ‰[ƒXƒ^[ƒg
-;pal12   = Color/jam.act   ;
-pal7   = Color/jamoriginal1.act;ƒV[ƒXƒ‹[‚Ì•‚Á‚ÄŠ´‚¶•—
-pal8   = Color/jamoriginal2.act;“ì‘ƒnƒƒCƒAƒ“•—
-pal9   = Color/jam4.ACT;•—‹IˆÏˆõ’·•—
-pal10  = Color/jam6.ACT;á—•—
-pal11  = Color/jam2.ACT;‚wƒWƒƒƒpƒ“‚Ì’Ç‚Á‚©‚¯•—
-pal12  = Color/jamoriginal6.ACT;‰½‚©‚ÌƒQ[ƒ€‚ÅŒ©‚½ƒLƒƒƒ‰•—
+; Definition file for kfm
+; Contains all the filenames needed for the character
+
+; Player information
+[Info]
+name = "Jam Kuradoberi"        ;Name of character
+displayname = "Jam" ;Name of character to display
+versiondate = 04,14,2001    ;Version date of character
+mugenversion = 1.0   ;Version of M.U.G.E.N character works on
+author = "AOAO"         ;Character author name
+pal.defaults = 1,2,3,4,5,6     ;Default palettes in order of preference
+localCoord  = 320,240
+; Files for the player
+[Files]
+cmd     = jam.cmd           ;Command specification
+cns=Constant.cns
+st=Constant.cns
+;st1=interaction.cns
+stcommon=common1.cns
+sprite  = jam.sff   ;Sprite
+anim    = jam.air   ;Animation
+sound   = jam.snd   ;Sound
+pal1    = Color/jam.act   ;Default
+pal2    = Color/jamoriginal5.act  ;Original 5
+pal3    = Color/jam3.act  ;Default
+pal4    = Color/jamoriginal3.act  ;Original 3
+pal5    = Color/jam5.act  ;5
+pal6    = Color/jamoriginal4.act  ;Cosplay
+;pal7    = Color/jamEX.act ;EX version
+;pal8    = Color/jamEX2.act;EX version 2
+;pal9    = Color/jamEX3.act;EX version 3
+;pal10   = Color/jamEX4.act;EX version 4
+;pal11   = Color/jamEX5.act;EX version 5 (default)
+;pal12   = Color/jam.act   ;
+pal7   = Color/jamoriginal1.act;First variation
+pal8   = Color/jamoriginal2.act;Voted/selected palette
+pal9   = Color/jam4.ACT;Color selection exclusive
+pal10  = Color/jam6.ACT;Combination/rearranged
+pal11  = Color/jam2.ACT;Gill's second helping palette
+pal12  = Color/jamoriginal6.ACT;Cosplay made from original cosplay

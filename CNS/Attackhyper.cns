@@ -1,5 +1,5 @@
 <~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~
-;                              　兆脚鳳凰昇　開始
+; Chokyaku Hououshou (Phoenix Rising Super) Start
 [Statedef 3000]
 type    = S
 movetype= I
@@ -11,17 +11,17 @@ ctrl = 0
 sprpriority = 2
 
 ;\\\\\\\\\\\\\\\\\\\\\\
-;ＥＸ・何でもアリモード
+; EX Anything-goes mode
 ;\\\\\\\\\\\\\\\\\\\\\\
 [State 820, 1]
 type = ChangeAnim
-triggerall = Var(43) = 10 || Var(43) = 15;ＥＸ・何でもアリモード
+triggerall = Var(43) = 10 || Var(43) = 15; EX Anything-goes mode
 Trigger1 = Time = 0
 value = 3030
 
-[State 10,10];戀崩嬢  １撃目〜９撃目までのカウントとＥＸ 兆脚鳳凰昇回数カウント
+[State 10,10]; Musume hit 1-9 count and EX Chokyaku Hououshou count
 type = Varset
-triggerall = Var(43) = 10 || Var(43) = 15;ＥＸ・何でもアリモード
+triggerall = Var(43) = 10 || Var(43) = 15; EX Anything-goes mode
 Trigger1 = Time = 0
 ignorehitpause = 1
 persistent = 0
@@ -29,18 +29,18 @@ v = 25
 value = 0
 ;\\\\\\\\\\\\\\\\\\\\\\
 
-[State 2000,1];テンションゲージ減らし
+[State 2000,1]; Reduce tension gauge
 type = poweradd
 trigger1 = time = 0
 value = -1000
 
-[State 170, 1];無敵
+[State 170, 1]; Invincible
 type = NotHitBy
 trigger1 = Time >= 0
 value = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
 time = 10
 
-[State 3001,4];覚醒時間停止
+[State 3001,4]; Awakening time stop
 type = SuperPause
 trigger1 = Time = 0
 ignorehitpause = 1
@@ -52,7 +52,7 @@ unhittable = 0
 pos = 0, 999
 anim = 31
 
-[State 240, 3];覚醒開始光の斜め線　上方向
+[State 240, 3]; Awakening start diagonal light lines upward
 type = Explod
 trigger1 = time = 0
 pos = 0, -50
@@ -67,7 +67,7 @@ supermove = 1
 bindtime = 1
 anim = F1001
 ID = 950
-[State 240, 3];覚醒開始光の斜め線　上方向
+[State 240, 3]; Awakening start diagonal light lines upward
 type = Explod
 trigger1 = time = 0
 pos = 240, -290
@@ -83,7 +83,7 @@ bindtime = 1
 anim = F1001
 ID = 950
 
-[State 240, 3];覚醒開始光の斜め線　下方向
+[State 240, 3]; Awakening start diagonal light lines downward
 type = Explod
 trigger1 = time = 0
 pos = -240, 190
@@ -99,7 +99,7 @@ bindtime = 1
 anim = F1001
 ID = 951
 
-[State 240, 3];覚醒開始光の斜め線　下方向
+[State 240, 3]; Awakening start diagonal light lines downward
 type = Explod
 trigger1 = time = 0
 pos = -480, 430
@@ -115,7 +115,7 @@ bindtime = 1
 anim = F1001
 ID = 951
 
-[State 240, 3];覚醒開始 光の粒　上
+[State 240, 3]; Awakening start light particles up
 type = Explod
 trigger1 = time <= 30
 trigger1 = timemod =6, 0
@@ -136,7 +136,7 @@ bindtime = 1
 anim = F1002
 ID = 952
 
-[State 240, 3];覚醒開始 光の粒　下
+[State 240, 3]; Awakening start light particles down
 type = Explod
 trigger1 = time <= 30
 trigger1 = timemod =6, 0
@@ -157,7 +157,7 @@ bindtime = 1
 anim = F1002
 ID = 952
 
-[State 240, 3];覚醒開始 光の粒　前
+[State 240, 3]; Awakening start light particles front
 type = Explod
 trigger1 = time <= 30
 trigger1 = timemod =6, 0
@@ -178,7 +178,7 @@ bindtime = 1
 anim = F1002
 ID = 952
 
-[State 240, 3];覚醒開始 光の粒　後
+[State 240, 3]; Awakening start light particles back
 type = Explod
 trigger1 = time <= 30
 trigger1 = timemod =6, 0
@@ -199,7 +199,7 @@ bindtime = 1
 anim = F1002
 ID = 952
 
-[State 240, 3];覚醒開始 光の粒　右上
+[State 240, 3]; Awakening start light particles upper-right
 type = Explod
 trigger1 = time <= 30
 trigger1 = timemod =6, 0
@@ -220,7 +220,7 @@ bindtime = 1
 anim = F1002
 ID = 952
 
-[State 240, 3];覚醒開始 光の粒　左上
+[State 240, 3]; Awakening start light particles upper-left
 type = Explod
 trigger1 = time <= 30
 trigger1 = timemod =6, 0
@@ -241,7 +241,7 @@ bindtime = 1
 anim = F1002
 ID = 952
 
-[State 240, 3];覚醒開始 光の粒　右下
+[State 240, 3]; Awakening start light particles lower-right
 type = Explod
 trigger1 = time <= 30
 trigger1 = timemod =6, 0
@@ -262,7 +262,7 @@ bindtime = 1
 anim = F1002
 ID = 952
 
-[State 240, 3];覚醒開始 光の粒　左下
+[State 240, 3]; Awakening start light particles lower-left
 type = Explod
 trigger1 = time <= 30
 trigger1 = timemod =6, 0
@@ -283,7 +283,7 @@ bindtime = 1
 anim = F1002
 ID = 952
 
-[State 750, 3];覚醒開始光のオーラ呼び出し
+[State 750, 3]; Awakening start aura call
 type = helper
 trigger1 = Time = 0
 ID = 2100
@@ -291,7 +291,7 @@ ignorehitpause = 1
 persistent = 0
 pos = 0,-50
 priority = 10
-ownpal = 1;コレが無いとヘルパーの色変化が出来ない
+ownpal = 1; Required for helper color change
 postype = p1
 ;size.xscale=0.5
 ;size.yscale=0.5
@@ -300,33 +300,33 @@ pausemovetime = 99999999999999
 supermovetime = 99999999999999
 supermove = 1
 
-[State 2, ga3];覚醒開始　効果音
+[State 2, ga3]; Awakening start sound effect
 type = PlaySnd
 trigger1 = time = 0
 value = 510, 2
 Volume = 99999
 channel = 1
 
-[State 200, 0];声
+[State 200, 0]; Voice
 type = VarRandom
 trigger1 = time = 0
 v = 0
 range = 0,2
-[State 200, 1];行くよ
+[State 200, 1]; Let's go
 type = PlaySnd
 trigger1 = time = 0
 trigger1 = Var(0) = 0
 value = 308, 0;
 volume = 99999
 channel = 0
-[State 200, 1];行くあるよ
+[State 200, 1]; Here I come
 type = PlaySnd
 trigger1 = time = 0
 trigger1 = Var(0) = 1
 value = 308, 1;
 volume = 99999
 channel = 0
-[State 200, 1];一点集中
+[State 200, 1]; Focus
 type = PlaySnd
 trigger1 = time = 0
 trigger1 = Var(0) = 2
@@ -335,7 +335,7 @@ volume = 99999
 channel = 0
 
 ;+++++++++++++++++++++++++++++++
-; ロマンキャンセル解除ガトリング暴発防止
+; Roman Cancel release - prevent Gatling runaway
 ;+++++++++++++++++++++++++++++++
 [State 10, 10];
 type = Varset
@@ -347,11 +347,11 @@ var(3) = 0
 ;+++++++++++++++++++++++++++++++
 
 ;\\\\\\\\\\\\\\\\\\\\\\
-;ＥＸ・何でもアリモード
+; EX Anything-goes mode
 ;\\\\\\\\\\\\\\\\\\\\\\
 [State 3000, 7]
 type = ChangeState
-triggerall = Var(43) = 10 || Var(43) = 15;ＥＸ・何でもアリモード
+triggerall = Var(43) = 10 || Var(43) = 15; EX Anything-goes mode
 trigger1 = Time = 45
 value = 3031
 ctrl = 0
@@ -359,13 +359,13 @@ ctrl = 0
 
 [State 3000, 7]
 type = ChangeState
-triggerall = Var(43) = 0 || Var(43) = 5;通常・ゴールドモード
+triggerall = Var(43) = 0 || Var(43) = 5; Normal / Gold mode
 trigger1 = Time = 45
 value = 3001
 ctrl = 0
 
 ;<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~
-;                              　兆脚鳳凰昇　最初の一撃
+; Chokyaku Hououshou first hit
 [Statedef 3001]
 type    = S
 movetype= A
@@ -376,7 +376,7 @@ anim = 3001
 ctrl = 0
 ;sprpriority = 2
 
-[State 240, 3];ピンクの煙
+[State 240, 3]; Pink smoke
 type = Explod
 trigger1 = AnimElem = 1
 pos = 20, 5
@@ -393,7 +393,7 @@ ownpal = 1
 bindtime = 1
 anim = 1005
 
-[State 170, 1];無敵
+[State 170, 1]; Invincible
 type = NotHitBy
 trigger1 = Time <= 10
 value = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
@@ -428,10 +428,10 @@ airguard.velocity =-5,-10+Var(6)
 air.type = Low
 air.velocity =-5,-10+Var(6)
 air.hittime = 14
-;fall = 1;落下させる
-;fall.recover = 0;受身可否
-;fall.recovertime = 30;受身出来るまでの時間
-air.fall = 1;相手が空中時のみ落下させる
+;fall = 1; knock down
+;fall.recover = 0; tech roll availability
+;fall.recovertime = 30; time until tech possible
+air.fall = 1; Knock down only when opponent is airborne
 down.velocity = 0,-3
 down.hittime = 6
 down.bounce = 1
@@ -442,7 +442,7 @@ palfx.add = 0,0,0
 p2facing = 1
 
 ;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-[State 10,combo];攻撃力補正用ＶＡＲ
+[State 10,combo]; Attack power correction VAR
 type = Varadd
 trigger1 = MoveHit = 1
 persistent = 0
@@ -451,7 +451,7 @@ v = 4
 value = 1
 ;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 ;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
-[State 2, ga3];カウンターヒット時
+[State 2, ga3]; On counter hit
 type = PlaySnd
 trigger1 =  var(14) >= 128
 trigger1 = movehit = 1
@@ -460,38 +460,38 @@ ignorehitpause = 1
 value = 511, 1
 Volume = 99999
 ;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
-;あああああああああああああああああ
-[State 2,guardLEVEL];ガードレベル増加
+; (section divider)
+[State 2,guardLEVEL]; Guard level increase
 type = Varadd
 trigger1 =  var(14) <= 236
 trigger1 = moveguarded = 1
 persistent = 0
 ignorehitpause = 1
 var(14) = 20
-[State 2,guardLEVEL];ガードレベル増加
+[State 2,guardLEVEL]; Guard level increase
 type = Varadd
 trigger1 =  var(14) > 236
 trigger1 = moveguarded = 1
 persistent = 0
 ignorehitpause = 1
 var(14) = 256-Var(14)
-[State 2,guardLEVEL];ガードレベル減少
+[State 2,guardLEVEL]; Guard level decrease
 type = Varadd
 trigger1 =  movehit = 1
 trigger1 =  var(14) >= 20
 persistent = 0
 ignorehitpause = 1
 var(14) = -20
-[State 2,guardLEVEL];ガードレベル減少
+[State 2,guardLEVEL]; Guard level decrease
 type = Varadd
 trigger1 =  movehit = 1
 trigger1 =  var(14) < 20
 persistent = 0
 ignorehitpause = 1
 var(14) = -Var(14)
-;あああああああああああああああああ
+; (section divider)
 ;HHHHHHHHHHHHHHHHHHHHHHHH
-;ＨＩＴ炎エフェクトのヘルパー強制消去用
+; For HIT flame effect helper force removal
 ;HHHHHHHHHHHHHHHHHHHHHHHH
 [State 1,1]
 type = Varset
@@ -502,7 +502,7 @@ v = 17
 value = 1
 ;HHHHHHHHHHHHHHHHHHHHHHHH
 
-[State 750, 3];必殺系ＨＩＴマーク
+[State 750, 3]; Special move HIT mark
 type = helper
 trigger1 = MoveHit = 1
 ID = 4000
@@ -518,7 +518,7 @@ supermove = 1
 pausemovetime = 99999999999999
 supermovetime = 99999999999999
 
-[State 240, 3];必殺系ガードマーク
+[State 240, 3]; Special move guard mark
 type = Explod
 trigger1 = moveguarded = 1
 pos = 0,-50
@@ -536,7 +536,7 @@ supermove = 1
 bindtime = 1
 anim = F752
 
-[State 240, 3];ＨＩＴエフェクト　白いフラッシュ
+[State 240, 3]; HIT effect white flash
 type = Explod
 trigger1 = MoveHit = 1
 pos = 0, 0
@@ -554,7 +554,7 @@ scale = 9999,9999
 anim = F704
 
 ;+++++++++++++++++++++++++++++++
-; ロマンキャンセル許可  
+; Roman Cancel permission
 ;+++++++++++++++++++++++++++++++
 [State 10, 10];
 type = Varset
@@ -565,7 +565,7 @@ ignorehitpause = 1
 var(3) = 1
 ;+++++++++++++++++++++++++++++++
 
-[State 3000, 7];ＨＩＴ時
+[State 3000, 7]; On HIT
 type = ChangeState
 trigger1 = MoveHit = 1
 trigger1 = HitOver = 1
@@ -579,7 +579,7 @@ value = 0
 ctrl = 1
 
 ;<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~
-;                              　兆脚鳳凰昇　立ちＳ近距離
+; Chokyaku Hououshou standing S close
 [Statedef 3002]
 type    = S
 movetype= A
@@ -590,7 +590,7 @@ anim = 3002
 ctrl = 0
 ;sprpriority = 2
 
-[State 200, 1];兆脚ぅぅぅぅ
+[State 200, 1]; Chokyaku (voice)
 type = PlaySnd
 trigger1 = AnimElem = 6
 value = 309, 0;
@@ -626,10 +626,10 @@ airguard.velocity =-5,-10+Var(6)
 air.type = Low
 air.velocity =-5,-10+Var(6)
 air.hittime = 14
-;fall = 1;落下させる
-;fall.recover = 0;受身可否
-;fall.recovertime = 30;受身出来るまでの時間
-air.fall = 1;相手が空中時のみ落下させる
+;fall = 1; knock down
+;fall.recover = 0; tech roll availability
+;fall.recovertime = 30; time until tech possible
+air.fall = 1; Knock down only when opponent is airborne
 down.velocity = 0,-3
 down.hittime = 6
 down.bounce = 1
@@ -645,7 +645,7 @@ guard.cornerpush.veloff    = 0
 p2facing = 1
 
 ;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-[State 10,combo];攻撃力補正用ＶＡＲ
+[State 10,combo]; Attack power correction VAR
 type = Varadd
 trigger1 = MoveHit = 1
 persistent = 0
@@ -654,7 +654,7 @@ v = 4
 value = 1
 ;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 ;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
-[State 2, ga3];カウンターヒット時
+[State 2, ga3]; On counter hit
 type = PlaySnd
 trigger1 =  var(14) >= 128
 trigger1 = movehit = 1
@@ -663,38 +663,38 @@ ignorehitpause = 1
 value = 511, 1
 Volume = 99999
 ;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
-;あああああああああああああああああ
-[State 2,guardLEVEL];ガードレベル増加
+; (section divider)
+[State 2,guardLEVEL]; Guard level increase
 type = Varadd
 trigger1 =  var(14) <= 236
 trigger1 = moveguarded = 1
 persistent = 0
 ignorehitpause = 1
 var(14) = 20
-[State 2,guardLEVEL];ガードレベル増加
+[State 2,guardLEVEL]; Guard level increase
 type = Varadd
 trigger1 =  var(14) > 236
 trigger1 = moveguarded = 1
 persistent = 0
 ignorehitpause = 1
 var(14) = 256-Var(14)
-[State 2,guardLEVEL];ガードレベル減少
+[State 2,guardLEVEL]; Guard level decrease
 type = Varadd
 trigger1 =  movehit = 1
 trigger1 =  var(14) >= 20
 persistent = 0
 ignorehitpause = 1
 var(14) = -20
-[State 2,guardLEVEL];ガードレベル減少
+[State 2,guardLEVEL]; Guard level decrease
 type = Varadd
 trigger1 =  movehit = 1
 trigger1 =  var(14) < 20
 persistent = 0
 ignorehitpause = 1
 var(14) = -Var(14)
-;あああああああああああああああああ
+; (section divider)
 ;HHHHHHHHHHHHHHHHHHHHHHHH
-;ＨＩＴ炎エフェクトのヘルパー強制消去用
+; For HIT flame effect helper force removal
 ;HHHHHHHHHHHHHHHHHHHHHHHH
 [State 1,1]
 type = Varset
@@ -705,7 +705,7 @@ v = 17
 value = 1
 ;HHHHHHHHHHHHHHHHHHHHHHHH
 
-[State 750, 3];必殺系ＨＩＴマーク
+[State 750, 3]; Special move HIT mark
 type = helper
 trigger1 = MoveHit = 1
 ID = 4000
@@ -721,7 +721,7 @@ supermove = 1
 pausemovetime = 99999999999999
 supermovetime = 99999999999999
 
-[State 240, 3];必殺系ガードマーク
+[State 240, 3]; Special move guard mark
 type = Explod
 trigger1 = moveguarded = 1
 pos = -10,-63
@@ -739,7 +739,7 @@ supermove = 1
 bindtime = 1
 anim = F752
 
-[State 240, 3];ＨＩＴエフェクト　白いフラッシュ
+[State 240, 3]; HIT effect white flash
 type = Explod
 trigger1 = MoveHit = 1
 pos = 0, 0
@@ -757,7 +757,7 @@ scale = 9999,9999
 anim = F704
 
 ;+++++++++++++++++++++++++++++++
-; ロマンキャンセル許可  
+; Roman Cancel permission
 ;+++++++++++++++++++++++++++++++
 [State 10, 10];
 type = Varset
@@ -768,7 +768,7 @@ ignorehitpause = 1
 var(3) = 1
 ;+++++++++++++++++++++++++++++++
 ;+++++++++++++++++++++++++++++++
-; ロマンキャンセル解除ガトリング暴発防止
+; Roman Cancel release - prevent Gatling runaway
 ;+++++++++++++++++++++++++++++++
 [State 10, 10];
 type = Varset
@@ -786,7 +786,7 @@ value = 3003
 ctrl = 0
 
 ;<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~
-;                              　兆脚鳳凰昇　立ちＫ
+; Chokyaku Hououshou standing K
 [Statedef 3003]
 type    = S
 movetype= A
@@ -826,10 +826,10 @@ airguard.velocity =-5,-10+Var(6)
 air.type = Low
 air.velocity =-5,-10+Var(6)
 air.hittime = 14
-;fall = 1;落下させる
-;fall.recover = 0;受身可否
-;fall.recovertime = 30;受身出来るまでの時間
-air.fall = 1;相手が空中時のみ落下させる
+;fall = 1; knock down
+;fall.recover = 0; tech roll availability
+;fall.recovertime = 30; time until tech possible
+air.fall = 1; Knock down only when opponent is airborne
 down.velocity = 0,-3
 down.hittime = 6
 down.bounce = 1
@@ -845,7 +845,7 @@ guard.cornerpush.veloff    = 0
 p2facing = 1
 
 ;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-[State 10,combo];攻撃力補正用ＶＡＲ
+[State 10,combo]; Attack power correction VAR
 type = Varadd
 trigger1 = MoveHit = 1
 persistent = 0
@@ -854,7 +854,7 @@ v = 4
 value = 1
 ;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 ;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
-[State 2, ga3];カウンターヒット時
+[State 2, ga3]; On counter hit
 type = PlaySnd
 trigger1 =  var(14) >= 128
 trigger1 = movehit = 1
@@ -863,38 +863,38 @@ ignorehitpause = 1
 value = 511, 1
 Volume = 99999
 ;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
-;あああああああああああああああああ
-[State 2,guardLEVEL];ガードレベル増加
+; (section divider)
+[State 2,guardLEVEL]; Guard level increase
 type = Varadd
 trigger1 =  var(14) <= 236
 trigger1 = moveguarded = 1
 persistent = 0
 ignorehitpause = 1
 var(14) = 20
-[State 2,guardLEVEL];ガードレベル増加
+[State 2,guardLEVEL]; Guard level increase
 type = Varadd
 trigger1 =  var(14) > 236
 trigger1 = moveguarded = 1
 persistent = 0
 ignorehitpause = 1
 var(14) = 256-Var(14)
-[State 2,guardLEVEL];ガードレベル減少
+[State 2,guardLEVEL]; Guard level decrease
 type = Varadd
 trigger1 =  movehit = 1
 trigger1 =  var(14) >= 20
 persistent = 0
 ignorehitpause = 1
 var(14) = -20
-[State 2,guardLEVEL];ガードレベル減少
+[State 2,guardLEVEL]; Guard level decrease
 type = Varadd
 trigger1 =  movehit = 1
 trigger1 =  var(14) < 20
 persistent = 0
 ignorehitpause = 1
 var(14) = -Var(14)
-;あああああああああああああああああ
+; (section divider)
 ;HHHHHHHHHHHHHHHHHHHHHHHH
-;ＨＩＴ炎エフェクトのヘルパー強制消去用
+; For HIT flame effect helper force removal
 ;HHHHHHHHHHHHHHHHHHHHHHHH
 [State 1,1]
 type = Varset
@@ -905,7 +905,7 @@ v = 17
 value = 1
 ;HHHHHHHHHHHHHHHHHHHHHHHH
 
-[State 750, 3];必殺系ＨＩＴマーク
+[State 750, 3]; Special move HIT mark
 type = helper
 trigger1 = MoveHit = 1
 ID = 4000
@@ -921,7 +921,7 @@ supermove = 1
 pausemovetime = 99999999999999
 supermovetime = 99999999999999
 
-[State 240, 3];必殺系ガードマーク
+[State 240, 3]; Special move guard mark
 type = Explod
 trigger1 = moveguarded = 1
 pos = 10,-33
@@ -939,7 +939,7 @@ supermove = 1
 bindtime = 1
 anim = F752
 
-[State 240, 3];ＨＩＴエフェクト　白いフラッシュ
+[State 240, 3]; HIT effect white flash
 type = Explod
 trigger1 = MoveHit = 1
 pos = 0, 0
@@ -957,7 +957,7 @@ scale = 9999,9999
 anim = F704
 
 ;+++++++++++++++++++++++++++++++
-; ロマンキャンセル許可  
+; Roman Cancel permission
 ;+++++++++++++++++++++++++++++++
 [State 10, 10];
 type = Varset
@@ -968,7 +968,7 @@ ignorehitpause = 1
 var(3) = 1
 ;+++++++++++++++++++++++++++++++
 ;+++++++++++++++++++++++++++++++
-; ロマンキャンセル解除ガトリング暴発防止
+; Roman Cancel release - prevent Gatling runaway
 ;+++++++++++++++++++++++++++++++
 [State 10, 10];
 type = Varset
@@ -986,7 +986,7 @@ value = 3004
 ctrl = 0
 
 ;<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~
-;                              　兆脚鳳凰昇　立ちＫ２撃目
+; Chokyaku Hououshou standing K 2nd hit
 [Statedef 3004]
 type    = S
 movetype= A
@@ -1026,10 +1026,10 @@ airguard.velocity =-5,-10+Var(6)
 air.type = Low
 air.velocity =-5,-10+Var(6)
 air.hittime = 14
-;fall = 1;落下させる
-;fall.recover = 0;受身可否
-;fall.recovertime = 30;受身出来るまでの時間
-air.fall = 1;相手が空中時のみ落下させる
+;fall = 1; knock down
+;fall.recover = 0; tech roll availability
+;fall.recovertime = 30; time until tech possible
+air.fall = 1; Knock down only when opponent is airborne
 down.velocity = 0,-3
 down.hittime = 6
 down.bounce = 1
@@ -1045,7 +1045,7 @@ guard.cornerpush.veloff    = 0
 p2facing = 1
 
 ;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-[State 10,combo];攻撃力補正用ＶＡＲ
+[State 10,combo]; Attack power correction VAR
 type = Varadd
 trigger1 = MoveHit = 1
 persistent = 0
@@ -1054,7 +1054,7 @@ v = 4
 value = 1
 ;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 ;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
-[State 2, ga3];カウンターヒット時
+[State 2, ga3]; On counter hit
 type = PlaySnd
 trigger1 =  var(14) >= 128
 trigger1 = movehit = 1
@@ -1063,38 +1063,38 @@ ignorehitpause = 1
 value = 511, 1
 Volume = 99999
 ;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
-;あああああああああああああああああ
-[State 2,guardLEVEL];ガードレベル増加
+; (section divider)
+[State 2,guardLEVEL]; Guard level increase
 type = Varadd
 trigger1 =  var(14) <= 236
 trigger1 = moveguarded = 1
 persistent = 0
 ignorehitpause = 1
 var(14) = 20
-[State 2,guardLEVEL];ガードレベル増加
+[State 2,guardLEVEL]; Guard level increase
 type = Varadd
 trigger1 =  var(14) > 236
 trigger1 = moveguarded = 1
 persistent = 0
 ignorehitpause = 1
 var(14) = 256-Var(14)
-[State 2,guardLEVEL];ガードレベル減少
+[State 2,guardLEVEL]; Guard level decrease
 type = Varadd
 trigger1 =  movehit = 1
 trigger1 =  var(14) >= 20
 persistent = 0
 ignorehitpause = 1
 var(14) = -20
-[State 2,guardLEVEL];ガードレベル減少
+[State 2,guardLEVEL]; Guard level decrease
 type = Varadd
 trigger1 =  movehit = 1
 trigger1 =  var(14) < 20
 persistent = 0
 ignorehitpause = 1
 var(14) = -Var(14)
-;あああああああああああああああああ
+; (section divider)
 ;HHHHHHHHHHHHHHHHHHHHHHHH
-;ＨＩＴ炎エフェクトのヘルパー強制消去用
+; For HIT flame effect helper force removal
 ;HHHHHHHHHHHHHHHHHHHHHHHH
 [State 1,1]
 type = Varset
@@ -1105,7 +1105,7 @@ v = 17
 value = 1
 ;HHHHHHHHHHHHHHHHHHHHHHHH
 
-[State 750, 3];必殺系ＨＩＴマーク
+[State 750, 3]; Special move HIT mark
 type = helper
 trigger1 = MoveHit = 1
 ID = 4000
@@ -1121,7 +1121,7 @@ supermove = 1
 pausemovetime = 99999999999999
 supermovetime = 99999999999999
 
-[State 240, 3];必殺系ガードマーク
+[State 240, 3]; Special move guard mark
 type = Explod
 trigger1 = moveguarded = 1
 pos = 0,-66
@@ -1139,7 +1139,7 @@ supermove = 1
 bindtime = 1
 anim = F752
 
-[State 240, 3];ＨＩＴエフェクト　白いフラッシュ
+[State 240, 3]; HIT effect white flash
 type = Explod
 trigger1 = MoveHit = 1
 pos = 0, 0
@@ -1157,7 +1157,7 @@ scale = 9999,9999
 anim = F704
 
 ;+++++++++++++++++++++++++++++++
-; ロマンキャンセル許可  
+; Roman Cancel permission
 ;+++++++++++++++++++++++++++++++
 [State 10, 10];
 type = Varset
@@ -1175,7 +1175,7 @@ value = 3005
 ctrl = 0
 
 ;<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~
-;                              　兆脚鳳凰昇　立ちＫ３撃目
+; Chokyaku Hououshou standing K 3rd hit
 [Statedef 3005]
 type    = S
 movetype= A
@@ -1215,10 +1215,10 @@ airguard.velocity =-5,-10+Var(6)
 air.type = Low
 air.velocity =-5,-10+Var(6)
 air.hittime = 14
-;fall = 1;落下させる
-;fall.recover = 0;受身可否
-;fall.recovertime = 30;受身出来るまでの時間
-air.fall = 1;相手が空中時のみ落下させる
+;fall = 1; knock down
+;fall.recover = 0; tech roll availability
+;fall.recovertime = 30; time until tech possible
+air.fall = 1; Knock down only when opponent is airborne
 down.velocity = 0,-3
 down.hittime = 6
 down.bounce = 1
@@ -1234,7 +1234,7 @@ guard.cornerpush.veloff    = 0
 p2facing = 1
 
 ;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-[State 10,combo];攻撃力補正用ＶＡＲ
+[State 10,combo]; Attack power correction VAR
 type = Varadd
 trigger1 = MoveHit = 1
 persistent = 0
@@ -1243,7 +1243,7 @@ v = 4
 value = 1
 ;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 ;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
-[State 2, ga3];カウンターヒット時
+[State 2, ga3]; On counter hit
 type = PlaySnd
 trigger1 =  var(14) >= 128
 trigger1 = movehit = 1
@@ -1252,38 +1252,38 @@ ignorehitpause = 1
 value = 511, 1
 Volume = 99999
 ;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
-;あああああああああああああああああ
-[State 2,guardLEVEL];ガードレベル増加
+; (section divider)
+[State 2,guardLEVEL]; Guard level increase
 type = Varadd
 trigger1 =  var(14) <= 236
 trigger1 = moveguarded = 1
 persistent = 0
 ignorehitpause = 1
 var(14) = 20
-[State 2,guardLEVEL];ガードレベル増加
+[State 2,guardLEVEL]; Guard level increase
 type = Varadd
 trigger1 =  var(14) > 236
 trigger1 = moveguarded = 1
 persistent = 0
 ignorehitpause = 1
 var(14) = 256-Var(14)
-[State 2,guardLEVEL];ガードレベル減少
+[State 2,guardLEVEL]; Guard level decrease
 type = Varadd
 trigger1 =  movehit = 1
 trigger1 =  var(14) >= 20
 persistent = 0
 ignorehitpause = 1
 var(14) = -20
-[State 2,guardLEVEL];ガードレベル減少
+[State 2,guardLEVEL]; Guard level decrease
 type = Varadd
 trigger1 =  movehit = 1
 trigger1 =  var(14) < 20
 persistent = 0
 ignorehitpause = 1
 var(14) = -Var(14)
-;あああああああああああああああああ
+; (section divider)
 ;HHHHHHHHHHHHHHHHHHHHHHHH
-;ＨＩＴ炎エフェクトのヘルパー強制消去用
+; For HIT flame effect helper force removal
 ;HHHHHHHHHHHHHHHHHHHHHHHH
 [State 1,1]
 type = Varset
@@ -1294,7 +1294,7 @@ v = 17
 value = 1
 ;HHHHHHHHHHHHHHHHHHHHHHHH
 
-[State 750, 3];必殺系ＨＩＴマーク
+[State 750, 3]; Special move HIT mark
 type = helper
 trigger1 = MoveHit = 1
 ID = 4000
@@ -1310,7 +1310,7 @@ supermove = 1
 pausemovetime = 99999999999999
 supermovetime = 99999999999999
 
-[State 240, 3];必殺系ガードマーク
+[State 240, 3]; Special move guard mark
 type = Explod
 trigger1 = moveguarded = 1
 pos = -10,-106
@@ -1328,7 +1328,7 @@ supermove = 1
 bindtime = 1
 anim = F752
 
-[State 240, 3];ＨＩＴエフェクト　白いフラッシュ
+[State 240, 3]; HIT effect white flash
 type = Explod
 trigger1 = MoveHit = 1
 pos = 0, 0
@@ -1346,7 +1346,7 @@ scale = 9999,9999
 anim = F704
 
 ;+++++++++++++++++++++++++++++++
-; ロマンキャンセル許可  
+; Roman Cancel permission
 ;+++++++++++++++++++++++++++++++
 [State 10, 10];
 type = Varset
@@ -1364,7 +1364,7 @@ value = 3006
 ctrl = 0
 
 ;<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~
-;                              　兆脚鳳凰昇　バックダッシュ１撃目
+; Chokyaku Hououshou back dash 1st hit
 [Statedef 3006]
 type    = S
 movetype= A
@@ -1404,10 +1404,10 @@ airguard.velocity =-5,-10+Var(6)
 air.type = Low
 air.velocity =-5,-10+Var(6)
 air.hittime = 13
-;fall = 1;落下させる
-;fall.recover = 0;受身可否
-;fall.recovertime = 30;受身出来るまでの時間
-air.fall = 1;相手が空中時のみ落下させる
+;fall = 1; knock down
+;fall.recover = 0; tech roll availability
+;fall.recovertime = 30; time until tech possible
+air.fall = 1; Knock down only when opponent is airborne
 down.velocity = 0,-3
 down.hittime = 6
 down.bounce = 1
@@ -1423,7 +1423,7 @@ guard.cornerpush.veloff    = 0
 p2facing = 1
 
 ;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-[State 10,combo];攻撃力補正用ＶＡＲ
+[State 10,combo]; Attack power correction VAR
 type = Varadd
 trigger1 = MoveHit = 1
 persistent = 0
@@ -1432,7 +1432,7 @@ v = 4
 value = 1
 ;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 ;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
-[State 2, ga3];カウンターヒット時
+[State 2, ga3]; On counter hit
 type = PlaySnd
 trigger1 =  var(14) >= 128
 trigger1 = movehit = 1
@@ -1441,38 +1441,38 @@ ignorehitpause = 1
 value = 511, 1
 Volume = 99999
 ;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
-;あああああああああああああああああ
-[State 2,guardLEVEL];ガードレベル増加
+; (section divider)
+[State 2,guardLEVEL]; Guard level increase
 type = Varadd
 trigger1 =  var(14) <= 236
 trigger1 = moveguarded = 1
 persistent = 0
 ignorehitpause = 1
 var(14) = 20
-[State 2,guardLEVEL];ガードレベル増加
+[State 2,guardLEVEL]; Guard level increase
 type = Varadd
 trigger1 =  var(14) > 236
 trigger1 = moveguarded = 1
 persistent = 0
 ignorehitpause = 1
 var(14) = 256-Var(14)
-[State 2,guardLEVEL];ガードレベル減少
+[State 2,guardLEVEL]; Guard level decrease
 type = Varadd
 trigger1 =  movehit = 1
 trigger1 =  var(14) >= 20
 persistent = 0
 ignorehitpause = 1
 var(14) = -20
-[State 2,guardLEVEL];ガードレベル減少
+[State 2,guardLEVEL]; Guard level decrease
 type = Varadd
 trigger1 =  movehit = 1
 trigger1 =  var(14) < 20
 persistent = 0
 ignorehitpause = 1
 var(14) = -Var(14)
-;あああああああああああああああああ
+; (section divider)
 ;HHHHHHHHHHHHHHHHHHHHHHHH
-;ＨＩＴ炎エフェクトのヘルパー強制消去用
+; For HIT flame effect helper force removal
 ;HHHHHHHHHHHHHHHHHHHHHHHH
 [State 1,1]
 type = Varset
@@ -1483,7 +1483,7 @@ v = 17
 value = 1
 ;HHHHHHHHHHHHHHHHHHHHHHHH
 
-[State 750, 3];必殺系ＨＩＴマーク
+[State 750, 3]; Special move HIT mark
 type = helper
 trigger1 = MoveHit = 1
 ID = 4000
@@ -1499,7 +1499,7 @@ supermove = 1
 pausemovetime = 99999999999999
 supermovetime = 99999999999999
 
-[State 240, 3];必殺系ガードマーク
+[State 240, 3]; Special move guard mark
 type = Explod
 trigger1 = moveguarded = 1
 pos = -10,-63
@@ -1517,7 +1517,7 @@ supermove = 1
 bindtime = 1
 anim = F752
 
-[State 240, 3];ＨＩＴエフェクト　白いフラッシュ
+[State 240, 3]; HIT effect white flash
 type = Explod
 trigger1 = MoveHit = 1
 pos = 0, 0
@@ -1535,7 +1535,7 @@ scale = 9999,9999
 anim = F704
 
 ;+++++++++++++++++++++++++++++++
-; ロマンキャンセル許可  
+; Roman Cancel permission
 ;+++++++++++++++++++++++++++++++
 [State 10, 10];
 type = Varset
@@ -1546,7 +1546,7 @@ ignorehitpause = 1
 var(3) = 1
 ;+++++++++++++++++++++++++++++++
 ;+++++++++++++++++++++++++++++++
-; ロマンキャンセル解除ガトリング暴発防止
+; Roman Cancel release - prevent Gatling runaway
 ;+++++++++++++++++++++++++++++++
 [State 10, 10];
 type = Varset
@@ -1564,7 +1564,7 @@ value = 3007
 ctrl = 0
 
 ;<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~
-;                              　兆脚鳳凰昇　バックダッシュ２撃目
+; Chokyaku Hououshou back dash 2nd hit
 [Statedef 3007]
 type    = S
 movetype= A
@@ -1604,10 +1604,10 @@ airguard.velocity =-5,-10+Var(6)
 air.type = Low
 air.velocity =-5,-10+Var(6)
 air.hittime = 13
-;fall = 1;落下させる
-;fall.recover = 0;受身可否
-;fall.recovertime = 30;受身出来るまでの時間
-air.fall = 1;相手が空中時のみ落下させる
+;fall = 1; knock down
+;fall.recover = 0; tech roll availability
+;fall.recovertime = 30; time until tech possible
+air.fall = 1; Knock down only when opponent is airborne
 down.velocity = 0,-3
 down.hittime = 6
 down.bounce = 1
@@ -1623,7 +1623,7 @@ guard.cornerpush.veloff    = 0
 p2facing = 1
 
 ;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-[State 10,combo];攻撃力補正用ＶＡＲ
+[State 10,combo]; Attack power correction VAR
 type = Varadd
 trigger1 = MoveHit = 1
 persistent = 0
@@ -1632,7 +1632,7 @@ v = 4
 value = 1
 ;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 ;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
-[State 2, ga3];カウンターヒット時
+[State 2, ga3]; On counter hit
 type = PlaySnd
 trigger1 =  var(14) >= 128
 trigger1 = movehit = 1
@@ -1641,38 +1641,38 @@ ignorehitpause = 1
 value = 511, 1
 Volume = 99999
 ;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
-;あああああああああああああああああ
-[State 2,guardLEVEL];ガードレベル増加
+; (section divider)
+[State 2,guardLEVEL]; Guard level increase
 type = Varadd
 trigger1 =  var(14) <= 236
 trigger1 = moveguarded = 1
 persistent = 0
 ignorehitpause = 1
 var(14) = 20
-[State 2,guardLEVEL];ガードレベル増加
+[State 2,guardLEVEL]; Guard level increase
 type = Varadd
 trigger1 =  var(14) > 236
 trigger1 = moveguarded = 1
 persistent = 0
 ignorehitpause = 1
 var(14) = 256-Var(14)
-[State 2,guardLEVEL];ガードレベル減少
+[State 2,guardLEVEL]; Guard level decrease
 type = Varadd
 trigger1 =  movehit = 1
 trigger1 =  var(14) >= 20
 persistent = 0
 ignorehitpause = 1
 var(14) = -20
-[State 2,guardLEVEL];ガードレベル減少
+[State 2,guardLEVEL]; Guard level decrease
 type = Varadd
 trigger1 =  movehit = 1
 trigger1 =  var(14) < 20
 persistent = 0
 ignorehitpause = 1
 var(14) = -Var(14)
-;あああああああああああああああああ
+; (section divider)
 ;HHHHHHHHHHHHHHHHHHHHHHHH
-;ＨＩＴ炎エフェクトのヘルパー強制消去用
+; For HIT flame effect helper force removal
 ;HHHHHHHHHHHHHHHHHHHHHHHH
 [State 1,1]
 type = Varset
@@ -1683,7 +1683,7 @@ v = 17
 value = 1
 ;HHHHHHHHHHHHHHHHHHHHHHHH
 
-[State 750, 3];必殺系ＨＩＴマーク
+[State 750, 3]; Special move HIT mark
 type = helper
 trigger1 = MoveHit = 1
 ID = 4000
@@ -1699,7 +1699,7 @@ supermove = 1
 pausemovetime = 99999999999999
 supermovetime = 99999999999999
 
-[State 240, 3];必殺系ガードマーク
+[State 240, 3]; Special move guard mark
 type = Explod
 trigger1 = moveguarded = 1
 pos = -10,-63
@@ -1717,7 +1717,7 @@ supermove = 1
 bindtime = 1
 anim = F752
 
-[State 240, 3];ＨＩＴエフェクト　白いフラッシュ
+[State 240, 3]; HIT effect white flash
 type = Explod
 trigger1 = MoveHit = 1
 pos = 0, 0
@@ -1735,7 +1735,7 @@ scale = 9999,9999
 anim = F704
 
 ;+++++++++++++++++++++++++++++++
-; ロマンキャンセル許可  
+; Roman Cancel permission
 ;+++++++++++++++++++++++++++++++
 [State 10, 10];
 type = Varset
@@ -1753,7 +1753,7 @@ value = 3008
 ctrl = 0
 
 ;<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~
-;                              　兆脚鳳凰昇　バックダッシュ３撃目
+; Chokyaku Hououshou back dash 3rd hit
 [Statedef 3008]
 type    = S
 movetype= A
@@ -1793,10 +1793,10 @@ airguard.velocity =-5,-10+Var(6)
 air.type = Low
 air.velocity =-5,-10+Var(6)
 air.hittime = 13
-;fall = 1;落下させる
-;fall.recover = 0;受身可否
-;fall.recovertime = 30;受身出来るまでの時間
-air.fall = 1;相手が空中時のみ落下させる
+;fall = 1; knock down
+;fall.recover = 0; tech roll availability
+;fall.recovertime = 30; time until tech possible
+air.fall = 1; Knock down only when opponent is airborne
 down.velocity = 0,-3
 down.hittime = 6
 down.bounce = 1
@@ -1812,7 +1812,7 @@ guard.cornerpush.veloff    = 0
 p2facing = 1
 
 ;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-[State 10,combo];攻撃力補正用ＶＡＲ
+[State 10,combo]; Attack power correction VAR
 type = Varadd
 trigger1 = MoveHit = 1
 persistent = 0
@@ -1821,7 +1821,7 @@ v = 4
 value = 1
 ;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 ;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
-[State 2, ga3];カウンターヒット時
+[State 2, ga3]; On counter hit
 type = PlaySnd
 trigger1 =  var(14) >= 128
 trigger1 = movehit = 1
@@ -1830,38 +1830,38 @@ ignorehitpause = 1
 value = 511, 1
 Volume = 99999
 ;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
-;あああああああああああああああああ
-[State 2,guardLEVEL];ガードレベル増加
+; (section divider)
+[State 2,guardLEVEL]; Guard level increase
 type = Varadd
 trigger1 =  var(14) <= 236
 trigger1 = moveguarded = 1
 persistent = 0
 ignorehitpause = 1
 var(14) = 20
-[State 2,guardLEVEL];ガードレベル増加
+[State 2,guardLEVEL]; Guard level increase
 type = Varadd
 trigger1 =  var(14) > 236
 trigger1 = moveguarded = 1
 persistent = 0
 ignorehitpause = 1
 var(14) = 256-Var(14)
-[State 2,guardLEVEL];ガードレベル減少
+[State 2,guardLEVEL]; Guard level decrease
 type = Varadd
 trigger1 =  movehit = 1
 trigger1 =  var(14) >= 20
 persistent = 0
 ignorehitpause = 1
 var(14) = -20
-[State 2,guardLEVEL];ガードレベル減少
+[State 2,guardLEVEL]; Guard level decrease
 type = Varadd
 trigger1 =  movehit = 1
 trigger1 =  var(14) < 20
 persistent = 0
 ignorehitpause = 1
 var(14) = -Var(14)
-;あああああああああああああああああ
+; (section divider)
 ;HHHHHHHHHHHHHHHHHHHHHHHH
-;ＨＩＴ炎エフェクトのヘルパー強制消去用
+; For HIT flame effect helper force removal
 ;HHHHHHHHHHHHHHHHHHHHHHHH
 [State 1,1]
 type = Varset
@@ -1872,7 +1872,7 @@ v = 17
 value = 1
 ;HHHHHHHHHHHHHHHHHHHHHHHH
 
-[State 750, 3];必殺系ＨＩＴマーク
+[State 750, 3]; Special move HIT mark
 type = helper
 trigger1 = MoveHit = 1
 ID = 4000
@@ -1888,7 +1888,7 @@ supermove = 1
 pausemovetime = 99999999999999
 supermovetime = 99999999999999
 
-[State 240, 3];必殺系ガードマーク
+[State 240, 3]; Special move guard mark
 type = Explod
 trigger1 = moveguarded = 1
 pos = -10,-63
@@ -1906,7 +1906,7 @@ supermove = 1
 bindtime = 1
 anim = F752
 
-[State 240, 3];ＨＩＴエフェクト　白いフラッシュ
+[State 240, 3]; HIT effect white flash
 type = Explod
 trigger1 = MoveHit = 1
 pos = 0, 0
@@ -1924,7 +1924,7 @@ scale = 9999,9999
 anim = F704
 
 ;+++++++++++++++++++++++++++++++
-; ロマンキャンセル許可  
+; Roman Cancel permission
 ;+++++++++++++++++++++++++++++++
 [State 10, 10];
 type = Varset
@@ -1942,7 +1942,7 @@ value = 3009
 ctrl = 0
 
 ;<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~
-;                              　兆脚鳳凰昇　バックダッシュ４撃目
+; Chokyaku Hououshou back dash 4th hit
 [Statedef 3009]
 type    = S
 movetype= A
@@ -1982,10 +1982,10 @@ airguard.velocity =-5,-10+Var(6)
 air.type = Low
 air.velocity =-5,-10+Var(6)
 air.hittime = 13
-;fall = 1;落下させる
-;fall.recover = 0;受身可否
-;fall.recovertime = 30;受身出来るまでの時間
-air.fall = 1;相手が空中時のみ落下させる
+;fall = 1; knock down
+;fall.recover = 0; tech roll availability
+;fall.recovertime = 30; time until tech possible
+air.fall = 1; Knock down only when opponent is airborne
 down.velocity = 0,-3
 down.hittime = 6
 down.bounce = 1
@@ -2001,7 +2001,7 @@ guard.cornerpush.veloff    = 0
 p2facing = 1
 
 ;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-[State 10,combo];攻撃力補正用ＶＡＲ
+[State 10,combo]; Attack power correction VAR
 type = Varadd
 trigger1 = MoveHit = 1
 persistent = 0
@@ -2010,7 +2010,7 @@ v = 4
 value = 1
 ;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 ;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
-[State 2, ga3];カウンターヒット時
+[State 2, ga3]; On counter hit
 type = PlaySnd
 trigger1 =  var(14) >= 128
 trigger1 = movehit = 1
@@ -2019,38 +2019,38 @@ ignorehitpause = 1
 value = 511, 1
 Volume = 99999
 ;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
-;あああああああああああああああああ
-[State 2,guardLEVEL];ガードレベル増加
+; (section divider)
+[State 2,guardLEVEL]; Guard level increase
 type = Varadd
 trigger1 =  var(14) <= 236
 trigger1 = moveguarded = 1
 persistent = 0
 ignorehitpause = 1
 var(14) = 20
-[State 2,guardLEVEL];ガードレベル増加
+[State 2,guardLEVEL]; Guard level increase
 type = Varadd
 trigger1 =  var(14) > 236
 trigger1 = moveguarded = 1
 persistent = 0
 ignorehitpause = 1
 var(14) = 256-Var(14)
-[State 2,guardLEVEL];ガードレベル減少
+[State 2,guardLEVEL]; Guard level decrease
 type = Varadd
 trigger1 =  movehit = 1
 trigger1 =  var(14) >= 20
 persistent = 0
 ignorehitpause = 1
 var(14) = -20
-[State 2,guardLEVEL];ガードレベル減少
+[State 2,guardLEVEL]; Guard level decrease
 type = Varadd
 trigger1 =  movehit = 1
 trigger1 =  var(14) < 20
 persistent = 0
 ignorehitpause = 1
 var(14) = -Var(14)
-;あああああああああああああああああ
+; (section divider)
 ;HHHHHHHHHHHHHHHHHHHHHHHH
-;ＨＩＴ炎エフェクトのヘルパー強制消去用
+; For HIT flame effect helper force removal
 ;HHHHHHHHHHHHHHHHHHHHHHHH
 [State 1,1]
 type = Varset
@@ -2061,7 +2061,7 @@ v = 17
 value = 1
 ;HHHHHHHHHHHHHHHHHHHHHHHH
 
-[State 750, 3];必殺系ＨＩＴマーク
+[State 750, 3]; Special move HIT mark
 type = helper
 trigger1 = MoveHit = 1
 ID = 4000
@@ -2077,7 +2077,7 @@ supermove = 1
 pausemovetime = 99999999999999
 supermovetime = 99999999999999
 
-[State 240, 3];必殺系ガードマーク
+[State 240, 3]; Special move guard mark
 type = Explod
 trigger1 = moveguarded = 1
 pos = -10,-63
@@ -2095,7 +2095,7 @@ supermove = 1
 bindtime = 1
 anim = F752
 
-[State 240, 3];ＨＩＴエフェクト　白いフラッシュ
+[State 240, 3]; HIT effect white flash
 type = Explod
 trigger1 = MoveHit = 1
 pos = 0, 0
@@ -2113,7 +2113,7 @@ scale = 9999,9999
 anim = F704
 
 ;+++++++++++++++++++++++++++++++
-; ロマンキャンセル許可  
+; Roman Cancel permission
 ;+++++++++++++++++++++++++++++++
 [State 10, 10];
 type = Varset
@@ -2131,7 +2131,7 @@ value = 3010
 ctrl = 0
 
 ;<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~
-;                              　兆脚鳳凰昇　バックダッシュ５撃目
+; Chokyaku Hououshou back dash 5th hit
 [Statedef 3010]
 type    = S
 movetype= A
@@ -2171,10 +2171,10 @@ airguard.velocity =-5,-10+Var(6)
 air.type = Low
 air.velocity =-5,-10+Var(6)
 air.hittime = 13
-;fall = 1;落下させる
-;fall.recover = 0;受身可否
-;fall.recovertime = 30;受身出来るまでの時間
-air.fall = 1;相手が空中時のみ落下させる
+;fall = 1; knock down
+;fall.recover = 0; tech roll availability
+;fall.recovertime = 30; time until tech possible
+air.fall = 1; Knock down only when opponent is airborne
 down.velocity = 0,-3
 down.hittime = 6
 down.bounce = 1
@@ -2190,7 +2190,7 @@ guard.cornerpush.veloff    = 0
 p2facing = 1
 
 ;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-[State 10,combo];攻撃力補正用ＶＡＲ
+[State 10,combo]; Attack power correction VAR
 type = Varadd
 trigger1 = MoveHit = 1
 persistent = 0
@@ -2199,7 +2199,7 @@ v = 4
 value = 1
 ;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 ;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
-[State 2, ga3];カウンターヒット時
+[State 2, ga3]; On counter hit
 type = PlaySnd
 trigger1 =  var(14) >= 128
 trigger1 = movehit = 1
@@ -2208,38 +2208,38 @@ ignorehitpause = 1
 value = 511, 1
 Volume = 99999
 ;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
-;あああああああああああああああああ
-[State 2,guardLEVEL];ガードレベル増加
+; (section divider)
+[State 2,guardLEVEL]; Guard level increase
 type = Varadd
 trigger1 =  var(14) <= 236
 trigger1 = moveguarded = 1
 persistent = 0
 ignorehitpause = 1
 var(14) = 20
-[State 2,guardLEVEL];ガードレベル増加
+[State 2,guardLEVEL]; Guard level increase
 type = Varadd
 trigger1 =  var(14) > 236
 trigger1 = moveguarded = 1
 persistent = 0
 ignorehitpause = 1
 var(14) = 256-Var(14)
-[State 2,guardLEVEL];ガードレベル減少
+[State 2,guardLEVEL]; Guard level decrease
 type = Varadd
 trigger1 =  movehit = 1
 trigger1 =  var(14) >= 20
 persistent = 0
 ignorehitpause = 1
 var(14) = -20
-[State 2,guardLEVEL];ガードレベル減少
+[State 2,guardLEVEL]; Guard level decrease
 type = Varadd
 trigger1 =  movehit = 1
 trigger1 =  var(14) < 20
 persistent = 0
 ignorehitpause = 1
 var(14) = -Var(14)
-;あああああああああああああああああ
+; (section divider)
 ;HHHHHHHHHHHHHHHHHHHHHHHH
-;ＨＩＴ炎エフェクトのヘルパー強制消去用
+; For HIT flame effect helper force removal
 ;HHHHHHHHHHHHHHHHHHHHHHHH
 [State 1,1]
 type = Varset
@@ -2250,7 +2250,7 @@ v = 17
 value = 1
 ;HHHHHHHHHHHHHHHHHHHHHHHH
 
-[State 750, 3];必殺系ＨＩＴマーク
+[State 750, 3]; Special move HIT mark
 type = helper
 trigger1 = MoveHit = 1
 ID = 4000
@@ -2266,7 +2266,7 @@ supermove = 1
 pausemovetime = 99999999999999
 supermovetime = 99999999999999
 
-[State 240, 3];必殺系ガードマーク
+[State 240, 3]; Special move guard mark
 type = Explod
 trigger1 = moveguarded = 1
 pos = -10,-63
@@ -2284,7 +2284,7 @@ supermove = 1
 bindtime = 1
 anim = F752
 
-[State 240, 3];ＨＩＴエフェクト　白いフラッシュ
+[State 240, 3]; HIT effect white flash
 type = Explod
 trigger1 = MoveHit = 1
 pos = 0, 0
@@ -2302,7 +2302,7 @@ scale = 9999,9999
 anim = F704
 
 ;+++++++++++++++++++++++++++++++
-; ロマンキャンセル許可  
+; Roman Cancel permission
 ;+++++++++++++++++++++++++++++++
 [State 10, 10];
 type = Varset
@@ -2320,7 +2320,7 @@ value = 3011
 ctrl = 0
 
 ;<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~
-;                              　兆脚鳳凰昇　バックダッシュ６撃目
+; Chokyaku Hououshou back dash 6th hit
 [Statedef 3011]
 type    = S
 movetype= A
@@ -2360,10 +2360,10 @@ airguard.velocity =-5,-10+Var(6)
 air.type = Low
 air.velocity =-5,-10+Var(6)
 air.hittime = 13
-;fall = 1;落下させる
-;fall.recover = 0;受身可否
-;fall.recovertime = 30;受身出来るまでの時間
-air.fall = 1;相手が空中時のみ落下させる
+;fall = 1; knock down
+;fall.recover = 0; tech roll availability
+;fall.recovertime = 30; time until tech possible
+air.fall = 1; Knock down only when opponent is airborne
 down.velocity = 0,-3
 down.hittime = 6
 down.bounce = 1
@@ -2379,7 +2379,7 @@ guard.cornerpush.veloff    = 0
 p2facing = 1
 
 ;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-[State 10,combo];攻撃力補正用ＶＡＲ
+[State 10,combo]; Attack power correction VAR
 type = Varadd
 trigger1 = MoveHit = 1
 persistent = 0
@@ -2388,7 +2388,7 @@ v = 4
 value = 1
 ;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 ;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
-[State 2, ga3];カウンターヒット時
+[State 2, ga3]; On counter hit
 type = PlaySnd
 trigger1 =  var(14) >= 128
 trigger1 = movehit = 1
@@ -2397,38 +2397,38 @@ ignorehitpause = 1
 value = 511, 1
 Volume = 99999
 ;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
-;あああああああああああああああああ
-[State 2,guardLEVEL];ガードレベル増加
+; (section divider)
+[State 2,guardLEVEL]; Guard level increase
 type = Varadd
 trigger1 =  var(14) <= 236
 trigger1 = moveguarded = 1
 persistent = 0
 ignorehitpause = 1
 var(14) = 20
-[State 2,guardLEVEL];ガードレベル増加
+[State 2,guardLEVEL]; Guard level increase
 type = Varadd
 trigger1 =  var(14) > 236
 trigger1 = moveguarded = 1
 persistent = 0
 ignorehitpause = 1
 var(14) = 256-Var(14)
-[State 2,guardLEVEL];ガードレベル減少
+[State 2,guardLEVEL]; Guard level decrease
 type = Varadd
 trigger1 =  movehit = 1
 trigger1 =  var(14) >= 20
 persistent = 0
 ignorehitpause = 1
 var(14) = -20
-[State 2,guardLEVEL];ガードレベル減少
+[State 2,guardLEVEL]; Guard level decrease
 type = Varadd
 trigger1 =  movehit = 1
 trigger1 =  var(14) < 20
 persistent = 0
 ignorehitpause = 1
 var(14) = -Var(14)
-;あああああああああああああああああ
+; (section divider)
 ;HHHHHHHHHHHHHHHHHHHHHHHH
-;ＨＩＴ炎エフェクトのヘルパー強制消去用
+; For HIT flame effect helper force removal
 ;HHHHHHHHHHHHHHHHHHHHHHHH
 [State 1,1]
 type = Varset
@@ -2439,7 +2439,7 @@ v = 17
 value = 1
 ;HHHHHHHHHHHHHHHHHHHHHHHH
 
-[State 750, 3];必殺系ＨＩＴマーク
+[State 750, 3]; Special move HIT mark
 type = helper
 trigger1 = MoveHit = 1
 ID = 4000
@@ -2455,7 +2455,7 @@ supermove = 1
 pausemovetime = 99999999999999
 supermovetime = 99999999999999
 
-[State 240, 3];必殺系ガードマーク
+[State 240, 3]; Special move guard mark
 type = Explod
 trigger1 = moveguarded = 1
 pos = -10,-63
@@ -2473,7 +2473,7 @@ supermove = 1
 bindtime = 1
 anim = F752
 
-[State 240, 3];ＨＩＴエフェクト　白いフラッシュ
+[State 240, 3]; HIT effect white flash
 type = Explod
 trigger1 = MoveHit = 1
 pos = 0, 0
@@ -2491,7 +2491,7 @@ scale = 9999,9999
 anim = F704
 
 ;+++++++++++++++++++++++++++++++
-; ロマンキャンセル許可  
+; Roman Cancel permission
 ;+++++++++++++++++++++++++++++++
 [State 10, 10];
 type = Varset
@@ -2509,7 +2509,7 @@ value = 3014
 ctrl = 0
 
 ;<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~
-;                              　兆脚鳳凰昇　浮かし蹴り
+; Chokyaku Hououshou launcher kick
 [Statedef 3014]
 type    = A
 movetype= A
@@ -2520,7 +2520,7 @@ anim = 3010
 ctrl = 0
 ;sprpriority = 2
 
-[State 1651,222];画面
+[State 1651,222]; Screen
 type = ScreenBound
 trigger1 = time >= 0
 value = 1
@@ -2568,10 +2568,10 @@ airguard.velocity =-5,13+Var(6)
 air.type = Low
 air.velocity = 0,-13
 air.hittime = 14
-fall = 1;落下させる
-fall.recover = 0;受身可否
-;fall.recovertime = 30;受身出来るまでの時間
-air.fall = 1;相手が空中時のみ落下させる
+fall = 1; knock down
+fall.recover = 0; tech roll availability
+;fall.recovertime = 30; time until tech possible
+air.fall = 1; Knock down only when opponent is airborne
 down.velocity = 0,-3
 down.hittime = 6
 down.bounce = 1
@@ -2583,7 +2583,7 @@ p2stateno = 3021
 ID = 3014
 
 ;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-[State 10,combo];攻撃力補正用ＶＡＲ
+[State 10,combo]; Attack power correction VAR
 type = Varadd
 trigger1 = MoveHit = 1
 persistent = 0
@@ -2592,7 +2592,7 @@ v = 4
 value = 1
 ;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 ;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
-[State 2, ga3];カウンターヒット時
+[State 2, ga3]; On counter hit
 type = PlaySnd
 trigger1 =  var(14) >= 128
 trigger1 = movehit = 1
@@ -2601,38 +2601,38 @@ ignorehitpause = 1
 value = 511, 1
 Volume = 99999
 ;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
-;あああああああああああああああああ
-[State 2,guardLEVEL];ガードレベル増加
+; (section divider)
+[State 2,guardLEVEL]; Guard level increase
 type = Varadd
 trigger1 =  var(14) <= 236
 trigger1 = moveguarded = 1
 persistent = 0
 ignorehitpause = 1
 var(14) = 20
-[State 2,guardLEVEL];ガードレベル増加
+[State 2,guardLEVEL]; Guard level increase
 type = Varadd
 trigger1 =  var(14) > 236
 trigger1 = moveguarded = 1
 persistent = 0
 ignorehitpause = 1
 var(14) = 256-Var(14)
-[State 2,guardLEVEL];ガードレベル減少
+[State 2,guardLEVEL]; Guard level decrease
 type = Varadd
 trigger1 =  movehit = 1
 trigger1 =  var(14) >= 20
 persistent = 0
 ignorehitpause = 1
 var(14) = -20
-[State 2,guardLEVEL];ガードレベル減少
+[State 2,guardLEVEL]; Guard level decrease
 type = Varadd
 trigger1 =  movehit = 1
 trigger1 =  var(14) < 20
 persistent = 0
 ignorehitpause = 1
 var(14) = -Var(14)
-;あああああああああああああああああ
+; (section divider)
 ;HHHHHHHHHHHHHHHHHHHHHHHH
-;ＨＩＴ炎エフェクトのヘルパー強制消去用
+; For HIT flame effect helper force removal
 ;HHHHHHHHHHHHHHHHHHHHHHHH
 [State 1,1]
 type = Varset
@@ -2643,7 +2643,7 @@ v = 17
 value = 1
 ;HHHHHHHHHHHHHHHHHHHHHHHH
 
-[State 750, 3];必殺系ＨＩＴマーク
+[State 750, 3]; Special move HIT mark
 type = helper
 trigger1 = MoveHit = 1
 ID = 4000
@@ -2659,7 +2659,7 @@ supermove = 1
 pausemovetime = 99999999999999
 supermovetime = 99999999999999
 
-[State 240, 3];必殺系ガードマーク
+[State 240, 3]; Special move guard mark
 type = Explod
 trigger1 = moveguarded = 1
 pos = -10,-63
@@ -2677,7 +2677,7 @@ supermove = 1
 bindtime = 1
 anim = F752
 
-[State 240, 3];ＨＩＴエフェクト　白いフラッシュ
+[State 240, 3]; HIT effect white flash
 type = Explod
 trigger1 = MoveHit = 1
 pos = 0, 0
@@ -2695,7 +2695,7 @@ scale = 9999,9999
 anim = F704
 
 ;+++++++++++++++++++++++++++++++
-; ロマンキャンセル許可  
+; Roman Cancel permission
 ;+++++++++++++++++++++++++++++++
 [State 10, 10];
 type = Varset
@@ -2706,7 +2706,7 @@ ignorehitpause = 1
 var(3) = 1
 ;+++++++++++++++++++++++++++++++
 ;+++++++++++++++++++++++++++++++
-; ロマンキャンセル解除ガトリング暴発防止
+; Roman Cancel release - prevent Gatling runaway
 ;+++++++++++++++++++++++++++++++
 [State 10, 10];
 type = Varset
@@ -2717,7 +2717,7 @@ ignorehitpause = 1
 var(3) = 0
 ;+++++++++++++++++++++++++++++++
 
-[State 3000, 7];ＨＩＴ時上昇体当たりへ
+[State 3000, 7]; On HIT transition to rising tackle
 type = ChangeState
 trigger1 = MoveHit = 1
 trigger1 = AnimElem = 5
@@ -2732,7 +2732,7 @@ value = 3015
 ctrl = 0
 
 ;<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~
-;                              　兆脚鳳凰昇　浮かし蹴り着地
+; Chokyaku Hououshou launcher kick landing
 [Statedef 3015]
 type    = S
 movetype= I
@@ -2748,7 +2748,7 @@ type = Posset
 trigger1 = Pos y != 0
 y = 0
 
-[State 750, 3];着地煙ヘルパー
+[State 750, 3]; Landing smoke helper
 type = helper
 trigger1 = Time = 0
 ID = 4001
@@ -2776,7 +2776,7 @@ value = 0
 ctrl = 1
 
 ;<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~
-;                              　兆脚鳳凰昇　上昇体当たり
+; Chokyaku Hououshou rising tackle
 [Statedef 3016]
 type    = A
 movetype= A
@@ -2788,7 +2788,7 @@ ctrl = 0
 ;sprpriority = 2
 
 
-[State 240, 3];鳳凰  縦線
+[State 240, 3]; Phoenix vertical lines
 type = Explod
 trigger1 = timeMod =10, 0
 pos = 0, 0
@@ -2805,7 +2805,7 @@ anim = 3052
 ID = 3052
 scale = 1,10
 
-[State 240, 3];鳳凰  縦線
+[State 240, 3]; Phoenix vertical lines
 type = Explod
 trigger1 = timeMod =7, 0
 pos = 0, 0
@@ -2822,7 +2822,7 @@ anim = 3052
 ID = 3052
 scale = 1,10
 
-[State 750, 3];ヘルパー
+[State 750, 3]; Helper
 type = helper
 trigger1 = Numhelper(3050) = 0
 trigger1 = Time = 10
@@ -2831,13 +2831,13 @@ ignorehitpause = 1
 persistent = 0
 pos = 0,-50
 priority = 10
-ownpal = 1;コレが無いとヘルパーの色変化が出来ない
+ownpal = 1; Required for helper color change
 stateno = 3050
 pausemovetime = 99999999999999
 supermovetime = 99999999999999
 supermove = 1
 
-[State 200, 1];鳳凰昇ぉぉぉぉ
+[State 200, 1]; Hououshou (voice)
 type = PlaySnd
 trigger1 = AnimElem = 1
 value = 309, 1;
@@ -2878,10 +2878,10 @@ airguard.velocity =-5,0+Var(6)
 air.type = Low
 air.velocity =0,0;-5
 air.hittime = 14
-fall = 1;落下させる
-fall.recover = 0;受身可否
-;fall.recovertime = 30;受身出来るまでの時間
-air.fall = 1;相手が空中時のみ落下させる
+fall = 1; knock down
+fall.recover = 0; tech roll availability
+;fall.recovertime = 30; time until tech possible
+air.fall = 1; Knock down only when opponent is airborne
 down.velocity = 0,-3
 down.hittime = 6
 down.bounce = 1
@@ -2894,7 +2894,7 @@ p2stateno = 3020
 chainID = 3014
 
 ;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-[State 10,combo];攻撃力補正用ＶＡＲ
+[State 10,combo]; Attack power correction VAR
 type = Varadd
 trigger1 = MoveHit = 1
 persistent = 0
@@ -2903,7 +2903,7 @@ v = 4
 value = 1
 ;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 ;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
-[State 2, ga3];カウンターヒット時
+[State 2, ga3]; On counter hit
 type = PlaySnd
 trigger1 =  var(14) >= 128
 trigger1 = movehit = 1
@@ -2912,38 +2912,38 @@ ignorehitpause = 1
 value = 511, 1
 Volume = 99999
 ;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
-;あああああああああああああああああ
-[State 2,guardLEVEL];ガードレベル増加
+; (section divider)
+[State 2,guardLEVEL]; Guard level increase
 type = Varadd
 trigger1 =  var(14) <= 236
 trigger1 = moveguarded = 1
 persistent = 0
 ignorehitpause = 1
 var(14) = 20
-[State 2,guardLEVEL];ガードレベル増加
+[State 2,guardLEVEL]; Guard level increase
 type = Varadd
 trigger1 =  var(14) > 236
 trigger1 = moveguarded = 1
 persistent = 0
 ignorehitpause = 1
 var(14) = 256-Var(14)
-[State 2,guardLEVEL];ガードレベル減少
+[State 2,guardLEVEL]; Guard level decrease
 type = Varadd
 trigger1 =  movehit = 1
 trigger1 =  var(14) >= 20
 persistent = 0
 ignorehitpause = 1
 var(14) = -20
-[State 2,guardLEVEL];ガードレベル減少
+[State 2,guardLEVEL]; Guard level decrease
 type = Varadd
 trigger1 =  movehit = 1
 trigger1 =  var(14) < 20
 persistent = 0
 ignorehitpause = 1
 var(14) = -Var(14)
-;あああああああああああああああああ
+; (section divider)
 ;HHHHHHHHHHHHHHHHHHHHHHHH
-;ＨＩＴ炎エフェクトのヘルパー強制消去用
+; For HIT flame effect helper force removal
 ;HHHHHHHHHHHHHHHHHHHHHHHH
 [State 1,1]
 type = Varset
@@ -2954,7 +2954,7 @@ v = 17
 value = 1
 ;HHHHHHHHHHHHHHHHHHHHHHHH
 
-[State 750, 3];必殺系ＨＩＴマーク
+[State 750, 3]; Special move HIT mark
 type = helper
 trigger1 = MoveHit = 1
 ID = 4000
@@ -2970,7 +2970,7 @@ supermove = 1
 pausemovetime = 99999999999999
 supermovetime = 99999999999999
 
-[State 240, 3];必殺系ガードマーク
+[State 240, 3]; Special move guard mark
 type = Explod
 trigger1 = moveguarded = 1
 pos = -10,-63
@@ -2988,7 +2988,7 @@ supermove = 1
 bindtime = 1
 anim = F752
 
-[State 240, 3];ＨＩＴエフェクト　白いフラッシュ
+[State 240, 3]; HIT effect white flash
 type = Explod
 trigger1 = MoveHit = 1
 pos = 0, 0
@@ -3006,7 +3006,7 @@ scale = 9999,9999
 anim = F704
 
 ;+++++++++++++++++++++++++++++++
-; ロマンキャンセル許可  
+; Roman Cancel permission
 ;+++++++++++++++++++++++++++++++
 [State 10, 10];
 type = Varset
@@ -3017,7 +3017,7 @@ ignorehitpause = 1
 var(3) = 1
 ;+++++++++++++++++++++++++++++++
 ;+++++++++++++++++++++++++++++++
-; ロマンキャンセル解除ガトリング暴発防止
+; Roman Cancel release - prevent Gatling runaway
 ;+++++++++++++++++++++++++++++++
 [State 10, 10];
 type = Varset
@@ -3035,7 +3035,7 @@ value = 3017
 ctrl = 0
 
 ;<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~
-;                              　兆脚鳳凰昇　体当たり終了下降
+; Chokyaku Hououshou tackle end descent
 [Statedef 3017]
 type    = A
 movetype= A
@@ -3052,7 +3052,7 @@ trigger1 = Time >= 0
 y = 0.44
 
 ;+++++++++++++++++++++++++++++++
-; ロマンキャンセル許可  
+; Roman Cancel permission
 ;+++++++++++++++++++++++++++++++
 [State 10, 10];
 type = Varset
@@ -3070,7 +3070,7 @@ value = 3015
 ctrl = 0
 
 ;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-; 　　　　　　　　　　　　　　　　　体当たり上昇相手側
+; Rising tackle opponent side
 [Statedef 3020]
 type = A
 movetype = H
@@ -3106,13 +3106,13 @@ type = veladd
 trigger1 = Time >= 0
 y = 0.33
 
-[State 902, 4];地面バウンドへ
+[State 902, 4]; Transition to ground bounce
 type = SelfState
 trigger1 = Pos Y > -0.5
 value = 5100
 
 ;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-; 　　　　　　　　　　　　　　　　　蹴り上げ相手側
+; Kick-up opponent side
 [Statedef 3021]
 type = A
 movetype = H
@@ -3120,7 +3120,7 @@ physics = N
 ctrl = 0
 velset = 0, 0
 
-[State 1651,222];画面
+[State 1651,222]; Screen
 type = ScreenBound
 trigger1 = time >= 0
 value = 1
@@ -3147,14 +3147,14 @@ type = veladd
 trigger1 = Time >= 0
 y = 0.44
 
-[State 902, 4];地面バウンドへ
+[State 902, 4]; Transition to ground bounce
 type = SelfState
 trigger1 = Pos Y > -0.5
 trigger1 = Time >= 3
 value = 5100
 
 ;\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-;　　　　　　　　　　　　　　　　　　鳳凰エフェクト
+; Phoenix effect
 [Statedef 3050]
 type = A
 movetype = I
@@ -3184,7 +3184,7 @@ value = 508, 4;
 volume = 99999
 channel = 12
 
-[State 240, 3];鳳凰エフェクト
+[State 240, 3]; Phoenix effect
 type = Explod
 trigger1 = time = 0
 pos = 0, 0
@@ -3201,14 +3201,14 @@ anim = 3050
 ID = 3050
 scale = Var(5)*0.1,1
 
-[State 2, 1];鳳凰エフェクト拡大率初期化
+[State 2, 1]; Phoenix effect拡大率初期化
 type = Varset
 trigger1 = Var(5) != 0
 trigger1 = time = 0
 var(5) = 0
 ignorehitpause = 1
 
-[State 222, 10];鳳凰エフェクト拡大率アップ
+[State 222, 10]; Phoenix effect拡大率アップ
 type = VarAdd
 trigger1 = Var(5) < 10
 trigger1 = Time >= 20
@@ -3216,26 +3216,26 @@ trigger1 = TimeMod = 2,0
 var(5) = 1
 ignorehitpause = 1
 
-[State 2090, 7];鳳凰エフェクト拡大
+[State 2090, 7]; Phoenix effect拡大
 type = ModifyExplod
 trigger1 = Time <= 50
 ID = 3050
 scale = Var(5)*0.1,1
 
-[State 2, 1];鳳凰エフェクト終了用拡大率初期化
+[State 2, 1]; Phoenix effect終了用拡大率初期化
 type = Varset
 trigger1 = Var(6) != 10
 trigger1 = time = 0
 var(6) = 10
 ignorehitpause = 1
-[State 2, 1];鳳凰エフェクト終了用拡大率初期化
+[State 2, 1]; Phoenix effect終了用拡大率初期化
 type = Varset
 trigger1 = Var(7) != 10
 trigger1 = time = 0
 var(7) = 10
 ignorehitpause = 1
 
-[State 240, 3];鳳凰エフェクト終了用
+[State 240, 3]; Phoenix effect終了用
 type = Explod
 trigger1 = time = 120
 pos = 0, 0
@@ -3252,21 +3252,21 @@ anim = 3050
 ID = 3055
 scale = Var(7)*0.1,Var(6)*0.1
 
-[State 222, 10];鳳凰エフェクト終了用拡大率アップ
+[State 222, 10]; Phoenix effect終了用拡大率アップ
 type = VarAdd
 trigger1 = Var(6) < 40
 trigger1 = Time >= 120
 var(6) = 1
 ignorehitpause = 1
 
-[State 222, 10];鳳凰エフェクト終了用拡大率アップ
+[State 222, 10]; Phoenix effect終了用拡大率アップ
 type = VarAdd
 trigger1 = var(7) != 0
 trigger1 = Time >= 140
 var(7) = -1
 ignorehitpause = 1
 
-[State 2090, 7];鳳凰エフェクト終了用拡大
+[State 2090, 7]; Phoenix effect終了用拡大
 type = ModifyExplod
 trigger1 = Time >= 120
 ID = 3055
@@ -3316,7 +3316,7 @@ type = destroyself
 trigger1 = Time = 170
 
 ;<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~
-;                              　ＥＸ　兆脚鳳凰昇　移動攻撃
+; EX Chokyaku Hououshou moving attack
 [Statedef 3031]
 type    = S
 movetype= A
@@ -3337,7 +3337,7 @@ type = playerpush
 trigger1 = time > 11
 value = 1
 
-[State 200, 1];兆脚ぅぅぅぅ
+[State 200, 1]; Chokyaku (voice)
 type = PlaySnd
 trigger1 = MoveHit = 1
 trigger1 = Var(25) = 0
@@ -3355,7 +3355,7 @@ value = 404, 0
 Volume = 99999
 channel = 1
 
-[State 240, 3];ピンクの煙
+[State 240, 3]; Pink smoke
 type = Explod
 trigger1 = AnimElem = 1
 pos = 0, 5
@@ -3407,10 +3407,10 @@ airguard.velocity =-5,-10+Var(6)
 air.type = Low
 air.velocity =-5,-10+Var(6)
 air.hittime = 14
-;fall = 1;落下させる
-;fall.recover = 0;受身可否
+;fall = 1; knock down
+;fall.recover = 0; tech roll availability
 fall.recovertime = 30;受身出来るまでの時間
-air.fall = 1;相手が空中時のみ落下させる
+air.fall = 1; Knock down only when opponent is airborne
 down.velocity = 0,-3
 down.hittime = 6
 down.bounce = 1
@@ -3450,10 +3450,10 @@ airguard.velocity =-5,-10+Var(6)
 air.type = Low
 air.velocity =-5,-10+Var(6)
 air.hittime = 14
-;fall = 1;落下させる
-;fall.recover = 0;受身可否
+;fall = 1; knock down
+;fall.recover = 0; tech roll availability
 fall.recovertime = 30;受身出来るまでの時間
-air.fall = 1;相手が空中時のみ落下させる
+air.fall = 1; Knock down only when opponent is airborne
 down.velocity = 0,-3
 down.hittime = 6
 down.bounce = 1
@@ -3470,7 +3470,7 @@ p2facing = 1
 P1Stateno = 3014
 
 ;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-[State 10,combo];攻撃力補正用ＶＡＲ
+[State 10,combo]; Attack power correction VAR
 type = Varadd
 triggerall = MoveHit = 1
 trigger1 = Var(25) = 1
@@ -3483,7 +3483,7 @@ v = 4
 value = 1
 ;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 ;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
-[State 2, ga3];カウンターヒット時
+[State 2, ga3]; On counter hit
 type = PlaySnd
 trigger1 =  var(14) >= 128
 trigger1 = movehit = 1
@@ -3492,38 +3492,38 @@ ignorehitpause = 1
 value = 511, 1
 Volume = 99999
 ;＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠＠
-;あああああああああああああああああ
-[State 2,guardLEVEL];ガードレベル増加
+; (section divider)
+[State 2,guardLEVEL]; Guard level increase
 type = Varadd
 trigger1 =  var(14) <= 236
 trigger1 = moveguarded = 1
 persistent = 0
 ignorehitpause = 1
 var(14) = 20
-[State 2,guardLEVEL];ガードレベル増加
+[State 2,guardLEVEL]; Guard level increase
 type = Varadd
 trigger1 =  var(14) > 236
 trigger1 = moveguarded = 1
 persistent = 0
 ignorehitpause = 1
 var(14) = 256-Var(14)
-[State 2,guardLEVEL];ガードレベル減少
+[State 2,guardLEVEL]; Guard level decrease
 type = Varadd
 trigger1 =  movehit = 1
 trigger1 =  var(14) >= 20
 persistent = 0
 ignorehitpause = 1
 var(14) = -20
-[State 2,guardLEVEL];ガードレベル減少
+[State 2,guardLEVEL]; Guard level decrease
 type = Varadd
 trigger1 =  movehit = 1
 trigger1 =  var(14) < 20
 persistent = 0
 ignorehitpause = 1
 var(14) = -Var(14)
-;あああああああああああああああああ
+; (section divider)
 ;HHHHHHHHHHHHHHHHHHHHHHHH
-;ＨＩＴ炎エフェクトのヘルパー強制消去用
+; For HIT flame effect helper force removal
 ;HHHHHHHHHHHHHHHHHHHHHHHH
 [State 1,1]
 type = Varset
@@ -3534,7 +3534,7 @@ v = 17
 value = 1
 ;HHHHHHHHHHHHHHHHHHHHHHHH
 
-[State 750, 3];必殺系ＨＩＴマーク
+[State 750, 3]; Special move HIT mark
 type = helper
 trigger1 = MoveHit = 1
 ID = 4000
@@ -3550,7 +3550,7 @@ supermove = 1
 pausemovetime = 99999999999999
 supermovetime = 99999999999999
 
-[State 240, 3];必殺系ガードマーク
+[State 240, 3]; Special move guard mark
 type = Explod
 trigger1 = moveguarded = 1
 pos = -10,-63
@@ -3568,7 +3568,7 @@ supermove = 1
 bindtime = 1
 anim = F752
 
-[State 240, 3];ＨＩＴエフェクト　白いフラッシュ
+[State 240, 3]; HIT effect white flash
 type = Explod
 trigger1 = MoveHit = 1
 pos = 0, 0
@@ -3586,7 +3586,7 @@ scale = 9999,9999
 anim = F704
 
 ;+++++++++++++++++++++++++++++++
-; ロマンキャンセル許可  
+; Roman Cancel permission
 ;+++++++++++++++++++++++++++++++
 [State 10, 10];
 type = Varset
@@ -3597,7 +3597,7 @@ ignorehitpause = 1
 var(3) = 1
 ;+++++++++++++++++++++++++++++++
 
-[State 10,10];戀崩嬢  １撃目〜９撃目までのカウントとＥＸ 兆脚鳳凰昇回数カウント
+[State 10,10]; Musume hit 1-9 count and EX Chokyaku Hououshou count
 type = Varadd
 trigger1 = MoveHit = 1
 ignorehitpause = 1
@@ -3672,7 +3672,7 @@ v = 25
 value = 0
 
 ;+++++++++++++++++++++++++++++++
-; ロマンキャンセル解除ガトリング暴発防止
+; Roman Cancel release - prevent Gatling runaway
 ;+++++++++++++++++++++++++++++++
 [State 10, 10];
 type = Varset
@@ -3700,18 +3700,18 @@ anim = 3101
 ctrl = 0
 sprpriority = 2
 
-[State 2000,1];テンションゲージ減らし
+[State 2000,1]; Reduce tension gauge
 type = poweradd
 trigger1 = time = 0
 value = -1000
 
-[State 170, 1];無敵
+[State 170, 1]; Invincible
 type = NotHitBy
 trigger1 = Time >= 0
 value = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
 time = 10
 
-[State 3001,4];覚醒時間停止
+[State 3001,4]; Awakening time stop
 type = SuperPause
 trigger1 = Time = 0
 ignorehitpause = 1
@@ -3723,7 +3723,7 @@ unhittable = 0
 pos = 0, 999
 anim = 31
 
-[State 240, 3];覚醒開始光の斜め線　上方向
+[State 240, 3]; Awakening start diagonal light lines upward
 type = Explod
 trigger1 = time = 0
 pos = 20, -50
@@ -3738,7 +3738,7 @@ supermove = 1
 bindtime = 1
 anim = F1001
 ID = 950
-[State 240, 3];覚醒開始光の斜め線　上方向
+[State 240, 3]; Awakening start diagonal light lines upward
 type = Explod
 trigger1 = time = 0
 pos = 260, -290
@@ -3754,7 +3754,7 @@ bindtime = 1
 anim = F1001
 ID = 950
 
-[State 240, 3];覚醒開始光の斜め線　下方向
+[State 240, 3]; Awakening start diagonal light lines downward
 type = Explod
 trigger1 = time = 0
 pos = -220, 190
@@ -3770,7 +3770,7 @@ bindtime = 1
 anim = F1001
 ID = 951
 
-[State 240, 3];覚醒開始光の斜め線　下方向
+[State 240, 3]; Awakening start diagonal light lines downward
 type = Explod
 trigger1 = time = 0
 pos = -460, 430
@@ -3786,7 +3786,7 @@ bindtime = 1
 anim = F1001
 ID = 951
 
-[State 240, 3];覚醒開始 光の粒　上
+[State 240, 3]; Awakening start light particles up
 type = Explod
 trigger1 = time <= 30
 trigger1 = timemod =6, 0
@@ -3807,7 +3807,7 @@ bindtime = 1
 anim = F1002
 ID = 952
 
-[State 240, 3];覚醒開始 光の粒　下
+[State 240, 3]; Awakening start light particles down
 type = Explod
 trigger1 = time <= 30
 trigger1 = timemod =6, 0
@@ -3828,7 +3828,7 @@ bindtime = 1
 anim = F1002
 ID = 952
 
-[State 240, 3];覚醒開始 光の粒　前
+[State 240, 3]; Awakening start light particles front
 type = Explod
 trigger1 = time <= 30
 trigger1 = timemod =6, 0
@@ -3849,7 +3849,7 @@ bindtime = 1
 anim = F1002
 ID = 952
 
-[State 240, 3];覚醒開始 光の粒　後
+[State 240, 3]; Awakening start light particles back
 type = Explod
 trigger1 = time <= 30
 trigger1 = timemod =6, 0
@@ -3870,7 +3870,7 @@ bindtime = 1
 anim = F1002
 ID = 952
 
-[State 240, 3];覚醒開始 光の粒　右上
+[State 240, 3]; Awakening start light particles upper-right
 type = Explod
 trigger1 = time <= 30
 trigger1 = timemod =6, 0
@@ -3891,7 +3891,7 @@ bindtime = 1
 anim = F1002
 ID = 952
 
-[State 240, 3];覚醒開始 光の粒　左上
+[State 240, 3]; Awakening start light particles upper-left
 type = Explod
 trigger1 = time <= 30
 trigger1 = timemod =6, 0
@@ -3912,7 +3912,7 @@ bindtime = 1
 anim = F1002
 ID = 952
 
-[State 240, 3];覚醒開始 光の粒　右下
+[State 240, 3]; Awakening start light particles lower-right
 type = Explod
 trigger1 = time <= 30
 trigger1 = timemod =6, 0
@@ -3933,7 +3933,7 @@ bindtime = 1
 anim = F1002
 ID = 952
 
-[State 240, 3];覚醒開始 光の粒　左下
+[State 240, 3]; Awakening start light particles lower-left
 type = Explod
 trigger1 = time <= 30
 trigger1 = timemod =6, 0
@@ -3954,7 +3954,7 @@ bindtime = 1
 anim = F1002
 ID = 952
 
-[State 750, 3];覚醒開始光のオーラ呼び出し
+[State 750, 3]; Awakening start aura call
 type = helper
 trigger1 = Time = 0
 ID = 2100
@@ -3962,7 +3962,7 @@ ignorehitpause = 1
 persistent = 0
 pos = 20,-50
 priority = 10
-ownpal = 1;コレが無いとヘルパーの色変化が出来ない
+ownpal = 1; Required for helper color change
 postype = p1
 ;size.xscale=0.5
 ;size.yscale=0.5
@@ -3971,14 +3971,14 @@ pausemovetime = 99999999999999
 supermovetime = 99999999999999
 supermove = 1
 
-[State 2, ga3];覚醒開始　効果音
+[State 2, ga3]; Awakening start sound effect
 type = PlaySnd
 trigger1 = time = 0
 value = 510, 2
 Volume = 99999
 channel = 1
 
-[State 200, 0];声
+[State 200, 0]; Voice
 type = VarRandom
 trigger1 = time = 0
 v = 0
@@ -4006,7 +4006,7 @@ volume = 99999
 channel = 0
 
 ;+++++++++++++++++++++++++++++++
-; ロマンキャンセル解除ガトリング暴発防止
+; Roman Cancel release - prevent Gatling runaway
 ;+++++++++++++++++++++++++++++++
 [State 10, 10];
 type = Varset
@@ -4034,7 +4034,7 @@ velset = 0,0
 anim = 3102
 ctrl = 0
 
-[State 170, 1];無敵
+[State 170, 1]; Invincible
 type = NotHitBy
 trigger1 = Time >= 0
 value = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
@@ -4076,7 +4076,7 @@ velset = 0,0
 anim = 3103
 ctrl = 0
 
-[State 170, 1];無敵
+[State 170, 1]; Invincible
 type = NotHitBy
 trigger1 = Time <= 3
 value = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
@@ -4120,10 +4120,10 @@ airguard.velocity =-5,-5
 air.type = Low
 air.velocity =-5,-4
 air.hittime = 14
-fall = 1;落下させる
-;fall.recover = 0;受身可否
+fall = 1; knock down
+;fall.recover = 0; tech roll availability
 fall.recovertime = 10;受身出来るまでの時間
-air.fall = 1;相手が空中時のみ落下させる
+air.fall = 1; Knock down only when opponent is airborne
 down.velocity = 0,-3
 down.hittime = 6
 down.bounce = 1
@@ -4139,7 +4139,7 @@ airguard.cornerpush.veloff = 0
 p2facing = 1
 
 ;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-[State 10,combo];攻撃力補正用ＶＡＲ
+[State 10,combo]; Attack power correction VAR
 type = Varadd
 trigger1 = MoveHit = 1
 persistent = 0
@@ -4147,38 +4147,38 @@ ignorehitpause = 1
 v = 4
 value = 1
 ;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-;あああああああああああああああああ
-[State 2,guardLEVEL];ガードレベル増加
+; (section divider)
+[State 2,guardLEVEL]; Guard level increase
 type = Varadd
 trigger1 =  var(14) <= 236
 trigger1 = moveguarded = 1
 persistent = 0
 ignorehitpause = 1
 var(14) = 10
-[State 2,guardLEVEL];ガードレベル増加
+[State 2,guardLEVEL]; Guard level increase
 type = Varadd
 trigger1 =  var(14) > 236
 trigger1 = moveguarded = 1
 persistent = 0
 ignorehitpause = 1
 var(14) = 256-Var(14)
-[State 2,guardLEVEL];ガードレベル減少
+[State 2,guardLEVEL]; Guard level decrease
 type = Varadd
 trigger1 =  movehit = 1
 trigger1 =  var(14) >= 20
 persistent = 0
 ignorehitpause = 1
 var(14) = -10
-[State 2,guardLEVEL];ガードレベル減少
+[State 2,guardLEVEL]; Guard level decrease
 type = Varadd
 trigger1 =  movehit = 1
 trigger1 =  var(14) < 20
 persistent = 0
 ignorehitpause = 1
 var(14) = -Var(14)
-;あああああああああああああああああ
+; (section divider)
 ;HHHHHHHHHHHHHHHHHHHHHHHH
-;ＨＩＴ炎エフェクトのヘルパー強制消去用
+; For HIT flame effect helper force removal
 ;HHHHHHHHHHHHHHHHHHHHHHHH
 [State 1,1]
 type = Varset
@@ -4189,7 +4189,7 @@ v = 17
 value = 1
 ;HHHHHHHHHHHHHHHHHHHHHHHH
 
-[State 750, 3];必殺系ＨＩＴマーク
+[State 750, 3]; Special move HIT mark
 type = helper
 trigger1 = MoveHit = 1
 ID = 4000
@@ -4205,7 +4205,7 @@ supermove = 1
 pausemovetime = 99999999999999
 supermovetime = 99999999999999
 
-[State 240, 3];必殺系ガードマーク
+[State 240, 3]; Special move guard mark
 type = Explod
 trigger1 = moveguarded = 1
 pos = 0,-60
@@ -4223,7 +4223,7 @@ supermove = 1
 bindtime = 1
 anim = F752
 
-[State 240, 3];ＨＩＴエフェクト　白いフラッシュ
+[State 240, 3]; HIT effect white flash
 type = Explod
 trigger1 = MoveHit = 1
 pos = 0, 0
@@ -4295,10 +4295,10 @@ airguard.velocity =-5,-5
 air.type = Low
 air.velocity =-5,-4
 air.hittime = 14
-fall = 1;落下させる
-;fall.recover = 0;受身可否
+fall = 1; knock down
+;fall.recover = 0; tech roll availability
 fall.recovertime = 10;受身出来るまでの時間
-air.fall = 1;相手が空中時のみ落下させる
+air.fall = 1; Knock down only when opponent is airborne
 down.velocity = 0,-3
 down.hittime = 6
 down.bounce = 1
@@ -4314,7 +4314,7 @@ airguard.cornerpush.veloff = 0
 p2facing = 1
 
 ;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-[State 10,combo];攻撃力補正用ＶＡＲ
+[State 10,combo]; Attack power correction VAR
 type = Varadd
 trigger1 = MoveHit = 1
 persistent = 0
@@ -4322,38 +4322,38 @@ ignorehitpause = 1
 v = 4
 value = 1
 ;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-;あああああああああああああああああ
-[State 2,guardLEVEL];ガードレベル増加
+; (section divider)
+[State 2,guardLEVEL]; Guard level increase
 type = Varadd
 trigger1 =  var(14) <= 236
 trigger1 = moveguarded = 1
 persistent = 0
 ignorehitpause = 1
 var(14) = 10
-[State 2,guardLEVEL];ガードレベル増加
+[State 2,guardLEVEL]; Guard level increase
 type = Varadd
 trigger1 =  var(14) > 236
 trigger1 = moveguarded = 1
 persistent = 0
 ignorehitpause = 1
 var(14) = 256-Var(14)
-[State 2,guardLEVEL];ガードレベル減少
+[State 2,guardLEVEL]; Guard level decrease
 type = Varadd
 trigger1 =  movehit = 1
 trigger1 =  var(14) >= 20
 persistent = 0
 ignorehitpause = 1
 var(14) = -10
-[State 2,guardLEVEL];ガードレベル減少
+[State 2,guardLEVEL]; Guard level decrease
 type = Varadd
 trigger1 =  movehit = 1
 trigger1 =  var(14) < 20
 persistent = 0
 ignorehitpause = 1
 var(14) = -Var(14)
-;あああああああああああああああああ
+; (section divider)
 ;HHHHHHHHHHHHHHHHHHHHHHHH
-;ＨＩＴ炎エフェクトのヘルパー強制消去用
+; For HIT flame effect helper force removal
 ;HHHHHHHHHHHHHHHHHHHHHHHH
 [State 1,1]
 type = Varset
@@ -4364,7 +4364,7 @@ v = 17
 value = 1
 ;HHHHHHHHHHHHHHHHHHHHHHHH
 
-[State 750, 3];必殺系ＨＩＴマーク
+[State 750, 3]; Special move HIT mark
 type = helper
 trigger1 = MoveHit = 1
 ID = 4000
@@ -4380,7 +4380,7 @@ supermove = 1
 pausemovetime = 99999999999999
 supermovetime = 99999999999999
 
-[State 240, 3];必殺系ガードマーク
+[State 240, 3]; Special move guard mark
 type = Explod
 trigger1 = moveguarded = 1
 pos = 0,-60
@@ -4398,7 +4398,7 @@ supermove = 1
 bindtime = 1
 anim = F752
 
-[State 240, 3];ＨＩＴエフェクト　白いフラッシュ
+[State 240, 3]; HIT effect white flash
 type = Explod
 trigger1 = MoveHit = 1
 pos = 0, 0
@@ -4456,10 +4456,10 @@ airguard.velocity =-5,-5
 air.type = Low
 air.velocity =-5,-4
 air.hittime = 14
-fall = 1;落下させる
-;fall.recover = 0;受身可否
+fall = 1; knock down
+;fall.recover = 0; tech roll availability
 fall.recovertime = 10;受身出来るまでの時間
-air.fall = 1;相手が空中時のみ落下させる
+air.fall = 1; Knock down only when opponent is airborne
 down.velocity = 0,-3
 down.hittime = 6
 down.bounce = 1
@@ -4475,7 +4475,7 @@ airguard.cornerpush.veloff = 0
 p2facing = 1
 
 ;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-[State 10,combo];攻撃力補正用ＶＡＲ
+[State 10,combo]; Attack power correction VAR
 type = Varadd
 trigger1 = MoveHit = 1
 persistent = 0
@@ -4483,38 +4483,38 @@ ignorehitpause = 1
 v = 4
 value = 1
 ;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-;あああああああああああああああああ
-[State 2,guardLEVEL];ガードレベル増加
+; (section divider)
+[State 2,guardLEVEL]; Guard level increase
 type = Varadd
 trigger1 =  var(14) <= 236
 trigger1 = moveguarded = 1
 persistent = 0
 ignorehitpause = 1
 var(14) = 10
-[State 2,guardLEVEL];ガードレベル増加
+[State 2,guardLEVEL]; Guard level increase
 type = Varadd
 trigger1 =  var(14) > 236
 trigger1 = moveguarded = 1
 persistent = 0
 ignorehitpause = 1
 var(14) = 256-Var(14)
-[State 2,guardLEVEL];ガードレベル減少
+[State 2,guardLEVEL]; Guard level decrease
 type = Varadd
 trigger1 =  movehit = 1
 trigger1 =  var(14) >= 20
 persistent = 0
 ignorehitpause = 1
 var(14) = -10
-[State 2,guardLEVEL];ガードレベル減少
+[State 2,guardLEVEL]; Guard level decrease
 type = Varadd
 trigger1 =  movehit = 1
 trigger1 =  var(14) < 20
 persistent = 0
 ignorehitpause = 1
 var(14) = -Var(14)
-;あああああああああああああああああ
+; (section divider)
 ;HHHHHHHHHHHHHHHHHHHHHHHH
-;ＨＩＴ炎エフェクトのヘルパー強制消去用
+; For HIT flame effect helper force removal
 ;HHHHHHHHHHHHHHHHHHHHHHHH
 [State 1,1]
 type = Varset
@@ -4525,7 +4525,7 @@ v = 17
 value = 1
 ;HHHHHHHHHHHHHHHHHHHHHHHH
 
-[State 750, 3];必殺系ＨＩＴマーク
+[State 750, 3]; Special move HIT mark
 type = helper
 trigger1 = MoveHit = 1
 ID = 4000
@@ -4541,7 +4541,7 @@ supermove = 1
 pausemovetime = 99999999999999
 supermovetime = 99999999999999
 
-[State 240, 3];必殺系ガードマーク
+[State 240, 3]; Special move guard mark
 type = Explod
 trigger1 = moveguarded = 1
 pos = 0,-60
@@ -4559,7 +4559,7 @@ supermove = 1
 bindtime = 1
 anim = F752
 
-[State 240, 3];ＨＩＴエフェクト　白いフラッシュ
+[State 240, 3]; HIT effect white flash
 type = Explod
 trigger1 = MoveHit = 1
 pos = 0, 0
@@ -4617,10 +4617,10 @@ airguard.velocity =-5,-5
 air.type = Low
 air.velocity =-5,-4
 air.hittime = 14
-fall = 1;落下させる
-;fall.recover = 0;受身可否
+fall = 1; knock down
+;fall.recover = 0; tech roll availability
 fall.recovertime = 10;受身出来るまでの時間
-air.fall = 1;相手が空中時のみ落下させる
+air.fall = 1; Knock down only when opponent is airborne
 down.velocity = 0,-3
 down.hittime = 6
 down.bounce = 1
@@ -4636,7 +4636,7 @@ airguard.cornerpush.veloff = 0
 p2facing = 1
 
 ;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-[State 10,combo];攻撃力補正用ＶＡＲ
+[State 10,combo]; Attack power correction VAR
 type = Varadd
 trigger1 = MoveHit = 1
 persistent = 0
@@ -4644,38 +4644,38 @@ ignorehitpause = 1
 v = 4
 value = 1
 ;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-;あああああああああああああああああ
-[State 2,guardLEVEL];ガードレベル増加
+; (section divider)
+[State 2,guardLEVEL]; Guard level increase
 type = Varadd
 trigger1 =  var(14) <= 236
 trigger1 = moveguarded = 1
 persistent = 0
 ignorehitpause = 1
 var(14) = 10
-[State 2,guardLEVEL];ガードレベル増加
+[State 2,guardLEVEL]; Guard level increase
 type = Varadd
 trigger1 =  var(14) > 236
 trigger1 = moveguarded = 1
 persistent = 0
 ignorehitpause = 1
 var(14) = 256-Var(14)
-[State 2,guardLEVEL];ガードレベル減少
+[State 2,guardLEVEL]; Guard level decrease
 type = Varadd
 trigger1 =  movehit = 1
 trigger1 =  var(14) >= 20
 persistent = 0
 ignorehitpause = 1
 var(14) = -10
-[State 2,guardLEVEL];ガードレベル減少
+[State 2,guardLEVEL]; Guard level decrease
 type = Varadd
 trigger1 =  movehit = 1
 trigger1 =  var(14) < 20
 persistent = 0
 ignorehitpause = 1
 var(14) = -Var(14)
-;あああああああああああああああああ
+; (section divider)
 ;HHHHHHHHHHHHHHHHHHHHHHHH
-;ＨＩＴ炎エフェクトのヘルパー強制消去用
+; For HIT flame effect helper force removal
 ;HHHHHHHHHHHHHHHHHHHHHHHH
 [State 1,1]
 type = Varset
@@ -4686,7 +4686,7 @@ v = 17
 value = 1
 ;HHHHHHHHHHHHHHHHHHHHHHHH
 
-[State 750, 3];必殺系ＨＩＴマーク
+[State 750, 3]; Special move HIT mark
 type = helper
 trigger1 = MoveHit = 1
 ID = 4000
@@ -4702,7 +4702,7 @@ supermove = 1
 pausemovetime = 99999999999999
 supermovetime = 99999999999999
 
-[State 240, 3];必殺系ガードマーク
+[State 240, 3]; Special move guard mark
 type = Explod
 trigger1 = moveguarded = 1
 pos = 0,-60
@@ -4720,7 +4720,7 @@ supermove = 1
 bindtime = 1
 anim = F752
 
-[State 240, 3];ＨＩＴエフェクト　白いフラッシュ
+[State 240, 3]; HIT effect white flash
 type = Explod
 trigger1 = MoveHit = 1
 pos = 0, 0
@@ -4778,10 +4778,10 @@ airguard.velocity =-5,-5
 air.type = Low
 air.velocity =-5,-4
 air.hittime = 14
-fall = 1;落下させる
-;fall.recover = 0;受身可否
+fall = 1; knock down
+;fall.recover = 0; tech roll availability
 fall.recovertime = 10;受身出来るまでの時間
-air.fall = 1;相手が空中時のみ落下させる
+air.fall = 1; Knock down only when opponent is airborne
 down.velocity = 0,-3
 down.hittime = 6
 down.bounce = 1
@@ -4797,7 +4797,7 @@ airguard.cornerpush.veloff = 0
 p2facing = 1
 
 ;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-[State 10,combo];攻撃力補正用ＶＡＲ
+[State 10,combo]; Attack power correction VAR
 type = Varadd
 trigger1 = MoveHit = 1
 persistent = 0
@@ -4805,38 +4805,38 @@ ignorehitpause = 1
 v = 4
 value = 1
 ;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-;あああああああああああああああああ
-[State 2,guardLEVEL];ガードレベル増加
+; (section divider)
+[State 2,guardLEVEL]; Guard level increase
 type = Varadd
 trigger1 =  var(14) <= 236
 trigger1 = moveguarded = 1
 persistent = 0
 ignorehitpause = 1
 var(14) = 10
-[State 2,guardLEVEL];ガードレベル増加
+[State 2,guardLEVEL]; Guard level increase
 type = Varadd
 trigger1 =  var(14) > 236
 trigger1 = moveguarded = 1
 persistent = 0
 ignorehitpause = 1
 var(14) = 256-Var(14)
-[State 2,guardLEVEL];ガードレベル減少
+[State 2,guardLEVEL]; Guard level decrease
 type = Varadd
 trigger1 =  movehit = 1
 trigger1 =  var(14) >= 20
 persistent = 0
 ignorehitpause = 1
 var(14) = -10
-[State 2,guardLEVEL];ガードレベル減少
+[State 2,guardLEVEL]; Guard level decrease
 type = Varadd
 trigger1 =  movehit = 1
 trigger1 =  var(14) < 20
 persistent = 0
 ignorehitpause = 1
 var(14) = -Var(14)
-;あああああああああああああああああ
+; (section divider)
 ;HHHHHHHHHHHHHHHHHHHHHHHH
-;ＨＩＴ炎エフェクトのヘルパー強制消去用
+; For HIT flame effect helper force removal
 ;HHHHHHHHHHHHHHHHHHHHHHHH
 [State 1,1]
 type = Varset
@@ -4847,7 +4847,7 @@ v = 17
 value = 1
 ;HHHHHHHHHHHHHHHHHHHHHHHH
 
-[State 750, 3];必殺系ＨＩＴマーク
+[State 750, 3]; Special move HIT mark
 type = helper
 trigger1 = MoveHit = 1
 ID = 4000
@@ -4863,7 +4863,7 @@ supermove = 1
 pausemovetime = 99999999999999
 supermovetime = 99999999999999
 
-[State 240, 3];必殺系ガードマーク
+[State 240, 3]; Special move guard mark
 type = Explod
 trigger1 = moveguarded = 1
 pos = 0,-60
@@ -4881,7 +4881,7 @@ supermove = 1
 bindtime = 1
 anim = F752
 
-[State 240, 3];ＨＩＴエフェクト　白いフラッシュ
+[State 240, 3]; HIT effect white flash
 type = Explod
 trigger1 = MoveHit = 1
 pos = 0, 0
