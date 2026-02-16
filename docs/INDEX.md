@@ -7,7 +7,7 @@ This folder contains additional technical documentation for the Jam Kuradoberi M
 | Document | Description |
 |----------|-------------|
 | [../README.md](../README.md) | Main character documentation |
-| [../TRANSLATION_TABLE.md](../TRANSLATION_TABLE.md) | Japanese→English translation reference |
+| [TRANSLATION_TABLE.md](TRANSLATION_TABLE.md) | Japanese→English translation reference |
 | [../CHANGELOG.md](../CHANGELOG.md) | Version history |
 
 ## Planned Documentation

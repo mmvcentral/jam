@@ -50,7 +50,7 @@ Jam Kuradoberi is a martial artist and chef who runs a Chinese restaurant called
 | Document | Description |
 |----------|-------------|
 | [README.md](README.md) | This file – main character documentation |
-| [TRANSLATION_TABLE.md](TRANSLATION_TABLE.md) | Japanese→English translation for CNS/CMD comments |
+| [docs/TRANSLATION_TABLE.md](docs/TRANSLATION_TABLE.md) | Japanese→English translation for CNS/CMD comments |
 | [CHANGELOG.md](CHANGELOG.md) | Version history and modifications |
 | [docs/INDEX.md](docs/INDEX.md) | Documentation index and planned docs |
 
@@ -299,6 +299,6 @@ Based on file headers and structure, the following files were authored by **AOAO
 
 ## Related Documentation Files
 
-- [TRANSLATION_TABLE.md](TRANSLATION_TABLE.md) – Full Japanese→English glossary
+- [docs/TRANSLATION_TABLE.md](docs/TRANSLATION_TABLE.md) – Full Japanese→English glossary
 - [CHANGELOG.md](CHANGELOG.md) – Version history
 - [docs/](docs/) – Additional technical notes (if created)

@@ -3201,14 +3201,14 @@ anim = 3050
 ID = 3050
 scale = Var(5)*0.1,1
 
-[State 2, 1]; Phoenix effect拡大率初期化
+[State 2, 1]; Phoenix effect scale init
 type = Varset
 trigger1 = Var(5) != 0
 trigger1 = time = 0
 var(5) = 0
 ignorehitpause = 1
 
-[State 222, 10]; Phoenix effect拡大率アップ
+[State 222, 10]; Phoenix effect scale up
 type = VarAdd
 trigger1 = Var(5) < 10
 trigger1 = Time >= 20
@@ -3216,26 +3216,26 @@ trigger1 = TimeMod = 2,0
 var(5) = 1
 ignorehitpause = 1
 
-[State 2090, 7]; Phoenix effect拡大
+[State 2090, 7]; Phoenix effect scale
 type = ModifyExplod
 trigger1 = Time <= 50
 ID = 3050
 scale = Var(5)*0.1,1
 
-[State 2, 1]; Phoenix effect終了用拡大率初期化
+[State 2, 1]; Phoenix effect end scale init
 type = Varset
 trigger1 = Var(6) != 10
 trigger1 = time = 0
 var(6) = 10
 ignorehitpause = 1
-[State 2, 1]; Phoenix effect終了用拡大率初期化
+[State 2, 1]; Phoenix effect end scale init
 type = Varset
 trigger1 = Var(7) != 10
 trigger1 = time = 0
 var(7) = 10
 ignorehitpause = 1
 
-[State 240, 3]; Phoenix effect終了用
+[State 240, 3]; Phoenix effect end
 type = Explod
 trigger1 = time = 120
 pos = 0, 0
@@ -3252,27 +3252,27 @@ anim = 3050
 ID = 3055
 scale = Var(7)*0.1,Var(6)*0.1
 
-[State 222, 10]; Phoenix effect終了用拡大率アップ
+[State 222, 10]; Phoenix effect end scale up
 type = VarAdd
 trigger1 = Var(6) < 40
 trigger1 = Time >= 120
 var(6) = 1
 ignorehitpause = 1
 
-[State 222, 10]; Phoenix effect終了用拡大率アップ
+[State 222, 10]; Phoenix effect end scale up
 type = VarAdd
 trigger1 = var(7) != 0
 trigger1 = Time >= 140
 var(7) = -1
 ignorehitpause = 1
 
-[State 2090, 7]; Phoenix effect終了用拡大
+[State 2090, 7]; Phoenix effect end scale
 type = ModifyExplod
 trigger1 = Time >= 120
 ID = 3055
 scale = Var(7)*0.1,Var(6)*0.1
 
-[State 240, 3];鳳凰  炎エフェクト
+[State 240, 3]; Phoenix flame effect
 type = Explod
 trigger1 = Time <= 150
 trigger1 = timeMod =7, 0
@@ -3299,13 +3299,13 @@ type = sprpriority
 Trigger1 = Time >= 0 
 value = -9999 
 
-[State -2, 6];鳳凰消去
+[State -2, 6]; Phoenix remove
 type = RemoveExplod
 trigger1 = Time = 120
 ignorehitpause = 1
 ID = 3050
 
-[State -2, 6];鳳凰終了用消去
+[State -2, 6]; Phoenix end remove
 type = RemoveExplod
 trigger1 = var(7) = 0
 ignorehitpause = 1
@@ -3409,7 +3409,7 @@ air.velocity =-5,-10+Var(6)
 air.hittime = 14
 ;fall = 1; knock down
 ;fall.recover = 0; tech roll availability
-fall.recovertime = 30;受身出来るまでの時間
+fall.recovertime = 30; time until tech possible
 air.fall = 1; Knock down only when opponent is airborne
 down.velocity = 0,-3
 down.hittime = 6
@@ -3452,7 +3452,7 @@ air.velocity =-5,-10+Var(6)
 air.hittime = 14
 ;fall = 1; knock down
 ;fall.recover = 0; tech roll availability
-fall.recovertime = 30;受身出来るまでの時間
+fall.recovertime = 30; time until tech possible
 air.fall = 1; Knock down only when opponent is airborne
 down.velocity = 0,-3
 down.hittime = 6
@@ -3641,7 +3641,7 @@ value = 0
 ctrl = 1
 
 ;<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~
-;                              　戀崩嬢  開始　暗転前
+; Renhoujou (Musume) Start before darken
 [Statedef 3100]
 type    = S
 movetype= I
@@ -3652,19 +3652,19 @@ anim = 3100
 ctrl = 0
 sprpriority = 2
 
-[State 108, 0];地上ダッシュ後の慣性用
+[State 108, 0]; Ground dash inertia
 type = VelAdd
 trigger1 = time >= 0
 trigger1 = Vel X > 0
 x = -0.2
 
-[State 108, 0];地上ダッシュ後の慣性用
+[State 108, 0]; Ground dash inertia
 type = Velset
 trigger1 = time >= 0
 trigger1 = Vel X < 0
 x = 0
 
-[State 2,1];戀崩嬢  １撃目〜９撃目までのカウント初期化
+[State 2,1]; Musume hit 1-9 count init
 type = Varset
 trigger1 = time = 0
 ignorehitpause = 1
@@ -3689,7 +3689,7 @@ trigger1 = AnimTime = 0
 value = 3101
 ctrl = 0
 ;<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~
-;                              　戀崩嬢  開始　暗転中
+; Renhoujou (Musume) Start during darken
 [Statedef 3101]
 type    = S
 movetype= I
@@ -3983,21 +3983,21 @@ type = VarRandom
 trigger1 = time = 0
 v = 0
 range = 0,2
-[State 200, 1];臨界突破
+[State 200, 1]; Critical breakthrough
 type = PlaySnd
 trigger1 = time = 0
 trigger1 = Var(0) = 0
 value = 307, 0;
 volume = 99999
 channel = 0
-[State 200, 1];もらったぁ
+[State 200, 1]; Got it
 type = PlaySnd
 trigger1 = time = 0
 trigger1 = Var(0) = 1
 value = 307, 1;
 volume = 99999
 channel = 0
-[State 200, 1];私の勝ちアル
+[State 200, 1]; I win
 type = PlaySnd
 trigger1 = time = 0
 trigger1 = Var(0) = 2
@@ -4024,7 +4024,7 @@ value = 3102
 ctrl = 0
 
 ;<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~
-;                              　戀崩嬢  攻撃動作開始
+; Renhoujou (Musume) attack action start
 [Statedef 3102]
 type    = S
 movetype= A
@@ -4040,14 +4040,14 @@ trigger1 = Time >= 0
 value = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
 time = 10
 
-[State 200, 1];効果音
+[State 200, 1]; Sound effect
 type = PlaySnd
 trigger1 = time = 0
 value = 403, 0;
 volume = 99999
 
 
-[State 240, 3];大玉エフェクト開始部分
+[State 240, 3]; Large orb effect start
 type = Explod
 trigger1 = AnimElem = 1
 pos = 75, 10
@@ -4066,7 +4066,7 @@ value = 3103
 ctrl = 0
 
 ;<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~
-;                              　戀崩嬢  １撃目〜９撃目
+; Renhoujou (Musume) hit 1-9
 [Statedef 3103]
 type    = S
 movetype= A
@@ -4082,7 +4082,7 @@ trigger1 = Time <= 3
 value = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
 time = 2
 
-[State 240, 3];大玉エフェクト攻撃中
+[State 240, 3]; Large orb effect during attack
 type = Explod
 trigger1 = var(25) = 0
 trigger1 = AnimElem = 1
@@ -4122,7 +4122,7 @@ air.velocity =-5,-4
 air.hittime = 14
 fall = 1; knock down
 ;fall.recover = 0; tech roll availability
-fall.recovertime = 10;受身出来るまでの時間
+fall.recovertime = 10; time until tech possible
 air.fall = 1; Knock down only when opponent is airborne
 down.velocity = 0,-3
 down.hittime = 6
@@ -4240,7 +4240,7 @@ bindtime = -1
 scale = 9999,9999
 anim = F704
 
-[State 10, 10];戀崩嬢  １撃目〜９撃目までのカウント増加
+[State 10, 10]; Musume hit 1-9 count increase
 type = VarAdd
 trigger1 = AnimTime = 0
 var(25) = 1
@@ -4261,7 +4261,7 @@ value = 3103
 ctrl = 0
 
 ;<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~
-;                              　戀崩嬢  １０撃目
+; Renhoujou (Musume) 10th hit
 [Statedef 3104]
 type    = S
 movetype= A
@@ -4297,7 +4297,7 @@ air.velocity =-5,-4
 air.hittime = 14
 fall = 1; knock down
 ;fall.recover = 0; tech roll availability
-fall.recovertime = 10;受身出来るまでの時間
+fall.recovertime = 10; time until tech possible
 air.fall = 1; Knock down only when opponent is airborne
 down.velocity = 0,-3
 down.hittime = 6
@@ -4422,7 +4422,7 @@ value = 3105
 ctrl = 0
 
 ;<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~
-;                              　戀崩嬢  １１撃目
+; Renhoujou (Musume) 11th hit
 [Statedef 3105]
 type    = S
 movetype= A
@@ -4458,7 +4458,7 @@ air.velocity =-5,-4
 air.hittime = 14
 fall = 1; knock down
 ;fall.recover = 0; tech roll availability
-fall.recovertime = 10;受身出来るまでの時間
+fall.recovertime = 10; time until tech possible
 air.fall = 1; Knock down only when opponent is airborne
 down.velocity = 0,-3
 down.hittime = 6
@@ -4583,7 +4583,7 @@ value = 3106
 ctrl = 0
 
 ;<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~
-;                              　戀崩嬢  １２撃目
+; Renhoujou (Musume) 12th hit
 [Statedef 3106]
 type    = S
 movetype= A
@@ -4619,7 +4619,7 @@ air.velocity =-5,-4
 air.hittime = 14
 fall = 1; knock down
 ;fall.recover = 0; tech roll availability
-fall.recovertime = 10;受身出来るまでの時間
+fall.recovertime = 10; time until tech possible
 air.fall = 1; Knock down only when opponent is airborne
 down.velocity = 0,-3
 down.hittime = 6
@@ -4744,7 +4744,7 @@ value = 3107
 ctrl = 0
 
 ;<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~
-;                              　戀崩嬢  １３撃目
+; Renhoujou (Musume) 13th hit
 [Statedef 3107]
 type    = S
 movetype= A
@@ -4780,7 +4780,7 @@ air.velocity =-5,-4
 air.hittime = 14
 fall = 1; knock down
 ;fall.recover = 0; tech roll availability
-fall.recovertime = 10;受身出来るまでの時間
+fall.recovertime = 10; time until tech possible
 air.fall = 1; Knock down only when opponent is airborne
 down.velocity = 0,-3
 down.hittime = 6
@@ -4906,7 +4906,7 @@ ctrl = 0
 
 
 ;<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~<~
-;                              　戀崩嬢  終了動作
+; Renhoujou (Musume) end action
 [Statedef 3108]
 type    = S
 movetype= I
@@ -4916,7 +4916,7 @@ velset = 0,0
 anim = 3108
 ctrl = 0
 
-[State 240, 3];大玉エフェクト終了時
+[State 240, 3]; Large orb effect end
 type = Explod
 trigger1 = AnimElem = 1
 pos = 75, 10
